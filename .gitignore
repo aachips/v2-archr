@@ -1,0 +1,39 @@
+# Local server config
+.htaccess
+
+# Secrets & credentials
+*.env
+.env
+.env.*
+app/PAT.txt
+app/.env
+app/api/.env
+vue-view/.env
+vue-view/.env.*
+**/PAT.txt
+**/*.pem
+**/*.key
+**/*.secret
+
+# Dependencies & build
+node_modules/
+dist/
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Database dumps
+*.sql.dump
+sql/dumps/
