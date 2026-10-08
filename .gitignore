@@ -37,3 +37,9 @@ logs/
 # Database dumps
 *.sql.dump
 sql/dumps/
+
+# Build artifacts (contain API keys from .env)
+portal/js/
+portal/css/
+portal/img/
+portal/favicon.ico
