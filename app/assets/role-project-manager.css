@@ -1,0 +1,505 @@
+/* Extracted from app/templates/project-manager.html. Scoped to the role page;
+   shared scaffolding lives in app/assets/portal.css. */
+
+        /* =========================================================================
+           ARCHR Design System &mdash; Project Manager Dashboard
+           Mirrors the Bursar / Assessor dashboard scaffolding and applies the
+           Project Manager role accent (blue #3366CC from the branding guide). The
+           page canvas is intentionally tinted with a heavily desaturated variant
+           of the role color so that screenshots from end-users immediately reveal
+           which role-portal the user was viewing when they reported an issue.
+           ========================================================================= */
+
+        /* Project Manager role accent. Source: --role-project-manager #3366CC.
+           - deep:    higher-contrast variant for text/borders (AA on white)
+           - light:   for pill/badge fills (matches branding guide dark-mode token)
+           - canvas:  near-white desaturated tint used as the page background */
+        :root {
+            --role-pm: #3366CC;
+            --role-pm-deep: #1f3f8a;
+            --role-pm-light: #d0defb;
+            --role-pm-canvas: #eef2fc;
+        }
+        [data-theme="dark"] {
+            --role-pm-canvas: #15203a;
+            --role-pm-light: #1f2c4a;
+        }
+
+        /* Page canvas takes the desaturated role tint */
+        body { background: var(--role-pm-canvas); }
+        .portal-content { background: var(--role-pm-canvas); }
+
+        /* Sidebar nav accent */
+        .portal-nav-link.active {
+            border-left-color: var(--role-pm-deep);
+            color: var(--role-pm-deep);
+            background: rgba(31, 63, 138, 0.10);
+        }
+        .portal-nav-link.active i,
+        .portal-nav-link:hover i { color: var(--role-pm-deep); }
+
+        /* Project Manager role badge */
+        .role-badge.pm-badge {
+            background: var(--role-pm-light);
+            color: var(--role-pm-deep);
+            border: 1px solid #b9c8ee;
+        }
+        .role-badge.pm-badge i { color: var(--role-pm-deep); }
+
+        .dash-section-title i { color: var(--role-pm-deep); }
+
+        /* ----- Hero ----- */
+        .dash-hero {
+            background: linear-gradient(135deg, var(--role-pm-deep), #102554);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6) var(--space-8);
+            margin-bottom: var(--space-6);
+            display: grid;
+            grid-template-columns: 2fr auto;
+            gap: var(--space-5);
+            align-items: center;
+        }
+
+/* ----- KPI cards (4 across) ----- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+        .kpi {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-5);
+            box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column; gap: var(--space-1);
+            border-top: 4px solid var(--color-border-strong);
+        }
+
+.kpi.kpi-active   { border-top-color: var(--role-pm-deep); }
+        .kpi.kpi-budget   { border-top-color: var(--color-success); }
+        .kpi.kpi-schedule { border-top-color: var(--color-warning); }
+        .kpi.kpi-approve  { border-top-color: var(--color-danger); }
+        
+        .kpi-foot a { font-size: var(--fs-xs); font-weight: 600; color: var(--role-pm-deep); text-decoration: none; }
+
+        /* ----- Mini progress meter (timeline + budget bars) ----- */
+        .meter { display: inline-block; width: 100px; height: 6px; background: var(--bg-surface-alt); border-radius: var(--radius-pill); overflow: hidden; vertical-align: middle; }
+        .meter-fill { display: block; height: 100%; background: var(--role-pm-deep); }
+
+        /* ----- Project status table ----- */
+        .project-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+        .project-table thead th {
+            text-align: left; font-size: var(--fs-xs); text-transform: uppercase;
+            letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600;
+            padding: var(--space-3); border-bottom: 1px solid var(--color-border-strong);
+        }
+        .project-table tbody td { padding: var(--space-3); border-bottom: 1px dashed var(--color-border); color: var(--color-text); }
+        .project-table tbody tr:hover { background: var(--bg-surface-alt); }
+        .project-table .col-num { text-align: right; }
+        .project-table .case-id { font-family: var(--font-display); font-weight: 700; color: var(--role-pm-deep); }
+        .project-table .progress-cell { display: flex; align-items: center; gap: var(--space-2); }
+        .project-table .progress-cell .pct { font-size: var(--fs-xs); color: var(--color-text-muted); min-width: 32px; }
+
+        /* ----- Pills ----- */
+        
+        .pill-blue  { background: var(--role-pm-light); color: var(--role-pm-deep); border-color: #b9c8ee; }
+
+        /* ----- Two-column grid ----- */
+        .two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-5); margin-bottom: var(--space-6); }
+
+/* ----- Crew assignment list ----- */
+        .crew-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .crew-item {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: center;
+            padding: var(--space-3) var(--space-4); background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong); border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-pm-deep);
+        }
+        .crew-item.is-unassigned { border-left-color: var(--color-danger); }
+        .crew-item .crew-avatar {
+            width: 36px; height: 36px; border-radius: 50%; background: var(--role-pm-light);
+            color: var(--role-pm-deep); display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: var(--fs-sm);
+        }
+        .crew-item.is-unassigned .crew-avatar { background: #fbe7e3; color: #8a2818; }
+        .crew-item .crew-case { font-family: var(--font-display); font-weight: 700; color: var(--role-pm-deep); font-size: var(--fs-sm); }
+        .crew-item .crew-name { color: var(--color-text); font-size: var(--fs-sm); }
+        .crew-item .crew-meta { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; }
+
+        /* ----- Subcontractor queue ----- */
+        .sub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .sub-item {
+            padding: var(--space-3) var(--space-4); background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong); border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-pm-deep);
+        }
+        .sub-item.is-pending  { border-left-color: var(--color-warning); }
+        .sub-item.is-active   { border-left-color: var(--color-success); }
+        .sub-item .sub-trade { font-weight: 700; color: var(--color-text); }
+        .sub-item .sub-body  { font-size: var(--fs-sm); color: var(--color-text); margin-top: 2px; }
+        .sub-item .sub-meta  { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-2); display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); }
+
+        /* ----- Escalations/Risks (warning panel) ----- */
+        .escalation-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .escalation-item {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: center;
+            padding: var(--space-3) var(--space-4); background: #fbe7e3;
+            border: 1px solid #f0c6bd; border-radius: var(--radius-md); color: #5a1a10;
+        }
+        .escalation-item.is-major { background: #fdf3df; border-color: #f4dfa9; color: #5a3a0a; }
+        .escalation-item .esc-icon { font-size: 1.25rem; color: var(--color-danger); }
+        .escalation-item.is-major .esc-icon { color: var(--color-warning); }
+        .escalation-item .esc-title { font-weight: 700; }
+        .escalation-item .esc-detail { font-size: var(--fs-sm); }
+        [data-theme="dark"] .escalation-item { background: #3a201a; border-color: #5a2f25; color: #f3b8ac; }
+        [data-theme="dark"] .escalation-item.is-major { background: #3a2f1a; border-color: #5a4a25; color: #f4dfa9; }
+
+        /* ----- Messages list ----- */
+        
+        .msg-item {
+            padding: var(--space-3) var(--space-4); background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong); border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-pm-deep);
+        }
+        
+        .msg-item .msg-from { font-weight: 700; color: var(--color-text); }
+        .msg-item .msg-body { font-size: var(--fs-sm); color: var(--color-text); margin-top: 2px; }
+
+/* ----- Action button row ----- */
+        .pm-action-row {
+            display: flex; flex-wrap: wrap; gap: var(--space-3);
+            margin: var(--space-6) 0 var(--space-5);
+            padding: var(--space-4) 0;
+            border-top: 2px solid var(--color-border-strong);
+            border-bottom: 2px solid var(--color-border-strong);
+        }
+        .pm-action-btn {
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: var(--bg-surface); border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md); font-weight: 600; color: var(--color-text);
+            text-decoration: none; transition: var(--transition);
+        }
+        .pm-action-btn:hover {
+            background: var(--role-pm-deep); border-color: var(--role-pm-deep);
+            color: #fff; transform: translateY(-2px);
+        }
+        .pm-action-btn i { font-size: 1rem; }
+
+        /* ----- Task context groups (2x2 grid) ----- */
+
+.task-group-card h4 { font-family: var(--font-display); font-size: var(--fs-md); margin: 0 0 var(--space-3); color: var(--color-text); display: flex; align-items: center; gap: var(--space-2); }
+        .task-group-card h4 i { color: var(--role-pm-deep); }
+
+.task-action-list li a:hover { background: var(--bg-surface-alt); color: var(--role-pm-deep); }
+        
+        .task-action-list li a:hover i { color: var(--role-pm-deep); }
+
+        /* ----- Section header & see-all link ----- */
+        
+        .panel .see-all-link, .section-header-row .see-all-link {
+            font-size: var(--fs-sm); font-weight: 600;
+            color: var(--role-pm-deep); text-decoration: none;
+        }
+
+        /* ----- Role notice ----- */
+        .role-notice {
+            background: var(--role-pm-light); border: 1px solid #b9c8ee; color: var(--role-pm-deep);
+            padding: 12px 18px; border-radius: var(--radius-md);
+            margin-top: var(--space-5); font-size: var(--fs-sm);
+            display: flex; align-items: flex-start; gap: 10px;
+        }
+        .role-notice i { color: var(--role-pm-deep); margin-top: 3px; }
+        [data-theme="dark"] .role-notice { background: #1f2c4a; border-color: #2e3f6a; color: #d0defb; }
+        [data-theme="dark"] .role-notice i { color: #d0defb; }
+
+        /* ----- Global Case Search (top of landing page) ----- */
+        .case-search {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-left: 4px solid var(--role-pm-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-5);
+            margin-bottom: var(--space-5);
+            box-shadow: var(--shadow-sm);
+        }
+        .case-search-icon {
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            background: var(--role-pm-light); color: var(--role-pm-deep);
+            display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+        .case-search-input:focus { outline: none; border-color: var(--role-pm-deep); box-shadow: 0 0 0 3px var(--role-pm-light); }
+        .case-search-advanced {
+            font-size: var(--fs-sm); font-weight: 600;
+            color: var(--role-pm-deep); text-decoration: none;
+            white-space: nowrap;
+        }
+        .case-search-filter:hover { border-color: var(--role-pm-deep); color: var(--role-pm-deep); }
+        .case-search-filter.is-active {
+            background: var(--role-pm-light); color: var(--role-pm-deep);
+            border-color: var(--role-pm-deep);
+        }
+        @media (max-width: 700px) {
+            .case-search-row { grid-template-columns: 1fr; }
+        }
+
+        /* ----- Command cards (Unclaimed / Accepted with action buttons) ----- */
+        .command-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-5); margin-bottom: var(--space-6);
+        }
+        @media (max-width: 900px) { .command-grid { grid-template-columns: 1fr; } }
+        .command-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-top: 4px solid var(--role-pm-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            box-shadow: var(--shadow-sm);
+            display: grid; gap: var(--space-3);
+        }
+        .command-card-count {
+            font-family: var(--font-display); font-size: 2.75rem; font-weight: 700; color: var(--color-text);
+            line-height: 1; font-variant-numeric: tabular-nums; margin-top: var(--space-1);
+        }
+        .command-card-icon {
+            width: 48px; height: 48px; border-radius: var(--radius-md);
+            background: var(--role-pm-light); color: var(--role-pm-deep);
+            display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem;
+        }
+        .command-card-actions .btn { padding: 8px 14px; font-size: var(--fs-xs); }
+        .alert-row {
+            display: grid; grid-template-columns: auto 1fr auto;
+            gap: var(--space-3); align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-pm-deep);
+        }
+        .alert-row .alert-dot {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--role-pm-light); color: var(--role-pm-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .ongoing-table .crew-cell .crew-dot {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--role-pm-light); color: var(--role-pm-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: var(--fs-xs); font-weight: 700;
+        }
+        .ongoing-table .job-case { font-family: var(--font-display); font-weight: 700; color: var(--role-pm-deep); }
+        .ongoing-foot {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: var(--space-3) var(--space-4); background: var(--bg-surface-alt);
+            border-top: 1px solid var(--color-border-strong); font-size: var(--fs-sm);
+        }
+        .ongoing-foot strong { color: var(--role-pm-deep); }
+        .portal-nav-search input:focus { outline: none; border-color: var(--role-pm-deep); }
+
+        /* ----- Task context groups: 3-column override for 6 cards ----- */
+        .task-groups.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 1100px) { .task-groups.cols-3 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 700px)  { .task-groups.cols-3 { grid-template-columns: 1fr; } }
+        .task-group-card.is-domain-requestor    { border-top: 4px solid #FF7979; }
+        .task-group-card.is-domain-internal     { border-top: 4px solid var(--role-pm-deep); }
+        .task-group-card.is-domain-partner      { border-top: 4px solid #5415B1; }
+        .task-group-card.is-domain-subcontractor{ border-top: 4px solid #AA6709; }
+        .task-group-card.is-domain-volunteer    { border-top: 4px solid #A3C2FF; }
+
+        /* ----- Mobile-only landing view (<= 700px) -----
+           On phones the dashboard only surfaces the welcome message and the
+           Global Case Search; all other panels are reached via the sidebar
+           drawer (hamburger). Each menu item is the endpoint for its feature. */
+        .mobile-hint {
+            display: none;
+            background: var(--role-pm-light);
+            border: 1px solid #b9c8ee;
+            color: var(--role-pm-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4);
+            font-size: var(--fs-sm);
+            margin-top: var(--space-4);
+            align-items: center; gap: var(--space-2);
+        }
+        .mobile-hint i { color: var(--role-pm-deep); }
+        [data-theme="dark"] .mobile-hint { background: #1f2c4a; border-color: #2e3f6a; color: #d0defb; }
+        [data-theme="dark"] .mobile-hint i { color: #d0defb; }
+
+        @media (max-width: 700px) {
+
+            /* Tighten outer spacing for narrow viewports */
+            .portal-content { padding: var(--space-4) var(--space-3); }
+            .portal-page-title { font-size: var(--fs-md); }
+            .role-badge.pm-badge { padding: 6px 8px; }
+            .role-badge.pm-badge .role-badge-text { display: none; }
+
+            /* Hero: relax padding so it doesn't dominate the small screen */
+            .dash-hero { padding: var(--space-5) var(--space-5); }
+            .dash-hero h2 { font-size: var(--fs-lg); }
+            .case-search-row { gap: var(--space-2); }
+        }
+
+        @media (max-width: 480px) {
+            /* Drop the role badge entirely; sidebar drawer already shows the
+               role context via the ARCHR PM brand. */
+            .portal-topbar-right .role-badge.pm-badge { display: none; }
+        }
+    
+/* ---- */
+
+        /* ---- Base/fallback styles. Mirrors the assessor/bursar drafts so this
+           file renders standalone when css/style.css is not linked. ---- */
+        
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --bg-page: #f5f7fb; --bg-surface: #ffffff; --bg-surface-alt: #f3f5fa;
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #e2e8f0; --color-border-strong: #cfd6e4;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.125rem; --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.06); --shadow: 0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            --border-radius: var(--radius-md);
+        }
+        
+        body { font-family: var(--font-sans); color: var(--color-text); }
+
+.portal-sidebar-close { background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-muted); }
+
+.portal-nav-link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); text-decoration: none; color: var(--color-text); border-left: 3px solid transparent; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; transition: var(--transition); }
+
+.portal-main { display: flex; flex-direction: column; }
+
+.portal-content { padding: var(--space-6); overflow-y: auto; }
+
+.portal-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--role-pm-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+        .role-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+        
+        .btn-primary { background: var(--color-primary); color: white; }
+
+.btn-secondary:hover { background: var(--color-secondary); color: white; }
+
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); }
+        
+        /* .dash-section / .dash-section-title are inherited from portal.css (single source of truth). */
+        @media (max-width: 992px) {
+            
+            .portal-sidebar { position: fixed; top: 0; left: 0; width: 260px; transform: translateX(-100%); transition: transform 0.2s; z-index: 1000; height: 100vh; overflow-y: auto; box-shadow: var(--shadow); }
+
+}
+
+/* Rules restored from portal.css: page-specific behavior that must not
+   leak onto other dashboards via the shared sheet. */
+.case-search-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: var(--space-3);
+    align-items: center;
+}
+
+.case-search-input {
+    width: 100%;
+    border: 1px solid var(--color-border-strong);
+    background: var(--bg-surface);
+    color: var(--color-text);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: var(--fs-base);
+    transition: var(--transition);
+}
+
+.case-search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+}
+
+.case-search-filter {
+    background: var(--bg-surface-alt);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    padding: 4px 12px;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+@media (max-width: 560px) {
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+@media (max-width: 1000px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+
+@media (max-width: 700px) {
+    .portal-page > *:not(.mobile-show) {
+        display: none !important;
+    }
+    
+    .mobile-hint {
+        display: flex;
+    }
+    
+    .portal-topbar {
+        padding: var(--space-3) var(--space-4);
+        gap: var(--space-2);
+    }
+    
+    .case-search-icon {
+        display: none;
+    }
+    
+    .portal-page {
+        max-width: 100%;
+    }
+    
+    .case-search {
+        padding: var(--space-4);
+    }
+    
+    .case-search-input {
+        font-size: var(--fs-sm);
+        padding: var(--space-2) var(--space-3);
+    }
+    
+    .case-search-advanced, #globalCaseSearchBtn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .dash-hero {
+        padding: var(--space-4);
+    }
+    
+    .dash-hero h2 {
+        font-size: var(--fs-md);
+    }
+    
+    .dash-hero p {
+        font-size: var(--fs-xs);
+    }
+    
+}

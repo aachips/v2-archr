@@ -1,0 +1,315 @@
+/* Extracted from app/templates/crew-lead.html. Scoped to the role page;
+   shared scaffolding lives in app/assets/portal.css. */
+
+        /* =========================================================================
+           ARCHR Design System &mdash; Crew Lead Dashboard (POC)
+           Mirrors the Project Manager dashboard scaffolding and applies the Crew
+           Lead role accent (orange #FF6600 from the branding guide). Built for the
+           "battle mode" use-case described in interface/crew-lead/battle-mode.md:
+           big touch targets, photo > text, single-thumb operation, offline-tolerant
+           wording. The same markup serves the desktop warehouse view and the
+           mobile field view; mobile collapses to the welcome + battle-mode bar +
+           bottom nav as described in mobile-first-requirements.md and bottom-nav.md.
+           ========================================================================= */
+
+        :root {
+            --role-cl: #FF6600;
+            --role-cl-deep: #C24F00;
+            --role-cl-light: #fbe2d0;
+            --role-cl-canvas: #fff4eb;
+        }
+        [data-theme="dark"] {
+            --role-cl-canvas: #2a1a0e;
+            --role-cl-light: #4a2a18;
+        }
+
+        body { background: var(--role-cl-canvas); }
+        .portal-content { background: var(--role-cl-canvas); }
+
+        .portal-nav-link.active {
+            border-left-color: var(--role-cl-deep);
+            color: var(--role-cl-deep);
+            background: rgba(194, 79, 0, 0.10);
+        }
+        .portal-nav-link.active i,
+        .portal-nav-link:hover i { color: var(--role-cl-deep); }
+
+        .role-badge.cl-badge {
+            background: var(--role-cl-light);
+            color: var(--role-cl-deep);
+            border: 1px solid #f4cba6;
+        }
+        .role-badge.cl-badge i { color: var(--role-cl-deep); }
+        .dash-section-title i { color: var(--role-cl-deep); }
+
+        /* ----- Hero ----- */
+        .dash-hero {
+            background: linear-gradient(135deg, var(--role-cl-deep), #6b2a00);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6) var(--space-8);
+            margin-bottom: var(--space-6);
+            display: grid;
+            grid-template-columns: 2fr auto;
+            gap: var(--space-5);
+            align-items: center;
+        }
+        .battle-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: var(--space-2);
+            min-height: 88px;
+            padding: var(--space-4);
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-top: 4px solid var(--role-cl-deep);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: var(--fs-sm);
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .battle-btn i { font-size: 1.5rem; color: var(--role-cl-deep); }
+        .battle-btn:hover { background: var(--role-cl-deep); color: #fff; transform: translateY(-2px); }
+
+/* ----- KPI cards ----- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+        .kpi {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-5);
+            box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column; gap: var(--space-1);
+            border-top: 4px solid var(--color-border-strong);
+        }
+
+.kpi.kpi-assigned   { border-top-color: var(--role-cl-deep); }
+        .kpi.kpi-progress   { border-top-color: var(--color-warning); }
+        .kpi.kpi-complete   { border-top-color: var(--color-success); }
+        .kpi.kpi-volunteers { border-top-color: var(--color-secondary); }
+        
+        .kpi-foot a { font-size: var(--fs-xs); font-weight: 600; color: var(--role-cl-deep); text-decoration: none; }
+
+        /* ----- Pills ----- */
+        
+        .pill-orange { background: var(--role-cl-light); color: var(--role-cl-deep); border-color: #f4cba6; }
+
+        /* ----- Current job panel ----- */
+        .current-job {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-left: 4px solid var(--role-cl-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-6);
+        }
+        .current-job-head .case-id { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); color: var(--role-cl-deep); }
+        .meter { display: inline-block; width: 140px; height: 8px; background: var(--bg-surface-alt); border-radius: var(--radius-pill); overflow: hidden; vertical-align: middle; }
+        .meter-fill { display: block; height: 100%; background: var(--role-cl-deep); }
+
+        /* Task list inside current job */
+        .task-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+        .task-table thead th { text-align: left; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; padding: var(--space-3); border-bottom: 1px solid var(--color-border-strong); }
+        .task-table tbody td { padding: var(--space-3); border-bottom: 1px dashed var(--color-border); color: var(--color-text); vertical-align: middle; }
+        .task-table .task-name { font-weight: 600; }
+        .task-table .task-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: flex-end; }
+        .task-table .btn-tap {
+            display: inline-flex; align-items: center; gap: 6px;
+            min-height: 40px; padding: 8px 14px;
+            border-radius: var(--radius-md);
+            background: var(--role-cl-light); color: var(--role-cl-deep);
+            border: 1px solid #f4cba6; font-weight: 700; font-size: var(--fs-xs);
+            text-decoration: none; cursor: pointer; font-family: inherit;
+        }
+        .task-table .btn-tap:hover { background: var(--role-cl-deep); color: #fff; border-color: var(--role-cl-deep); }
+        .task-table .btn-tap.is-done { background: #d9f2d9; color: #1d8a3a; border-color: #b9e0bd; }
+
+        .current-job-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px dashed var(--color-border); }
+        .current-job-actions .chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 14px; border-radius: var(--radius-pill);
+            background: var(--bg-surface-alt); color: var(--color-text);
+            border: 1px solid var(--color-border-strong);
+            font-size: var(--fs-xs); font-weight: 600; text-decoration: none;
+        }
+        .current-job-actions .chip:hover { background: var(--role-cl-deep); color: #fff; border-color: var(--role-cl-deep); }
+        .current-job-actions .chip i { color: var(--role-cl-deep); }
+        .current-job-actions .chip:hover i { color: #fff; }
+
+        /* ----- Two-column grid (jobs/volunteers/messages) ----- */
+        .two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-5); margin-bottom: var(--space-6); }
+
+.job-item {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-cl-deep);
+        }
+        .job-item .job-icon {
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            background: var(--role-cl-light); color: var(--role-cl-deep);
+            display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+        .job-item .job-case { font-family: var(--font-display); font-weight: 700; color: var(--role-cl-deep); font-size: var(--fs-sm); }
+        .job-item .job-cta { font-size: var(--fs-xs); font-weight: 700; color: var(--role-cl-deep); text-decoration: none; white-space: nowrap; }
+        .vol-item .vol-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--role-cl-light); color: var(--role-cl-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: var(--fs-sm);
+        }
+        .safety-check {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: var(--fs-xs); font-weight: 600; color: var(--color-text);
+            cursor: pointer; user-select: none;
+        }
+        .safety-check input { width: 20px; height: 20px; accent-color: var(--role-cl-deep); }
+        .safety-check.is-checked { color: #1d8a3a; }
+
+/* ----- Messages list ----- */
+        
+        .msg-item {
+            padding: var(--space-3) var(--space-4); background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong); border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-cl-deep);
+        }
+        
+        .msg-item .msg-from { font-weight: 700; color: var(--color-text); font-size: var(--fs-sm); }
+        .msg-item .msg-body { font-size: var(--fs-sm); color: var(--color-text); margin-top: 2px; }
+        .msg-item .msg-meta { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-2); display: flex; justify-content: space-between; gap: var(--space-2); }
+
+        /* ----- Tomorrow / quick chips ----- */
+        .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+        
+        .quick-card {
+            background: var(--bg-surface); border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md); padding: var(--space-4);
+            text-decoration: none; color: var(--color-text);
+            display: flex; flex-direction: column; gap: 4px;
+            transition: var(--transition);
+        }
+        .quick-card:hover { border-color: var(--role-cl-deep); transform: translateY(-2px); }
+        .quick-card .quick-value { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; color: var(--role-cl-deep); }
+
+        /* ----- Role notice ----- */
+        .role-notice {
+            background: var(--role-cl-light); border: 1px solid #f4cba6; color: var(--role-cl-deep);
+            padding: 12px 18px; border-radius: var(--radius-md);
+            margin-top: var(--space-5); font-size: var(--fs-sm);
+            display: flex; align-items: flex-start; gap: 10px;
+        }
+        .role-notice i { color: var(--role-cl-deep); margin-top: 3px; }
+        [data-theme="dark"] .role-notice { background: #4a2a18; border-color: #6a3d22; color: #fbe2d0; }
+        [data-theme="dark"] .role-notice i { color: #fbe2d0; }
+
+.see-all-link { font-size: var(--fs-sm); font-weight: 600; color: var(--role-cl-deep); text-decoration: none; }
+        .bottom-nav .nav-item.active { color: var(--role-cl-deep); }
+        @media (max-width: 700px) {
+            .portal-content { padding-bottom: 80px; }
+        }
+
+        /* ----- Mobile-only landing: collapses to welcome + battle-bar + bottom-nav. ----- */
+        .mobile-hint {
+            display: none;
+            background: var(--role-cl-light); border: 1px solid #f4cba6; color: var(--role-cl-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4); font-size: var(--fs-sm);
+            margin-top: var(--space-4);
+            align-items: center; gap: var(--space-2);
+        }
+        @media (max-width: 700px) {
+            .portal-content { padding: var(--space-4) var(--space-3) 80px; }
+            .portal-page-title { font-size: var(--fs-md); }
+            .role-badge.cl-badge .role-badge-text { display: none; }
+            .dash-hero { padding: var(--space-5); }
+            .dash-hero h2 { font-size: var(--fs-lg); }
+        }
+        @media (max-width: 480px) {
+            .portal-topbar-right .role-badge.cl-badge { display: none; }
+        }
+    
+/* ---- */
+
+        /* ---- Base/fallback styles. Mirrors the project-manager draft so this
+           file renders standalone when css/style.css is not linked. ---- */
+        
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --bg-page: #f5f7fb; --bg-surface: #ffffff; --bg-surface-alt: #f3f5fa;
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #e2e8f0; --color-border-strong: #cfd6e4;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.125rem; --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.06); --shadow: 0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            --border-radius: var(--radius-md);
+        }
+        
+        body { font-family: var(--font-sans); color: var(--color-text); }
+
+.portal-sidebar-close { background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-muted); }
+
+.portal-nav-link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); text-decoration: none; color: var(--color-text); border-left: 3px solid transparent; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; transition: var(--transition); }
+        .portal-main { display: flex; flex-direction: column; }
+
+.portal-content { padding: var(--space-6); overflow-y: auto; }
+
+.portal-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--role-cl-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+        .role-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); }
+        
+        /* .dash-section / .dash-section-title are inherited from portal.css (single source of truth). */
+        @media (max-width: 992px) {
+            
+            .portal-sidebar { position: fixed; top: 0; left: 0; width: 260px; transform: translateX(-100%); transition: transform 0.2s; z-index: 1000; height: 100vh; overflow-y: auto; box-shadow: var(--shadow); }
+
+}
+
+/* Rules restored from portal.css: page-specific behavior that must not
+   leak onto other dashboards via the shared sheet. */
+@media (max-width: 560px) {
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+@media (max-width: 1000px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+
+@media (max-width: 700px) {
+    .portal-page > *:not(.mobile-show) {
+        display: none !important;
+    }
+    
+    .mobile-hint {
+        display: flex;
+    }
+    
+    .portal-topbar {
+        padding: var(--space-3) var(--space-4);
+        gap: var(--space-2);
+    }
+    
+}

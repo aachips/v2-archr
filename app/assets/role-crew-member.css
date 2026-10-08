@@ -1,0 +1,381 @@
+/* Extracted from app/templates/crew-member.html. Scoped to the role page;
+   shared scaffolding lives in app/assets/portal.css. */
+
+        /* =========================================================================
+           ARCHR Design System &mdash; Crew Member Dashboard (POC)
+           Companion to crew-lead.html. Feature surface trimmed to the Crew Member
+           rights in interface/crew-lead/core-features-comparison.md: own task
+           updates, limited photo upload, view-only volunteers, self-only hours &
+           sign-in, safety-talk acknowledge (not verify), incident report only if
+           involved. No completion sign-off, change orders, sub management,
+           workflow phase, alerts, labor confirmation, volunteer blocking, or
+           budget. Accent uses the Crew Member role color #FF9900 from the
+           branding guide.
+           ========================================================================= */
+
+        :root {
+            --role-cm: #FF9900;
+            --role-cm-deep: #B26B00;
+            --role-cm-light: #fbe8d0;
+            --role-cm-canvas: #fff8ee;
+        }
+        [data-theme="dark"] {
+            --role-cm-canvas: #2a2010;
+            --role-cm-light: #4a3a1a;
+        }
+
+        body { background: var(--role-cm-canvas); }
+        .portal-content { background: var(--role-cm-canvas); }
+
+        .portal-nav-link.active {
+            border-left-color: var(--role-cm-deep);
+            color: var(--role-cm-deep);
+            background: rgba(178, 107, 0, 0.10);
+        }
+        .portal-nav-link.active i,
+        .portal-nav-link:hover i { color: var(--role-cm-deep); }
+
+        .role-badge.cm-badge {
+            background: var(--role-cm-light);
+            color: var(--role-cm-deep);
+            border: 1px solid #f4d8a6;
+        }
+        .role-badge.cm-badge i { color: var(--role-cm-deep); }
+        .dash-section-title i { color: var(--role-cm-deep); }
+
+        /* ----- Hero ----- */
+        .dash-hero {
+            background: linear-gradient(135deg, var(--role-cm-deep), #6b4400);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6) var(--space-8);
+            margin-bottom: var(--space-6);
+            display: grid;
+            grid-template-columns: 2fr auto;
+            gap: var(--space-5);
+            align-items: center;
+        }
+        .battle-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: var(--space-2);
+            min-height: 88px;
+            padding: var(--space-4);
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-top: 4px solid var(--role-cm-deep);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: var(--fs-sm);
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .battle-btn i { font-size: 1.5rem; color: var(--role-cm-deep); }
+        .battle-btn:hover { background: var(--role-cm-deep); color: #fff; transform: translateY(-2px); }
+
+/* ----- KPI cards ----- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+        .kpi {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-5);
+            box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column; gap: var(--space-1);
+            border-top: 4px solid var(--color-border-strong);
+        }
+
+.kpi.kpi-tasks   { border-top-color: var(--role-cm-deep); }
+        .kpi.kpi-hours   { border-top-color: var(--color-secondary); }
+        .kpi.kpi-jobs    { border-top-color: var(--color-warning); }
+        .kpi.kpi-photos  { border-top-color: var(--color-success); }
+        
+        .kpi-foot a { font-size: var(--fs-xs); font-weight: 600; color: var(--role-cm-deep); text-decoration: none; }
+
+        /* ----- Pills ----- */
+        
+        .pill-orange { background: var(--role-cm-light); color: var(--role-cm-deep); border-color: #f4d8a6; }
+        .pill-info   { background: #e1ecfb; color: #21528a; border-color: #c6d8f0; }
+
+        /* ----- Current job panel (read-only meta; Crew Member updates own tasks) ----- */
+        .current-job {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-left: 4px solid var(--role-cm-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-6);
+        }
+        .current-job-head .case-id { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); color: var(--role-cm-deep); }
+        .lead-card {
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            padding: 6px 12px; border-radius: var(--radius-pill);
+            background: var(--bg-surface-alt); border: 1px solid var(--color-border-strong);
+            font-size: var(--fs-sm); font-weight: 600; color: var(--color-text);
+        }
+        .lead-card .lead-avatar {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: var(--role-cm-light); color: var(--role-cm-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700;
+        }
+        .meter { display: inline-block; width: 140px; height: 8px; background: var(--bg-surface-alt); border-radius: var(--radius-pill); overflow: hidden; vertical-align: middle; }
+        .meter-fill { display: block; height: 100%; background: var(--role-cm-deep); }
+
+        /* ----- Task rows (per task-row-otg.md: big check + photo + note) ----- */
+        .task-row-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .task-row {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3);
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-border-strong);
+        }
+        .task-row.is-mine    { border-left-color: var(--role-cm-deep); }
+        .task-row.is-done    { border-left-color: var(--color-success); opacity: 0.85; }
+        .task-row.is-others  { opacity: 0.65; }
+        .task-check {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--bg-surface); border: 2px solid var(--color-border-strong);
+            color: var(--color-text-muted);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; cursor: pointer; font-family: inherit; transition: var(--transition);
+        }
+        .task-check:hover { border-color: var(--role-cm-deep); color: var(--role-cm-deep); }
+        .task-row.is-done .task-check {
+            background: var(--color-success); border-color: var(--color-success); color: #fff;
+        }
+        .task-row .task-title { font-weight: 600; color: var(--color-text); font-size: var(--fs-sm); }
+        .task-row .task-meta  { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; display: flex; gap: var(--space-3); flex-wrap: wrap; }
+        .task-row .task-actions { display: flex; gap: var(--space-2); }
+        .icon-btn {
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            background: var(--bg-surface); border: 1px solid var(--color-border-strong);
+            color: var(--role-cm-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1rem; cursor: pointer; font-family: inherit; transition: var(--transition);
+        }
+        .icon-btn:hover { background: var(--role-cm-deep); color: #fff; border-color: var(--role-cm-deep); }
+        .icon-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* ----- Two-column grid (jobs/hours/messages) ----- */
+        .two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-5); margin-bottom: var(--space-6); }
+
+.job-item {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-cm-deep);
+        }
+        .job-item .job-icon {
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            background: var(--role-cm-light); color: var(--role-cm-deep);
+            display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+        .job-item .job-case { font-family: var(--font-display); font-weight: 700; color: var(--role-cm-deep); font-size: var(--fs-sm); }
+        .job-item .job-cta { font-size: var(--fs-xs); font-weight: 700; color: var(--role-cm-deep); text-decoration: none; white-space: nowrap; }
+
+        /* ----- Hours tracker (self-only per comparison table) ----- */
+        .hours-panel { text-align: center; }
+        .hours-display {
+            font-family: var(--font-display); font-size: 2.75rem; font-weight: 700;
+            color: var(--role-cm-deep); font-variant-numeric: tabular-nums;
+            line-height: 1; margin: var(--space-3) 0;
+        }
+        .hours-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; }
+        .clock-btn {
+            width: 100%; min-height: 56px;
+            background: var(--role-cm-deep); color: #fff;
+            border: 2px solid var(--role-cm-deep);
+            border-radius: var(--radius-md);
+            font-family: inherit; font-size: var(--fs-base); font-weight: 700;
+            cursor: pointer; transition: var(--transition);
+            display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+            margin-top: var(--space-3);
+        }
+        .clock-btn:hover { background: #6b4400; border-color: #6b4400; }
+        .clock-btn.is-clocked-in { background: var(--color-danger); border-color: var(--color-danger); }
+        .clock-btn.is-clocked-in:hover { background: #8a2818; border-color: #8a2818; }
+        .hours-meta { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-3); }
+
+/* ----- Safety-talk acknowledgement (self only, per comparison table) ----- */
+        .safety-ack {
+            display: flex; align-items: center; gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-left: 4px solid var(--color-warning);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-3);
+        }
+        .safety-ack.is-acked { border-left-color: var(--color-success); background: #eaf6ee; }
+        [data-theme="dark"] .safety-ack.is-acked { background: #1d3a26; }
+        .safety-ack-text { font-size: var(--fs-sm); color: var(--color-text); }
+        .safety-ack-text strong { display: block; color: var(--color-text); font-size: var(--fs-base); margin-bottom: 2px; }
+        .safety-ack-btn {
+            margin-left: auto; min-height: 44px; padding: 10px 18px;
+            background: var(--color-warning); color: #fff;
+            border: 1px solid var(--color-warning);
+            border-radius: var(--radius-md);
+            font-family: inherit; font-weight: 700; font-size: var(--fs-sm);
+            cursor: pointer; white-space: nowrap;
+        }
+        .safety-ack-btn:hover { filter: brightness(0.92); }
+        .safety-ack.is-acked .safety-ack-btn { background: var(--color-success); border-color: var(--color-success); cursor: default; }
+        .vol-item .vol-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--role-cm-light); color: var(--role-cm-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: var(--fs-sm);
+        }
+
+        /* ----- Messages list ----- */
+        
+        .msg-item {
+            padding: var(--space-3) var(--space-4); background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong); border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-cm-deep);
+        }
+        
+        .msg-item .msg-from { font-weight: 700; color: var(--color-text); font-size: var(--fs-sm); }
+        .msg-item .msg-body { font-size: var(--fs-sm); color: var(--color-text); margin-top: 2px; }
+        .msg-item .msg-meta { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-2); display: flex; justify-content: space-between; gap: var(--space-2); }
+
+        /* ----- Tomorrow quick cards ----- */
+        .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+        
+        .quick-card {
+            background: var(--bg-surface); border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md); padding: var(--space-4);
+            text-decoration: none; color: var(--color-text);
+            display: flex; flex-direction: column; gap: 4px;
+            transition: var(--transition);
+        }
+        .quick-card:hover { border-color: var(--role-cm-deep); transform: translateY(-2px); }
+        .quick-card .quick-value { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; color: var(--role-cm-deep); }
+
+        /* ----- Role notice ----- */
+        .role-notice {
+            background: var(--role-cm-light); border: 1px solid #f4d8a6; color: var(--role-cm-deep);
+            padding: 12px 18px; border-radius: var(--radius-md);
+            margin-top: var(--space-5); font-size: var(--fs-sm);
+            display: flex; align-items: flex-start; gap: 10px;
+        }
+        .role-notice i { color: var(--role-cm-deep); margin-top: 3px; }
+        [data-theme="dark"] .role-notice { background: #4a3a1a; border-color: #6a5022; color: #fbe8d0; }
+        [data-theme="dark"] .role-notice i { color: #fbe8d0; }
+
+.see-all-link { font-size: var(--fs-sm); font-weight: 600; color: var(--role-cm-deep); text-decoration: none; }
+        .bottom-nav .nav-item.active { color: var(--role-cm-deep); }
+        @media (max-width: 700px) {
+            .portal-content { padding-bottom: 80px; }
+        }
+
+        /* ----- Mobile-only landing: collapses to welcome + battle-bar + bottom-nav. ----- */
+        .mobile-hint {
+            display: none;
+            background: var(--role-cm-light); border: 1px solid #f4d8a6; color: var(--role-cm-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4); font-size: var(--fs-sm);
+            margin-top: var(--space-4);
+            align-items: center; gap: var(--space-2);
+        }
+        @media (max-width: 700px) {
+            .portal-content { padding: var(--space-4) var(--space-3) 80px; }
+            .portal-page-title { font-size: var(--fs-md); }
+            .role-badge.cm-badge .role-badge-text { display: none; }
+            .dash-hero { padding: var(--space-5); }
+            .dash-hero h2 { font-size: var(--fs-lg); }
+        }
+        @media (max-width: 480px) {
+            .portal-topbar-right .role-badge.cm-badge { display: none; }
+        }
+    
+/* ---- */
+
+        /* ---- Base/fallback styles. Mirrors crew-lead.html so this file renders
+           standalone when css/style.css is not linked. ---- */
+        
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --bg-page: #f5f7fb; --bg-surface: #ffffff; --bg-surface-alt: #f3f5fa;
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #e2e8f0; --color-border-strong: #cfd6e4;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.125rem; --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.06); --shadow: 0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            --border-radius: var(--radius-md);
+        }
+        
+        body { font-family: var(--font-sans); color: var(--color-text); }
+
+.portal-sidebar-close { background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-muted); }
+
+.portal-nav-link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); text-decoration: none; color: var(--color-text); border-left: 3px solid transparent; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; transition: var(--transition); }
+        .portal-main { display: flex; flex-direction: column; }
+
+.portal-content { padding: var(--space-6); overflow-y: auto; }
+
+.portal-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--role-cm-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+        .role-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); }
+        
+        /* .dash-section / .dash-section-title are inherited from portal.css (single source of truth). */
+        @media (max-width: 992px) {
+            
+            .portal-sidebar { position: fixed; top: 0; left: 0; width: 260px; transform: translateX(-100%); transition: transform 0.2s; z-index: 1000; height: 100vh; overflow-y: auto; box-shadow: var(--shadow); }
+
+}
+
+/* Rules restored from portal.css: page-specific behavior that must not
+   leak onto other dashboards via the shared sheet. */
+@media (max-width: 560px) {
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+@media (max-width: 1000px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+
+@media (max-width: 700px) {
+    .portal-page > *:not(.mobile-show) {
+        display: none !important;
+    }
+    
+    .mobile-hint {
+        display: flex;
+    }
+    
+    .portal-topbar {
+        padding: var(--space-3) var(--space-4);
+        gap: var(--space-2);
+    }
+    
+}

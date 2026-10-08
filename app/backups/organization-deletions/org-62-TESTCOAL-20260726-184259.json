@@ -1,0 +1,66 @@
+{
+    "metadata": {
+        "exported_at": "2026-07-26T18:42:59+00:00",
+        "deleted_by_user_id": 151,
+        "organization_id": 62
+    },
+    "organization": {
+        "id": 62,
+        "organization_code": "TESTCOAL",
+        "organization_name": "Test Coalition",
+        "description": null,
+        "website_url": null,
+        "contact_email": "super.test.1784990885@example.com",
+        "contact_phone": null,
+        "logo_url": null,
+        "is_active": true,
+        "max_active_applications": 50,
+        "auto_claim_enabled": false,
+        "notification_email": null,
+        "created_at": "2026-07-25 10:48:05.342941",
+        "updated_at": "2026-07-25 10:48:05.342941",
+        "created_by": null,
+        "updated_by": null,
+        "funding_limit": null
+    },
+    "counts": {
+        "organization_users": 0,
+        "user_role_assignments": 1,
+        "organization_eligibility_rules": 0,
+        "eligibility_results": 0,
+        "organization_metrics": 0,
+        "funding_sources": 0,
+        "application_assignments": 0,
+        "review_queue": 0,
+        "case_claims": 0,
+        "reimbursement_requests": 0,
+        "bursar_action_audit": 0
+    },
+    "organization_users": [],
+    "user_role_assignments": [
+        {
+            "id": 48,
+            "user_id": 141,
+            "organization_id": 62,
+            "role_id": 40,
+            "assigned_by": 141,
+            "assigned_at": "2026-07-25 10:48:05.342941",
+            "expires_at": null,
+            "is_active": true,
+            "notes": null,
+            "username": "super.test.1784990885",
+            "email": "super.test.1784990885@example.com",
+            "full_name": "Super Admin Test",
+            "role_name": "Super Administrator"
+        }
+    ],
+    "organization_eligibility_rules": [],
+    "eligibility_results": [],
+    "organization_metrics": [],
+    "funding_sources": [],
+    "application_assignments": [],
+    "assignment_logs": [],
+    "review_queue": [],
+    "case_claims": [],
+    "reimbursement_requests": []
+}

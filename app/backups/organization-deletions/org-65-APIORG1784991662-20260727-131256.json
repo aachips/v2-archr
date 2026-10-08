@@ -1,0 +1,50 @@
+{
+    "metadata": {
+        "exported_at": "2026-07-27T13:12:56+00:00",
+        "deleted_by_user_id": 151,
+        "organization_id": 65
+    },
+    "organization": {
+        "id": 65,
+        "organization_code": "APIORG1784991662",
+        "organization_name": "API Org 1784991662",
+        "description": null,
+        "website_url": null,
+        "contact_email": "apiorg1784991662@example.com",
+        "contact_phone": "828-555-0000",
+        "logo_url": null,
+        "is_active": true,
+        "max_active_applications": 50,
+        "auto_claim_enabled": false,
+        "notification_email": null,
+        "created_at": "2026-07-25 11:01:02.83034",
+        "updated_at": "2026-07-25 11:01:02.83034",
+        "created_by": "144",
+        "updated_by": null,
+        "funding_limit": null
+    },
+    "counts": {
+        "organization_users": 0,
+        "user_role_assignments": 0,
+        "organization_eligibility_rules": 0,
+        "eligibility_results": 0,
+        "organization_metrics": 0,
+        "funding_sources": 0,
+        "application_assignments": 0,
+        "review_queue": 0,
+        "case_claims": 0,
+        "reimbursement_requests": 0,
+        "bursar_action_audit": 0
+    },
+    "organization_users": [],
+    "user_role_assignments": [],
+    "organization_eligibility_rules": [],
+    "eligibility_results": [],
+    "organization_metrics": [],
+    "funding_sources": [],
+    "application_assignments": [],
+    "assignment_logs": [],
+    "review_queue": [],
+    "case_claims": [],
+    "reimbursement_requests": []
+}

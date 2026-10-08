@@ -1,0 +1,66 @@
+{
+    "metadata": {
+        "exported_at": "2026-07-26T18:42:08+00:00",
+        "deleted_by_user_id": 151,
+        "organization_id": 69
+    },
+    "organization": {
+        "id": 69,
+        "organization_code": "APIORG1784996509",
+        "organization_name": "Updated Org 1784996509",
+        "description": "Updated description",
+        "website_url": null,
+        "contact_email": null,
+        "contact_phone": null,
+        "logo_url": null,
+        "is_active": true,
+        "max_active_applications": 25,
+        "auto_claim_enabled": true,
+        "notification_email": "notify1784996509@example.com",
+        "created_at": "2026-07-25 12:21:50.111058",
+        "updated_at": "2026-07-25 12:21:50.783945",
+        "created_by": "149",
+        "updated_by": null,
+        "funding_limit": "50000.00"
+    },
+    "counts": {
+        "organization_users": 0,
+        "user_role_assignments": 1,
+        "organization_eligibility_rules": 0,
+        "eligibility_results": 0,
+        "organization_metrics": 0,
+        "funding_sources": 0,
+        "application_assignments": 0,
+        "review_queue": 0,
+        "case_claims": 0,
+        "reimbursement_requests": 0,
+        "bursar_action_audit": 0
+    },
+    "organization_users": [],
+    "user_role_assignments": [
+        {
+            "id": 57,
+            "user_id": 150,
+            "organization_id": 69,
+            "role_id": 1,
+            "assigned_by": 149,
+            "assigned_at": "2026-07-25 12:21:50.284857",
+            "expires_at": null,
+            "is_active": true,
+            "notes": null,
+            "username": "apiuser1784996509",
+            "email": "apiuser1784996509@example.com",
+            "full_name": "API User",
+            "role_name": "Administrator"
+        }
+    ],
+    "organization_eligibility_rules": [],
+    "eligibility_results": [],
+    "organization_metrics": [],
+    "funding_sources": [],
+    "application_assignments": [],
+    "assignment_logs": [],
+    "review_queue": [],
+    "case_claims": [],
+    "reimbursement_requests": []
+}

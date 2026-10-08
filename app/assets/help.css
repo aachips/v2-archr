@@ -1,0 +1,355 @@
+/* ARCHR Help & Documentation Library — Read-the-Docs-inspired layout */
+.help-layout {
+    align-items: stretch;
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+/* ---------- Sidebar ---------- */
+.help-sidebar {
+    background: #f2f2f2;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex: 0 0 280px;
+    flex-direction: column;
+    height: calc(100vh - 70px);
+    position: sticky;
+    top: 0;
+}
+
+.help-sidebar-brand {
+    background: #1c7a5c;
+    flex-shrink: 0;
+    padding: 1.1rem 1.25rem;
+}
+
+.help-sidebar-brand a {
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.help-search {
+    flex-shrink: 0;
+    padding: 0.9rem 1rem 0.4rem;
+    position: relative;
+}
+
+.help-search input {
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.7rem;
+    width: 100%;
+}
+
+.help-search-results {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    left: 1rem;
+    list-style: none;
+    margin: 0.25rem 0 0;
+    max-height: 22rem;
+    overflow-y: auto;
+    padding: 0;
+    position: absolute;
+    right: 1rem;
+    z-index: 30;
+}
+
+.help-search-results li a {
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    display: block;
+    padding: 0.55rem 0.7rem;
+    text-decoration: none;
+}
+
+.help-search-results li a:hover, .help-search-results li a:focus {
+    background: #eef7f3;
+}
+
+.help-search-results .hsr-category {
+    color: #1c7a5c;
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.help-search-results .hsr-excerpt {
+    color: #777;
+    display: block;
+    font-size: 0.78rem;
+    margin-top: 0.15rem;
+}
+
+.help-search-results .hsr-none {
+    color: #888;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.7rem;
+}
+
+/* ---------- Collapsible nav ---------- */
+.help-nav {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0.5rem 0 1.5rem;
+}
+
+.help-nav-category {
+    align-items: center;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    font-size: 0.72rem;
+    font-weight: 700;
+    gap: 0.3rem;
+    justify-content: space-between;
+    letter-spacing: 0.08em;
+    margin: 0.6rem 1.25rem 0;
+    padding: 0.3rem 0;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+.help-nav-category:hover {
+    color: #1c7a5c;
+}
+
+.help-nav-count {
+    background: #ddd;
+    border-radius: 10px;
+    color: #666;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.1rem 0.45rem;
+}
+
+.help-nav-category:hover .help-nav-count {
+    background: #1c7a5c;
+    color: #fff;
+}
+
+.help-nav-category::after {
+    content: '▾';
+    font-size: 0.65rem;
+    transition: transform 0.2s ease;
+}
+
+.help-nav-category.collapsed::after {
+    transform: rotate(-90deg);
+}
+
+.help-nav-section {
+    overflow: hidden;
+}
+
+.help-nav-section.collapsed {
+    display: none;
+}
+
+.help-nav-section:not(.collapsed) {
+    display: block;
+}
+
+.help-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0.3rem;
+}
+
+.help-nav li a {
+    border-left: 3px solid transparent;
+    color: #444;
+    display: block;
+    font-size: 0.88rem;
+    line-height: 1.3;
+    overflow: hidden;
+    padding: 0.35rem 1.25rem;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.help-nav li a:hover {
+    background: #e8e8e8;
+}
+
+.help-nav li a.active {
+    background: #ddeee7;
+    border-left-color: #1c7a5c;
+    color: #14563f;
+    font-weight: 600;
+}
+
+/* Tooltip for truncated nav titles */
+.help-nav li a[title] {
+    cursor: help;
+}
+
+/* ---------- Main content ---------- */
+.help-main {
+    flex: 1 1 auto;
+    max-width: 880px;
+    padding: 2rem 2.5rem 4rem;
+}
+
+.help-breadcrumb {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.help-breadcrumb a {
+    color: #1c7a5c;
+}
+
+.help-main h1 {
+    margin: 0.2rem 0 0.4rem;
+}
+
+.help-meta {
+    border-bottom: 1px solid #eee;
+    color: #888;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+}
+
+.help-meta-restricted {
+    color: #9a6a00;
+}
+
+.help-content {
+    font-size: 0.98rem;
+    line-height: 1.65;
+}
+
+.help-content img {
+    height: auto;
+    max-width: 100%;
+}
+
+.help-content h2 {
+    border-bottom: 1px solid #eee;
+    margin-top: 2rem;
+    padding-bottom: 0.3rem;
+}
+
+.help-content h3 {
+    margin-top: 1.6rem;
+}
+
+.help-content a {
+    color: #1c7a5c;
+}
+
+.help-content code {
+    background: #f4f4f4;
+    border-radius: 3px;
+    font-size: 0.9em;
+    padding: 0.1rem 0.35rem;
+}
+
+.help-content pre {
+    background: #f7f7f7;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    overflow-x: auto;
+    padding: 0.9rem 1rem;
+}
+
+.help-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.help-content table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.help-content th, .help-content td {
+    border: 1px solid #ddd;
+    padding: 0.45rem 0.7rem;
+    text-align: left;
+}
+
+.help-content th {
+    background: #f2f2f2;
+}
+
+.help-content blockquote {
+    background: #f6faf8;
+    border-left: 4px solid #1c7a5c;
+    color: #555;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+}
+
+/* ---------- Pager ---------- */
+.help-pager {
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+}
+
+.help-pager a {
+    color: #1c7a5c;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.help-pager a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+    .help-layout {
+        flex-direction: column;
+    }
+
+    .help-sidebar {
+        border-bottom: 1px solid #e0e0e0;
+        border-right: none;
+        flex: none;
+        height: auto;
+        max-height: 60vh;
+        position: static;
+        width: 100%;
+    }
+
+    .help-nav {
+        max-height: 50vh;
+    }
+
+    .help-main {
+        padding: 1.5rem 1.25rem 3rem;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .help-sidebar {
+        max-height: 50vh;
+    }
+
+    .help-main {
+        padding: 1rem 0.75rem 2rem;
+    }
+}

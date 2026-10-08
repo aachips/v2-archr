@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHR &middot; Bursar Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../../archr-logo.svg">
+    <script>(function(){try{var t=localStorage.getItem('archr-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+    <style>
+        /* =========================================================================
+           ARCHR Design System &mdash; Bursar Dashboard
+           Extends the requestor/org-admin dashboard styles with bursar-specific
+           finance components: funding bars, reimbursement queue, duplicate alerts.
+           The base CSS variables and component classes are inherited from
+           css/style.css (or the standalone block below when used in isolation).
+           ========================================================================= */
+
+        /* Bursar role accent. Source: --role-bursar #00CC00 from branding guide.
+           A deeper variant is introduced for text/borders to keep AA contrast. */
+        :root {
+            --role-bursar: #00CC00;
+            --role-bursar-deep: #1d8a3a;
+            --role-bursar-light: #d9f2d9;
+        }
+
+        .portal-nav-link.active {
+            border-left-color: var(--role-bursar-deep);
+            color: var(--role-bursar-deep);
+            background: rgba(29, 138, 58, 0.10);
+        }
+        .portal-nav-link.active i,
+        .portal-nav-link:hover i { color: var(--role-bursar-deep); }
+
+        .role-badge.bursar-badge {
+            background: var(--role-bursar-light);
+            color: var(--role-bursar-deep);
+            border: 1px solid #b9e0bd;
+        }
+        .role-badge.bursar-badge i { color: var(--role-bursar-deep); }
+
+        .dash-section-title i { color: var(--role-bursar-deep); }
+
+        /* ----- KPI cards (4 across) ----- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+        .kpi {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-5);
+            box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column; gap: var(--space-1);
+            border-top: 4px solid var(--color-border-strong);
+        }
+        .kpi-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; }
+        .kpi-value { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 700; color: var(--color-text); line-height: 1.1; font-variant-numeric: tabular-nums; }
+        .kpi-sub   { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-1); }
+        .kpi.kpi-approved { border-top-color: var(--color-secondary); }
+        .kpi.kpi-pending  { border-top-color: var(--color-warning); }
+        .kpi.kpi-paid     { border-top-color: var(--role-bursar-deep); }
+        .kpi.kpi-hold     { border-top-color: var(--color-danger); }
+        .kpi-foot { margin-top: var(--space-3); }
+        .kpi-foot a { font-size: var(--fs-xs); font-weight: 600; color: var(--role-bursar-deep); text-decoration: none; }
+
+        /* ----- Funding table ----- */
+        .funding-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+        .funding-table thead th {
+            text-align: left;
+            font-size: var(--fs-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--color-text-muted);
+            font-weight: 600;
+            padding: var(--space-3) var(--space-3);
+            border-bottom: 1px solid var(--color-border-strong);
+        }
+        .funding-table tbody td {
+            padding: var(--space-3);
+            border-bottom: 1px dashed var(--color-border);
+            color: var(--color-text);
+        }
+        .funding-table tbody tr:hover { background: var(--bg-surface-alt); }
+        .funding-table .col-num { text-align: right; }
+        .funding-table .case-id { font-family: var(--font-display); font-weight: 700; }
+        .funding-table .org-name { color: var(--color-text-muted); font-size: var(--fs-sm); }
+
+        /* ----- Mini cap meter ----- */
+        .cap-meter { display: inline-block; width: 80px; height: 6px; background: var(--bg-surface-alt); border-radius: var(--radius-pill); overflow: hidden; vertical-align: middle; margin-left: var(--space-2); }
+        .cap-meter-fill { display: block; height: 100%; background: var(--role-bursar-deep); }
+        .cap-meter-fill.is-warning { background: var(--color-warning); }
+        .cap-meter-fill.is-danger  { background: var(--color-danger); }
+
+        /* ----- Pills ----- */
+        .pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 600; background: var(--bg-surface-alt); color: var(--color-text); border: 1px solid var(--color-border); }
+        .pill-green { background: var(--role-bursar-light); color: var(--role-bursar-deep); border-color: #b9e0bd; }
+        .pill-amber { background: #fdf3df; color: #8a5a0e; border-color: #f4dfa9; }
+        .pill-red   { background: #fbe7e3; color: #8a2818; border-color: #f0c6bd; }
+        .pill-blue  { background: #e1ecf4; color: #1d4665; border-color: #c0d6e6; }
+
+        /* ----- Two-column grid (queue + sources) ----- */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: var(--space-5);
+            margin-bottom: var(--space-6);
+        }
+        @media (max-width: 1000px) { .two-col { grid-template-columns: 1fr; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px)  { .kpi-grid { grid-template-columns: 1fr; } }
+
+        /* ----- Reimbursement queue items ----- */
+        .reimb-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .reimb-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--space-3);
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-bursar-deep);
+        }
+        .reimb-item.is-overdue { border-left-color: var(--color-danger); }
+        .reimb-item.is-critical { border-left-color: var(--color-warning); }
+        .reimb-item .reimb-id { font-family: var(--font-display); font-weight: 700; color: var(--color-text); }
+        .reimb-item .reimb-meta { font-size: var(--fs-xs); color: var(--color-text-muted); display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: 2px; }
+        .reimb-item .reimb-amount { font-family: var(--font-display); font-weight: 700; color: var(--color-text); font-variant-numeric: tabular-nums; }
+
+
+
+        /* ----- Funding source stacked bar ----- */
+        .fund-bar {
+            display: flex; width: 100%; height: 28px;
+            border-radius: var(--radius-pill);
+            overflow: hidden;
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            margin: var(--space-3) 0;
+        }
+        .fund-bar-slice { display: block; height: 100%; min-width: 2px; }
+        .fund-legend { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+        .fund-legend li { display: grid; grid-template-columns: 14px 1fr auto auto; gap: var(--space-3); align-items: center; font-size: var(--fs-sm); }
+        .fund-legend-swatch { width: 14px; height: 14px; border-radius: var(--radius-sm); }
+        .fund-legend-name { color: var(--color-text); }
+        .fund-legend-amount { color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+        .fund-legend-health { font-size: var(--fs-xs); }
+
+        /* ----- Alerts panel ----- */
+        .alert-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .alert-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--space-3);
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: #fbe7e3;
+            border: 1px solid #f0c6bd;
+            border-radius: var(--radius-md);
+            color: #5a1a10;
+        }
+        .alert-item .alert-icon { color: var(--color-danger); font-size: 1.25rem; }
+        .alert-item .alert-title { font-weight: 700; }
+        .alert-item .alert-detail { font-size: var(--fs-sm); }
+        [data-theme="dark"] .alert-item { background: #3a201a; border-color: #5a2f25; color: #f3b8ac; }
+
+        /* ----- Bursar action row ----- */
+        .bursar-action-row {
+            display: flex; flex-wrap: wrap; gap: var(--space-3);
+            margin: var(--space-6) 0 var(--space-5);
+            padding: var(--space-4) 0;
+            border-top: 2px solid var(--color-border-strong);
+            border-bottom: 2px solid var(--color-border-strong);
+        }
+        .bursar-action-btn {
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .bursar-action-btn:hover {
+            background: var(--role-bursar-deep);
+            border-color: var(--role-bursar-deep);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .bursar-action-btn i { font-size: 1rem; }
+
+        /* ----- Hero ----- */
+        .dash-hero {
+            background: linear-gradient(135deg, var(--color-secondary), #1d4665);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6) var(--space-8);
+            margin-bottom: var(--space-6);
+            display: grid;
+            grid-template-columns: 2fr auto;
+            gap: var(--space-5);
+            align-items: center;
+        }
+        .dash-hero h2 { font-family: var(--font-display); font-size: var(--fs-xl); margin-bottom: var(--space-2); }
+        .dash-hero p { opacity: 0.9; font-size: var(--fs-sm); }
+        .dash-hero-meta { text-align: right; }
+        .dash-hero-meta .total-approved { display: block; font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 700; font-variant-numeric: tabular-nums; }
+        .dash-hero-meta .total-approved-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.8; }
+        @media (max-width: 700px) { .dash-hero { grid-template-columns: 1fr; } .dash-hero-meta { text-align: left; } }
+
+        /* ----- Role notice ----- */
+        .role-notice {
+            background: #fdf3df;
+            border: 1px solid #f4dfa9;
+            color: #8a5a0e;
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            margin-top: var(--space-5);
+            font-size: var(--fs-sm);
+            display: flex; align-items: flex-start; gap: 10px;
+        }
+        .role-notice i { color: #8a5a0e; margin-top: 3px; }
+        [data-theme="dark"] .role-notice { background: #3a2f1a; border-color: #5a4a25; color: #f4dfa9; }
+        [data-theme="dark"] .role-notice i { color: #f4dfa9; }
+
+        .panel .see-all-link {
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            color: var(--role-bursar-deep);
+            text-decoration: none;
+        }
+        .section-header-row {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: var(--space-4);
+            flex-wrap: wrap;
+        }
+    </style>
+
+    <style>
+        /* ---- Base/fallback styles (abbreviated; matches the requestor draft).
+           Used so this file renders standalone when css/style.css is not linked. */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --bg-page: #f5f7fb; --bg-surface: #ffffff; --bg-surface-alt: #f3f5fa;
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #e2e8f0; --color-border-strong: #cfd6e4;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.125rem; --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.06); --shadow: 0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            --border-radius: var(--radius-md);
+        }
+        [data-theme="dark"] {
+            --bg-page: #0f1622; --bg-surface: #182231; --bg-surface-alt: #202b3d;
+            --color-text: #e6ecf5; --color-text-muted: #9aa7bd;
+            --color-border: #2a3447; --color-border-strong: #3a455c;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        body { font-family: var(--font-sans); background: var(--bg-page); color: var(--color-text); }
+        .portal-app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+        .portal-sidebar { background: var(--bg-surface); border-right: 1px solid var(--color-border); }
+        .portal-sidebar-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--color-border); }
+        .portal-brand { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); text-decoration: none; color: var(--color-text); display: inline-flex; align-items: center; gap: var(--space-2); }
+        .portal-sidebar-close { background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-muted); }
+        .portal-nav { padding: var(--space-4); }
+        .portal-nav ul { list-style: none; display: grid; gap: 2px; }
+        .portal-nav-link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); text-decoration: none; color: var(--color-text); border-left: 3px solid transparent; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; transition: var(--transition); }
+        .portal-nav-link:hover { background: var(--bg-surface-alt); }
+        .portal-nav-link i { width: 18px; color: var(--color-text-muted); }
+        .portal-main { display: flex; flex-direction: column; }
+        .portal-topbar { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-6); background: var(--bg-surface); border-bottom: 1px solid var(--color-border); gap: var(--space-4); }
+        .portal-topbar-left, .portal-topbar-right { display: flex; align-items: center; gap: var(--space-4); }
+        .portal-page-title { font-family: var(--font-display); font-size: var(--fs-xl); margin: 0; }
+        .portal-content { padding: var(--space-6); background: var(--bg-page); overflow-y: auto; }
+        .portal-page { max-width: 1400px; margin: 0 auto; }
+        .portal-mobile-toggle { display: none; background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text); }
+        .theme-toggle { background: transparent; border: 1px solid var(--color-border); border-radius: var(--radius-pill); width: 40px; height: 40px; cursor: pointer; color: var(--color-text); }
+        .portal-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--role-bursar-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+        .role-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: var(--border-radius); font-weight: 600; text-decoration: none; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: var(--fs-sm); }
+        .btn-primary { background: var(--color-primary); color: white; }
+        .btn-primary:hover { background: var(--color-primary-dark); }
+        .btn-secondary { background: var(--bg-surface); color: var(--color-secondary); border-color: var(--color-secondary); }
+        .btn-secondary:hover { background: var(--color-secondary); color: white; }
+        .btn-sm { padding: 6px 14px; font-size: var(--fs-xs); }
+        .panel { background: var(--bg-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-5); box-shadow: var(--shadow-sm); }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); }
+        .panel-header h3 { font-family: var(--font-display); font-size: var(--fs-lg); margin: 0; display: flex; align-items: center; gap: var(--space-2); }
+        .dash-section { margin-bottom: var(--space-6); }
+        .dash-section-title { font-family: var(--font-display); font-size: var(--fs-lg); margin: 0 0 var(--space-4); display: flex; align-items: center; gap: var(--space-2); }
+        @media (max-width: 992px) {
+            .portal-app { grid-template-columns: 1fr; }
+            .portal-sidebar { position: fixed; transform: translateX(-100%); transition: transform 0.2s; z-index: 1000; height: 100vh; }
+            .portal-sidebar.is-open { transform: translateX(0); }
+            .portal-mobile-toggle { display: inline-flex; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="portal-app">
+    <aside class="portal-sidebar" id="portalSidebar" aria-label="Portal navigation">
+        <div class="portal-sidebar-header">
+            <a href="../../index.html" class="portal-brand">
+                <img src="../../archr-logo.svg" alt="" class="portal-brand-mark" style="height:24px;">
+                <span>ARCHR Bursar</span>
+            </a>
+            <button type="button" class="portal-sidebar-close" id="portalSidebarClose" aria-label="Close menu">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <nav class="portal-nav">
+            <ul>
+                <li><a href="#dashboard" class="portal-nav-link active"><i class="fas fa-gauge-high"></i><span>Dashboard</span></a></li>
+                <li><a href="#cases" class="portal-nav-link"><i class="fas fa-file-invoice-dollar"></i><span>Case Funding</span></a></li>
+                <li><a href="#reimbursements" class="portal-nav-link"><i class="fas fa-clock-rotate-left"></i><span>Reimbursements</span></a></li>
+                <li><a href="#sources" class="portal-nav-link"><i class="fas fa-hand-holding-dollar"></i><span>Funding Sources</span></a></li>
+                <li><a href="#duplicates" class="portal-nav-link"><i class="fas fa-triangle-exclamation"></i><span>Duplicate Review</span></a></li>
+                <li><a href="#reports" class="portal-nav-link"><i class="fas fa-chart-line"></i><span>Reports</span></a></li>
+                <li><a href="../../documentation/task-engine/tle-poc.html" class="portal-nav-link"><i class="fas fa-list-check"></i><span>Tasks, Logs &amp; Events</span></a></li>
+                <li><a href="#audit" class="portal-nav-link"><i class="fas fa-shield-halved"></i><span>Audit Log</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="portal-main">
+        <header class="portal-topbar">
+            <div class="portal-topbar-left">
+                <button type="button" class="portal-mobile-toggle" id="portalMobileToggle" aria-label="Open menu" aria-controls="portalSidebar" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+                <h1 class="portal-page-title">Bursar Dashboard</h1>
+            </div>
+            <div class="portal-topbar-right">
+                <span class="role-badge bursar-badge"><i class="fas fa-coins"></i> Habitat for Humanity &middot; Bursar</span>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><i class="fas fa-circle-half-stroke"></i></button>
+                <span class="portal-avatar" aria-label="Morgan Reyes">MR</span>
+            </div>
+        </header>
+
+        <div class="portal-content">
+            <section class="portal-page active" id="dashboardPage" data-page-title="Bursar Dashboard">
+
+                <!-- Hero / Org context -->
+                <div class="dash-hero">
+                    <div>
+                        <h2>Welcome back, Morgan</h2>
+                        <p>Habitat for Humanity &middot; Buncombe County &middot; 48 active cases with funding &middot; Last refreshed today at 9:14 AM</p>
+                    </div>
+                    <div class="dash-hero-meta">
+                        <span class="total-approved-label">Total Approved</span>
+                        <span class="total-approved">$2,400,000</span>
+                    </div>
+                </div>
+
+                <!-- 4 KPI cards: Funding Overview -->
+                <section class="dash-section" aria-labelledby="kpis-h">
+                    <h3 class="dash-section-title" id="kpis-h"><i class="fas fa-chart-pie"></i> Funding Overview</h3>
+                    <div class="kpi-grid">
+                        <article class="kpi kpi-approved">
+                            <span class="kpi-label">Total Approved</span>
+                            <span class="kpi-value">$2,400,000</span>
+                            <span class="kpi-sub">Across 48 active cases</span>
+                            <span class="kpi-foot"><a href="#cases">Details &rarr;</a></span>
+                        </article>
+                        <article class="kpi kpi-pending">
+                            <span class="kpi-label">Pending Reimbursement</span>
+                            <span class="kpi-value">$350,000</span>
+                            <span class="kpi-sub">14 invoices awaiting review</span>
+                            <span class="kpi-foot"><a href="#reimbursements">Process queue &rarr;</a></span>
+                        </article>
+                        <article class="kpi kpi-paid">
+                            <span class="kpi-label">Reimbursed to Date</span>
+                            <span class="kpi-value">$1,850,000</span>
+                            <span class="kpi-sub">77% of approved funds</span>
+                            <span class="kpi-foot"><a href="#reports">Export report &rarr;</a></span>
+                        </article>
+                        <article class="kpi kpi-hold">
+                            <span class="kpi-label">On Hold</span>
+                            <span class="kpi-value">$125,000</span>
+                            <span class="kpi-sub">5 cases pending docs or approval</span>
+                            <span class="kpi-foot"><a href="#cases">Investigate &rarr;</a></span>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Active cases with funding -->
+                <section class="dash-section" aria-labelledby="cases-h">
+                    <div class="section-header-row">
+                        <h3 class="dash-section-title" id="cases-h" style="margin:0;"><i class="fas fa-file-invoice-dollar"></i> Active Cases with Funding</h3>
+                        <a href="#cases" class="see-all-link">View all 48 cases &rarr;</a>
+                    </div>
+                    <article class="panel" style="padding:0;">
+                        <div style="overflow-x:auto;">
+                            <table class="funding-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Case #</th>
+                                        <th scope="col">Organization</th>
+                                        <th scope="col" class="col-num">Approved</th>
+                                        <th scope="col" class="col-num">Incurred</th>
+                                        <th scope="col" class="col-num">Reimbursed</th>
+                                        <th scope="col" class="col-num">Remaining</th>
+                                        <th scope="col">Cap</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="case-id">ARCHR-2024-001234</span><div class="org-name">John Henderson &middot; 42 Cherry St</div></td>
+                                        <td>Habitat for Humanity</td>
+                                        <td class="col-num">$45,000</td>
+                                        <td class="col-num">$12,000</td>
+                                        <td class="col-num">$9,500</td>
+                                        <td class="col-num">$33,000</td>
+                                        <td><span class="cap-meter" aria-label="90% of cap"><span class="cap-meter-fill is-warning" style="width:90%"></span></span></td>
+                                        <td><span class="pill pill-amber"><i class="fas fa-clock"></i> Pending docs</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="case-id">ARCHR-2024-001189</span><div class="org-name">Sarah Williams &middot; 15 Merrill Ave</div></td>
+                                        <td>Community Housing Coalition</td>
+                                        <td class="col-num">$50,000</td>
+                                        <td class="col-num">$48,000</td>
+                                        <td class="col-num">$48,000</td>
+                                        <td class="col-num">$2,000</td>
+                                        <td><span class="cap-meter" aria-label="100% of cap"><span class="cap-meter-fill is-danger" style="width:100%"></span></span></td>
+                                        <td><span class="pill pill-green"><i class="fas fa-circle-check"></i> At cap</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="case-id">ARCHR-2024-001103</span><div class="org-name">James Thornton &middot; 8 Oakland Rd</div></td>
+                                        <td>Mountain Housing Opportunities</td>
+                                        <td class="col-num">$35,000</td>
+                                        <td class="col-num">$35,000</td>
+                                        <td class="col-num">$35,000</td>
+                                        <td class="col-num">$0</td>
+                                        <td><span class="cap-meter" aria-label="70% of cap"><span class="cap-meter-fill" style="width:70%"></span></span></td>
+                                        <td><span class="pill pill-green"><i class="fas fa-circle-check"></i> Reconciled</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="case-id">ARCHR-2024-001045</span><div class="org-name">Maria Delgado &middot; 19 Riverside Dr</div></td>
+                                        <td>PODER Emma</td>
+                                        <td class="col-num">$50,000</td>
+                                        <td class="col-num">$8,000</td>
+                                        <td class="col-num">$0</td>
+                                        <td class="col-num">$42,000</td>
+                                        <td><span class="cap-meter" aria-label="100% of cap"><span class="cap-meter-fill is-danger" style="width:100%"></span></span></td>
+                                        <td><span class="pill pill-amber"><i class="fas fa-hourglass-half"></i> Reimb. pending</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </section>
+
+
+                <!-- Two-column: Reimbursement Queue + Funding Source Breakdown -->
+                <section class="dash-section">
+                    <div class="two-col">
+                        <article class="panel" aria-labelledby="reimb-h">
+                            <div class="panel-header">
+                                <h3 id="reimb-h"><i class="fas fa-clock-rotate-left"></i> Reimbursement Queue</h3>
+                                <a href="#reimbursements" class="see-all-link">Process invoices &rarr;</a>
+                            </div>
+                            <p style="font-size:var(--fs-sm); color:var(--color-text-muted); margin-bottom:var(--space-3);">
+                                <strong>8 pending</strong> &middot; <strong>4 ready for review</strong> &middot;
+                                <span style="color:var(--color-danger);"><strong>2 overdue</strong></span>
+                                <span style="margin-left:var(--space-2);">SLA target: 30 days</span>
+                            </p>
+                            <ul class="reimb-list">
+                                <li class="reimb-item is-overdue">
+                                    <i class="fas fa-circle-exclamation alert-icon" aria-hidden="true"></i>
+                                    <div>
+                                        <div class="reimb-id">REIMB-2024-00187</div>
+                                        <div class="reimb-meta">
+                                            <span>Habitat for Humanity</span>
+                                            <span>&middot; Case ARCHR-2024-001234</span>
+                                            <span class="pill pill-red">34 days aging</span>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:right;">
+                                        <div class="reimb-amount">$8,450</div>
+                                        <a href="#reimbursements" class="btn btn-secondary btn-sm" style="margin-top:4px;">Review</a>
+                                    </div>
+                                </li>
+                                <li class="reimb-item is-critical">
+                                    <i class="fas fa-circle-exclamation" style="color:var(--color-warning);font-size:1.25rem;" aria-hidden="true"></i>
+                                    <div>
+                                        <div class="reimb-id">REIMB-2024-00191</div>
+                                        <div class="reimb-meta">
+                                            <span>Community Housing Coalition</span>
+                                            <span>&middot; Case ARCHR-2024-001189</span>
+                                            <span class="pill pill-amber">22 days aging</span>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:right;">
+                                        <div class="reimb-amount">$12,300</div>
+                                        <a href="#reimbursements" class="btn btn-secondary btn-sm" style="margin-top:4px;">Review</a>
+                                    </div>
+                                </li>
+                                <li class="reimb-item">
+                                    <i class="fas fa-receipt" style="color:var(--role-bursar-deep);font-size:1.25rem;" aria-hidden="true"></i>
+                                    <div>
+                                        <div class="reimb-id">REIMB-2024-00198</div>
+                                        <div class="reimb-meta">
+                                            <span>Mountain Housing Opportunities</span>
+                                            <span>&middot; Case ARCHR-2024-001103</span>
+                                            <span class="pill">9 days aging</span>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:right;">
+                                        <div class="reimb-amount">$4,200</div>
+                                        <a href="#reimbursements" class="btn btn-secondary btn-sm" style="margin-top:4px;">Review</a>
+                                    </div>
+                                </li>
+                                <li class="reimb-item">
+                                    <i class="fas fa-receipt" style="color:var(--role-bursar-deep);font-size:1.25rem;" aria-hidden="true"></i>
+                                    <div>
+                                        <div class="reimb-id">REIMB-2024-00202</div>
+                                        <div class="reimb-meta">
+                                            <span>PODER Emma</span>
+                                            <span>&middot; Case ARCHR-2024-001045</span>
+                                            <span class="pill">3 days aging</span>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:right;">
+                                        <div class="reimb-amount">$3,800</div>
+                                        <a href="#reimbursements" class="btn btn-secondary btn-sm" style="margin-top:4px;">Review</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="panel" aria-labelledby="sources-h">
+                            <div class="panel-header">
+                                <h3 id="sources-h"><i class="fas fa-hand-holding-dollar"></i> Funding Sources</h3>
+                                <a href="#sources" class="see-all-link">Manage &rarr;</a>
+                            </div>
+                            <div class="fund-bar" role="img" aria-label="Funding source breakdown">
+                                <span class="fund-bar-slice" style="background:#3366CC; width:35.4%;" title="Habitat Grant"></span>
+                                <span class="fund-bar-slice" style="background:#E04E39; width:25.0%;" title="FEMA DR-1234"></span>
+                                <span class="fund-bar-slice" style="background:#2f9e69; width:22.9%;" title="State Grant"></span>
+                                <span class="fund-bar-slice" style="background:#d99518; width:16.7%;" title="Donations"></span>
+                            </div>
+                            <ul class="fund-legend">
+                                <li>
+                                    <span class="fund-legend-swatch" style="background:#3366CC;"></span>
+                                    <span class="fund-legend-name">Habitat Grant 2024</span>
+                                    <span class="fund-legend-amount">$850,000</span>
+                                    <span class="fund-legend-health pill pill-green">Healthy</span>
+                                </li>
+                                <li>
+                                    <span class="fund-legend-swatch" style="background:#E04E39;"></span>
+                                    <span class="fund-legend-name">FEMA DR-1234</span>
+                                    <span class="fund-legend-amount">$600,000</span>
+                                    <span class="fund-legend-health pill pill-amber">Depleted</span>
+                                </li>
+                                <li>
+                                    <span class="fund-legend-swatch" style="background:#2f9e69;"></span>
+                                    <span class="fund-legend-name">State Grant</span>
+                                    <span class="fund-legend-amount">$550,000</span>
+                                    <span class="fund-legend-health pill pill-green">Healthy</span>
+                                </li>
+                                <li>
+                                    <span class="fund-legend-swatch" style="background:#d99518;"></span>
+                                    <span class="fund-legend-name">Donations Pool</span>
+                                    <span class="fund-legend-amount">$400,000</span>
+                                    <span class="fund-legend-health pill pill-green">Healthy</span>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Duplicate / Overlap Alerts -->
+                <section class="dash-section" aria-labelledby="dup-h">
+                    <div class="section-header-row">
+                        <h3 class="dash-section-title" id="dup-h" style="margin:0;"><i class="fas fa-triangle-exclamation"></i> Duplicate &amp; Overlap Alerts</h3>
+                        <a href="#duplicates" class="see-all-link">Review all &rarr;</a>
+                    </div>
+                    <article class="panel">
+                        <ul class="alert-list">
+                            <li class="alert-item">
+                                <i class="fas fa-map-marker-alt alert-icon" aria-hidden="true"></i>
+                                <div>
+                                    <div class="alert-title">Same address detected</div>
+                                    <div class="alert-detail">
+                                        <strong>ARCHR-2024-001234</strong> (Habitat) and
+                                        <strong>ARCHR-2024-001189</strong> (CHC) both reference
+                                        <em>42 Cherry St, Asheville</em>. Detected today, 8:47 AM.
+                                    </div>
+                                </div>
+                                <a href="#duplicates" class="btn btn-secondary btn-sm">Investigate</a>
+                            </li>
+                            <li class="alert-item">
+                                <i class="fas fa-hammer alert-icon" aria-hidden="true"></i>
+                                <div>
+                                    <div class="alert-title">Overlapping repair claim</div>
+                                    <div class="alert-detail">
+                                        Roof repair on <strong>ARCHR-2024-001103</strong> appears on
+                                        invoices submitted to both Habitat and CHC funding sources.
+                                        Risk of double-billing.
+                                    </div>
+                                </div>
+                                <a href="#duplicates" class="btn btn-secondary btn-sm">Investigate</a>
+                            </li>
+                            <li class="alert-item">
+                                <i class="fas fa-user-group alert-icon" aria-hidden="true"></i>
+                                <div>
+                                    <div class="alert-title">Same applicant, two cases</div>
+                                    <div class="alert-detail">
+                                        Applicant <em>James Thornton</em> matched on name + DOB across
+                                        <strong>ARCHR-2024-001103</strong> and <strong>ARCHR-2024-000871</strong>.
+                                        Confirm whether intentional refiling.
+                                    </div>
+                                </div>
+                                <a href="#duplicates" class="btn btn-secondary btn-sm">Investigate</a>
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+
+                <!-- Bursar action row -->
+                <nav class="bursar-action-row" aria-label="Bursar quick actions">
+                    <a href="#reimbursements" class="bursar-action-btn"><i class="fas fa-circle-check"></i> Approve Invoice</a>
+                    <a href="#reimbursements" class="bursar-action-btn"><i class="fas fa-money-bill-transfer"></i> Mark Paid</a>
+                    <a href="#reimbursements" class="bursar-action-btn"><i class="fas fa-circle-xmark"></i> Reject with Reason</a>
+                    <a href="#cases" class="bursar-action-btn"><i class="fas fa-pause"></i> Place On Hold</a>
+                    <a href="#duplicates" class="bursar-action-btn"><i class="fas fa-unlock"></i> Override Claim Lock</a>
+                    <a href="#sources" class="bursar-action-btn"><i class="fas fa-plus"></i> Allocate Funds</a>
+                    <a href="#reports" class="bursar-action-btn"><i class="fas fa-file-export"></i> Export Report</a>
+                </nav>
+
+                <p class="role-notice">
+                    <i class="fas fa-shield-halved"></i>
+                    <span>
+                        <strong>Role-based access &amp; audit trail:</strong>
+                        Every approval, payment, lock override, and manual allocation is written to
+                        <code>bursar_action_audit</code> with timestamp, actor, and reason. Per-case
+                        funding is capped at <strong>$50,000</strong>; allocations that would exceed
+                        the cap are blocked by the database. Reimbursements cannot be submitted by
+                        organizations that do not currently hold the case claim.
+                    </span>
+                </p>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sidebar mobile toggle
+    (function(){
+        var sidebar = document.getElementById('portalSidebar');
+        var toggle = document.getElementById('portalMobileToggle');
+        var close = document.getElementById('portalSidebarClose');
+        if (toggle && sidebar) {
+            toggle.addEventListener('click', function(){
+                var open = sidebar.classList.toggle('is-open');
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        }
+        if (close && sidebar) close.addEventListener('click', function(){ sidebar.classList.remove('is-open'); });
+    })();
+
+    // Theme toggle (persists to localStorage)
+    (function(){
+        var btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        btn.addEventListener('click', function(){
+            var html = document.documentElement;
+            var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('archr-theme', next); } catch (e) {}
+        });
+    })();
+
+    // Nav active state
+    document.querySelectorAll('.portal-nav-link').forEach(function(link){
+        link.addEventListener('click', function(){
+            document.querySelectorAll('.portal-nav-link').forEach(function(l){ l.classList.remove('active'); });
+            link.classList.add('active');
+        });
+    });
+
+    // Stub action handler (draft only)
+    document.querySelectorAll('.bursar-action-btn, .see-all-link, .kpi-foot a, .funding-table a, .reimb-item a, .alert-item a').forEach(function(btn){
+        btn.addEventListener('click', function(e){
+            e.preventDefault();
+            console.log('[bursar-draft] navigate:', btn.getAttribute('href'));
+        });
+    });
+</script>
+</body>
+</html>

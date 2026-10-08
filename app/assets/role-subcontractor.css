@@ -1,0 +1,248 @@
+/* Extracted from app/templates/subcontractor.html. Scoped to the role page;
+   shared scaffolding lives in app/assets/portal.css. */
+
+        /* =========================================================================
+           ARCHR Design System &mdash; Subcontractor Dashboard
+           Mirrors the Bursar / Assessor dashboard scaffolding and applies the
+           Subcontractor role accent (amber #AA6709 from the branding guide).
+           The page canvas is tinted with a heavily desaturated variant of the
+           role color so that screenshots immediately reveal which role-portal
+           the user was viewing when they reported an issue.
+           ========================================================================= */
+
+        /* Subcontractor role accent. Source: --role-subcontractor #AA6709 from branding guide.
+           - deep:    higher-contrast variant for text/borders (AA on white)
+           - light:   for pill/badge fills (matches dark-mode soft pastel)
+           - canvas:  near-white desaturated tint used as the page background */
+        :root {
+            --role-subcontractor: #AA6709;
+            --role-subcontractor-deep: #8a5408;
+            --role-subcontractor-light: #fbe9d0;
+            --role-subcontractor-canvas: #fbf5ec;
+        }
+        [data-theme="dark"] {
+            --role-subcontractor-canvas: #2a2218;
+            --role-subcontractor-light: #3a2e1f;
+        }
+
+        /* Page canvas takes the desaturated role tint */
+        body { background: var(--role-subcontractor-canvas); }
+        .portal-content { background: var(--role-subcontractor-canvas); }
+
+        /* Sidebar nav accent */
+        .portal-nav-link.active {
+            border-left-color: var(--role-subcontractor-deep);
+            color: var(--role-subcontractor-deep);
+            background: rgba(138, 84, 8, 0.10);
+        }
+        .portal-nav-link.active i,
+        .portal-nav-link:hover i { color: var(--role-subcontractor-deep); }
+
+        .role-badge.subcontractor-badge {
+            background: var(--role-subcontractor-light);
+            color: var(--role-subcontractor-deep);
+            border: 1px solid #ecd3a8;
+        }
+        .role-badge.subcontractor-badge i { color: var(--role-subcontractor-deep); }
+
+        .dash-section-title i { color: var(--role-subcontractor-deep); }
+
+        /* ----- Hero ----- */
+        .dash-hero {
+            background: linear-gradient(135deg, var(--role-subcontractor-deep), #5a3705);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6) var(--space-8);
+            margin-bottom: var(--space-6);
+            display: grid;
+            grid-template-columns: 2fr auto;
+            gap: var(--space-5);
+            align-items: center;
+        }
+
+.dash-hero-meta { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-2); }
+
+.hero-active-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.18); font-size: var(--fs-xs); font-weight: 600; }
+        @media (max-width: 700px) {  .dash-hero-meta { text-align: left; align-items: flex-start; } }
+
+        /* ----- Pills ----- */
+        
+        .pill-amber { background: var(--role-subcontractor-light); color: var(--role-subcontractor-deep); border-color: #ecd3a8; }
+        
+        .pill-blue  { background: #e1ecf4; color: #1d4665; border-color: #c0d6e6; }
+
+/* ----- Two-column grid (accepted | suggested) ----- */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-5);
+            margin-bottom: var(--space-6);
+        }
+
+/* ----- Task cards ----- */
+        .task-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .task-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-subcontractor-deep);
+            padding: var(--space-4);
+            display: grid;
+            gap: var(--space-2);
+        }
+        .task-card.is-suggested { border-left-color: var(--color-secondary); border-left-style: dashed; }
+        .task-card-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+        .task-card-job { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-md); color: var(--color-text); }
+        .task-card-meta { font-size: var(--fs-xs); color: var(--color-text-muted); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+        .task-card-todo { font-size: var(--fs-sm); color: var(--color-text); }
+        .task-card-todo strong { color: var(--color-text-muted); font-weight: 600; text-transform: uppercase; font-size: var(--fs-xs); letter-spacing: 0.04em; display: block; margin-bottom: 2px; }
+        .task-card-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-2); }
+
+        /* Progress bar inside cards */
+        .task-progress { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-xs); color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+        .task-progress-bar { flex: 1; height: 6px; background: var(--bg-surface-alt); border-radius: var(--radius-pill); overflow: hidden; max-width: 140px; }
+        .task-progress-fill { display: block; height: 100%; background: var(--role-subcontractor-deep); }
+        .task-card.is-suggested .task-progress-fill { background: var(--color-secondary); }
+
+        /* ----- Messages list ----- */
+        .msg-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+        .msg-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--space-3);
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+        }
+        .msg-item.is-unread { border-left: 3px solid var(--role-subcontractor-deep); }
+        .msg-item .msg-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--role-subcontractor-deep); }
+        .msg-item .msg-from { font-weight: 700; color: var(--color-text); font-size: var(--fs-sm); }
+        .msg-item .msg-body { font-size: var(--fs-sm); color: var(--color-text-muted); }
+        .msg-item .msg-time { font-size: var(--fs-xs); color: var(--color-text-muted); white-space: nowrap; }
+
+/* ----- Subcontractor action row ----- */
+        .sub-action-row {
+            display: flex; flex-wrap: wrap; gap: var(--space-3);
+            margin: var(--space-6) 0 var(--space-5);
+            padding: var(--space-4) 0;
+            border-top: 2px solid var(--color-border-strong);
+            border-bottom: 2px solid var(--color-border-strong);
+        }
+        .sub-action-btn {
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .sub-action-btn:hover {
+            background: var(--role-subcontractor-deep);
+            border-color: var(--role-subcontractor-deep);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .sub-action-btn i { font-size: 1rem; }
+
+        /* ----- Quick Actions (contextual two-card grid) ----- */
+        .quick-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+        @media (max-width: 800px) { .quick-actions-grid { grid-template-columns: 1fr; } }
+        .quick-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+        }
+        .quick-card h4 { font-family: var(--font-display); font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2); }
+        .quick-card h4 i { color: var(--role-subcontractor-deep); }
+        .quick-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+        .quick-list a {
+            display: flex; align-items: center; gap: var(--space-2);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            transition: var(--transition);
+        }
+        .quick-list a:hover { background: var(--role-subcontractor-light); color: var(--role-subcontractor-deep); }
+        .quick-list a i { color: var(--color-text-muted); width: 16px; }
+        .quick-list a:hover i { color: var(--role-subcontractor-deep); }
+
+        /* ----- Role notice ----- */
+        .role-notice {
+            background: var(--role-subcontractor-light);
+            border: 1px solid #ecd3a8;
+            color: var(--role-subcontractor-deep);
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            margin-top: var(--space-5);
+            font-size: var(--fs-sm);
+            display: flex; align-items: flex-start; gap: 10px;
+        }
+        .role-notice i { color: var(--role-subcontractor-deep); margin-top: 3px; }
+        [data-theme="dark"] .role-notice { color: #ecd3a8; }
+
+        .panel .see-all-link {
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            color: var(--role-subcontractor-deep);
+            text-decoration: none;
+        }
+        
+        .empty-state { font-size: var(--fs-sm); color: var(--color-text-muted); padding: var(--space-4); text-align: center; }
+    
+/* ---- */
+
+        /* ---- Base/fallback styles (abbreviated; matches the bursar/assessor draft).
+           Used so this file renders standalone when css/style.css is not linked. */
+        
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --bg-page: #f5f7fb; --bg-surface: #ffffff; --bg-surface-alt: #f3f5fa;
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #e2e8f0; --color-border-strong: #cfd6e4;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.125rem; --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.06); --shadow: 0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            --border-radius: var(--radius-md);
+        }
+        
+        body { font-family: var(--font-sans); background: var(--bg-page); color: var(--color-text); }
+
+.portal-sidebar-close { background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-muted); }
+
+.portal-nav-link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); text-decoration: none; color: var(--color-text); border-left: 3px solid transparent; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; transition: var(--transition); }
+
+.portal-main { display: flex; flex-direction: column; }
+
+.portal-content { padding: var(--space-6); overflow-y: auto; }
+
+.portal-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--role-subcontractor-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+        .role-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+        
+        .btn-primary { background: var(--role-subcontractor-deep); color: white; border-color: var(--role-subcontractor-deep); }
+        .btn-primary:hover { background: #6e4307; border-color: #6e4307; }
+        .btn-secondary { background: var(--bg-surface); color: var(--role-subcontractor-deep); border-color: var(--role-subcontractor-deep); }
+        .btn-secondary:hover { background: var(--role-subcontractor-deep); color: white; }
+
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); }
+        
+        /* .dash-section / .dash-section-title are inherited from portal.css (single source of truth). */
+        @media (max-width: 992px) {
+            
+            .portal-sidebar { position: fixed; transform: translateX(-100%); transition: transform 0.2s; z-index: 1000; height: 100vh; }
+
+}
+    

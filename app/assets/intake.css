@@ -1,0 +1,614 @@
+/* ===========================================================================
+ARCHR intake form — stylesheet
+---------------------------------------------------------------------------
+Organized top-down from the broadest rules (tokens, reset) down to the
+most specific components (signature pad, modal). Search by the section
+banners below to jump around.
+
+1. Design tokens (CSS custom properties)
+2. Global reset & base typography
+3. App shell (the centered "modal" container)
+4. Brand header & language switcher
+5. Progress bar
+6. Main scroll area & page visibility
+7. Form fields, inputs, choice groups
+8. Layout helpers (rows)
+9. Action bar & buttons
+10. Tables, disclosures, lists, sub-blocks
+11. Signature pad
+12. Required marker
+13. Modal dialog (income calculator)
+14. Misc (links, small text, [hidden])
+15. Utility classes
+16. Validation feedback & debug badge
+=========================================================================== */
+/* ---------------------------------------------------------------------------
+1. Design tokens
+---------------------------------------------------------------------------
+CSS custom properties (the `--name` lines) act like named constants. Any
+rule below can read them with `var(--name)`. Centralizing colors and the
+page width here means a re-theme is a one-file change.
+--------------------------------------------------------------------------- */
+:root {
+    --max: 900px;             /* outer cap on the app shell width */
+    --bg: #000;               /* page background, behind the shell */
+    --shell-bg: #111;         /* shell (modal) background */
+    --field-bg: #1d1d1d;      /* input / select / textarea background */
+    --border: #2e2e2e;        /* subtle separators */
+    --border-strong: #555;    /* visible borders around inputs */
+    --text: #f0f0f0;          /* default text color */
+    --muted: #999;            /* secondary text (captions, hints) */
+    --accent: #fff;           /* primary actions & active state */
+    --req: #ff7a7a;           /* "required" asterisk color */
+}
+
+/* ---------------------------------------------------------------------------
+2. Global reset & base typography
+---------------------------------------------------------------------------
+`box-sizing: border-box` makes width/height include padding + border, which
+is what most developers expect. `html, body { height: 100% }` lets the app
+shell measure itself against the viewport.
+--------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------------
+3. App shell — the centered "modal" container
+---------------------------------------------------------------------------
+`width: min(96vw, var(--max))` is the responsive trick: take whichever is
+smaller — 96% of the viewport, or the 900px cap. On phones it shrinks; on
+wide screens it stops growing.
+
+Flexbox with `flex-direction: column` lets the inner `<main>` expand to
+fill leftover vertical space (see rule 6).
+--------------------------------------------------------------------------- */
+.app-shell {
+    max-width: var(--max);
+    width: min(96vw, var(--max));
+    margin: 2vh auto;                              /* center horizontally, breathe vertically */
+    background: var(--shell-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);     /* soft drop shadow */
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+
+/* ---------------------------------------------------------------------------
+4. Brand header & language switcher
+---------------------------------------------------------------------------
+The header uses CSS grid to lay out three columns: the round letter mark,
+the title block (grows to fill), and the EN/ES toggle on the right.
+`grid-template-columns: auto 1fr auto` is the classic "fixed | flex | fixed"
+pattern.
+--------------------------------------------------------------------------- */
+header.brand {
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: auto 1fr auto;
+    padding: 1rem 1.25rem;
+}
+
+header.brand .lettermark {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;          /* equals height → vertically centers the letter */
+    border-radius: 50%;         /* makes the square into a circle */
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+header.brand .titles {
+    min-width: 0;               /* allows long titles to truncate cleanly in grid */
+}
+
+header.brand h1 {
+    font-size: 1rem;
+    line-height: 1.2;
+    margin: 0;
+}
+
+header.brand p.subtitle {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0.15rem 0 0;
+}
+
+.lang-switch {
+    display: inline-flex;
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    overflow: hidden;                              /* clips child buttons to the rounded corner */
+}
+
+.lang-switch button {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+}
+
+/* Selected language: flipped to white-on-black to stand out from the dark shell. */
+.lang-switch button.active {
+    background: var(--accent);
+    color: #000;
+}
+
+/* ---------------------------------------------------------------------------
+5. Progress bar
+---------------------------------------------------------------------------
+Two thin elements: a 4px gray track and an inner fill whose `width` is
+set inline by JavaScript as the user advances through pages.
+--------------------------------------------------------------------------- */
+.progress-bar {
+    background: #222;
+    height: 4px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    width: 0;
+    transition: width 0.3s ease;                   /* animates width changes smoothly */
+}
+
+/* ---------------------------------------------------------------------------
+6. Main scroll area & page visibility
+---------------------------------------------------------------------------
+`flex: 1` makes <main> consume all leftover vertical space inside the
+shell so the sticky action bar (rule 9) has something to stick to.
+
+Only the page with `.active` is shown — the rest are hidden. JS toggles
+the class as the user moves through the form.
+--------------------------------------------------------------------------- */
+main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.5rem 0;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page h2 {
+    margin-top: 0;
+}
+
+/* ---------------------------------------------------------------------------
+7. Form fields, inputs, choice groups
+---------------------------------------------------------------------------
+Each `.field` is one logical question: a label on top, an input below,
+stacked with flexbox so `gap` handles the spacing between them.
+
+The long input selector hits every text-y input plus selects and
+textareas, keeping their visual treatment identical.
+--------------------------------------------------------------------------- */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0.75rem 0;
+}
+
+/* When `.field` is a <fieldset> grouping radio/checkbox choices, strip the
+browser's default border/padding so it looks like every other .field. */
+fieldset.field {
+    border: 0;
+    min-width: 0;
+    padding: 0;
+}
+
+/* Direct-child label / legend gets the bold treatment that marks the
+question. Inline labels inside .checks / .radios stay at normal weight. */
+.field > label, .field > legend {
+    font-weight: 600;
+    padding: 0;
+}
+
+.field input[type="text"], .field input[type="email"], .field input[type="number"], .field input[type="date"], .field input[type="tel"], .field select, .field textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    font: inherit;                                 /* match surrounding body font */
+    background: var(--field-bg);
+    color: var(--text);
+}
+
+.field textarea {
+    min-height: 5rem;
+    resize: vertical;                              /* user can grow/shrink height only */
+}
+
+/* Checkbox / radio groups: stacked vertically with a small gap. */
+.checks, .radios {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.checks label, .radios label {
+    font-weight: 400;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;                       /* keeps box aligned to first line of long labels */
+}
+
+/* ---------------------------------------------------------------------------
+8. Layout helpers (rows)
+---------------------------------------------------------------------------
+Two simple grid helpers for putting fields side by side. Used for
+first/last name pairs and city/state/zip triples.
+--------------------------------------------------------------------------- */
+.row {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.row-3 {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;            /* wider first column for city */
+    gap: 0.75rem;
+}
+
+/* ---------------------------------------------------------------------------
+9. Action bar & buttons
+---------------------------------------------------------------------------
+`.actions` is the Back/Next row at the bottom of each page. `position:
+sticky` glues it to the bottom of the scroll area, which means a long
+page can scroll its content while the buttons stay reachable.
+
+Three button variants:
+- default  : primary action (Next, Submit), white fill on dark UI
+- .secondary : back button, outlined
+- .ghost   : low-emphasis (Cancel, Clear)
+--------------------------------------------------------------------------- */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    position: sticky;
+    bottom: 0;
+    background: var(--shell-bg);                   /* opaque so content doesn't show through */
+}
+
+button {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: #000;
+    cursor: pointer;
+    font: inherit;
+    padding: 0.5rem 1rem;
+}
+
+button.secondary {
+    background: transparent;
+    border-color: var(--border-strong);
+    color: var(--text);
+}
+
+button.ghost {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--muted);
+}
+
+/* ---------------------------------------------------------------------------
+10. Tables, disclosures, lists, sub-blocks
+---------------------------------------------------------------------------
+`.sub` is the indented panel used for follow-up questions that appear
+only when a parent option is selected (e.g., mailing address fields).
+The slightly different background gives a visual "child of" feel.
+--------------------------------------------------------------------------- */
+table {
+    width: 100%;
+    border-collapse: collapse;                     /* removes the default double border */
+    margin: 0.5rem 0;
+}
+
+th, td {
+    border: 1px solid var(--border-strong);
+    padding: 0.4rem;
+    text-align: left;
+}
+
+/* <details> / <summary> — the native expandable disclosure widget. */
+details {
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Small "Step N" label at the top of each page. */
+.progress {
+    color: var(--muted);
+    font-size: 0.875rem;
+    margin: 0 0 0.5rem;
+}
+
+ul.plain {
+    margin: 0.5rem 0 0.5rem 1.25rem;
+    padding: 0;
+}
+
+.sub {
+    background: #181818;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+}
+
+.sub h3 {
+    margin-top: 0;
+}
+
+/* ---------------------------------------------------------------------------
+11. Signature pad
+---------------------------------------------------------------------------
+The canvas is forced to a white background because the JS signature
+library draws with black ink. `touch-action: none` tells the browser
+not to scroll/zoom when the user drags on the canvas — without it,
+touch devices would scroll the page instead of drawing.
+--------------------------------------------------------------------------- */
+.signature-wrap {
+    position: relative;                            /* anchor for the absolutely-positioned Clear button */
+    border: 1px dashed var(--border-strong);
+    border-radius: 4px;
+    background: #fff;
+}
+
+.signature-wrap canvas {
+    border-radius: 4px;
+    cursor: crosshair;
+    display: block;
+    height: 140px;
+    touch-action: none;
+    width: 100%;
+}
+
+.signature-clear {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #000;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    position: absolute;
+    right: 0.35rem;
+    top: 0.35rem;
+}
+
+/* ---------------------------------------------------------------------------
+12. Required marker
+--------------------------------------------------------------------------- */
+.req {
+    color: var(--req);
+}
+
+/* ---------------------------------------------------------------------------
+13. Modal dialog (income calculator)
+---------------------------------------------------------------------------
+Hidden by default; JS adds `.open` to reveal it. `position: fixed` plus
+`inset: 0` is shorthand for "stick to all four edges of the viewport" —
+that gives us the dark overlay. The inner `.modal-body` is the actual
+dialog panel, centered by the parent's flex alignment.
+--------------------------------------------------------------------------- */
+.modal {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    inset: 0;
+    justify-content: center;
+    padding: 1rem;
+    position: fixed;
+    z-index: 10;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-body {
+    background: var(--shell-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 1.25rem;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: auto;                                /* scroll inside the dialog if content is tall */
+}
+
+/* ---------------------------------------------------------------------------
+14. Misc
+---------------------------------------------------------------------------
+`[hidden]` uses `!important` so it always wins against any other
+`display` declared elsewhere — the JS toggles this attribute to hide
+conditional sub-blocks.
+--------------------------------------------------------------------------- */
+a {
+    color: #8ac8ff;
+}
+
+small {
+    color: var(--muted);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* ---------------------------------------------------------------------------
+15. Utility classes
+---------------------------------------------------------------------------
+Small, single-purpose helpers used by the HTML in place of inline styles.
+Keep these lean — if one grows beyond a few lines it probably belongs in
+its own section above.
+--------------------------------------------------------------------------- */
+/* Non-bold inline checkbox sitting underneath a primary field (e.g. the
+"DOB unknown" toggle below the date input). */
+.inline-check {
+    font-weight: 400;
+    margin-top: 0.25rem;
+}
+
+/* Horizontal cluster of buttons (e.g. the repair table's Add row / Clear). */
+.button-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Adds breathing room above a field that immediately follows a button-row
+or table — neighbour-margin collapsing makes the default 0.75rem feel
+tight there. */
+.field-spaced {
+    margin-top: 1rem;
+}
+
+/* Page 6 repair table — fixed-width priority column. */
+.repair-table .col-priority {
+    width: 25%;
+}
+
+/* Page 12 income records table — small top gap below the "Add record" button. */
+.income-records {
+    margin-top: 0.5rem;
+}
+
+/* Accessible label that is visually hidden but still announced by screen
+readers (used as a <legend> on Page 7 where the heading already conveys
+the group purpose visually). */
+.visually-hidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* Centered hero block on the confirmation page. */
+.confirmation-hero {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Enlarged lettermark variant used on the confirmation page. */
+.lettermark-large {
+    font-size: 2rem;
+    height: 72px;
+    line-height: 72px;
+    width: 72px;
+}
+
+/* ---------------------------------------------------------------------------
+16. Validation feedback & debug badge
+---------------------------------------------------------------------------
+`.field-error` is added to a `.field` (or `<fieldset class="field">`) by
+intake.js when a required value is missing and the user clicks Next. It
+clears on the next `input` event in that field.
+
+`.debug-badge` appears in the bottom-right only when the page is loaded
+with `?debug=true`, signaling that required-field validation is bypassed.
+--------------------------------------------------------------------------- */
+.field-error > label, .field-error > legend {
+    color: var(--req);
+}
+
+.field-error input:not([type=checkbox]):not([type=radio]), .field-error select, .field-error textarea {
+    border-color: var(--req);
+    outline: 1px solid var(--req);
+}
+
+.debug-badge {
+    background: var(--req);
+    border-radius: 4px;
+    bottom: 0.75rem;
+    color: #000;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    pointer-events: none;
+    position: fixed;
+    right: 0.75rem;
+    z-index: 1000;
+}
+
+/* Honeypot — hidden from real users, still visible to bots that ignore CSS. */
+.hp-field {
+    height: 1px;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+
+/* Inline error shown if the submit POST fails or returns an error. */
+.submit-error {
+    color: var(--req);
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Early duplicate-warning banner. */
+.duplicate-warning {
+    background: #3a1d1d;
+    border: 1px solid #7a3a3a;
+    border-radius: 8px;
+    color: #ffc7c7;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 1rem 1.5rem 0;
+    padding: 1rem 1.25rem;
+}
+
+.duplicate-warning[hidden] {
+    display: none !important;
+}
+
+.duplicate-warning a {
+    color: #fff;
+    text-decoration: underline;
+}

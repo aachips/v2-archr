@@ -1,0 +1,20 @@
+# Local testing on Laragon (Apache)
+# This file is NOT used on the VPS (Nginx ignores it)
+
+# Prefer index.php over index.html
+DirectoryIndex index.php index.html
+
+RewriteEngine On
+
+# Deny access to raw markdown docs
+RewriteRule ^documentation/ - [F,L]
+
+# Deny access to sensitive directories
+RewriteRule ^app/lib/ - [F,L]
+RewriteRule ^app/config/ - [F,L]
+RewriteRule ^app/partials/ - [F,L]
+RewriteRule ^app/templates/ - [F,L]
+RewriteRule ^app/backups/ - [F,L]
+RewriteRule ^app/secure_config/ - [F,L]
+RewriteRule ^\.env - [F,L]
+RewriteRule ^\.git - [F,L]

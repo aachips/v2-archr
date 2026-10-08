@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHR &middot; Tasks, Logs, &amp; Events (POC)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../../archr-logo.svg">
+    <script>(function(){try{var t=localStorage.getItem('archr-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+    <style>
+        /* =========================================================================
+           ARCHR Design System &mdash; Tasks, Logs, &amp; Events (POC)
+           Cross-role surface. Uses the neutral secondary blue (#2A5C82) as the
+           page accent and warning amber (#d99518) for "needs review" / Task
+           Rabbit affordances, since the unverified state is system-wide and
+           independent of any role-portal palette.
+           ========================================================================= */
+        :root {
+            --tle-accent: #2A5C82;
+            --tle-accent-deep: #1f4862;
+            --tle-accent-light: #d6e6f0;
+            --tle-canvas: #eef3f7;
+            --tle-warn: #d99518;
+            --tle-warn-deep: #8a5a0e;
+            --tle-warn-light: #fdf3df;
+            --tle-warn-border: #f4dfa9;
+        }
+        [data-theme="dark"] {
+            --tle-canvas: #142028;
+            --tle-accent-light: #1f3142;
+            --tle-warn-light: #3a2f1a;
+            --tle-warn-border: #5a4a25;
+        }
+
+        body { background: var(--tle-canvas); }
+        .portal-content { background: var(--tle-canvas); }
+
+        /* Sidebar nav accent */
+        .portal-nav-link.active {
+            border-left-color: var(--tle-accent-deep);
+            color: var(--tle-accent-deep);
+            background: rgba(31, 72, 98, 0.10);
+        }
+        .portal-nav-link.active i,
+        .portal-nav-link:hover i { color: var(--tle-accent-deep); }
+
+        /* TLE badge in topbar */
+        .role-badge.tle-badge {
+            background: var(--tle-accent-light);
+            color: var(--tle-accent-deep);
+            border: 1px solid #b8d0df;
+        }
+        .role-badge.tle-badge i { color: var(--tle-accent-deep); }
+
+        .dash-section-title i { color: var(--tle-accent-deep); }
+
+        /* ----- Quick Entry hero (the 1-2 click focal point) ----- */
+        .quick-entry {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-top: 6px solid var(--tle-accent-deep);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6) var(--space-6);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-sm);
+        }
+        .quick-entry-head {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-3);
+        }
+        .quick-entry-head h2 {
+            font-family: var(--font-display); font-size: var(--fs-xl); margin: 0;
+            display: flex; align-items: center; gap: var(--space-2);
+        }
+        .quick-entry-head h2 i { color: var(--tle-accent-deep); }
+        .quick-entry-stamp {
+            font-size: var(--fs-xs); color: var(--color-text-muted);
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            font-variant-numeric: tabular-nums;
+        }
+        .quick-entry-stamp .stamp-chip {
+            background: var(--tle-accent-light); color: var(--tle-accent-deep);
+            border: 1px solid #b8d0df; border-radius: var(--radius-pill);
+            padding: 2px 10px; font-weight: 700;
+        }
+        .quick-entry textarea {
+            width: 100%; min-height: 120px; resize: vertical;
+            border: 1px solid var(--color-border-strong);
+            background: var(--bg-surface); color: var(--color-text);
+            padding: var(--space-4); border-radius: var(--radius-md);
+            font-family: inherit; font-size: var(--fs-base); line-height: 1.55;
+            transition: var(--transition);
+        }
+        .quick-entry textarea:focus {
+            outline: none; border-color: var(--tle-accent-deep);
+            box-shadow: 0 0 0 3px var(--tle-accent-light);
+        }
+        .quick-entry-helper {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-2);
+            font-size: var(--fs-xs); color: var(--color-text-muted);
+        }
+        .quick-entry-helper a.sop-link {
+            color: var(--tle-accent-deep); font-weight: 600;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .quick-entry-helper a.sop-link:hover { text-decoration: underline; }
+
+        /* Advanced (Task Rabbit) expander */
+        .quick-entry-advanced {
+            margin-top: var(--space-4); border-top: 1px dashed var(--color-border);
+            padding-top: var(--space-4);
+        }
+        .adv-toggle {
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            background: none; border: none; cursor: pointer; padding: 0;
+            color: var(--tle-accent-deep); font-weight: 600; font-size: var(--fs-sm);
+            font-family: inherit;
+        }
+        .adv-toggle i.chevron { transition: transform 0.18s ease; }
+        .adv-toggle[aria-expanded="true"] i.chevron { transform: rotate(90deg); }
+        .adv-note {
+            font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 6px;
+        }
+        .adv-fields {
+            display: none; grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-3); margin-top: var(--space-4);
+        }
+        .adv-fields.is-open { display: grid; }
+        @media (max-width: 900px) { .adv-fields { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .adv-fields { grid-template-columns: 1fr; } }
+        .adv-fields label {
+            display: flex; flex-direction: column; gap: 4px;
+            font-size: var(--fs-xs); text-transform: uppercase;
+            letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600;
+        }
+        .adv-fields input, .adv-fields select {
+            padding: var(--space-2) var(--space-3); font-family: inherit;
+            font-size: var(--fs-sm); border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border-strong);
+            background: var(--bg-surface); color: var(--color-text);
+            text-transform: none; letter-spacing: 0;
+        }
+
+        .quick-entry-actions {
+            display: flex; flex-wrap: wrap; gap: var(--space-2);
+            margin-top: var(--space-4); justify-content: flex-end;
+        }
+
+        /* ----- Tabs ----- */
+        .tle-tabs {
+            display: flex; flex-wrap: wrap; gap: 2px;
+            border-bottom: 2px solid var(--color-border-strong);
+            margin-bottom: var(--space-5);
+        }
+        .tle-tab {
+            background: none; border: none; cursor: pointer;
+            padding: var(--space-3) var(--space-4); font-family: inherit;
+            font-size: var(--fs-sm); font-weight: 600; color: var(--color-text-muted);
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            border-bottom: 3px solid transparent; margin-bottom: -2px;
+            transition: var(--transition);
+        }
+        .tle-tab:hover { color: var(--tle-accent-deep); }
+        .tle-tab.is-active {
+            color: var(--tle-accent-deep);
+            border-bottom-color: var(--tle-accent-deep);
+        }
+        .tle-tab .tab-count {
+            background: var(--bg-surface-alt); color: var(--color-text-muted);
+            border-radius: var(--radius-pill); padding: 1px 8px;
+            font-size: var(--fs-xs); font-variant-numeric: tabular-nums;
+        }
+        .tle-tab.is-warning .tab-count {
+            background: var(--tle-warn-light); color: var(--tle-warn-deep);
+            border: 1px solid var(--tle-warn-border);
+        }
+        .tle-tab.is-active.is-warning .tab-count { background: var(--tle-warn); color: #fff; border-color: var(--tle-warn); }
+
+        .tle-view { display: none; }
+        .tle-view.is-active { display: block; }
+
+        /* ----- Unverified queue cards ----- */
+        .review-banner {
+            display: flex; align-items: center; gap: var(--space-3);
+            background: var(--tle-warn-light); color: var(--tle-warn-deep);
+            border: 1px solid var(--tle-warn-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4);
+            margin-bottom: var(--space-4);
+            font-size: var(--fs-sm);
+        }
+        .review-banner i { font-size: 1rem; }
+        [data-theme="dark"] .review-banner { color: #f4dfa9; }
+
+        .unverified-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .unverified-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-left: 4px solid var(--tle-warn);
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-5);
+            box-shadow: var(--shadow-sm);
+            display: grid; gap: var(--space-3);
+        }
+        .unverified-card-head {
+            display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;
+            font-size: var(--fs-xs); color: var(--color-text-muted);
+        }
+        .unverified-card-head .submitter {
+            display: inline-flex; align-items: center; gap: 6px; font-weight: 600;
+            color: var(--color-text);
+        }
+        .unverified-card-head .submitter .avatar {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: var(--tle-accent-light); color: var(--tle-accent-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.7rem;
+        }
+        .unverified-card-head .stamp { font-variant-numeric: tabular-nums; }
+        .unverified-card-head .raw-tag {
+            background: var(--tle-warn-light); color: var(--tle-warn-deep);
+            border: 1px solid var(--tle-warn-border);
+            border-radius: var(--radius-pill); padding: 1px 10px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .unverified-card-body {
+            font-size: var(--fs-base); color: var(--color-text);
+            line-height: 1.55; white-space: pre-wrap;
+            background: var(--bg-surface-alt);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4);
+        }
+        .unverified-card-foot {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: var(--space-3); flex-wrap: wrap;
+        }
+        .quick-verify-row {
+            display: inline-flex; gap: 4px; flex-wrap: wrap;
+        }
+        .quick-verify-chip {
+            background: var(--bg-surface-alt); color: var(--color-text);
+            border: 1px solid var(--color-border); border-radius: var(--radius-pill);
+            padding: 4px 12px; font-size: var(--fs-xs); font-weight: 600;
+            cursor: pointer; transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 4px;
+        }
+        .quick-verify-chip:hover { border-color: var(--tle-accent-deep); color: var(--tle-accent-deep); }
+        .quick-verify-chip.is-on {
+            background: var(--tle-accent-light); color: var(--tle-accent-deep);
+            border-color: var(--tle-accent-deep);
+        }
+
+        /* ----- Verified table ----- */
+        .verified-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+        .verified-table thead th {
+            text-align: left; font-size: var(--fs-xs); text-transform: uppercase;
+            letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600;
+            padding: var(--space-3); border-bottom: 1px solid var(--color-border-strong);
+        }
+        .verified-table tbody td { padding: var(--space-3); border-bottom: 1px dashed var(--color-border); color: var(--color-text); }
+        .verified-table tbody tr:hover { background: var(--bg-surface-alt); }
+        .verified-table .case-tag {
+            font-family: var(--font-display); font-weight: 700;
+            color: var(--tle-accent-deep);
+        }
+
+        /* ----- Type pills ----- */
+        .type-pill {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 2px 10px; border-radius: var(--radius-pill);
+            font-size: var(--fs-xs); font-weight: 600;
+            border: 1px solid var(--color-border); background: var(--bg-surface-alt);
+        }
+        .type-pill.is-task { background: var(--tle-accent-light); color: var(--tle-accent-deep); border-color: #b8d0df; }
+        .type-pill.is-event { background: #e2d2f4; color: #3a0e7d; border-color: #ccb1ea; }
+        .type-pill.is-comm  { background: #d9f2d9; color: #1d8a3a; border-color: #b9e0bd; }
+
+        .status-pill {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 2px 10px; border-radius: var(--radius-pill);
+            font-size: var(--fs-xs); font-weight: 600;
+            background: var(--bg-surface-alt); color: var(--color-text-muted);
+            border: 1px solid var(--color-border);
+        }
+        .status-pill.is-active   { background: var(--tle-accent-light); color: var(--tle-accent-deep); border-color: #b8d0df; }
+        .status-pill.is-progress { background: #fdf3df; color: var(--tle-warn-deep); border-color: var(--tle-warn-border); }
+        .status-pill.is-done     { background: #d9f2d9; color: #1d8a3a; border-color: #b9e0bd; }
+
+        /* ----- Triage modal (Task Rabbit) ----- */
+        .modal-backdrop {
+            position: fixed; inset: 0; background: rgba(15, 22, 34, 0.55);
+            display: none; align-items: center; justify-content: center;
+            padding: var(--space-4); z-index: 2000;
+        }
+        .modal-backdrop.is-open { display: flex; }
+        .modal {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            width: 100%; max-width: 760px;
+            max-height: 90vh; overflow: hidden;
+            display: grid; grid-template-rows: auto 1fr auto;
+        }
+        .modal-head {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: var(--space-3); padding: var(--space-5) var(--space-6);
+            border-bottom: 1px solid var(--color-border-strong);
+            background: var(--tle-accent-light);
+            color: var(--tle-accent-deep);
+        }
+        .modal-head h3 {
+            font-family: var(--font-display); font-size: var(--fs-lg); margin: 0;
+            display: flex; align-items: center; gap: var(--space-2);
+        }
+        .modal-close {
+            background: none; border: none; cursor: pointer;
+            font-size: 1.2rem; color: var(--tle-accent-deep);
+        }
+        .modal-body {
+            padding: var(--space-5) var(--space-6);
+            overflow-y: auto;
+            display: grid; gap: var(--space-4);
+        }
+        .modal-foot {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: var(--space-3); flex-wrap: wrap;
+            padding: var(--space-4) var(--space-6);
+            border-top: 1px solid var(--color-border-strong);
+            background: var(--bg-surface-alt);
+        }
+        .modal-section-label {
+            font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em;
+            color: var(--color-text-muted); font-weight: 700;
+        }
+        .raw-quote {
+            background: var(--bg-surface-alt); border: 1px solid var(--color-border);
+            border-left: 3px solid var(--tle-warn);
+            border-radius: var(--radius-sm);
+            padding: var(--space-3) var(--space-4);
+            font-size: var(--fs-sm); white-space: pre-wrap;
+            color: var(--color-text);
+        }
+
+        /* Parsed children rows (split one raw entry into multiple structured items) */
+        .parsed-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .parsed-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto auto;
+            gap: var(--space-2);
+            align-items: center;
+            padding: var(--space-3); border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-left: 4px solid var(--tle-accent-deep);
+        }
+        .parsed-item.is-event { border-left-color: #5415B1; }
+        .parsed-item.is-comm  { border-left-color: #1d8a3a; }
+        .parsed-item .grip { color: var(--color-text-muted); cursor: grab; }
+        .parsed-item input[type="text"], .parsed-item select {
+            font-family: inherit; font-size: var(--fs-sm);
+            padding: 6px 8px; border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border-strong);
+            background: var(--bg-surface); color: var(--color-text);
+        }
+        .parsed-item .remove {
+            background: none; border: none; color: var(--color-danger);
+            cursor: pointer; font-size: 0.95rem;
+        }
+        .add-parsed {
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            background: none; border: 1px dashed var(--color-border-strong);
+            border-radius: var(--radius-md); padding: var(--space-2) var(--space-4);
+            color: var(--tle-accent-deep); font-weight: 600; cursor: pointer;
+            font-family: inherit; font-size: var(--fs-sm);
+        }
+        .add-parsed:hover { border-color: var(--tle-accent-deep); background: var(--tle-accent-light); }
+
+        /* ----- Role notice ----- */
+        .role-notice {
+            background: var(--tle-accent-light);
+            border: 1px solid #b8d0df;
+            color: var(--tle-accent-deep);
+            padding: 12px 18px; border-radius: var(--radius-md);
+            margin-top: var(--space-5); font-size: var(--fs-sm);
+            display: flex; align-items: flex-start; gap: 10px;
+        }
+        .role-notice i { color: var(--tle-accent-deep); margin-top: 3px; }
+        [data-theme="dark"] .role-notice { background: #1f3142; border-color: #2e4a62; color: #cfe2ee; }
+        [data-theme="dark"] .role-notice i { color: #cfe2ee; }
+
+        /* ----- Sidebar quick-add "+" affordance on the TLE nav item ----- */
+        .portal-nav-link .nav-add {
+            margin-left: auto; width: 22px; height: 22px;
+            border-radius: var(--radius-pill);
+            background: var(--tle-accent-light); color: var(--tle-accent-deep);
+            border: none; cursor: pointer; font-size: 0.7rem;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .portal-nav-link .nav-add:hover { background: var(--tle-accent-deep); color: #fff; }
+        .portal-nav-link .nav-badge {
+            margin-left: auto; background: var(--tle-warn-light);
+            color: var(--tle-warn-deep); border: 1px solid var(--tle-warn-border);
+            font-size: 0.65rem; font-weight: 700; border-radius: var(--radius-pill);
+            padding: 1px 8px;
+        }
+
+        /* ----- Sidebar groups & search ----- */
+        .portal-nav-group-label {
+            font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted); font-weight: 700;
+            padding: var(--space-4) var(--space-4) var(--space-2);
+            margin-top: var(--space-2);
+        }
+        .portal-nav-search { padding: var(--space-3) var(--space-4) var(--space-2); position: relative; }
+        .portal-nav-search input {
+            width: 100%; padding: 8px 10px 8px 32px;
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md); background: var(--bg-surface-alt);
+            color: var(--color-text); font-family: inherit; font-size: var(--fs-xs);
+        }
+        .portal-nav-search input:focus { outline: none; border-color: var(--tle-accent-deep); }
+        .portal-nav-search i {
+            position: absolute; left: calc(var(--space-4) + 10px); top: 50%;
+            transform: translateY(-50%); color: var(--color-text-muted); font-size: 0.8rem;
+        }
+    </style>
+
+    <style>
+        /* ---- Base/fallback styles. Mirrors the assessor/bursar/PM drafts so this
+           file renders standalone when css/style.css is not linked. ---- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --bg-page: #f5f7fb; --bg-surface: #ffffff; --bg-surface-alt: #f3f5fa;
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #e2e8f0; --color-border-strong: #cfd6e4;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.125rem; --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.06); --shadow: 0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            --border-radius: var(--radius-md);
+        }
+        [data-theme="dark"] {
+            --bg-page: #0f1622; --bg-surface: #182231; --bg-surface-alt: #202b3d;
+            --color-text: #e6ecf5; --color-text-muted: #9aa7bd;
+            --color-border: #2a3447; --color-border-strong: #3a455c;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        body { font-family: var(--font-sans); color: var(--color-text); }
+        .portal-app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+        .portal-sidebar { background: var(--bg-surface); border-right: 1px solid var(--color-border); }
+        .portal-sidebar-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--color-border); }
+        .portal-brand { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); text-decoration: none; color: var(--color-text); display: inline-flex; align-items: center; gap: var(--space-2); }
+        .portal-sidebar-close { background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-muted); }
+        .portal-nav { padding: var(--space-4); }
+        .portal-nav ul { list-style: none; display: grid; gap: 2px; }
+        .portal-nav-link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); text-decoration: none; color: var(--color-text); border-left: 3px solid transparent; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; transition: var(--transition); }
+        .portal-nav-link:hover { background: var(--bg-surface-alt); }
+        .portal-nav-link i { width: 18px; color: var(--color-text-muted); }
+        .portal-main { display: flex; flex-direction: column; }
+        .portal-topbar { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-6); background: var(--bg-surface); border-bottom: 1px solid var(--color-border); gap: var(--space-4); }
+        .portal-topbar-left, .portal-topbar-right { display: flex; align-items: center; gap: var(--space-4); }
+        .portal-page-title { font-family: var(--font-display); font-size: var(--fs-xl); margin: 0; }
+        .portal-content { padding: var(--space-6); overflow-y: auto; }
+        .portal-page { max-width: 1400px; margin: 0 auto; }
+        .portal-mobile-toggle { display: none; background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text); }
+        .theme-toggle { background: transparent; border: 1px solid var(--color-border); border-radius: var(--radius-pill); width: 40px; height: 40px; cursor: pointer; color: var(--color-text); }
+        .portal-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--tle-accent-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+        .role-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: var(--border-radius); font-weight: 600; text-decoration: none; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: var(--fs-sm); }
+        .btn-primary { background: var(--tle-accent-deep); color: white; border-color: var(--tle-accent-deep); }
+        .btn-primary:hover { background: #16384f; border-color: #16384f; }
+        .btn-secondary { background: var(--bg-surface); color: var(--tle-accent-deep); border-color: var(--tle-accent-deep); }
+        .btn-secondary:hover { background: var(--tle-accent-deep); color: white; }
+        .btn-outline { background: var(--bg-surface); color: var(--color-text); border-color: var(--color-border-strong); }
+        .btn-outline:hover { border-color: var(--tle-accent-deep); color: var(--tle-accent-deep); }
+        .btn-warn { background: var(--tle-warn); color: white; border-color: var(--tle-warn); }
+        .btn-warn:hover { background: var(--tle-warn-deep); border-color: var(--tle-warn-deep); }
+        .btn-sm { padding: 6px 14px; font-size: var(--fs-xs); }
+        .panel { background: var(--bg-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-5); box-shadow: var(--shadow-sm); }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); }
+        .panel-header h3 { font-family: var(--font-display); font-size: var(--fs-lg); margin: 0; display: flex; align-items: center; gap: var(--space-2); }
+        .dash-section { margin-bottom: var(--space-6); }
+        .dash-section-title { font-family: var(--font-display); font-size: var(--fs-lg); margin: 0 0 var(--space-4); display: flex; align-items: center; gap: var(--space-2); }
+        @media (max-width: 992px) {
+            .portal-app { grid-template-columns: 1fr; }
+            .portal-sidebar { position: fixed; top: 0; left: 0; width: 260px; transform: translateX(-100%); transition: transform 0.2s; z-index: 1000; height: 100vh; overflow-y: auto; box-shadow: var(--shadow); }
+            .portal-sidebar.is-open { transform: translateX(0); }
+            .portal-mobile-toggle { display: inline-flex; }
+        }
+        @media (max-width: 700px) {
+            .portal-topbar { padding: var(--space-3) var(--space-4); gap: var(--space-2); }
+            .portal-page-title { font-size: var(--fs-md); }
+            .portal-content { padding: var(--space-4) var(--space-3); }
+            .role-badge.tle-badge .role-badge-text { display: none; }
+            .quick-entry { padding: var(--space-4); }
+            .quick-entry-head h2 { font-size: var(--fs-lg); }
+        }
+    </style>
+</head>
+<body>
+<div class="portal-app">
+    <aside class="portal-sidebar" id="portalSidebar" aria-label="Portal navigation">
+        <div class="portal-sidebar-header">
+            <a href="../../index.html" class="portal-brand">
+                <img src="../../archr-logo.svg" alt="" class="portal-brand-mark" style="height:24px;">
+                <span>ARCHR</span>
+            </a>
+            <button type="button" class="portal-sidebar-close" id="portalSidebarClose" aria-label="Close menu">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="portal-nav-search">
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="search" placeholder="Quick case search&hellip;" aria-label="Quick case search">
+        </div>
+        <nav class="portal-nav">
+            <ul>
+                <li><a href="#dashboard" class="portal-nav-link"><i class="fas fa-gauge-high"></i><span>Dashboard</span></a></li>
+                <li><a href="#cases" class="portal-nav-link"><i class="fas fa-folder-open"></i><span>Cases</span></a></li>
+            </ul>
+
+            <div class="portal-nav-group-label">Work</div>
+            <ul>
+                <li>
+                    <a href="#tle" class="portal-nav-link active">
+                        <i class="fas fa-list-check"></i><span>Tasks, Logs, &amp; Events</span>
+                        <span class="nav-badge" aria-label="Unverified count">3</span>
+                        <button type="button" class="nav-add" id="navQuickAdd" title="Quick add" aria-label="Jump to Quick Entry"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                    </a>
+                </li>
+                <li><a href="#mytasks" class="portal-nav-link"><i class="fas fa-user-check"></i><span>My Tasks</span></a></li>
+                <li><a href="#schedule" class="portal-nav-link"><i class="fas fa-calendar-days"></i><span>Schedule</span></a></li>
+            </ul>
+
+            <div class="portal-nav-group-label">Oversight</div>
+            <ul>
+                <li><a href="#metrics" class="portal-nav-link"><i class="fas fa-chart-pie"></i><span>Metrics</span></a></li>
+                <li><a href="#reports" class="portal-nav-link"><i class="fas fa-file-lines"></i><span>Reports</span></a></li>
+            </ul>
+
+            <div class="portal-nav-group-label">Reference</div>
+            <ul>
+                <li><a href="#sop" class="portal-nav-link"><i class="fas fa-book"></i><span>SOPs &amp; Guides</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="portal-main">
+        <header class="portal-topbar">
+            <div class="portal-topbar-left">
+                <button type="button" class="portal-mobile-toggle" id="portalMobileToggle" aria-label="Open menu" aria-controls="portalSidebar" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+                <h1 class="portal-page-title">Tasks, Logs, &amp; Events</h1>
+            </div>
+            <div class="portal-topbar-right">
+                <span class="role-badge tle-badge"><i class="fas fa-list-check"></i> <span class="role-badge-text">Capture &middot; Verify &middot; Count</span></span>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><i class="fas fa-circle-half-stroke"></i></button>
+                <span class="portal-avatar" aria-label="Jamie Doe">JD</span>
+            </div>
+        </header>
+
+        <div class="portal-content">
+            <section class="portal-page" id="tlePage" data-page-title="Tasks, Logs, &amp; Events">
+
+                <!-- ============ QUICK ENTRY (one or two clicks from anywhere) ============ -->
+                <section class="quick-entry" aria-labelledby="qe-h">
+                    <div class="quick-entry-head">
+                        <h2 id="qe-h"><i class="fas fa-bolt"></i> Quick Entry</h2>
+                        <div class="quick-entry-stamp" aria-live="polite">
+                            <span class="stamp-chip" id="stampWho">JD</span>
+                            <span id="stampWhen">Auto-stamped on submit</span>
+                        </div>
+                    </div>
+
+                    <form id="quickEntryForm" novalidate>
+                        <label for="quickEntryText" class="sr-only" style="position:absolute;left:-9999px;">What needs to be done, what happened, or what was said?</label>
+                        <textarea id="quickEntryText"
+                            placeholder="Type one or more entries. Each new line is a separate entry. e.g.&#10;42-CHERRY roof needs tarping before storm&#10;Called Mrs. Lopez at 2:10pm &mdash; confirmed Thursday assessment&#10;Photos uploaded to 15-MERRILL"
+                            aria-describedby="qeHelper"></textarea>
+
+                        <div class="quick-entry-helper" id="qeHelper">
+                            <span><i class="fas fa-circle-info"></i> Each new line becomes its own entry. A Task Rabbit will parse, categorize, and verify before it counts toward metrics.</span>
+                            <a href="sop-entries.md" class="sop-link" id="sopLink" target="_blank" rel="noopener"><i class="fas fa-book-open"></i> SOP &middot; Good vs bad entries</a>
+                        </div>
+
+                        <!-- Advanced (a.k.a. Task Rabbit fields). Hidden by default;
+                             same shape the Task Rabbit uses during triage. -->
+                        <div class="quick-entry-advanced">
+                            <button type="button" class="adv-toggle" id="advToggle" aria-expanded="false" aria-controls="advFields">
+                                <i class="fas fa-chevron-right chevron" aria-hidden="true"></i>
+                                Add structure now (skip if you're in a hurry)
+                            </button>
+                            <p class="adv-note">Same panel the Task Rabbit uses during review. Anything you fill in here pre-fills triage and may auto-verify.</p>
+
+                            <div class="adv-fields" id="advFields" role="group" aria-label="Advanced entry fields">
+                                <label>Case
+                                    <input type="text" name="case" placeholder="42-CHERRY or address">
+                                </label>
+                                <label>Type
+                                    <select name="type">
+                                        <option value="">Let Rabbit decide</option>
+                                        <option value="task">Task</option>
+                                        <option value="event">Event</option>
+                                        <option value="comm">Communication</option>
+                                        <option value="mixed">Mixed (parse into many)</option>
+                                    </select>
+                                </label>
+                                <label>Priority
+                                    <select name="priority">
+                                        <option value="">Default</option>
+                                        <option value="p0">P0 &middot; Urgent</option>
+                                        <option value="p1">P1 &middot; High</option>
+                                        <option value="p2">P2 &middot; Normal</option>
+                                        <option value="p3">P3 &middot; Low</option>
+                                    </select>
+                                </label>
+                                <label>Assign to
+                                    <input type="text" name="assignee" placeholder="Initials, role, or org">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="quick-entry-actions">
+                            <button type="button" class="btn btn-outline" id="qeClear"><i class="fas fa-rotate-left"></i> Clear</button>
+                            <button type="submit" class="btn btn-secondary" id="qeAddAnother"><i class="fas fa-plus"></i> Save &amp; Add Another</button>
+                            <button type="submit" class="btn btn-primary" id="qeSubmit"><i class="fas fa-paper-plane"></i> Submit to Unverified</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- ============ TABS ============ -->
+                <div class="tle-tabs" role="tablist" aria-label="Task views">
+                    <button type="button" class="tle-tab is-active" role="tab" aria-selected="true" data-view="unverified" data-warning="1">
+                        <i class="fas fa-hourglass-half"></i> Unverified <span class="tab-count" id="countUnverified">3</span>
+                    </button>
+                    <button type="button" class="tle-tab" role="tab" aria-selected="false" data-view="all">
+                        <i class="fas fa-list-check"></i> All Verified <span class="tab-count">12</span>
+                    </button>
+                    <button type="button" class="tle-tab" role="tab" aria-selected="false" data-view="mine">
+                        <i class="fas fa-user-check"></i> My Submissions <span class="tab-count">5</span>
+                    </button>
+                    <button type="button" class="tle-tab" role="tab" aria-selected="false" data-view="completed">
+                        <i class="fas fa-circle-check"></i> Completed <span class="tab-count">27</span>
+                    </button>
+                </div>
+
+                <!-- ============ UNVERIFIED QUEUE ============ -->
+                <section class="tle-view is-active" id="view-unverified" role="tabpanel" aria-label="Unverified entries">
+                    <div class="review-banner">
+                        <i class="fas fa-circle-info"></i>
+                        <span><strong>Task Rabbit role:</strong> A second pair of eyes parses each raw entry, decides whether it's a task, event, communication, or several of those together, fills missing fields, then verifies. Verified entries count toward metrics.</span>
+                    </div>
+
+                    <ul class="unverified-list" id="unverifiedList">
+                        <li class="unverified-card" data-entry-id="u-1001">
+                            <div class="unverified-card-head">
+                                <span class="submitter"><span class="avatar">JD</span> Jamie Doe</span>
+                                <span class="stamp"><i class="fas fa-clock"></i> Dec 15, 2024 &middot; 2:34 PM</span>
+                                <span class="raw-tag"><i class="fas fa-hourglass-half"></i> Unverified</span>
+                            </div>
+                            <div class="unverified-card-body">42-CHERRY roof needs tarping before storm. Tarp + 4 sandbags in the van. Called Mrs. Lopez at 2:10pm &mdash; she's home all afternoon, will let crew in.</div>
+                            <div class="unverified-card-foot">
+                                <div class="quick-verify-row" role="group" aria-label="Suggested type">
+                                    <button type="button" class="quick-verify-chip is-on"><i class="fas fa-list-check"></i> Task</button>
+                                    <button type="button" class="quick-verify-chip is-on"><i class="fas fa-phone"></i> Comm</button>
+                                    <button type="button" class="quick-verify-chip"><i class="fas fa-calendar-check"></i> Event</button>
+                                </div>
+                                <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
+                                    <button type="button" class="btn btn-secondary btn-sm js-triage"><i class="fas fa-scissors"></i> Triage &amp; Parse</button>
+                                    <button type="button" class="btn btn-primary btn-sm js-verify"><i class="fas fa-circle-check"></i> Verify as Task + Comm</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="unverified-card" data-entry-id="u-1002">
+                            <div class="unverified-card-head">
+                                <span class="submitter"><span class="avatar">AL</span> Aisha Lee</span>
+                                <span class="stamp"><i class="fas fa-clock"></i> Dec 15, 2024 &middot; 10:48 AM</span>
+                                <span class="raw-tag"><i class="fas fa-hourglass-half"></i> Unverified</span>
+                            </div>
+                            <div class="unverified-card-body">15-MERRILL: client called about timeline; wants confirmation by Friday. Also reminder to upload income verification &mdash; she sent W-2 last week, still in inbox. And schedule final walkthrough w/ David.</div>
+                            <div class="unverified-card-foot">
+                                <div class="quick-verify-row" role="group" aria-label="Suggested type">
+                                    <button type="button" class="quick-verify-chip is-on"><i class="fas fa-phone"></i> Comm</button>
+                                    <button type="button" class="quick-verify-chip is-on"><i class="fas fa-list-check"></i> Task</button>
+                                    <button type="button" class="quick-verify-chip is-on"><i class="fas fa-calendar-check"></i> Event</button>
+                                </div>
+                                <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
+                                    <button type="button" class="btn btn-warn btn-sm js-triage"><i class="fas fa-scissors"></i> Triage (3 items)</button>
+                                    <button type="button" class="btn btn-outline btn-sm">Reject</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="unverified-card" data-entry-id="u-1003">
+                            <div class="unverified-card-head">
+                                <span class="submitter"><span class="avatar">SM</span> Sarah M.</span>
+                                <span class="stamp"><i class="fas fa-clock"></i> Dec 14, 2024 &middot; 5:12 PM</span>
+                                <span class="raw-tag"><i class="fas fa-hourglass-half"></i> Unverified</span>
+                            </div>
+                            <div class="unverified-card-body">8-OAKLAND need to verify deed before crew can start panel upgrade. Title company says 3 business days.</div>
+                            <div class="unverified-card-foot">
+                                <div class="quick-verify-row" role="group" aria-label="Suggested type">
+                                    <button type="button" class="quick-verify-chip is-on"><i class="fas fa-list-check"></i> Task</button>
+                                    <button type="button" class="quick-verify-chip"><i class="fas fa-phone"></i> Comm</button>
+                                    <button type="button" class="quick-verify-chip"><i class="fas fa-calendar-check"></i> Event</button>
+                                </div>
+                                <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
+                                    <button type="button" class="btn btn-secondary btn-sm js-triage"><i class="fas fa-scissors"></i> Triage</button>
+                                    <button type="button" class="btn btn-primary btn-sm js-verify"><i class="fas fa-circle-check"></i> Verify as Task</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- ============ ALL VERIFIED (table) ============ -->
+                <section class="tle-view" id="view-all" role="tabpanel" aria-label="All verified entries" hidden>
+                    <article class="panel" style="padding:0;">
+                        <div style="overflow-x:auto;">
+                        <table class="verified-table">
+                            <thead>
+                                <tr>
+                                    <th>Case</th>
+                                    <th>Type</th>
+                                    <th>Entry</th>
+                                    <th>Submitted</th>
+                                    <th>Verified by</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="case-tag">42-CHERRY</span></td>
+                                    <td><span class="type-pill is-task"><i class="fas fa-list-check"></i> Task</span></td>
+                                    <td>Schedule assessment &mdash; roof inspection + estimate. Due Dec 20.</td>
+                                    <td>JD &middot; Dec 12, 9:14 AM</td>
+                                    <td>AL</td>
+                                    <td><span class="status-pill is-progress"><i class="fas fa-spinner"></i> In progress</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="case-tag">15-MERRILL</span></td>
+                                    <td><span class="type-pill is-comm"><i class="fas fa-phone"></i> Comm</span></td>
+                                    <td>Client requested timeline confirmation. Replied with Friday EOD commitment.</td>
+                                    <td>AL &middot; Dec 14, 10:48 AM</td>
+                                    <td>JD</td>
+                                    <td><span class="status-pill is-done"><i class="fas fa-circle-check"></i> Closed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="case-tag">15-MERRILL</span></td>
+                                    <td><span class="type-pill is-task"><i class="fas fa-list-check"></i> Task</span></td>
+                                    <td>Verify income (W-2 already in inbox).</td>
+                                    <td>AL &middot; Dec 14, 10:48 AM</td>
+                                    <td>JD</td>
+                                    <td><span class="status-pill is-active"><i class="fas fa-circle-dot"></i> Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="case-tag">15-MERRILL</span></td>
+                                    <td><span class="type-pill is-event"><i class="fas fa-calendar-check"></i> Event</span></td>
+                                    <td>Final walkthrough scheduled with David C., Dec 12 9:30 AM.</td>
+                                    <td>AL &middot; Dec 14, 10:48 AM</td>
+                                    <td>JD</td>
+                                    <td><span class="status-pill is-active"><i class="fas fa-circle-dot"></i> Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="case-tag">8-OAKLAND</span></td>
+                                    <td><span class="type-pill is-task"><i class="fas fa-list-check"></i> Task</span></td>
+                                    <td>Electrical estimate, due Dec 22 (Mike).</td>
+                                    <td>SM &middot; Dec 14, 5:12 PM</td>
+                                    <td>AL</td>
+                                    <td><span class="status-pill is-progress"><i class="fas fa-spinner"></i> In progress</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="tle-view" id="view-mine" role="tabpanel" aria-label="My submissions" hidden>
+                    <article class="panel"><p style="margin:0; color:var(--color-text-muted);">Your 5 most recent submissions appear here once you submit through Quick Entry.</p></article>
+                </section>
+                <section class="tle-view" id="view-completed" role="tabpanel" aria-label="Completed" hidden>
+                    <article class="panel"><p style="margin:0; color:var(--color-text-muted);">Completed entries auto-archive here for audit history.</p></article>
+                </section>
+
+                <p class="role-notice">
+                    <i class="fas fa-circle-info"></i>
+                    <span>
+                        <strong>Two-phase capture &middot; POC:</strong>
+                        Phase 1 (everyone) drops raw notes into the queue with zero ceremony.
+                        Phase 2 (Task Rabbit) parses each entry into one-or-more structured
+                        tasks, events, and communication logs &mdash; then verifies. Only verified
+                        items count toward metrics and appear on case to-do lists. See
+                        <code>tle-table.md</code> and <code>quick-add-form-specs.json</code>
+                        for the spec this POC implements.
+                    </span>
+                </p>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- ============ TRIAGE MODAL (Task Rabbit view) ============ -->
+<div class="modal-backdrop" id="triageBackdrop" role="dialog" aria-modal="true" aria-labelledby="triageTitle" aria-hidden="true">
+    <div class="modal">
+        <div class="modal-head">
+            <h3 id="triageTitle"><i class="fas fa-scissors"></i> Task Rabbit &middot; Triage &amp; Parse</h3>
+            <button type="button" class="modal-close" id="triageClose" aria-label="Close triage">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <div class="modal-section-label">Raw submission</div>
+                <p style="font-size:var(--fs-xs); color:var(--color-text-muted); margin:4px 0 6px;">
+                    <span id="triageSubmitter">AL</span> &middot; <span id="triageStamp">Dec 15, 2024 &middot; 10:48 AM</span>
+                </p>
+                <div class="raw-quote" id="triageRaw">15-MERRILL: client called about timeline; wants confirmation by Friday. Also reminder to upload income verification &mdash; she sent W-2 last week, still in inbox. And schedule final walkthrough w/ David.</div>
+            </div>
+
+            <div>
+                <div class="modal-section-label" style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-3);">
+                    <span>Parsed entries &middot; one raw submission &rarr; one or more structured items</span>
+                    <span style="color:var(--color-text-muted); font-weight:600; text-transform:none; letter-spacing:0;">Edit, split, or remove rows below.</span>
+                </div>
+                <ul class="parsed-list" id="parsedList" style="margin-top:var(--space-3);">
+                    <li class="parsed-item">
+                        <span class="grip" aria-hidden="true"><i class="fas fa-grip-vertical"></i></span>
+                        <input type="text" value="Confirm project timeline with client by Friday" aria-label="Entry summary">
+                        <select aria-label="Type">
+                            <option value="comm" selected>Communication</option>
+                            <option value="task">Task</option>
+                            <option value="event">Event</option>
+                        </select>
+                        <input type="text" value="15-MERRILL" aria-label="Case" style="max-width:120px;">
+                        <button type="button" class="remove" aria-label="Remove"><i class="fas fa-trash"></i></button>
+                    </li>
+                    <li class="parsed-item">
+                        <span class="grip" aria-hidden="true"><i class="fas fa-grip-vertical"></i></span>
+                        <input type="text" value="Verify income (W-2 already in inbox)" aria-label="Entry summary">
+                        <select aria-label="Type">
+                            <option value="task" selected>Task</option>
+                            <option value="comm">Communication</option>
+                            <option value="event">Event</option>
+                        </select>
+                        <input type="text" value="15-MERRILL" aria-label="Case" style="max-width:120px;">
+                        <button type="button" class="remove" aria-label="Remove"><i class="fas fa-trash"></i></button>
+                    </li>
+                    <li class="parsed-item is-event">
+                        <span class="grip" aria-hidden="true"><i class="fas fa-grip-vertical"></i></span>
+                        <input type="text" value="Final walkthrough with David C., Dec 12 9:30 AM" aria-label="Entry summary">
+                        <select aria-label="Type">
+                            <option value="event" selected>Event</option>
+                            <option value="task">Task</option>
+                            <option value="comm">Communication</option>
+                        </select>
+                        <input type="text" value="15-MERRILL" aria-label="Case" style="max-width:120px;">
+                        <button type="button" class="remove" aria-label="Remove"><i class="fas fa-trash"></i></button>
+                    </li>
+                </ul>
+                <button type="button" class="add-parsed" id="addParsed" style="margin-top:var(--space-3);"><i class="fas fa-plus"></i> Add another parsed entry</button>
+            </div>
+
+            <div>
+                <div class="modal-section-label">Verifier note (optional, audit trail)</div>
+                <textarea id="triageNote" rows="2" style="width:100%; margin-top:6px; padding:var(--space-3); border:1px solid var(--color-border-strong); border-radius:var(--radius-md); font-family:inherit; background:var(--bg-surface); color:var(--color-text);" placeholder="e.g. Split into 3 because the submitter combined a call, a follow-up task, and a scheduling event."></textarea>
+            </div>
+        </div>
+        <div class="modal-foot">
+            <span style="font-size:var(--fs-xs); color:var(--color-text-muted);">
+                <i class="fas fa-shield-halved"></i>
+                Verifying will move <strong id="parsedCount">3</strong> items into the formal counts &amp; to-do lists. Original raw text is preserved in the immutable ledger.
+            </span>
+            <div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">
+                <button type="button" class="btn btn-outline btn-sm" id="triageReject"><i class="fas fa-circle-xmark"></i> Reject raw entry</button>
+                <button type="button" class="btn btn-primary btn-sm" id="triageVerify"><i class="fas fa-circle-check"></i> Verify &amp; publish</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ----- Sidebar mobile toggle -----
+    (function(){
+        var sidebar = document.getElementById('portalSidebar');
+        var toggle = document.getElementById('portalMobileToggle');
+        var close = document.getElementById('portalSidebarClose');
+        if (toggle && sidebar) {
+            toggle.addEventListener('click', function(){
+                var open = sidebar.classList.toggle('is-open');
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        }
+        if (close && sidebar) close.addEventListener('click', function(){ sidebar.classList.remove('is-open'); });
+    })();
+
+    // ----- Theme toggle -----
+    (function(){
+        var btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        btn.addEventListener('click', function(){
+            var html = document.documentElement;
+            var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('archr-theme', next); } catch (e) {}
+        });
+    })();
+
+    // ----- Sidebar nav: focus Quick Entry on "+" click -----
+    (function(){
+        var add = document.getElementById('navQuickAdd');
+        if (!add) return;
+        add.addEventListener('click', function(e){
+            e.preventDefault(); e.stopPropagation();
+            var ta = document.getElementById('quickEntryText');
+            if (ta) { ta.focus(); ta.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+    })();
+
+    // ----- Advanced (Task Rabbit) expander -----
+    (function(){
+        var btn = document.getElementById('advToggle');
+        var fields = document.getElementById('advFields');
+        if (!btn || !fields) return;
+        btn.addEventListener('click', function(){
+            var open = fields.classList.toggle('is-open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    })();
+
+    // ----- Quick Entry submit: stamp datetime + initials, push to queue -----
+    (function(){
+        var form = document.getElementById('quickEntryForm');
+        var ta = document.getElementById('quickEntryText');
+        var stampWhen = document.getElementById('stampWhen');
+        var addAnother = document.getElementById('qeAddAnother');
+        var clear = document.getElementById('qeClear');
+        var list = document.getElementById('unverifiedList');
+        var countEl = document.getElementById('countUnverified');
+        if (!form || !ta) return;
+
+        function nowLabel(){
+            var d = new Date();
+            var date = d.toLocaleDateString(undefined, {month:'short', day:'numeric', year:'numeric'});
+            var time = d.toLocaleTimeString(undefined, {hour:'numeric', minute:'2-digit'});
+            return date + ' \u00b7 ' + time;
+        }
+
+        var lastSubmitter = null;
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            lastSubmitter = e.submitter;
+        });
+        function handleSubmit(addMore){
+            var text = (ta.value || '').trim();
+            if (!text) { ta.focus(); return; }
+            var stamp = nowLabel();
+            stampWhen.textContent = 'Last submitted ' + stamp;
+
+            var li = document.createElement('li');
+            li.className = 'unverified-card';
+            li.innerHTML = ''
+                + '<div class="unverified-card-head">'
+                +   '<span class="submitter"><span class="avatar">JD</span> Jamie Doe</span>'
+                +   '<span class="stamp"><i class="fas fa-clock"></i> ' + stamp + '</span>'
+                +   '<span class="raw-tag"><i class="fas fa-hourglass-half"></i> Unverified</span>'
+                + '</div>'
+                + '<div class="unverified-card-body"></div>'
+                + '<div class="unverified-card-foot">'
+                +   '<div class="quick-verify-row" role="group" aria-label="Suggested type">'
+                +     '<button type="button" class="quick-verify-chip is-on"><i class="fas fa-list-check"></i> Task</button>'
+                +     '<button type="button" class="quick-verify-chip"><i class="fas fa-phone"></i> Comm</button>'
+                +     '<button type="button" class="quick-verify-chip"><i class="fas fa-calendar-check"></i> Event</button>'
+                +   '</div>'
+                +   '<div style="display:flex; gap:var(--space-2); flex-wrap:wrap;">'
+                +     '<button type="button" class="btn btn-secondary btn-sm js-triage"><i class="fas fa-scissors"></i> Triage</button>'
+                +     '<button type="button" class="btn btn-primary btn-sm js-verify"><i class="fas fa-circle-check"></i> Verify</button>'
+                +   '</div>'
+                + '</div>';
+            li.querySelector('.unverified-card-body').textContent = text;
+            list.prepend(li);
+            wireCard(li);
+            countEl.textContent = String(list.children.length);
+
+            if (addMore) { ta.value = ''; ta.focus(); }
+            else { ta.value = ''; ta.blur(); }
+        }
+        document.getElementById('qeSubmit').addEventListener('click', function(){ handleSubmit(false); });
+        document.getElementById('qeAddAnother').addEventListener('click', function(){ handleSubmit(true); });
+        if (clear) clear.addEventListener('click', function(){ ta.value = ''; ta.focus(); });
+    })();
+
+    // ----- Tab switching -----
+    (function(){
+        var tabs = document.querySelectorAll('.tle-tab');
+        var views = document.querySelectorAll('.tle-view');
+        tabs.forEach(function(t){
+            t.addEventListener('click', function(){
+                tabs.forEach(function(x){ x.classList.remove('is-active'); x.setAttribute('aria-selected','false'); });
+                t.classList.add('is-active'); t.setAttribute('aria-selected','true');
+                var name = t.getAttribute('data-view');
+                views.forEach(function(v){
+                    var match = v.id === 'view-' + name;
+                    v.classList.toggle('is-active', match);
+                    if (match) v.removeAttribute('hidden'); else v.setAttribute('hidden', '');
+                });
+            });
+        });
+    })();
+
+    // ----- Quick verify chip toggling -----
+    function wireCard(card){
+        card.querySelectorAll('.quick-verify-chip').forEach(function(chip){
+            chip.addEventListener('click', function(){ chip.classList.toggle('is-on'); });
+        });
+        var triage = card.querySelector('.js-triage');
+        if (triage) triage.addEventListener('click', function(){ openTriage(card); });
+        var verify = card.querySelector('.js-verify');
+        if (verify) verify.addEventListener('click', function(){
+            card.style.transition = 'opacity 0.2s ease';
+            card.style.opacity = '0';
+            setTimeout(function(){
+                card.remove();
+                var countEl = document.getElementById('countUnverified');
+                var list = document.getElementById('unverifiedList');
+                if (countEl && list) countEl.textContent = String(list.children.length);
+            }, 180);
+        });
+    }
+    document.querySelectorAll('.unverified-card').forEach(wireCard);
+
+    // ----- Triage modal -----
+    (function(){
+        var backdrop = document.getElementById('triageBackdrop');
+        var close = document.getElementById('triageClose');
+        var addParsed = document.getElementById('addParsed');
+        var parsedList = document.getElementById('parsedList');
+        var parsedCount = document.getElementById('parsedCount');
+        var raw = document.getElementById('triageRaw');
+        var who = document.getElementById('triageSubmitter');
+        var when = document.getElementById('triageStamp');
+
+        window.openTriage = function(card){
+            var body = card.querySelector('.unverified-card-body');
+            var submitter = card.querySelector('.submitter');
+            var stamp = card.querySelector('.stamp');
+            if (body) raw.textContent = body.textContent;
+            if (submitter) who.textContent = submitter.textContent.trim();
+            if (stamp) when.textContent = stamp.textContent.replace(/^\s*\S+\s*/, '');
+            backdrop.classList.add('is-open');
+            backdrop.setAttribute('aria-hidden', 'false');
+            updateCount();
+        };
+        function closeTriage(){
+            backdrop.classList.remove('is-open');
+            backdrop.setAttribute('aria-hidden', 'true');
+        }
+        close.addEventListener('click', closeTriage);
+        backdrop.addEventListener('click', function(e){ if (e.target === backdrop) closeTriage(); });
+        document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeTriage(); });
+
+        function updateCount(){ parsedCount.textContent = String(parsedList.children.length); }
+        parsedList.addEventListener('click', function(e){
+            var btn = e.target.closest('.remove');
+            if (!btn) return;
+            btn.closest('.parsed-item').remove();
+            updateCount();
+        });
+        parsedList.addEventListener('change', function(e){
+            if (e.target.tagName !== 'SELECT') return;
+            var li = e.target.closest('.parsed-item');
+            li.classList.remove('is-event', 'is-comm');
+            if (e.target.value === 'event') li.classList.add('is-event');
+            if (e.target.value === 'comm')  li.classList.add('is-comm');
+        });
+        addParsed.addEventListener('click', function(){
+            var li = document.createElement('li');
+            li.className = 'parsed-item';
+            li.innerHTML = ''
+                + '<span class="grip"><i class="fas fa-grip-vertical"></i></span>'
+                + '<input type="text" placeholder="Describe this entry" aria-label="Entry summary">'
+                + '<select aria-label="Type"><option value="task" selected>Task</option><option value="event">Event</option><option value="comm">Communication</option></select>'
+                + '<input type="text" placeholder="Case" aria-label="Case" style="max-width:120px;">'
+                + '<button type="button" class="remove" aria-label="Remove"><i class="fas fa-trash"></i></button>';
+            parsedList.appendChild(li);
+            updateCount();
+            li.querySelector('input').focus();
+        });
+
+        document.getElementById('triageVerify').addEventListener('click', function(){
+            closeTriage();
+            // POC: just clear active raw entry from queue if matched
+            var list = document.getElementById('unverifiedList');
+            // (Real implementation would route parsed items to the verified table here.)
+            console.log('[tle-poc] verified', parsedList.children.length, 'parsed items');
+        });
+        document.getElementById('triageReject').addEventListener('click', function(){
+            closeTriage();
+            console.log('[tle-poc] rejected raw entry');
+        });
+    })();
+
+    // ----- Nav link active state -----
+    document.querySelectorAll('.portal-nav-link').forEach(function(link){
+        link.addEventListener('click', function(e){
+            if (e.target.closest('.nav-add')) return; // handled separately
+            document.querySelectorAll('.portal-nav-link').forEach(function(l){ l.classList.remove('active'); });
+            link.classList.add('active');
+        });
+    });
+
+    // SOP link resolves to documentation/task-engine/sop-entries.md (sibling).
+</script>
+</body>
+</html>
