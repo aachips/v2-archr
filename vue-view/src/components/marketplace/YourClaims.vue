@@ -160,7 +160,6 @@ export default {
   },
   computed: {
     filteredClaims: function() {
-      var self = this;
       var query = this.searchQuery.toLowerCase();
       return this.claims.filter(function(claim) {
         var matchesSearch = !query ||
