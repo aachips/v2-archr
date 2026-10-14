@@ -1,0 +1,734 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 REATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:402: NOTICE:  column "case_number" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:403: NOTICE:  column "submission_id" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:404: NOTICE:  column "application_id" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:405: NOTICE:  column "organization_id" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:406: NOTICE:  column "status_id" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:407: NOTICE:  column "project_code" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:408: NOTICE:  column "placecode" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:409: NOTICE:  column "claim_status" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:410: NOTICE:  column "claimed_at" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:411: NOTICE:  column "claim_expires_at" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:412: NOTICE:  column "last_progress_at" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:413: NOTICE:  column "progress_events_count" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:414: NOTICE:  column "assigned_caseworker_id" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:415: NOTICE:  column "created_by" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:416: NOTICE:  column "updated_by" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:417: NOTICE:  column "created_at" of relation "cases" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:418: NOTICE:  column "updated_at" of relation "cases" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:447: NOTICE:  column "anchor_id" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:448: NOTICE:  column "submitted_at" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:449: NOTICE:  column "submitted_from_ip" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:450: NOTICE:  column "is_eligible" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:451: NOTICE:  column "current_status" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:452: NOTICE:  column "income_bucket" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:453: NOTICE:  column "county_bucket" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:454: NOTICE:  column "repair_type_bucket" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:455: NOTICE:  column "helene_related" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:456: NOTICE:  column "placecode" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:457: NOTICE:  column "project_code" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:458: NOTICE:  column "assigned_at" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:459: NOTICE:  column "assigned_organization_id" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:460: NOTICE:  column "eligibility_score" of relation "application_anchor" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:478: NOTICE:  column "status" of relation "review_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:479: NOTICE:  column "queued_at" of relation "review_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:480: NOTICE:  column "priority_score" of relation "review_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:481: NOTICE:  column "assigned_at" of relation "review_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:482: NOTICE:  column "organization_id" of relation "review_queue" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:500: NOTICE:  column "submission_id" of relation "repair_requests" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:501: NOTICE:  column "repair_need" of relation "repair_requests" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:502: NOTICE:  column "priority" of relation "repair_requests" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:503: NOTICE:  column "sort_order" of relation "repair_requests" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+psql:sql/complete-migration.sql:515: NOTICE:  column "category_code" of relation "repair_categories" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:516: NOTICE:  column "category_label" of relation "repair_categories" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE TABLE\
+CREATE TABLE\
+CREATE TABLE\
+INSERT 0 4\
+CREATE TABLE\
+CREATE TABLE\
+CREATE INDEX\
+psql:sql/complete-migration.sql:587: NOTICE:  column "submission_id" of relation "income_records" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:588: NOTICE:  column "whose_income" of relation "income_records" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:589: NOTICE:  column "income_source" of relation "income_records" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:590: NOTICE:  column "frequency" of relation "income_records" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:591: NOTICE:  column "amount" of relation "income_records" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:616: NOTICE:  column "ledger_id" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:617: NOTICE:  column "field_name" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:618: NOTICE:  column "old_value" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:619: NOTICE:  column "new_value" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:620: NOTICE:  column "action" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:621: NOTICE:  column "details" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:622: NOTICE:  column "source" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:623: NOTICE:  column "created_at" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:624: NOTICE:  column "prev_hash" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:625: NOTICE:  column "entry_hash" of relation "activity_detail" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:649: NOTICE:  column "user_id" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:650: NOTICE:  column "notification_type" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:651: NOTICE:  column "title" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:652: NOTICE:  column "body" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:653: NOTICE:  column "entity_type" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:654: NOTICE:  column "entity_id" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:655: NOTICE:  column "is_read" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:656: NOTICE:  column "priority" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:657: NOTICE:  column "read_at" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:658: NOTICE:  column "created_at" of relation "notifications" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+INSERT 0 12\
+CREATE TABLE\
+INSERT 0 4\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:734: NOTICE:  column "case_id" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:735: NOTICE:  column "category_id" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:736: NOTICE:  column "status_id" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:737: NOTICE:  column "file_name" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:738: NOTICE:  column "mime_type" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:739: NOTICE:  column "file_size_bytes" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:740: NOTICE:  column "file_hash" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:741: NOTICE:  column "storage_path" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:742: NOTICE:  column "storage_provider" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:743: NOTICE:  column "version_number" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:744: NOTICE:  column "metadata" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:745: NOTICE:  column "notes" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:746: NOTICE:  column "uploaded_at" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:747: NOTICE:  column "uploaded_by" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:748: NOTICE:  column "verified_at" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:749: NOTICE:  column "verified_by" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:750: NOTICE:  column "deleted_at" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:751: NOTICE:  column "updated_at" of relation "case_documents" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:787: NOTICE:  column "case_id" of relation "document_generation_jobs" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:788: NOTICE:  column "template_id" of relation "document_generation_jobs" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:789: NOTICE:  column "status" of relation "document_generation_jobs" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:790: NOTICE:  column "data_source" of relation "document_generation_jobs" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:791: NOTICE:  column "created_by" of relation "document_generation_jobs" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:792: NOTICE:  column "output_document_id" of relation "document_generation_jobs" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:793: NOTICE:  column "completed_at" of relation "document_generation_jobs" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:810: NOTICE:  column "document_id" of relation "document_access_log" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:811: NOTICE:  column "accessed_by" of relation "document_access_log" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:812: NOTICE:  column "access_type" of relation "document_access_log" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:813: NOTICE:  column "accessed_at" of relation "document_access_log" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:830: NOTICE:  column "case_id" of relation "case_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:831: NOTICE:  column "claimed_by_org_id" of relation "case_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:832: NOTICE:  column "claimed_at" of relation "case_claims" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:852: NOTICE:  column "case_id" of relation "case_status_history" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:853: NOTICE:  column "from_status_id" of relation "case_status_history" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:854: NOTICE:  column "to_status_id" of relation "case_status_history" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:855: NOTICE:  column "changed_by" of relation "case_status_history" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:856: NOTICE:  column "changed_at" of relation "case_status_history" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:857: NOTICE:  column "notes" of relation "case_status_history" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+psql:sql/complete-migration.sql:878: NOTICE:  column "case_id" of relation "case_withdrawals" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:879: NOTICE:  column "withdrawn_by" of relation "case_withdrawals" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:880: NOTICE:  column "requestor_confirmed" of relation "case_withdrawals" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:881: NOTICE:  column "confirmation_method" of relation "case_withdrawals" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:882: NOTICE:  column "confirmation_detail" of relation "case_withdrawals" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:883: NOTICE:  column "reason" of relation "case_withdrawals" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:884: NOTICE:  column "withdrawn_at" of relation "case_withdrawals" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:885: NOTICE:  column "withdrawn_by_name" of relation "case_withdrawals" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:908: NOTICE:  column "case_id" of relation "case_repair_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:909: NOTICE:  column "repair_request_id" of relation "case_repair_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:910: NOTICE:  column "organization_id" of relation "case_repair_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:911: NOTICE:  column "claimed_at" of relation "case_repair_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:912: NOTICE:  column "claimed_by" of relation "case_repair_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:913: NOTICE:  column "released_at" of relation "case_repair_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:914: NOTICE:  column "released_by" of relation "case_repair_claims" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:915: NOTICE:  column "notes" of relation "case_repair_claims" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:944: NOTICE:  column "case_id" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:945: NOTICE:  column "work_order_number" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:946: NOTICE:  column "status" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:947: NOTICE:  column "estimated_cost" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:948: NOTICE:  column "actual_cost" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:949: NOTICE:  column "approved_budget" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:950: NOTICE:  column "current_cost" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:951: NOTICE:  column "scheduled_start_date" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:952: NOTICE:  column "scheduled_end_date" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:953: NOTICE:  column "actual_end_date" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:954: NOTICE:  column "progress_percentage" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:955: NOTICE:  column "project_manager_id" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:956: NOTICE:  column "crew_lead_id" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:957: NOTICE:  column "created_at" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:958: NOTICE:  column "updated_at" of relation "work_orders" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:979: NOTICE:  column "work_order_id" of relation "work_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:980: NOTICE:  column "description" of relation "work_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:981: NOTICE:  column "status" of relation "work_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:982: NOTICE:  column "due_date" of relation "work_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:983: NOTICE:  column "completed_at" of relation "work_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:984: NOTICE:  column "assigned_to_id" of relation "work_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:985: NOTICE:  column "created_at" of relation "work_tasks" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1017: NOTICE:  column "submission_id" of relation "application_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1018: NOTICE:  column "organization_id" of relation "application_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1019: NOTICE:  column "status" of relation "application_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1020: NOTICE:  column "claimed_at" of relation "application_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1021: NOTICE:  column "claimed_by" of relation "application_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1022: NOTICE:  column "rejected_by" of relation "application_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1023: NOTICE:  column "notes" of relation "application_assignments" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1043: NOTICE:  column "assignment_id" of relation "assignment_log" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1044: NOTICE:  column "action" of relation "assignment_log" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1045: NOTICE:  column "new_value" of relation "assignment_log" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1046: NOTICE:  column "performed_by" of relation "assignment_log" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1047: NOTICE:  column "performed_at" of relation "assignment_log" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1048: NOTICE:  column "notes" of relation "assignment_log" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1069: NOTICE:  column "case_id" of relation "progress_events" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1070: NOTICE:  column "event_type" of relation "progress_events" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1071: NOTICE:  column "description" of relation "progress_events" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1072: NOTICE:  column "performed_by" of relation "progress_events" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1073: NOTICE:  column "is_progress" of relation "progress_events" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1074: NOTICE:  column "source" of relation "progress_events" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1075: NOTICE:  column "created_at" of relation "progress_events" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1094: NOTICE:  relation "idx_pe_created" already exists, skipping\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1096: NOTICE:  column "work_order_id" of relation "project_escalations" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1097: NOTICE:  column "event_type" of relation "project_escalations" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1098: NOTICE:  column "severity" of relation "project_escalations" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1099: NOTICE:  column "description" of relation "project_escalations" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1100: NOTICE:  column "created_at" of relation "project_escalations" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1101: NOTICE:  column "resolved_at" of relation "project_escalations" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1121: NOTICE:  column "task_type" of relation "task_rabbit_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1122: NOTICE:  column "description" of relation "task_rabbit_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1123: NOTICE:  column "created_by_user_id" of relation "task_rabbit_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1124: NOTICE:  column "status" of relation "task_rabbit_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1125: NOTICE:  column "priority" of relation "task_rabbit_queue" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1126: NOTICE:  column "created_at" of relation "task_rabbit_queue" already exists, skipping\
+ALTER TABLE\
+ALTER TABLE\
+ALTER TABLE\
+ALTER TABLE\
+ALTER TABLE\
+ALTER TABLE\
+ALTER TABLE\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1152: NOTICE:  column "task_name" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1153: NOTICE:  column "location" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1154: NOTICE:  column "details" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1155: NOTICE:  column "estimated_cost" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1156: NOTICE:  column "quoted_cost" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1157: NOTICE:  column "actual_cost" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1158: NOTICE:  column "status" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1159: NOTICE:  column "repair_need_id" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1160: NOTICE:  column "case_id" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1161: NOTICE:  column "created_at" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1162: NOTICE:  column "updated_at" of relation "scope_of_work_line_items" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1168: NOTICE:  column "sow_line_item_id" of relation "materials_inventory" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1169: NOTICE:  column "material_name" of relation "materials_inventory" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1170: NOTICE:  column "quantity" of relation "materials_inventory" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1171: NOTICE:  column "unit" of relation "materials_inventory" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1172: NOTICE:  column "unit_cost" of relation "materials_inventory" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1178: NOTICE:  column "document_type" of relation "assessment_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1179: NOTICE:  column "file_path" of relation "assessment_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1180: NOTICE:  column "file_name" of relation "assessment_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1181: NOTICE:  column "file_size" of relation "assessment_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1182: NOTICE:  column "mime_type" of relation "assessment_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1183: NOTICE:  column "uploaded_at" of relation "assessment_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1184: NOTICE:  column "uploaded_by" of relation "assessment_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1185: NOTICE:  column "metadata" of relation "assessment_documents" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1191: NOTICE:  column "assessment_id" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1192: NOTICE:  column "repair_need_id" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1193: NOTICE:  column "file_path" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1194: NOTICE:  column "file_name" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1195: NOTICE:  column "title" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1196: NOTICE:  column "date_taken" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1197: NOTICE:  column "taken_by" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1198: NOTICE:  column "photo_type" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1199: NOTICE:  column "created_at" of relation "site_photos" already exists, skipping\
+ALTER TABLE\
+DO\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1234: NOTICE:  column "case_id" of relation "payments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1235: NOTICE:  column "amount" of relation "payments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1236: NOTICE:  column "payment_type" of relation "payments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1237: NOTICE:  column "status" of relation "payments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1238: NOTICE:  column "created_at" of relation "payments" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1264: NOTICE:  column "job_name" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1265: NOTICE:  column "site_address" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1266: NOTICE:  column "case_reference" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1267: NOTICE:  column "status" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1268: NOTICE:  column "progress_percentage" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1269: NOTICE:  column "estimated_hours" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1270: NOTICE:  column "scheduled_date" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1271: NOTICE:  column "scheduled_start_time" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1272: NOTICE:  column "crew_lead_id" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1273: NOTICE:  column "is_current_job" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1274: NOTICE:  column "created_at" of relation "crew_job_cards" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1295: NOTICE:  column "job_card_id" of relation "crew_job_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1296: NOTICE:  column "task_name" of relation "crew_job_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1297: NOTICE:  column "status" of relation "crew_job_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1298: NOTICE:  column "estimated_hours" of relation "crew_job_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1299: NOTICE:  column "actual_hours" of relation "crew_job_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1300: NOTICE:  column "sequence_order" of relation "crew_job_tasks" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1301: NOTICE:  column "created_at" of relation "crew_job_tasks" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1318: NOTICE:  column "job_card_id" of relation "crew_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1319: NOTICE:  column "crew_member_id" of relation "crew_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1320: NOTICE:  column "assigned_at" of relation "crew_assignments" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1341: NOTICE:  column "scheduled_date" of relation "volunteer_slots" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1342: NOTICE:  column "scheduled_time" of relation "volunteer_slots" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1343: NOTICE:  column "required_level" of relation "volunteer_slots" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1344: NOTICE:  column "job_card_id" of relation "volunteer_slots" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1345: NOTICE:  column "status" of relation "volunteer_slots" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1346: NOTICE:  column "created_at" of relation "volunteer_slots" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1363: NOTICE:  column "slot_id" of relation "volunteer_slot_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1364: NOTICE:  column "volunteer_id" of relation "volunteer_slot_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1365: NOTICE:  column "assigned_at" of relation "volunteer_slot_assignments" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1385: NOTICE:  column "subcontractor_id" of relation "subcontractor_quote_requests" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1386: NOTICE:  column "case_id" of relation "subcontractor_quote_requests" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1387: NOTICE:  column "requested_at" of relation "subcontractor_quote_requests" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1388: NOTICE:  column "due_date" of relation "subcontractor_quote_requests" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1389: NOTICE:  column "status" of relation "subcontractor_quote_requests" already exists, skipping\
+ALTER TABLE\
+CREATE TABLE\
+CREATE INDEX\
+CREATE INDEX\
+psql:sql/complete-migration.sql:1405: NOTICE:  column "subcontractor_id" of relation "subcontractor_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1406: NOTICE:  column "status" of relation "subcontractor_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1407: NOTICE:  column "assigned_at" of relation "subcontractor_assignments" already exists, skipping\
+ALTER TABLE\
+psql:sql/complete-migration.sql:1422: ERROR:  relation "criteria_types" does not exist\
+psql:sql/complete-migration.sql:1424: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1425: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1427: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1428: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1429: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1430: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1431: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1432: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1443: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1457: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1459: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1460: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1461: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1463: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1464: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1465: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1466: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1467: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1482: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1484: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1486: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1487: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1488: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1489: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1490: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1491: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1506: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1508: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1509: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1511: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1512: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1513: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1514: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1515: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1516: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1532: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1534: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1535: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1537: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1538: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1539: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1540: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1541: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1542: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1543: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1560: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1562: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1563: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1564: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1566: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1567: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1568: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1569: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1570: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1571: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1572: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1573: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1595: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1597: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1598: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1599: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1600: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1601: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1615: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1617: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1618: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1620: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1621: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1622: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1623: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1624: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1641: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1643: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1644: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1646: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1647: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1648: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1649: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1650: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1651: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1652: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1653: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1662: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1663: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1664: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1665: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1666: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1675: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1692: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1693: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1694: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1695: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1696: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1697: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1698: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1706: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1707: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1726: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1739: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1752: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1765: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1778: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1791: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1817: ERROR:  current transaction is aborted, commands ignored until end of transaction block\
+psql:sql/complete-migration.sql:1847: ERROR:  current transaction is aborted, commands ignored until end of transaction block}

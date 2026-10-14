@@ -1,0 +1,4 @@
+ALTER TABLE system_users
+    ADD COLUMN IF NOT EXISTS first_name VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS last_name VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS phone_number VARCHAR(20);
