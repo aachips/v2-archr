@@ -1,0 +1,100 @@
+{
+  "case_number": "AHFH-247-RIVERSIDE",
+  "generated_date": "October 9, 2026",
+  "applicant": {
+    "first_name": "Eileen",
+    "last_name": "Bailey",
+    "full_name": "Eileen Bailey",
+    "dob": "1978-03-15",
+    "email": "eileen.bailey@email.com",
+    "home_phone": "(828) 555-0142",
+    "cell_phone": "(828) 555-0198",
+    "preferred_contact": "Cell Phone",
+    "contact_notes": "Best reached after 5pm",
+    "spoken_language": "English"
+  },
+  "property": {
+    "street": "247 Riverside Drive",
+    "unit": "",
+    "city": "Asheville",
+    "state": "NC",
+    "zip": "28801",
+    "placecode": "247-RIVERSIDE",
+    "primary_residence": true,
+    "lived_one_year": true,
+    "move_in_date": "2015-06-01",
+    "home_type": "Single Family",
+    "other_home_type": "",
+    "year_built": 1962,
+    "owns_home": true,
+    "owns_lot": true,
+    "insurance_provider": "State Farm",
+    "gis_parcel_id": "R0012345678",
+    "legacy_neighborhood": false,
+    "legacy_neighborhood_name": ""
+  },
+  "household": {
+    "size": 3,
+    "adults": 2,
+    "members": [
+      { "name": "Eileen Bailey", "age": 48, "relationship": "Self" },
+      { "name": "Marcus Bailey", "age": 52, "relationship": "Spouse" },
+      { "name": "Jordan Bailey", "age": 16, "relationship": "Child" }
+    ]
+  },
+  "income": {
+    "gross_annual": 34200,
+    "gross_monthly": 2850,
+    "sources": "Social Security Disability, Part-time retail",
+    "proof_provided": true,
+    "proof_types": "SSA Award Letter, Pay Stubs",
+    "zero_income_agreed": false,
+    "ami_percent": 62,
+    "ami_year": 2026,
+    "ami_group": "Below 80%",
+    "eligibility_preset": "Habitat for Humanity"
+  },
+  "repairs": {
+    "requests": "Roof replacement, basement waterproofing, bathroom accessibility modifications",
+    "additional_details": "Roof has had temporary tarp since Helene. Basement floods during heavy rain. Bathroom not wheelchair accessible.",
+    "triage_score": 8,
+    "urgent_conditions": {
+      "unable_to_stay": false,
+      "no_hvac": false,
+      "no_potable_water": false,
+      "no_bathroom": false,
+      "no_kitchen": false,
+      "open_to_elements": true,
+      "no_entry_exit": false,
+      "accessibility_issue": true,
+      "other_issue": false,
+      "eviction_risk": false
+    },
+    "urgent_description": "Roof tarp failing, water intrusion during rain. Bathroom not accessible for household member with mobility limitations."
+  },
+  "disaster": {
+    "helene_related": true,
+    "date_of_loss": "2024-09-27",
+    "insurance_claim_filed": true,
+    "insurance_settlement": 4500,
+    "fema_claim_filed": true,
+    "fema_settlement": 8200
+  },
+  "referral": {
+    "is_referral": true,
+    "referrer_name": "Sarah Chen",
+    "referrer_organization": "VOAD Intake Team",
+    "referrer_email": "schen@voad-nc.org",
+    "referrer_notes": "Referred through community partner intake. Household has been on waitlist since October 2024.",
+    "consent_agreed": true
+  },
+  "workflow": {
+    "status": "assessed",
+    "case_status": "Active",
+    "organization": "Asheville Area Habitat for Humanity",
+    "submission_date": "2026-09-15",
+    "date_claimed": "2026-09-16",
+    "claimed_by": "AHFH",
+    "date_sow_created": "2026-09-22"
+  }
+}
