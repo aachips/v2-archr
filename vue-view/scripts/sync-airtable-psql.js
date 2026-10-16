@@ -12,7 +12,7 @@
 //   node sync-airtable-psql.js --inspect          # Show record counts on both
 // ---------------------------------------------------------------------------
 
-require("dotenv").config({ path: __dirname + "/../.env" });
+require("dotenv").config({ path: __dirname + "/../.env", quiet: true });
 const { Client } = require("pg");
 const Airtable = require("airtable");
 

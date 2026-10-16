@@ -10,7 +10,7 @@
 //   node seed-cases.js --dry    # Preview what would happen
 // ---------------------------------------------------------------------------
 
-require("dotenv").config({ path: __dirname + "/../.env" });
+require("dotenv").config({ path: __dirname + "/../.env", quiet: true });
 const Airtable = require("airtable");
 
 const apiKey = process.env.VUE_APP_AIRTABLE_API_KEY;

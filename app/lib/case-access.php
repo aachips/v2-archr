@@ -39,7 +39,7 @@ function archr_staff_access(PDO $pdo): array {
             $roleCode = $code;
         }
 
-        if ($code === 'SUPER_ADMIN') {
+        if ($code === 'super_admin') {
             $level = max($level, 3);
         } elseif (in_array($code, ['ADMIN', 'ORG_ADMIN'], true)) {
             $level = max($level, 2);

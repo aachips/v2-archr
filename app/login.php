@@ -16,7 +16,7 @@ try {
         SELECT COUNT(*)
           FROM user_role_assignments ura
           JOIN roles r ON r.id = ura.role_id
-         WHERE r.role_code = 'SUPER_ADMIN'
+         WHERE r.role_code = 'super_admin'
            AND ura.is_active = true
     ")->fetchColumn();
     if ($superAdminCount === 0 && basename($_SERVER['PHP_SELF']) !== 'setup.php') {

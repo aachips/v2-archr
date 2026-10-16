@@ -16,7 +16,7 @@ $superAdminCount = (int) $pdo->query("
     SELECT COUNT(*)
       FROM user_role_assignments ura
       JOIN roles r ON r.id = ura.role_id
-     WHERE r.role_code = 'SUPER_ADMIN'
+     WHERE r.role_code = 'super_admin'
        AND ura.is_active = true
 ")->fetchColumn();
 if ($superAdminCount > 0) {
@@ -85,10 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
             $userId = (int) $userStmt->fetchColumn();
 
-            // Assign SUPER_ADMIN role.
+            // Assign super_admin role.
             $roleStmt = $pdo->prepare("
                 INSERT INTO user_role_assignments (user_id, organization_id, role_id, assigned_by)
-                VALUES (:uid, :org, (SELECT id FROM roles WHERE role_code = 'SUPER_ADMIN'), :uid)
+                VALUES (:uid, :org, (SELECT id FROM roles WHERE role_code = 'super_admin'), :uid)
             ");
             $roleStmt->execute([':uid' => $userId, ':org' => $organizationId]);
 

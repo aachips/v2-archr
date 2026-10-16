@@ -15,9 +15,9 @@ $pdo = archr_pdo();
 $username = 'superadmin';
 $password = bin2hex(random_bytes(12)); // 24-character hex password
 
-$superAdminRoleId = (int) $pdo->query("SELECT id FROM roles WHERE role_code = 'SUPER_ADMIN' LIMIT 1")->fetchColumn();
+$superAdminRoleId = (int) $pdo->query("SELECT id FROM roles WHERE role_code = 'super_admin' LIMIT 1")->fetchColumn();
 if (!$superAdminRoleId) {
-    fwrite(STDERR, "SUPER_ADMIN role not found. Apply sql/add/super-admin-role.sql first.\n");
+    fwrite(STDERR, "super_admin role not found.\n");
     exit(1);
 }
 

@@ -1,4 +1,4 @@
--- ============================================================================
+﻿-- ============================================================================
 -- ARCHR Complete PostgreSQL Migration
 -- ============================================================================
 -- Generated from a full audit of every PHP file in app/ (171 files).
@@ -61,7 +61,7 @@ ALTER TABLE coalition_organizations ADD COLUMN IF NOT EXISTS updated_at TIMESTAM
 -- ============================================================================
 -- Referenced by: intake-save.php, eligibility.php, case-review.php,
 --   org-admin.php, documents.php, assessor/*, bursar/*, envoy/*, etc.
--- This is the PRIMARY intake table — every column the INSERT in
+-- This is the PRIMARY intake table â€” every column the INSERT in
 -- intake-save.php uses is defined here.
 
 CREATE TABLE IF NOT EXISTS intake_submissions (
@@ -343,7 +343,7 @@ ALTER TABLE applications ADD COLUMN IF NOT EXISTS referrer_notes TEXT;
 ALTER TABLE applications ADD COLUMN IF NOT EXISTS consent_agreed BOOLEAN;
 
 -- ============================================================================
--- 4. CASE STATUSES (lookup) — must exist before cases table references it
+-- 4. CASE STATUSES (lookup) â€” must exist before cases table references it
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS case_statuses (
@@ -658,7 +658,7 @@ ALTER TABLE notifications ADD COLUMN IF NOT EXISTS read_at TIMESTAMPTZ;
 ALTER TABLE notifications ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 -- ============================================================================
--- 18. DOCUMENT CATEGORIES (lookup) — must exist before case_documents
+-- 18. DOCUMENT CATEGORIES (lookup) â€” must exist before case_documents
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS document_categories (
@@ -684,7 +684,7 @@ INSERT INTO document_categories (category_code, category_name) VALUES
 ON CONFLICT (category_code) DO NOTHING;
 
 -- ============================================================================
--- 19. DOCUMENT STATUSES (lookup) — must exist before case_documents
+-- 19. DOCUMENT STATUSES (lookup) â€” must exist before case_documents
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS document_statuses (
@@ -985,7 +985,7 @@ ALTER TABLE work_tasks ADD COLUMN IF NOT EXISTS assigned_to_id BIGINT REFERENCES
 ALTER TABLE work_tasks ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 -- ============================================================================
--- 30. WORK ORDER TASKS (junction: work_orders ↔ repair_categories)
+-- 30. WORK ORDER TASKS (junction: work_orders â†” repair_categories)
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS work_order_tasks (
@@ -1126,7 +1126,7 @@ ALTER TABLE task_rabbit_queue ADD COLUMN IF NOT EXISTS priority VARCHAR(20) DEFA
 ALTER TABLE task_rabbit_queue ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 -- ============================================================================
--- 36. ASSESSMENTS — ADD MISSING COLUMNS
+-- 36. ASSESSMENTS â€” ADD MISSING COLUMNS
 -- ============================================================================
 -- master-schema already defines assessments, but code also references
 -- submission_id, assessor_id, scheduled_at, status, completed_at,
@@ -1144,7 +1144,7 @@ CREATE INDEX IF NOT EXISTS idx_assessments_assessor ON assessments(assessor_id);
 CREATE INDEX IF NOT EXISTS idx_assessments_status ON assessments(status);
 
 -- ============================================================================
--- 37. SCOPE OF WORK LINE ITEMS — ADD MISSING COLUMNS
+-- 37. SCOPE OF WORK LINE ITEMS â€” ADD MISSING COLUMNS
 -- ============================================================================
 -- master-schema already defines this table. Add columns the code references
 -- that may not exist.
@@ -1162,7 +1162,7 @@ ALTER TABLE scope_of_work_line_items ADD COLUMN IF NOT EXISTS created_at TIMESTA
 ALTER TABLE scope_of_work_line_items ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 -- ============================================================================
--- 38. MATERIALS INVENTORY — ADD MISSING COLUMNS
+-- 38. MATERIALS INVENTORY â€” ADD MISSING COLUMNS
 -- ============================================================================
 
 ALTER TABLE materials_inventory ADD COLUMN IF NOT EXISTS sow_line_item_id BIGINT REFERENCES scope_of_work_line_items(id);
@@ -1172,7 +1172,7 @@ ALTER TABLE materials_inventory ADD COLUMN IF NOT EXISTS unit TEXT;
 ALTER TABLE materials_inventory ADD COLUMN IF NOT EXISTS unit_cost NUMERIC(10,2);
 
 -- ============================================================================
--- 39. ASSESSMENT DOCUMENTS — ADD MISSING COLUMNS
+-- 39. ASSESSMENT DOCUMENTS â€” ADD MISSING COLUMNS
 -- ============================================================================
 
 ALTER TABLE assessment_documents ADD COLUMN IF NOT EXISTS document_type VARCHAR(40);
@@ -1185,7 +1185,7 @@ ALTER TABLE assessment_documents ADD COLUMN IF NOT EXISTS uploaded_by BIGINT REF
 ALTER TABLE assessment_documents ADD COLUMN IF NOT EXISTS metadata JSONB DEFAULT '{}';
 
 -- ============================================================================
--- 40. SITE PHOTOS — ADD MISSING COLUMNS
+-- 40. SITE PHOTOS â€” ADD MISSING COLUMNS
 -- ============================================================================
 
 ALTER TABLE site_photos ADD COLUMN IF NOT EXISTS assessment_id BIGINT REFERENCES assessments(id);
@@ -1201,7 +1201,7 @@ ALTER TABLE site_photos ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL
 -- ============================================================================
 -- 41. ASSESSMENT PHOTOS (alias for site_photos used by assessor/previous.php)
 -- ============================================================================
--- The code references assessment_photos as a table name — this may be an
+-- The code references assessment_photos as a table name â€” this may be an
 -- alias or legacy name for site_photos. Create a view if site_photos exists.
 DO $$
 BEGIN
@@ -1407,7 +1407,18 @@ ALTER TABLE subcontractor_assignments ADD COLUMN IF NOT EXISTS status VARCHAR(30
 ALTER TABLE subcontractor_assignments ADD COLUMN IF NOT EXISTS assigned_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 -- ============================================================================
--- 50. ORGANIZATION ELIGIBILITY RULES
+-- 50. CRITERIA TYPES (lookup) â€” must exist before organization_eligibility_rules
+-- ============================================================================
+
+CREATE TABLE IF NOT EXISTS criteria_types (
+    id              BIGSERIAL PRIMARY KEY,
+    type_code       VARCHAR(50) NOT NULL UNIQUE,
+    type_name       VARCHAR(255),
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- ============================================================================
+-- 51. ORGANIZATION ELIGIBILITY RULES
 -- ============================================================================
 -- Referenced by: super-admin.php, organization-export.php.
 
@@ -1430,17 +1441,6 @@ ALTER TABLE organization_eligibility_rules ADD COLUMN IF NOT EXISTS rule_operato
 ALTER TABLE organization_eligibility_rules ADD COLUMN IF NOT EXISTS rule_value TEXT;
 ALTER TABLE organization_eligibility_rules ADD COLUMN IF NOT EXISTS priority INTEGER DEFAULT 0;
 ALTER TABLE organization_eligibility_rules ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT true;
-
--- ============================================================================
--- 51. CRITERIA TYPES (lookup)
--- ============================================================================
-
-CREATE TABLE IF NOT EXISTS criteria_types (
-    id              BIGSERIAL PRIMARY KEY,
-    type_code       VARCHAR(50) NOT NULL UNIQUE,
-    type_name       VARCHAR(255),
-    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
 
 -- ============================================================================
 -- 52. ELIGIBILITY RESULTS
@@ -1601,7 +1601,7 @@ ALTER TABLE bursar_action_audit ADD COLUMN IF NOT EXISTS performed_by BIGINT REF
 ALTER TABLE bursar_action_audit ADD COLUMN IF NOT EXISTS performed_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 -- ============================================================================
--- 58. AUDIT LOG (legacy — distinct from activity_log)
+-- 58. AUDIT LOG (legacy â€” distinct from activity_log)
 -- ============================================================================
 -- Referenced by: org-admin.php, super-admin.php.
 
@@ -1653,7 +1653,7 @@ ALTER TABLE repair_category_details ADD COLUMN IF NOT EXISTS heating_electric BO
 ALTER TABLE repair_category_details ADD COLUMN IF NOT EXISTS heating_kerosene BOOLEAN DEFAULT false;
 
 -- ============================================================================
--- 60. SUPPORT TICKETS — ADD MISSING COLUMNS
+-- 60. SUPPORT TICKETS â€” ADD MISSING COLUMNS
 -- ============================================================================
 -- master-schema already defines support_tickets. Code in vue_api/support-chat.php
 -- also uses a slightly different schema (submitted_by as INTEGER). Add columns
@@ -1666,7 +1666,7 @@ ALTER TABLE support_tickets ADD COLUMN IF NOT EXISTS resolved_by BIGINT REFERENC
 ALTER TABLE support_tickets ADD COLUMN IF NOT EXISTS resolution_note TEXT;
 
 -- ============================================================================
--- 61. LOGIN ATTEMPTS — ADD MISSING COLUMNS
+-- 61. LOGIN ATTEMPTS â€” ADD MISSING COLUMNS
 -- ============================================================================
 -- master-schema has: ip_address, username, success, attempted_at
 -- app/sql/login-attempts.sql has: ip_address, email, attempted_at
@@ -1675,13 +1675,13 @@ ALTER TABLE support_tickets ADD COLUMN IF NOT EXISTS resolution_note TEXT;
 ALTER TABLE login_attempts ADD COLUMN IF NOT EXISTS email VARCHAR(255);
 
 -- ============================================================================
--- 62. BLOCKED IPS — ADD MISSING COLUMNS
+-- 62. BLOCKED IPS â€” ADD MISSING COLUMNS
 -- ============================================================================
 -- Already defined in master-schema. Add any missing columns.
 -- (All columns from master-schema are already present)
 
 -- ============================================================================
--- 63. SYSTEM USERS — ADD MISSING COLUMNS
+-- 63. SYSTEM USERS â€” ADD MISSING COLUMNS
 -- ============================================================================
 -- master-schema has: username, email, password_hash, full_name, is_active,
 --   session_indefinite, reset_token, reset_token_expires, menu_config,
@@ -1698,7 +1698,7 @@ ALTER TABLE system_users ADD COLUMN IF NOT EXISTS created_by BIGINT REFERENCES s
 ALTER TABLE system_users ADD COLUMN IF NOT EXISTS session_indefinite BOOLEAN NOT NULL DEFAULT false;
 
 -- ============================================================================
--- 64. USER ROLE ASSIGNMENTS — ADD MISSING COLUMNS
+-- 64. USER ROLE ASSIGNMENTS â€” ADD MISSING COLUMNS
 -- ============================================================================
 -- master-schema has: user_id, role_id, is_active, assigned_at
 -- Code additionally references: organization_id, assigned_by
@@ -1712,7 +1712,7 @@ ALTER TABLE user_role_assignments ADD COLUMN IF NOT EXISTS assigned_by BIGINT RE
 -- Many tables were created with FK references inline above, but for tables
 -- that already existed before this migration, we add FKs conditionally.
 
--- intake_submissions.deduplicated_into → applications.id
+-- intake_submissions.deduplicated_into â†’ applications.id
 DO $$
 BEGIN
     IF NOT EXISTS (
@@ -1725,7 +1725,7 @@ BEGIN
 END
 $$;
 
--- intake_submissions.requestor_user_id → system_users.id
+-- intake_submissions.requestor_user_id â†’ system_users.id
 DO $$
 BEGIN
     IF NOT EXISTS (
@@ -1738,7 +1738,7 @@ BEGIN
 END
 $$;
 
--- intake_submissions.reviewed_by → system_users.id
+-- intake_submissions.reviewed_by â†’ system_users.id
 DO $$
 BEGIN
     IF NOT EXISTS (
@@ -1751,7 +1751,7 @@ BEGIN
 END
 $$;
 
--- cases.application_id → applications.id
+-- cases.application_id â†’ applications.id
 DO $$
 BEGIN
     IF NOT EXISTS (
@@ -1764,7 +1764,7 @@ BEGIN
 END
 $$;
 
--- cases.created_by → system_users.id
+-- cases.created_by â†’ system_users.id
 DO $$
 BEGIN
     IF NOT EXISTS (
@@ -1777,7 +1777,7 @@ BEGIN
 END
 $$;
 
--- cases.updated_by → system_users.id
+-- cases.updated_by â†’ system_users.id
 DO $$
 BEGIN
     IF NOT EXISTS (
