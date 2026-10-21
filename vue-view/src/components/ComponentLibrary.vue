@@ -150,6 +150,7 @@ import DocumentsBucket from './DocumentsBucket.vue';
 import FilterableCaseList from './FilterableCaseList.vue';
 import QuickTasks from './QuickTasks.vue';
 import AppHeader from './layout/AppHeader.vue';
+import IntakeForm from './IntakeForm.vue';
 
 // Sample data for live previews
 var sampleApplication = {
@@ -222,7 +223,8 @@ export default {
     DocumentsBucket,
     FilterableCaseList,
     QuickTasks,
-    AppHeader
+    AppHeader,
+    IntakeForm
   },
   data: function() {
     return {
@@ -376,6 +378,17 @@ export default {
           category: 'layout',
           description: 'Top navigation bar with case selector, role dropdown, theme toggle, and avatar menu.',
           component: 'AppHeader'
+        },
+
+        // --- Intake / Public ---
+        {
+          id: 'IntakeForm',
+          name: 'Intake Form (Apply for Help)',
+          category: 'feature',
+          description: 'Public-facing multi-page home repair screening form. Pages 1-3: welcome, consent, referrer. Submits to api/submit.php. Supports EN/ES language toggle. Full version includes 14 pages: contact, address, repairs, FEMA/insurance, income, signature.',
+          component: 'IntakeForm',
+          events: ['submitted'],
+          source: '<IntakeForm />\n// Renders at /apply-help.php'
         }
       ];
     },
