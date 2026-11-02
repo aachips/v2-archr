@@ -27,7 +27,7 @@
       <span class="brand-wordmark">ARCHR<span class="brand-tag">{{ t("brand.tag") }}</span></span>
     </div>
 
-    <div class="quick-search">
+    <div v-if="showSearch" class="quick-search">
       <input
         v-model.trim="search"
         type="search"
@@ -50,21 +50,26 @@
     </div>
 
     <div class="header-actions">
-      <!-- Role preview. In app/ this is the super-admin "view as" switcher;
-           the demo keeps it visible for every role so you can exercise the
-           permission levels (staff = limited view, org-admin/super-admin = full). -->
-      <div class="menu-wrap">
-        <button type="button" class="icon-btn" :aria-expanded="openMenu === 'role'" @click="toggle('role')">
-          {{ roleLabel }} &#9662;
-        </button>
-        <ul v-if="openMenu === 'role'" class="menu" role="menu">
-          <li v-for="r in ROLES" :key="r">
-            <button type="button" class="menu__item" @click="chooseRole(r)">
-              {{ roleName(r) }}<span v-if="r === role" class="menu__check">&#10003;</span>
-            </button>
-          </li>
-        </ul>
-      </div>
+      <!-- Role preview. Super-admin/org-admin/staff can switch roles.
+           Single-role accounts (assessor, requestor, volunteer, subcontractor)
+           see only their current role label with no dropdown. -->
+      <template v-if="canSwitchRole">
+        <div class="menu-wrap">
+          <button type="button" class="icon-btn" :aria-expanded="openMenu === 'role'" @click="toggle('role')">
+            {{ roleLabel }} &#9662;
+          </button>
+          <ul v-if="openMenu === 'role'" class="menu" role="menu">
+            <li v-for="r in roleList" :key="r">
+              <button type="button" class="menu__item" @click="chooseRole(r)">
+                {{ roleName(r) }}<span v-if="r === role" class="menu__check">&#10003;</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </template>
+      <template v-else>
+        <span class="role-badge">{{ roleLabel }}</span>
+      </template>
 
       <button type="button" class="icon-btn" :title="themeTitle" @click="$emit('toggle-theme')">
         {{ theme === "dark" ? "☀" : "☾" }}
@@ -121,11 +126,18 @@
 <script>
 import { translate, LANGUAGES } from "../../config/i18n";
 
-const ROLES = ["staff", "org-admin", "super-admin"];
+const ALL_ROLES = ["super-admin", "org-admin", "project-manager", "bursar", "assessor", "subcontractor", "volunteer", "requestor"];
+// Roles that can be switched via the header dropdown (multi-role accounts)
+const SWITCHABLE_ROLES = ["super-admin", "org-admin", "project-manager", "bursar"];
+
 const ROLE_KEYS = {
-  staff: "header.role.staff",
+  "super-admin": "header.role.superAdmin",
   "org-admin": "header.role.orgAdmin",
-  "super-admin": "header.role.superAdmin"
+  "project-manager": "Project Manager",
+  "bursar": "Bursar",
+  "assessor": "Assessor",
+  "subcontractor": "Subcontractor",
+  "volunteer": "Volunteer",
 };
 
 export default {
@@ -138,9 +150,34 @@ export default {
     userName: { type: String, default: "Demo User" }
   },
   data() {
-    return { ROLES, LANGUAGES, openMenu: null, search: "", searchOpen: false };
+    return { SWITCHABLE_ROLES, ALL_ROLES, LANGUAGES, openMenu: null, search: "", searchOpen: false };
   },
   computed: {
+    // Whether the current auth role can use the role switcher dropdown
+    canSwitchRole() {
+      const level = this.$auth?.roleLevel ?? 0;
+      // Super-admin (level >= 3): can switch between any role for preview
+      // Org-admin (level 2): can switch between non-super-admin roles
+      if (level >= 2) return true;
+      const authRole = this.$auth?.role || '';
+      return !['assessor', 'requestor', 'volunteer', 'subcontractor', 'crew-member'].includes(authRole);
+    },
+    // Which roles to show in the dropdown
+    roleList() {
+      const level = this.$auth?.roleLevel ?? 0;
+      // Super-admin only (level >= 3): see ALL roles for preview
+      // Org-admin (level 2): see all roles EXCEPT super-admin
+      if (level >= 3) return ALL_ROLES;
+      if (level === 2) return ALL_ROLES.filter(r => r !== 'super-admin');
+      return SWITCHABLE_ROLES;
+    },
+    // Hide global search for single-role field accounts
+    showSearch() {
+      const level = this.$auth?.roleLevel ?? 0;
+      const authRole = this.$auth?.role || '';
+      const effectiveRole = (level >= 2) ? this.role : authRole;
+      return !['assessor', 'requestor', 'volunteer'].includes(effectiveRole);
+    },
     matches() {
       const term = this.search.toLowerCase();
       if (!term) return [];
@@ -176,7 +213,11 @@ export default {
       return translate(this.lang, key);
     },
     roleName(r) {
-      return this.t(ROLE_KEYS[r] || "header.role.staff");
+      const key = ROLE_KEYS[r];
+      if (!key) return r;
+      // If key doesn't start with 'header.', it's a plain label
+      if (!key.startsWith('header.')) return key;
+      return this.t(key);
     },
     toggle(menu) {
       this.openMenu = this.openMenu === menu ? null : menu;
@@ -306,6 +347,16 @@ export default {
   align-items: center;
   gap: 0.5rem;
   margin-left: auto;
+}
+
+.role-badge {
+  padding: 0.35rem 0.55rem;
+  border-radius: 4px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .header-btn {

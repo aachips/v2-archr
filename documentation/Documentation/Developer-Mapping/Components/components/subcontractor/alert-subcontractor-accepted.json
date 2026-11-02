@@ -1,0 +1,39 @@
+// Alert Sub Accepted - Notify system that subcontractor has accepted the task
+
+{
+  "feature_name": "Alert Sub Accepted",
+  "feature_id": "feat_sub_accepted",
+  "component_type": "action",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "suggested_tasks"
+    },
+    {
+      "name": "accept_notes",
+      "label": "Notes",
+      "type": "textarea",
+      "placeholder": "Any conditions or requirements for acceptance?"
+    }
+  ],
+  "submit": {
+    "label": "Accept Task",
+    "action": "api",
+    "endpoint": "/api/subcontractor/tasks/accept",
+    "method": "POST",
+    "confirm": "Confirm acceptance of this task?",
+    "success_message": "Task accepted!",
+    "notifications": [
+      {
+        "role": "project_manager",
+        "message": "Subcontractor has accepted task {task_id}"
+      },
+      {
+        "role": "caseworker",
+        "message": "Task {task_id} has been accepted"
+      }
+    ]
+  }
+}

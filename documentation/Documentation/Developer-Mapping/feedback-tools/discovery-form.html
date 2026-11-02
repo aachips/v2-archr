@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>User Discovery · Intake System Feedback</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f7fb;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      padding: 2rem 1rem;
+      color: #1e2a3a;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Header / intro card */
+    .intro-card {
+      background: linear-gradient(135deg, #2c5f2d 0%, #1e3a2f 100%);
+      color: white;
+      border-radius: 32px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .intro-card h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .intro-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+      opacity: 0.9;
+      margin-bottom: 0.25rem;
+    }
+
+    .intro-card .role {
+      font-family: monospace;
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+    }
+
+    /* Main form card */
+    .form-card {
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf2;
+    }
+
+    .form-group {
+      margin-bottom: 1.6rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #1f3b4c;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid #cbdde6;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #ffffff;
+      transition: all 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2c5f2d;
+      box-shadow: 0 0 0 3px rgba(44, 95, 45, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .inline-hint {
+      font-size: 0.75rem;
+      color: #5f7f6b;
+      margin-top: 0.3rem;
+    }
+
+    /* Two-column for name/contact */
+    .name-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .name-row .form-group {
+      flex: 1;
+    }
+
+    /* optional feedback section toggle */
+    .toggle-section {
+      background: #f0f6fa;
+      border-radius: 28px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 1px solid #d8e2e9;
+    }
+    .toggle-section:hover {
+      background: #e6f0f5;
+    }
+    .toggle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #1e5a3a;
+    }
+    .toggle-arrow {
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+    .toggle-content {
+      display: none;
+      margin-top: 1rem;
+      border-top: 1px solid #cde0e8;
+      padding-top: 1rem;
+    }
+    .toggle-content.open {
+      display: block;
+    }
+
+    /* availability grid */
+    .avail-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 0.5rem 0 1rem;
+    }
+    .avail-option {
+      flex: 1;
+      background: #f9fdfe;
+      border: 1px solid #cbdde6;
+      border-radius: 28px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.85rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .avail-option:hover {
+      background: #eef4f8;
+      border-color: #2c5f2d;
+    }
+    input.avail-hidden {
+      display: none;
+    }
+    .avail-option.selected {
+      background: #2c5f2d;
+      border-color: #2c5f2d;
+      color: white;
+    }
+
+    .btn {
+      background: #2c5f2d;
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .btn:hover {
+      background: #1e4620;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .footnote {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #5c7b6b;
+      margin-top: 1.5rem;
+    }
+
+    hr {
+      margin: 1rem 0;
+      border: none;
+      border-top: 1px solid #d4e2ea;
+    }
+
+    /* Honeypot: rendered for bots, invisible to humans + screen readers. */
+    .hp-field {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .form-card {
+        padding: 1.5rem;
+      }
+      .name-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="intro-card">
+    <h1>🧩 Help me understand the intake system</h1>
+    <p>I'm April — the new Software/Platform Specialist. I don't want to assume anything.<br>
+    I want to know how this system actually works for <strong>you</strong>.</p>
+    <div class="role">⚡ 30‑min chat or anonymous written feedback – totally up to you</div>
+  </div>
+
+  <div class="form-card">
+    <form id="discoveryForm" method="post" action="form-handler.php">
+      <!-- Honeypot: real users don't see/fill this; bots do. -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="hp_website">Website</label>
+        <input type="text" id="hp_website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- Basic info -->
+      <div class="name-row">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" placeholder="First name or how I can address you" required>
+        </div>
+        <div class="form-group">
+          <label>Email or Signal / WhatsApp</label>
+          <input type="text" name="contact" placeholder="best way to reach you" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Role / team (optional)</label>
+        <input type="text" name="role" placeholder="e.g., Home Repair, Family Services, Ops">
+      </div>
+
+      <!-- interview request + availability -->
+      <div class="form-group">
+        <label>📅 Would you be open to a quick 1-on-1 (15–30 min)?</label>
+        <select name="wantInterview" id="wantInterviewSelect">
+          <option value="yes">Yes, I’d love to talk — let’s find a time</option>
+          <option value="no">I’d rather just write my thoughts below</option>
+          <option value="maybe">Maybe — but I want to learn more first</option>
+        </select>
+      </div>
+
+      <!-- availability block (shown only if "yes") -->
+      <div id="availabilityBlock" style="display: none;">
+        <div class="form-group">
+          <label>Pick up to 3 time slots that could work (next 7 days)</label>
+          <div class="avail-grid" id="availGrid">
+            <div class="avail-option" data-slot="Mon Morning">Mon ☀️ morning</div>
+            <div class="avail-option" data-slot="Mon Afternoon">Mon 🌤️ afternoon</div>
+            <div class="avail-option" data-slot="Mon Evening">Mon 🌙 evening</div>
+            <div class="avail-option" data-slot="Tue Morning">Tue ☀️ morning</div>
+            <div class="avail-option" data-slot="Tue Afternoon">Tue 🌤️ afternoon</div>
+            <div class="avail-option" data-slot="Tue Evening">Tue 🌙 evening</div>
+            <div class="avail-option" data-slot="Wed Morning">Wed ☀️ morning</div>
+            <div class="avail-option" data-slot="Wed Afternoon">Wed 🌤️ afternoon</div>
+            <div class="avail-option" data-slot="Wed Evening">Wed 🌙 evening</div>
+            <div class="avail-option" data-slot="Thu Morning">Thu ☀️ morning</div>
+            <div class="avail-option" data-slot="Thu Afternoon">Thu 🌤️ afternoon</div>
+            <div class="avail-option" data-slot="Thu Evening">Thu 🌙 evening</div>
+            <div class="avail-option" data-slot="Fri Morning">Fri ☀️ morning</div>
+            <div class="avail-option" data-slot="Fri Afternoon">Fri 🌤️ afternoon</div>
+            <div class="avail-option" data-slot="Fri Evening">Fri 🌙 evening</div>
+          </div>
+          <div class="inline-hint">Click to select / unselect. I’ll reach out to confirm an exact time.</div>
+          <input type="hidden" name="availability" id="availabilityInput" value="">
+        </div>
+      </div>
+
+      <!-- Optional feedback section (dropdown to show/hide the detailed questions) -->
+      <div class="toggle-section" id="feedbackToggle">
+        <div class="toggle-header">
+          <span>✏️ I'd rather just answer some questions here (no meeting)</span>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="toggle-content" id="feedbackContent">
+          <p style="margin-bottom: 0.5rem; font-size:0.9rem"><strong>Take your pick</strong> — answer one or all. It’s all anonymous-ish and super helpful.</p>
+          <div class="form-group">
+            <label>1. What’s the first thing you do when you log into the intake system?</label>
+            <textarea name="q_firstAction" rows="2" placeholder="e.g., check pending applications, enter a new household..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>2. What part of the system do you avoid or dread?</label>
+            <textarea name="q_avoid" rows="2" placeholder="Be honest – I won't be offended"></textarea>
+          </div>
+          <div class="form-group">
+            <label>3. Can you remember a recent time the system frustrated you? What happened?</label>
+            <textarea name="q_frustration" rows="3" placeholder="..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>4. If you could change ONE thing about it tomorrow, what would it be?</label>
+            <textarea name="q_oneChange" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label>5. Anything else you wish the system did? (even wild ideas)</label>
+            <textarea name="q_wishlist" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>6. 🍿 Got a story? Tell me the craziest or coolest thing you've seen working with this project</label>
+            <textarea name="q_story" rows="3" placeholder="Keep client details out — but the chaos, the wins, the absurd moments are all welcome."></textarea>
+            <div class="inline-hint">Or, if it's easier to tell out loud, check the box below and we'll do it in person. I can video-record it (only if you're into that) so the story doesn't get lost.</div>
+            <label class="checkbox-row" style="font-weight:400;margin-top:0.6rem;display:flex;gap:0.5rem;align-items:flex-start">
+              <input type="checkbox" name="storyInPerson" value="yes" style="width:auto;margin-top:0.25rem">
+              <span>I'd rather tell this in person — and I'm open to it being video recorded</span>
+            </label>
+          </div>
+          <div class="inline-hint">💬 Your answers will help us build something that actually works for real people.</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Send feedback →</button>
+      <div class="footnote">no spam, no sales. just trying to understand your day‑to‑day.</div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Toggle optional feedback section (dropdown style)
+  const toggleSection = document.getElementById('feedbackToggle');
+  const toggleContent = document.getElementById('feedbackContent');
+  const arrowSpan = document.querySelector('.toggle-arrow');
+
+  toggleSection.addEventListener('click', (e) => {
+    // avoid closing if clicking inside textarea (bubbles)
+    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+    const isOpen = toggleContent.style.display === 'block';
+    if (isOpen) {
+      toggleContent.style.display = 'none';
+      arrowSpan.innerHTML = '▼';
+    } else {
+      toggleContent.style.display = 'block';
+      arrowSpan.innerHTML = '▲';
+    }
+  });
+
+  // show/hide availability slots based on interview interest
+  const wantSelect = document.getElementById('wantInterviewSelect');
+  const availBlock = document.getElementById('availabilityBlock');
+  function updateAvailBlock() {
+    if (wantSelect.value === 'yes') {
+      availBlock.style.display = 'block';
+    } else {
+      availBlock.style.display = 'none';
+    }
+  }
+  wantSelect.addEventListener('change', updateAvailBlock);
+  updateAvailBlock();
+
+  // Multi-select for availability (max 3)
+  const slots = document.querySelectorAll('.avail-option');
+  const hiddenInput = document.getElementById('availabilityInput');
+  let selectedSlots = [];
+
+  slots.forEach(slot => {
+    slot.addEventListener('click', (e) => {
+      const val = slot.getAttribute('data-slot');
+      if (selectedSlots.includes(val)) {
+        // unselect
+        selectedSlots = selectedSlots.filter(s => s !== val);
+        slot.classList.remove('selected');
+      } else {
+        if (selectedSlots.length < 3) {
+          selectedSlots.push(val);
+          slot.classList.add('selected');
+        } else {
+          alert("You can select up to 3 possible time slots. That helps me find something that works for both of us.");
+        }
+      }
+      hiddenInput.value = selectedSlots.join(', ');
+    });
+  });
+
+  // Optional: submit with simple validation
+  const form = document.getElementById('discoveryForm');
+  form.addEventListener('submit', (e) => {
+    const nameVal = document.querySelector('[name="name"]').value.trim();
+    const contactVal = document.querySelector('[name="contact"]').value.trim();
+    if (!nameVal || !contactVal) {
+      e.preventDefault();
+      alert("Please leave your name and a way to reach you (even just a Signal username).");
+    }
+  });
+</script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+
+
+I’d love to schedule some one-on-one conversations with whoever regularly interacts with this system, to ask some questions, and take notes about what works and what doesn’t. No wrong answers. We can do this in person, over the phone, email, whatever works and is convenient.
+
+
+
+April Chips 
+
+### Discovery Interview Questions
+
+- What’s your name and what’s your working relationship with Habitat and ARCHR?
+    
+- In what ways do you interact with this system on a regular basis? 
+    
+- What is your relationship with computer technology like? – Personal & Professional
+    
+- What’s your relationship to the ARCHR system? (Partner, donor, beneficiary)
+    
+- What’s the first thing you do when you go on the site/platform?
+    
+- What parts do you avoid, if any?
+    
+- Where has the system frustrated you?
+    
+- If you could change one thing about it, what would it be?
+    
+- What do you wish this system did or had that it doesn’t?
+    
+- On a scale of 1-10, how confident are you that this system is doing what it is supposed to do? 
+
+
+    
+ -->

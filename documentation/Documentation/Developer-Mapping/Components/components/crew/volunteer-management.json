@@ -1,0 +1,25 @@
+{
+  "ability": "Volunteer Management",
+  "feature": "Volunteer Sign In",
+  "component": {
+    "type": "modal",
+    "trigger": "👥 button or volunteer row",
+    "title": "Volunteer Sign In",
+    "fields": [
+      {"name": "job_id", "type": "hidden"},
+      {"name": "volunteer_id", "type": "select", "data_source": "volunteers_signed_up"},
+      {"name": "sign_in_time", "type": "time", "default": "now"},
+      {"name": "safety_talk_confirmed", "type": "toggle", "required": true},
+      {"name": "tasks_assigned", "type": "multiselect", "data_source": "job_tasks"}
+    ],
+    "actions": [
+      {"label": "Cancel", "action": "close"},
+      {"label": "Sign In", "action": "submit"}
+    ]
+  },
+  "business_rules": {
+    "requires_safety_talk_confirmation": true,
+    "logs_hours_start_time": true,
+    "creates_volunteer_assignment": true
+  }
+}

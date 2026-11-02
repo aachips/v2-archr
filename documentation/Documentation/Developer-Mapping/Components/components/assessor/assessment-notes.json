@@ -1,0 +1,29 @@
+// 1.3 Take Notes - Add notes to assessment
+
+{
+  "task_name": "Take Notes",
+  "task_id": "task_take_notes",
+  "task_type": "documentation",
+  "fields": [
+    {
+      "name": "note_type",
+      "label": "Note Type",
+      "type": "select",
+      "options": ["Client Conversation", "Property Observation", "Safety Concern", "Follow-up Required"]
+    },
+    {
+      "name": "note_content",
+      "label": "Note Content",
+      "type": "textarea",
+      "required": true
+    },
+    {
+      "name": "is_public",
+      "label": "Visible to client?",
+      "type": "checkbox",
+      "default": false
+    }
+  ],
+  "visibility": "staff_only",
+  "in_person_required": false
+}

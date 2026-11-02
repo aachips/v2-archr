@@ -1,0 +1,26 @@
+// Approve Invoice Button - Approve a reimbursement request
+
+{
+  "component_name": "Approve Invoice Button",
+  "component_role": "bursar",
+  "component_id": "btn_bursar_approve_invoice",
+  "component_class": ".btn.btn-success",
+  "component_context": {
+    "taskId": "rec[invoiceIdentifier]",
+    "target": "invoices",
+    "target_key": "{invoice}.{status}",
+    "action": "APPROVE.INVOICE",
+    "buttonText": "Approve Invoice",
+    "webhookSlug": "[approveInvoiceWebhook]",
+    "confirm": "Approve this invoice for payment?",
+    "successMessage": "Invoice approved!",
+    "reversible": "no"
+  },
+  "display_text": "Approve",
+  "icon": "fa-check-circle",
+  "action": {
+    "type": "approve",
+    "target": "/api/bursar/reimbursements/:id/approve"
+  },
+  "role_access": "bursar"
+}

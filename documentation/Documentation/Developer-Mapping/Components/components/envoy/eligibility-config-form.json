@@ -1,0 +1,53 @@
+// Eligibility Configuration Form - Set program eligibility rules
+
+{
+  "component_name": "Eligibility Configuration Form",
+  "component_id": "form_envoy_eligibility",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "program_name",
+      "label": "Program Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "income_threshold",
+      "label": "Income Threshold (% AMI)",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "eligible_organizations",
+      "label": "Eligible Organizations",
+      "type": "multiselect",
+      "required": true
+    },
+    {
+      "name": "geographic_area",
+      "label": "Geographic Area",
+      "type": "select",
+      "required": true
+    },
+    {
+      "name": "homeownership_required",
+      "label": "Homeownership Required",
+      "type": "checkbox"
+    },
+    {
+      "name": "age_restrictions",
+      "label": "Age Restrictions",
+      "type": "text"
+    },
+    {
+      "name": "documentation_required",
+      "label": "Required Documentation",
+      "type": "multiselect"
+    }
+  ],
+  "submit_action": {
+    "endpoint": "/api/envoy/eligibility/rules",
+    "method": "PUT"
+  },
+  "role_access": "envoy"
+}

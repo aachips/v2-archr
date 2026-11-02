@@ -1,0 +1,192 @@
+/* ---------------------------------------------------------------------------
+ * App shell: header bar, quick search, dropdown menus, sidebar, content.
+ * Consumed by App.vue / layout/AppHeader.vue / layout/AppSidebar.vue.
+ * ------------------------------------------------------------------------ */
+
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+.shell__body {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  flex: 1;
+  align-items: start;
+}
+
+/* --- Header -------------------------------------------------------------- */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-panel);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.app-header__brand { display: flex; align-items: center; gap: 0.5rem; }
+.brand-logo { width: 28px; height: 28px; }
+.brand-wordmark { font-weight: 700; font-size: 1.05rem; }
+.brand-tag { font-weight: 400; font-size: 0.75rem; color: var(--color-muted); margin-left: 0.25rem; }
+
+/* Quick search */
+.quick-search { position: relative; flex: 0 1 22rem; }
+.quick-search input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  box-sizing: border-box;
+}
+.quick-search__results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  max-height: 18rem;
+  overflow: auto;
+}
+.quick-search__results button {
+  display: block;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.quick-search__results button:hover { background: var(--color-bg); }
+.quick-search__none {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.6rem;
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* Header action buttons + dropdown menus (role / language / avatar share one
+   pattern — same shape as the role-switcher in app/assets/portal.css). */
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 0.5rem; }
+.menu-wrap { position: relative; }
+.icon-btn {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.icon-btn:hover { background: var(--color-bg); }
+.menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  min-width: 12rem;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 30;
+}
+.menu__item {
+  display: block;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.menu__item:hover { background: var(--color-bg); }
+.menu__check { float: right; color: var(--color-accent); }
+.avatar-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --- Sidebar ------------------------------------------------------------- */
+
+.sidebar {
+  background: var(--color-sidebar-bg);
+  padding: 1rem 0.75rem;
+  min-height: 100%;
+}
+.nav { display: flex; flex-direction: column; gap: 0.25rem; position: sticky; top: 3.5rem; }
+.nav__item {
+  padding: 0.55rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: var(--color-sidebar-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.nav__item:hover { background: #374151; color: #fff; }
+.nav__item.active { background: #4b5563; color: #fff; font-weight: 600; }
+
+/* --- Content + notices --------------------------------------------------- */
+
+.content { padding: 2rem 1.5rem; max-width: 72rem; }
+
+.notice {
+  padding: 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 6px;
+  background: var(--color-panel);
+}
+.notice--error {
+  border-color: var(--color-danger-border);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+.notice__dismiss {
+  margin-left: 0.75rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}

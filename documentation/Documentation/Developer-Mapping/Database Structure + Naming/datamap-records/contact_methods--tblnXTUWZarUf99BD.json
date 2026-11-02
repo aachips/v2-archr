@@ -1,0 +1,34 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:11.040Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblnXTUWZarUf99BD",
+    "name": "contact_methods",
+    "description": null,
+    "primaryFieldId": "fldYowbrPPqVARDeX",
+    "fields": [
+      {
+        "id": "fldYowbrPPqVARDeX",
+        "name": "method_code",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      }
+    ],
+    "views": [
+      {
+        "id": "viwPyCm33Nd3SVUh8",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

@@ -1,0 +1,40 @@
+// Budget Tracker - Displays project budget status
+
+{
+  "component_name": "Budget Tracker",
+  "component_id": "cmp_pm_budget_tracker",
+  "component_type": "card",
+  "data_sources": {
+    "budget": "project_budget where project_id = current_project"
+  },
+  "display_fields": [
+    {
+      "field": "total_budget",
+      "label": "Total Budget",
+      "type": "currency"
+    },
+    {
+      "field": "spent",
+      "label": "Spent",
+      "type": "currency"
+    },
+    {
+      "field": "remaining",
+      "label": "Remaining",
+      "type": "currency"
+    },
+    {
+      "field": "budget_percentage",
+      "label": "Budget Used",
+      "type": "progress_bar"
+    }
+  ],
+  "actions": [
+    {
+      "label": "View Details",
+      "action": "navigate",
+      "target": "/budget/{project_id}"
+    }
+  ],
+  "mobile_layout": "stacked"
+}

@@ -1,0 +1,1 @@
+We do not want the same progress event, activity, or milestone to be triggered or logged more than once.

@@ -1,0 +1,13 @@
+{
+  "component_name": "View Project Button",
+  "component_role": "project_manager",
+  "component_id": "btn_view_project",
+  "component_class": ".btn.btn-view",
+  "component_context": {
+    "projectId": "rec[caseId]",
+    "action": "PROJECT.VIEW",
+    "buttonText": "View Project",
+    "webhookSlug": "[projectWebhook]",
+    "modal": "/projectHammer"
+  }
+}

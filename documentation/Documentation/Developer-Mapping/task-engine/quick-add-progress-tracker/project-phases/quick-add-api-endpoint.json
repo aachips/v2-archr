@@ -1,0 +1,30 @@
+// POST /api/progress/quick-add
+{
+    "case_id": "ARCHR-2024-001234",
+    "task_type": "ASSESS", // or SCOPE, START, COMPLETE, PROGRESS
+    "data": {
+        "date": "2024-12-20",
+        "notes": "Assessment completed. Roof needs full replacement.",
+        "photos": ["file1.jpg", "file2.jpg"], // References to uploaded files
+        "scope_table": null, // Only for SCOPE
+        "certificate": null // Only for COMPLETE
+    },
+    "user_id": "user_jd_001"
+}
+
+// Response
+{
+    "success": true,
+    "ledger_entry_id": 12345,
+    "documents_created": [
+        {"type": "ASSESS_REPORT", "path": "/organizations/habitat/cases/ARCHR-2024-001234/assessments/John_Henderson_Assessment_2024-12-20.pdf"}
+    ],
+    "phase_complete": false, // or true if phase 2 is complete
+    "next_tasks": ["SCOPE", "START"],
+    "display_conditions_updated": {
+        "displayAssess": true,
+        "displayScope": true,
+        "displayStart": false,
+        "displayComplete": false
+    }
+}

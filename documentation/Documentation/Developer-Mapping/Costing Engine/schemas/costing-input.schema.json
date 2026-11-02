@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://archr.example/schemas/costing-input.schema.json",
+  "title": "ARCHR Costing Sparse Input Event",
+  "description": "Sparse, idempotent input accepted by the Project Costing automation engine. Omitted properties are unchanged; null clearing and deletion require explicit engine operations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "eventId",
+    "operation",
+    "projectKey"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "eventId": {
+      "$ref": "costing-common.schema.json#/$defs/identifier"
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "upsert",
+        "append",
+        "void"
+      ]
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "projectKey": {
+      "$ref": "costing-common.schema.json#/$defs/identifier"
+    },
+    "projectOrgId": {
+      "type": "string"
+    },
+    "source": {
+      "$ref": "costing-common.schema.json#/$defs/source"
+    },
+    "contract": {
+      "$ref": "costing-common.schema.json#/$defs/contract"
+    },
+    "costEntries": {
+      "type": "array",
+      "items": {
+        "$ref": "costing-common.schema.json#/$defs/costEntry"
+      }
+    },
+    "fundingSelections": {
+      "type": "array",
+      "items": {
+        "$ref": "costing-common.schema.json#/$defs/fundingSelection"
+      }
+    },
+    "fundingEvidence": {
+      "$ref": "costing-common.schema.json#/$defs/fundingEvidence"
+    },
+    "drawRequests": {
+      "type": "array",
+      "items": {
+        "$ref": "costing-common.schema.json#/$defs/drawRequest"
+      }
+    },
+    "payments": {
+      "type": "array",
+      "items": {
+        "$ref": "costing-common.schema.json#/$defs/payment"
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "contract"
+      ]
+    },
+    {
+      "required": [
+        "costEntries"
+      ]
+    },
+    {
+      "required": [
+        "fundingSelections"
+      ]
+    },
+    {
+      "required": [
+        "fundingEvidence"
+      ]
+    },
+    {
+      "required": [
+        "drawRequests"
+      ]
+    },
+    {
+      "required": [
+        "payments"
+      ]
+    }
+  ]
+}

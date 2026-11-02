@@ -1,0 +1,15 @@
+// Past Jobs - Navigate to completed jobs history
+
+{
+  "component_name": "Past Jobs Button",
+  "component_id": "btn_past_jobs",
+  "component_class": ".btn.btn-secondary",
+  "display_text": "Past Jobs",
+  "icon": "fa-clock-rotate-left",
+  "action": {
+    "type": "navigate",
+    "target": "/pastJobs"
+  },
+  "role_access": "subcontractor",
+  "context": "View history of completed tasks and jobs"
+}

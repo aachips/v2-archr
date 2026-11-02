@@ -1,0 +1,122 @@
+{
+    "_meta": {
+        "description": "Fixture data driving the partner-portal Cases prototype. One fully-populated case (247-RIVERSIDE) plus a lightweight index of additional placecode-only entries for list views. All identifiers and addresses are fictional.",
+        "placecode_format": "{house_number}-{first 10 chars of street name, uppercase, no spaces or suffix}",
+        "systems_covered": ["intake", "partner-organizations", "role-based-access", "document-storage", "metric-tracking", "documentation-sops"]
+    },
+
+    "case_index": [
+        { "placecode": "247-RIVERSIDE",  "phase": "site_work", "phase_label": "Site Work",      "county": "Buncombe", "helene_related": true,  "claimed_by_org_code": "AHFH", "urgent_count": 3, "submitted_at": "2026-02-14", "featured": true },
+        { "placecode": "1147-HAYWOOD",   "phase": "assess",    "phase_label": "Assessment",     "county": "Buncombe", "helene_related": true,  "claimed_by_org_code": "AHFH", "urgent_count": 2, "submitted_at": "2026-04-02", "featured": false },
+        { "placecode": "88-FAIRVIEW",    "phase": "intake",    "phase_label": "Awaiting Match", "county": "Henderson","helene_related": false, "claimed_by_org_code": null,   "urgent_count": 1, "submitted_at": "2026-05-18", "featured": false },
+        { "placecode": "3204-LEICESTER", "phase": "complete",  "phase_label": "Completed",      "county": "Buncombe", "helene_related": true,  "claimed_by_org_code": "AHFH", "urgent_count": 0, "submitted_at": "2025-11-04", "featured": false },
+        { "placecode": "19-PATTON",      "phase": "site_work", "phase_label": "Site Work",      "county": "Buncombe", "helene_related": false, "claimed_by_org_code": "AHFH", "urgent_count": 0, "submitted_at": "2026-03-22", "featured": false },
+        { "placecode": "562-MERRIMON",   "phase": "review",    "phase_label": "Suggested",      "county": "Buncombe", "helene_related": true,  "claimed_by_org_code": null,   "urgent_count": 2, "submitted_at": "2026-05-09", "featured": false }
+    ],
+
+    "cases": {
+        "247-RIVERSIDE": {
+            "placecode": "247-RIVERSIDE",
+            "phase": "site_work",
+            "phase_label": "Site Work",
+            "phase_step": 4,
+            "claimed_by_org_code": "AHFH",
+            "claimed_by_org_name": "Asheville Habitat for Humanity",
+            "county": "Buncombe",
+            "city": "Asheville",
+            "helene_related": true,
+            "triage_score": 8.6,
+            "submitted_at": "2026-02-14",
+
+            "phase_tracker": [
+                { "key": "intake",    "label": "Submitted",      "date": "2026-02-14", "state": "done" },
+                { "key": "review",    "label": "Matched",        "date": "2026-02-15", "state": "done" },
+                { "key": "assign",    "label": "Claimed",        "date": "2026-02-16", "state": "done" },
+                { "key": "assess",    "label": "Assessed",       "date": "2026-02-22", "state": "done" },
+                { "key": "site_work", "label": "Site Work",      "date": "2026-03-05", "state": "current" },
+                { "key": "complete",  "label": "Completed",      "date": null,         "state": "pending" }
+            ],
+
+            "intake": {
+                "applicant_name": "Maria Hernandez",
+                "applicant_initials": "M.H.",
+                "household_size": 3,
+                "household_adults": 1,
+                "household_attributes": ["single_parent", "child_under_5"],
+                "address_display": "247 Riverside Dr · Asheville, NC 28804",
+                "year_built": 1962,
+                "home_type": "Traditional single-family",
+                "owns_home": true,
+                "annual_income": 22400,
+                "income_bracket": "Extremely Low (< 30% AMI)",
+                "urgent_conditions": [
+                    { "code": "open_to_elements", "label": "Open to elements (roof tarped)" },
+                    { "code": "no_hvac",          "label": "No heating or AC" },
+                    { "code": "no_potable_water", "label": "No potable water" }
+                ],
+                "repair_needs_summary": "Roof tarped after Helene; HVAC condenser destroyed; well contaminated by floodwater. Family currently sharing one habitable bedroom.",
+                "fema_outcome": "denied",
+                "insurance_outcome": "settled",
+                "insurance_settlement": 4200
+            },
+
+            "match": {
+                "suggested": [
+                    { "org_code": "AHFH", "org_name": "Asheville Habitat for Humanity", "match_score": 92, "reason": "Buncombe County resident · owner-occupied · Helene-related · income < 30% AMI", "status": "claimed",  "responded_at": "2026-02-16" },
+                    { "org_code": "MHO",  "org_name": "Mountain Housing Opportunities", "match_score": 78, "reason": "Income and county match · capacity available",                                "status": "passed",   "responded_at": "2026-02-16" },
+                    { "org_code": "CAO",  "org_name": "Community Action Opportunities", "match_score": 61, "reason": "Income match · weatherization scope possible",                                "status": "expired",  "responded_at": null }
+                ],
+                "claimed_at": "2026-02-16",
+                "decision_window_hours": 48
+            },
+
+            "team": [
+                { "role": "caseworker", "role_label": "Caseworker", "name": "Jamie Davis",   "initials": "JD", "org_code": "AHFH", "assigned_at": "2026-02-16" },
+                { "role": "assessor",   "role_label": "Assessor",   "name": "Sam Chen",      "initials": "SC", "org_code": "AHFH", "assigned_at": "2026-02-18" },
+                { "role": "crew_lead",  "role_label": "Crew Lead",  "name": "Tyrell Banks",  "initials": "TB", "org_code": "AHFH", "assigned_at": "2026-03-05" }
+            ],
+
+            "current_status": {
+                "label": "Site work in progress",
+                "detail": "Roof decking replaced. Well shock-chlorination scheduled for next week. HVAC install pending NCORR approval of change order.",
+                "next_action": "Crew Lead to upload progress photos by Friday."
+            },
+
+            "documents": [
+                { "category_code": "APPLICATION",              "category_label": "Application",        "label": "Intake application",            "filename": "247-RIVERSIDE_intake.pdf",     "uploaded_at": "2026-02-14", "icon": "fa-file-lines",   "redacted": false },
+                { "category_code": "INCOME",                   "category_label": "Income",             "label": "Income verification (redacted)","filename": "247-RIVERSIDE_income.pdf",     "uploaded_at": "2026-02-17", "icon": "fa-file-shield",  "redacted": true  },
+                { "category_code": "ASSESSMENT",               "category_label": "Assessment",         "label": "Initial assessment report",     "filename": "247-RIVERSIDE_assessment.pdf", "uploaded_at": "2026-02-22", "icon": "fa-file-pdf",     "redacted": false },
+                { "category_code": "ASSESSMENT_PHOTOS_BEFORE", "category_label": "Before photos",      "label": "Roof, north slope",             "filename": "before_roof_n.jpg",            "uploaded_at": "2026-02-22", "icon": "fa-image",        "redacted": false, "thumb_color": "#5C6D70" },
+                { "category_code": "ASSESSMENT_PHOTOS_BEFORE", "category_label": "Before photos",      "label": "HVAC condenser pad",            "filename": "before_hvac.jpg",              "uploaded_at": "2026-02-22", "icon": "fa-image",        "redacted": false, "thumb_color": "#A1683A" },
+                { "category_code": "ASSESSMENT_PHOTOS_BEFORE", "category_label": "Before photos",      "label": "Primary bedroom ceiling",       "filename": "before_bedroom.jpg",           "uploaded_at": "2026-02-22", "icon": "fa-image",        "redacted": false, "thumb_color": "#1B1B1B" },
+                { "category_code": "CONTRACT",                 "category_label": "Contract",           "label": "Scope of work, signed",         "filename": "247-RIVERSIDE_sow.pdf",        "uploaded_at": "2026-03-01", "icon": "fa-file-signature","redacted": false },
+                { "category_code": "GRANT",                    "category_label": "Grant",              "label": "NCORR award letter",            "filename": "ncorr_award.pdf",              "uploaded_at": "2026-03-03", "icon": "fa-file-invoice", "redacted": false },
+                { "category_code": "ASSESSMENT_PHOTOS_DURING", "category_label": "Progress photos",    "label": "New roof sheathing",            "filename": "during_roof.jpg",              "uploaded_at": "2026-03-12", "icon": "fa-image",        "redacted": false, "thumb_color": "#D4A373" },
+                { "category_code": "ASSESSMENT_PHOTOS_DURING", "category_label": "Progress photos",    "label": "Well shock-chlorination prep",  "filename": "during_well.jpg",              "uploaded_at": "2026-03-14", "icon": "fa-image",        "redacted": false, "thumb_color": "#219BA4" }
+            ],
+
+            "finance": {
+                "estimate": 14200,
+                "actual_to_date": 9800,
+                "currency": "USD",
+                "funding_sources": [
+                    { "name": "NCORR Helene Recovery Grant", "amount": 8000, "color": "#2A5C82" },
+                    { "name": "AHFH Coalition Match",        "amount": 4000, "color": "#E04E39" },
+                    { "name": "Volunteer Labor (in-kind)",   "amount": 2200, "color": "#2f9e69" }
+                ]
+            },
+
+            "help": [
+                { "doc_id": "SOP-014",       "title": "Closing out a site-work phase",       "type": "SOP",       "icon": "fa-file-alt" },
+                { "doc_id": "GUIDE-007",     "title": "Uploading 'during' photos",           "type": "Guide",     "icon": "fa-book" },
+                { "doc_id": "CHECKLIST-003", "title": "Final inspection checklist",          "type": "Checklist", "icon": "fa-check-square" }
+            ]
+        }
+    },
+
+    "_legend": {
+        "phase_keys": ["intake", "review", "assign", "assess", "site_work", "complete"],
+        "team_roles": ["caseworker", "assessor", "crew_lead", "project_manager", "envoy", "bursar"],
+        "match_status": ["pending", "claimed", "passed", "expired"]
+    }
+}

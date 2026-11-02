@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eventResolver.stepXConfig.v1",
+  "title": "Resolver Step X Conflict Workflow Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["stepX"],
+  "properties": {
+    "stepX": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflowName",
+        "existingCompletionSource",
+        "triggerEventSource",
+        "dateWindowDays",
+        "completionTableId",
+        "completionEventLinkFieldId",
+        "eventTableId",
+        "eventFields",
+        "mergeableFields",
+        "rules",
+        "defaultDecision"
+      ],
+      "properties": {
+        "workflowName": {
+          "type": "string"
+        },
+        "existingCompletionSource": {
+          "type": "string"
+        },
+        "triggerEventSource": {
+          "type": "string"
+        },
+        "dateWindowDays": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completionTableId": {
+          "type": "string",
+          "pattern": "^tbl[A-Za-z0-9]+$"
+        },
+        "completionEventLinkFieldId": {
+          "type": "string",
+          "pattern": "^fld[A-Za-z0-9]+$"
+        },
+        "eventTableId": {
+          "type": "string",
+          "pattern": "^tbl[A-Za-z0-9]+$"
+        },
+        "eventFields": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/fieldRef"
+          }
+        },
+        "mergeableFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/keyedFieldRef"
+          }
+        },
+        "multipleCompletionPolicy": {
+          "$ref": "#/$defs/decision"
+        },
+        "multipleConflictingEventPolicy": {
+          "$ref": "#/$defs/decision"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rule"
+          }
+        },
+        "defaultDecision": {
+          "$ref": "#/$defs/defaultDecision"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "fieldRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fieldId", "fieldType"],
+      "properties": {
+        "fieldId": {
+          "type": "string",
+          "pattern": "^fld[A-Za-z0-9]+$"
+        },
+        "fieldType": {
+          "type": "string"
+        }
+      }
+    },
+    "keyedFieldRef": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fieldRef"
+        },
+        {
+          "type": "object",
+          "required": ["key"],
+          "properties": {
+            "key": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "createNew",
+        "reuseExisting",
+        "mergeIntoExisting",
+        "createNewAndConflict",
+        "manualReview"
+      ]
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "priority",
+        "stopOnMatch",
+        "boolean",
+        "decision",
+        "actions",
+        "reasonCode"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "stopOnMatch": {
+          "type": "boolean"
+        },
+        "boolean": {
+          "type": "string"
+        },
+        "decision": {
+          "$ref": "#/$defs/decision"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reasonCode": {
+          "type": "string"
+        }
+      }
+    },
+    "defaultDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "actions", "reasonCode"],
+      "properties": {
+        "decision": {
+          "$ref": "#/$defs/decision"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reasonCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

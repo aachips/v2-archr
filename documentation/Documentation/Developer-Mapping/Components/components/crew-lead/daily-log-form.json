@@ -1,0 +1,65 @@
+// Daily Log Form - Submit end-of-day crew log
+
+{
+  "component_name": "Daily Log Form",
+  "component_id": "form_crewlead_daily_log",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "job_id",
+      "type": "hidden",
+      "required": true
+    },
+    {
+      "name": "date",
+      "label": "Date",
+      "type": "date",
+      "required": true,
+      "default": "today"
+    },
+    {
+      "name": "crew_members_present",
+      "label": "Crew Members Present",
+      "type": "multiselect",
+      "required": true
+    },
+    {
+      "name": "volunteers_present",
+      "label": "Volunteers Present",
+      "type": "multiselect"
+    },
+    {
+      "name": "hours_worked",
+      "label": "Total Hours Worked",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "tasks_completed",
+      "label": "Tasks Completed",
+      "type": "textarea",
+      "required": true
+    },
+    {
+      "name": "materials_used",
+      "label": "Materials Used",
+      "type": "textarea"
+    },
+    {
+      "name": "incidents",
+      "label": "Incidents or Issues",
+      "type": "textarea"
+    },
+    {
+      "name": "photos",
+      "label": "Progress Photos",
+      "type": "camera",
+      "required": true
+    }
+  ],
+  "submit_action": {
+    "endpoint": "/api/crew/logs/daily",
+    "method": "POST"
+  },
+  "role_access": "crew_lead"
+}

@@ -1,0 +1,220 @@
+/******************************************************
+ * Submission AMI/FPL Check
+ *
+ * Runs before Create Reports.
+ *
+ * Input:
+ *   incomeJSON = {
+ *     "submissionKEY": "rec...",
+ *     "submissionDate": "1743531300000",
+ *     "householdSize": "4",
+ *     "gai": "50000"
+ *   }
+ *
+ * AMI/FPL year JSON source:
+ * https://airtable.com/appAmaLnsO0BTkKAk/tblvtdBfBnPBntQWQ/viwBuWoXDfR7HnAS5/fldafJwuKJX5kJAKN
+ ******************************************************/
+
+const CONFIG = {
+  yearTableId: "tblvtdBfBnPBntQWQ",
+  yearJsonFieldId: "fldafJwuKJX5kJAKN",
+};
+
+const inputs = input.config();
+const incomeJSON = inputs.incomeJSON ?? inputs.ReportJSON ?? inputs.reportJSON;
+
+if (!incomeJSON) throw new Error("Missing input: incomeJSON");
+
+/* ---------------- Helpers ---------------- */
+
+function parseJson(value, label) {
+  if (value && typeof value === "object") return value;
+
+  const source = String(value ?? "").trim();
+  if (!source) throw new Error(`${label} was empty.`);
+
+  try {
+    return JSON.parse(source);
+  } catch (error) {
+    throw new Error(
+      `Could not parse ${label}: ${error.message}\n\n` +
+      `Starts with:\n${source.slice(0, 500)}`
+    );
+  }
+}
+
+function firstVal(value) {
+  const first = Array.isArray(value)
+    ? value.find(item => item !== null && item !== undefined && String(item).trim() !== "")
+    : value;
+
+  if (first && typeof first === "object") {
+    return first.name ?? first.value ?? first;
+  }
+
+  return first ?? null;
+}
+
+function toNumber(value) {
+  const text = String(firstVal(value) ?? "").trim();
+  if (!text) return NaN;
+
+  const number = Number(text.replace(/[,$%\s]/g, ""));
+  return Number.isFinite(number) ? number : NaN;
+}
+
+function normalizeUnix(value) {
+  const raw = firstVal(value);
+  const numeric = toNumber(raw);
+
+  if (Number.isFinite(numeric)) {
+    return numeric < 1e12 ? numeric * 1000 : numeric;
+  }
+
+  const parsedDate = Date.parse(String(raw ?? ""));
+  return Number.isFinite(parsedDate) ? parsedDate : NaN;
+}
+
+/*
+ * The current compiler output resembles JSON but may omit commas within its
+ * household rows. Extracting the known properties directly supports both the
+ * current output and fully valid JSON after those formulas are corrected.
+ */
+function extractPeriods(rawValue) {
+  const raw = String(rawValue ?? "").trim();
+  if (!raw) return [];
+
+  const year = raw.match(/"year"\s*:\s*"?([^",}\s]+)"?/i)?.[1] ?? null;
+  const periodPattern = /"timePeriod"\s*:\s*\{\s*"start"\s*:\s*"?(\d+)"?\s*,\s*"end"\s*:\s*"?(\d+)"?\s*\}/gi;
+  const periodMatches = [...raw.matchAll(periodPattern)];
+  const periods = [];
+
+  for (let index = 0; index < periodMatches.length; index++) {
+    const match = periodMatches[index];
+    const chunkEnd = periodMatches[index + 1]?.index ?? raw.length;
+    const chunk = raw.slice(match.index, chunkEnd);
+    const start = normalizeUnix(match[1]);
+    const end = normalizeUnix(match[2]);
+
+    const rowPattern = /\{\s*"householdSize"\s*:\s*"?([^",}\s]+)"?\s*,?\s*"(ami_100|fpl_100|annualDollars)"\s*:\s*"?([^",}\s]+)"?(?:\s*,?\s*"overRidden"\s*:\s*(true|false))?\s*\}/gi;
+    const rows = [...chunk.matchAll(rowPattern)].map(row => ({
+      householdSize: String(row[1]),
+      valueKey: row[2].toLowerCase(),
+      annual: toNumber(row[3]),
+      overRidden: row[4] === undefined ? null : row[4].toLowerCase() === "true",
+    }));
+
+    if (!Number.isFinite(start) || !Number.isFinite(end) || rows.length === 0) continue;
+
+    const calc = rows.some(row => row.valueKey === "ami_100") || /"overRidden"\s*:/i.test(chunk)
+      ? "AMI"
+      : "FPL";
+
+    periods.push({
+      year: year === null ? null : String(year),
+      calc,
+      start,
+      end,
+      rows,
+    });
+  }
+
+  return periods;
+}
+
+/* ---------------- Input ---------------- */
+
+const incomeInput = parseJson(firstVal(incomeJSON), "incomeJSON");
+
+if (!incomeInput || typeof incomeInput !== "object" || Array.isArray(incomeInput)) {
+  throw new Error("incomeJSON must contain one JSON object.");
+}
+
+const submissionKEY = String(
+  firstVal(incomeInput.submissionKEY ?? incomeInput["id(rawSub)"]) ?? ""
+).trim();
+const submissionMs = normalizeUnix(incomeInput.submissionDate);
+const householdSize = String(firstVal(incomeInput.householdSize) ?? "").trim();
+const grossAnnualIncome = toNumber(incomeInput.gai);
+
+if (!submissionKEY) throw new Error("incomeJSON is missing submissionKEY.");
+if (!Number.isFinite(submissionMs)) {
+  throw new Error("incomeJSON submissionDate must be a unix timestamp or parseable date.");
+}
+if (!householdSize) throw new Error("incomeJSON is missing householdSize.");
+if (!Number.isFinite(grossAnnualIncome)) {
+  throw new Error("incomeJSON gai must be a number.");
+}
+
+/* ---------------- Load effective periods ---------------- */
+
+const yearTable = base.getTable(CONFIG.yearTableId);
+const yearJsonField = yearTable.getField(CONFIG.yearJsonFieldId);
+const yearQuery = await yearTable.selectRecordsAsync({ fields: [yearJsonField] });
+const periods = yearQuery.records.flatMap(record =>
+  extractPeriods(record.getCellValueAsString(yearJsonField))
+);
+
+if (periods.length === 0) {
+  throw new Error(`No usable time periods found in ${CONFIG.yearJsonFieldId}.`);
+}
+
+/* ---------------- Calculate ---------------- */
+
+function calculate(calcName) {
+  // Inclusive start and exclusive end avoids overlaps at adjacent boundaries.
+  const active = periods
+    .filter(period =>
+      period.calc === calcName &&
+      submissionMs >= period.start &&
+      submissionMs < period.end
+    )
+    .sort((a, b) => b.start - a.start)[0];
+
+  if (!active) {
+    throw new Error(
+      `No ${calcName} period contains submission date ${submissionMs}.`
+    );
+  }
+
+  const sizeRow = active.rows.find(row => row.householdSize === householdSize);
+
+  if (!sizeRow || !Number.isFinite(sizeRow.annual) || sizeRow.annual <= 0) {
+    throw new Error(
+      `No valid ${calcName} value for household size ${householdSize} ` +
+      `in effective year ${active.year ?? "unknown"}.`
+    );
+  }
+
+  return {
+    incomeCheck: {
+      calc: calcName,
+      percent: String(Math.round((grossAnnualIncome / sizeRow.annual) * 100)),
+      effectiveYear: active.year,
+    },
+  };
+}
+
+const incomeChecks = {
+  ami: calculate("AMI"),
+  fpl: calculate("FPL"),
+};
+
+const result = {
+  submissionKEY,
+  submissionDate: String(firstVal(incomeInput.submissionDate)),
+  householdSize,
+  gai: grossAnnualIncome,
+  incomeChecks,
+};
+
+/* ---------------- Outputs ---------------- */
+
+output.set("incomeChecks", incomeChecks);
+output.set("incomeChecksJson", JSON.stringify(incomeChecks));
+output.set("incomeChecksJSON", JSON.stringify(incomeChecks));
+
+output.set("incomeResult", result);
+output.set("incomeResultJSON", JSON.stringify(result));
+
+output.set("submissionKEY", submissionKEY);

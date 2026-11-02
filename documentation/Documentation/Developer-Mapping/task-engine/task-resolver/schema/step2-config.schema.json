@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eventResolver.step2Config.v2",
+  "title": "Resolver Step 2 Table-Centered Write Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["step2"],
+  "properties": {
+    "step2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["writeList"],
+      "properties": {
+        "mode": {
+          "$ref": "#/$defs/writeMode"
+        },
+        "writeList": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/writeDestination"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "writeDestination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["table", "tableId", "fields"],
+      "properties": {
+        "table": {
+          "type": "string",
+          "enum": ["eventTable", "logTable"]
+        },
+        "tableId": {
+          "type": "string",
+          "pattern": "^tbl[A-Za-z0-9]+$"
+        },
+        "recordId": {
+          "type": "string",
+          "pattern": "^rec[A-Za-z0-9]+$"
+        },
+        "writeName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/categoryFieldWrapper"
+          }
+        }
+      }
+    },
+    "categoryFieldWrapper": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "project": {
+          "$ref": "#/$defs/fieldWrite"
+        },
+        "task": {
+          "$ref": "#/$defs/fieldWrite"
+        },
+        "org": {
+          "$ref": "#/$defs/fieldWrite"
+        },
+        "person": {
+          "$ref": "#/$defs/fieldWrite"
+        },
+        "completion": {
+          "$ref": "#/$defs/fieldWrite"
+        }
+      }
+    },
+    "fieldWrite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fieldId", "type", "value", "mode"],
+      "properties": {
+        "fieldId": {
+          "type": "string",
+          "pattern": "^fld[A-Za-z0-9]+$"
+        },
+        "type": {
+          "$ref": "#/$defs/airtableFieldType"
+        },
+        "fieldType": {
+          "$ref": "#/$defs/airtableFieldType"
+        },
+        "value": {
+          "description": "Use _personFound shorthand for context.outputs.personFound, _output.personFound for context.outputs.personFound, or a literal value.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "array"
+            },
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "$ref": "#/$defs/writeMode"
+        }
+      }
+    },
+    "writeMode": {
+      "type": "string",
+      "enum": [
+        "replace",
+        "append",
+        "appendUnique",
+        "clear",
+        "ignoreIfBlank"
+      ]
+    },
+    "airtableFieldType": {
+      "type": "string",
+      "enum": [
+        "singleLineText",
+        "multilineText",
+        "multipleRecordLinks",
+        "singleSelect",
+        "multipleSelects",
+        "checkbox",
+        "number",
+        "currency",
+        "percent",
+        "duration",
+        "date",
+        "dateTime",
+        "email",
+        "url",
+        "phoneNumber"
+      ]
+    }
+  }
+}

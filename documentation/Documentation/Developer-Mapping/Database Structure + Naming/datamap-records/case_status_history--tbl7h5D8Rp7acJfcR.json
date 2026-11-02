@@ -1,0 +1,87 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:12.419Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tbl7h5D8Rp7acJfcR",
+    "name": "case_status_history",
+    "description": null,
+    "primaryFieldId": "fldObqObIaOPGk99r",
+    "fields": [
+      {
+        "id": "fldObqObIaOPGk99r",
+        "name": "case_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldpEvXhidTgZPPPq",
+        "name": "from_status_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldHxTYlezDU7KRy8",
+        "name": "to_status_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldeEar452vjA2D3s",
+        "name": "changed_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldWRWdTRptHMCxTv",
+        "name": "notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld4koNuSuNGG1ffS",
+        "name": "changed_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwPr60oC0Fv9kvuG",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

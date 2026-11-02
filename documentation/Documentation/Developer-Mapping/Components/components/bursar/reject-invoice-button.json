@@ -1,0 +1,26 @@
+// Reject Invoice Button - Reject a reimbursement request with reason
+
+{
+  "component_name": "Reject Invoice Button",
+  "component_role": "bursar",
+  "component_id": "btn_bursar_reject_invoice",
+  "component_class": ".btn.btn-danger",
+  "component_context": {
+    "taskId": "rec[invoiceIdentifier]",
+    "target": "invoices",
+    "target_key": "{invoice}.{status}",
+    "action": "REJECT.INVOICE",
+    "buttonText": "Reject Invoice",
+    "webhookSlug": "[rejectInvoiceWebhook]",
+    "confirm": "Reject this invoice? Please provide a reason.",
+    "successMessage": "Invoice rejected.",
+    "reversible": "yes"
+  },
+  "display_text": "Reject",
+  "icon": "fa-times-circle",
+  "action": {
+    "type": "modal",
+    "target": "/rejectInvoiceModal"
+  },
+  "role_access": "bursar"
+}

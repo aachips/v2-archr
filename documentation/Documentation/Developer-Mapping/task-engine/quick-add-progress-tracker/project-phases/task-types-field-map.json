@@ -1,0 +1,79 @@
+{
+    "task_types": [
+        {
+            "type": "ASSESS",
+            "label": "Complete Assessment",
+            "phase": 2,
+            "displayCondition": "displayAssess",
+            "fields": [
+                {"name": "date", "type": "date", "required": true},
+                {"name": "notes", "type": "textarea", "required": false},
+                {"name": "photos", "type": "file_upload", "required": false}
+            ],
+            "documents": [
+                {"type": "ASSESS_REPORT", "required": false, "triggerOn": "complete"}
+            ],
+            "ledgerEntry": {
+                "event_category": "task",
+                "event_type": "task_completed",
+                "entity_type": "assessment"
+            }
+        },
+        {
+            "type": "SCOPE",
+            "label": "Define Scope of Work",
+            "phase": 2,
+            "displayCondition": "displayScope",
+            "fields": [
+                {"name": "date", "type": "date", "required": true},
+                {"name": "scope_table", "type": "table", "columns": ["Task", "Location", "Cost"]}
+            ],
+            "documents": [
+                {"type": "SCOPE_DOC", "required": true, "triggerOn": "complete"}
+            ],
+            "ledgerEntry": {
+                "event_category": "task",
+                "event_type": "task_completed",
+                "entity_type": "scope"
+            }
+        },
+        {
+            "type": "START",
+            "label": "Start Work",
+            "phase": 3,
+            "displayCondition": "displayStart",
+            "fields": [
+                {"name": "date", "type": "date", "required": true},
+                {"name": "contract_upload", "type": "file_upload", "required": false}
+            ],
+            "documents": [
+                {"type": "CONTRACT", "required": false, "triggerOn": "upload"}
+            ],
+            "ledgerEntry": {
+                "event_category": "task",
+                "event_type": "task_completed",
+                "entity_type": "work_start"
+            }
+        },
+        {
+            "type": "COMPLETE",
+            "label": "Complete Work",
+            "phase": 5,
+            "displayCondition": "displayComplete",
+            "fields": [
+                {"name": "date", "type": "date", "required": true},
+                {"name": "certificate_upload", "type": "file_upload", "required": true},
+                {"name": "after_photos", "type": "file_upload", "required": false}
+            ],
+            "documents": [
+                {"type": "CERTIFICATE", "required": true, "triggerOn": "upload"},
+                {"type": "FINAL_PHOTOS", "required": false, "triggerOn": "upload"}
+            ],
+            "ledgerEntry": {
+                "event_category": "task",
+                "event_type": "task_completed",
+                "entity_type": "work_complete"
+            }
+        }
+    ]
+}

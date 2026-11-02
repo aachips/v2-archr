@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eventResolver.step3Config.v1",
+  "title": "Resolver Step 3 Completion Search Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["step3"],
+  "properties": {
+    "step3": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["completionSearch"],
+        "properties": {
+          "completionSearch": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "searchTableId",
+              "searchPrimaryFieldId",
+              "searchDeepFieldIds",
+              "jsonPrimaryKey",
+              "jsonDeepKeys"
+            ],
+            "properties": {
+              "searchTableId": {
+                "type": "string",
+                "pattern": "^tbl[A-Za-z0-9]+$"
+              },
+              "searchPrimaryFieldId": {
+                "type": "string",
+                "pattern": "^fld[A-Za-z0-9]+$"
+              },
+              "searchDeepFieldIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^fld[A-Za-z0-9]+$"
+                }
+              },
+              "jsonPrimaryKey": {
+                "type": "string",
+                "const": "completionSearchKey"
+              },
+              "jsonDeepKeys": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "outputKey": {
+                "type": "string",
+                "const": "completionFound"
+              },
+              "outputPath": {
+                "type": "string",
+                "const": "outputs.completionFound"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

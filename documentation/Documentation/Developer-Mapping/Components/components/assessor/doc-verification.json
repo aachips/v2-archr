@@ -1,0 +1,19 @@
+// Document Verification Button
+
+{
+  "component_name": "Income Verification Button",
+  "component_role": "assessor",
+  "component_id": "btn_verify_income",
+  "component_class": ".btn.btn-verify",
+  "component_context": {
+    "taskId": "rec[verifyIncome]",
+    "target": "document.poi",
+    "target_key": "{firstName}.{lastName}.ProofIncome.jpg",
+    "action": "DOCACT.VERIFY",
+    "buttonText": "Verify Income",
+    "webhookSlug": "[documentWebhook]",
+    "reversible": "yes",
+    "requires_physical_document": true,
+    "in_person_verification": true
+  }
+}

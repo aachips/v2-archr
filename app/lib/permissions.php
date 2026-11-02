@@ -37,7 +37,6 @@ const ARCHR_ROLE_LEVELS = [
     // Level 1 — Office Worker
     'assessor'      => 1,
     'subcontractor' => 1,
-    'envoy'         => 1,
     'crew-lead'     => 1,
     'tle-poc'       => 1,
 
@@ -47,6 +46,7 @@ const ARCHR_ROLE_LEVELS = [
     'org-admin'     => 2,
     'admin'         => 2,
     'caseworker'    => 2,
+    'envoy'         => 2,
 
     // Level 3 — Super Admin
     'super-admin'   => 3,
@@ -143,8 +143,8 @@ function archr_get_permission_level(?string $role): int {
         return 0;
     }
     $normalized = strtolower(trim($role));
-    // Handle space-separated variants ("crew lead" → "crew-lead")
-    $normalized = str_replace(' ', '-', $normalized);
+    // Handle space-separated and underscore variants ("crew lead" / "crew_lead" → "crew-lead")
+    $normalized = str_replace([' ', '_'], '-', $normalized);
     return ARCHR_ROLE_LEVELS[$normalized] ?? 0;
 }
 

@@ -1,0 +1,26 @@
+{
+  "ability": "Change Order Request",
+  "component": {
+    "type": "form",
+    "trigger": "menu action",
+    "title": "Request Change Order",
+    "fields": [
+      {"name": "job_id", "type": "hidden"},
+      {"name": "change_description", "type": "textarea", "required": true},
+      {"name": "additional_cost", "type": "currency", "placeholder": "$0.00"},
+      {"name": "additional_days", "type": "number", "placeholder": "0"},
+      {"name": "reason", "type": "select", "options": [
+        "Scope Change", "Material Issue", "Discovery", "Client Request"
+      ]},
+      {"name": "photos", "type": "file_upload", "optional": true}
+    ],
+    "actions": [
+      {"label": "Cancel", "action": "close"},
+      {"label": "Submit Request", "action": "submit"}
+    ]
+  },
+  "business_rules": {
+    "notifies_project_manager": true,
+    "requires_approval_for_budget_change": true
+  }
+}

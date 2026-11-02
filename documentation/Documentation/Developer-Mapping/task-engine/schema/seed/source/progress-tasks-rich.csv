@@ -1,0 +1,2531 @@
+﻿Task Title,Icon,Responsible Role,Task Name,Triggers/Notes,Completion Result,Context,Type,Frequency,Staff,Phase Checklists,Phase,Role Count,Parent Task,Child Task,Vol,Sub,Required,(id)phaseTask,Parent Count,Name (from Parent Task),SOW Path,Architecture,Architecture Table,[System] Interfaces,Fillout Forms,Next Up,Required Documents,Child Count,TaskNum,PhaseNumber,ProjectType,taskCode,TaskType,↔️Decision Choices,🟰Calculation Variables,📅Scheduling Dates,❇️Action,🤖Automation,EVENT_LOOKUP,(id)phaseTask (from Subtask),🏁phaseTaskNum,id(phase),id(phaseInterfaces),Start date,End date,[System] Functions,interfaceUrlBase,from Path (Volunteers),Assume Complete If,Triggers Completion Of,interfaceUrlPage,linkURL,base,writeTo,buttonColor,1.Triggers,2.Triggers>Triggers,3.Triggers>Triggers (from Triggers Completion Of),4.Triggers>Triggers (from Triggers Completion Of) (from Triggers Completion Of),5.Triggers>Triggers (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of),6.Triggers>Triggers (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of),7.Triggers>Triggers (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of),8.Triggers>Triggers (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of) (from Triggers Completion Of),1Count,2.Count,3Count,4Count,5Count,6Count,7Count,8Count,Calculation,triggers,triggerSummary,FIND_SCO,triggerEvent,TriggeredEvents,[DocTypes],Phase Rollup (from Phase Checklists),Calculation 2,Calculation 2 copy
+1. Intake: Pass Pre-Screening,,,Pass Pre-Screening,"Requestor hits ""Submit"" button on Intake Form & Passes ✅Eligibility Check for at least (1) Program
+","Phase 1: Intake Base:
+‘Applicants’ Record Created,
+‘Homes’ Record duplicate check
+Start Location Check
+",Intake Form,❇️Action,,,0. Submission | ,1. Intake,1,,"1. Intake: 🎯Project Record Created,0. Submission: Application Withdrawn",,,,recEFbHMayAEOUgtn,0,,,,,,"ARCHR Intake,(Referal): Intake,(FY26) Universal Intake",,,2,0.0,0,ALL#,[P:0] [ALL] [T:0],❇️,,,,_PRESCREEN_PASS_,,_PRESCREEN_PASS_,"rec03EoSZw54uQW58, recA7zimWpPTU0I9a",0.0,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,,,1. Intake: Phase 1 Complete,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Pass Pre-Screening > Triggers 0 tasks:
+- ⬛
+🔮",,,,,0. Submission,1.0,-1.0
+0. Submission: Location Check,,,Location Check,"Record Enters view
+[Base] Eligibility
+[Table] ARCHR Intake: Homes Sync
+[View] Report Fields","Attach all (Eligibility) Location records (County, City, Legacy) 
+Start income Check",,❇️Action,,,0. Submission | ,0. Submission,1,0. Submission: Application Submitted,,,,,recYVvmpYYPnX0aoI,1,0. Submission: Application Submitted,,,,,,,,0,1.1,0,ALL#,[P:0] [ALL] [T:1.1],❇️,,,,_APP_WITHDRAWL_,_SCREEN_LOCATION_,_APP_WITHDRAWL_,,0.1.1,recAdQdRQWMbu0ciw,,,,,,,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Location Check > Triggers 0 tasks:
+- ⬛
+🔮",,,,,0. Submission,2.1,0.1
+0. Submission: Income Check,,,Income Check,"Record Enters view
+[Base] Eligibility
+[Table] Reports Results
+[View] Location Check Complete",Search all (Eligibility) ,,🤖Automation,,,0. Submission | ,0. Submission,1,"0. Submission: Application Withdrawn,0. Submission: Application Submitted",1. Intake: 🎯Project Record Created,,,,recJODf4aW4wqYwKQ,2,"0. Submission: Application Withdrawn, 0. Submission: Application Submitted",,,,,,,,1,1.2,0,ALL#,[P:0] [ALL] [T:1.2],🤖,,,,,_SCREEN_INCOME_,_SCREEN_INCOME_,recA7zimWpPTU0I9a,0.1.2,recAdQdRQWMbu0ciw,,,,,,,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Income Check > Triggers 0 tasks:
+- ⬛
+🔮",,,,,0. Submission,2.2,0.2
+1. Intake: Initial Contact,admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Admin,Initial Contact,"1st Commslog record created
+","Contact Status update
+If(contactResult=‘Success’, ‘Contacted’, ‘Attempted ‘&{contactAttemptCount}&’ times’)",Admin Workspace,❇️Action,,,1. Intake | Admin,1. Intake,1,,"1. Intake: Phase 1 Complete,1. Intake: Claim Assessment,1. Intake: Assign Assessor",,,Always,rec8K1rbDiuonbRcM,0,,,{Contact Status},,Communication Log,,,,3,1.0,1,ALL#,[!] [P:1] [ALL] [T:1],❇️,,,,_INITIAL_CONTACT_,,_INITIAL_CONTACT_,"recCByobmCHKpl1c4, recF2WGQH6T5TLPNl, recJ1xTX2ObRDAUci",1.1,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,/comm,,"1. Intake: Assign Assessor,2. Processing: Perform Assessment,: Contact Made,1. Intake: Phase 1 Complete",,,/comm,comms,comms,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Initial Contact > Triggers 0 tasks:
+- ⬛
+🔮",,,,,1. Intake,2.0,0.0
+1. Intake: Claim Assessment,"admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),assess.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/IJtarznbFScxywDXlP9BwA/k6XBX6MVUL1sHh5Mh2y5T308wHINsq0ciCQ5uUw3mZdZnx7oLX6aMkv_AHn7TyWRzWOEH-jHQhCbqTFSUkpIP9idm34e0p5hhp9ddCNuOAWeqkw6TRwa8w2bJfAnFBXlfT6iYAZIKMDKoqc4R5cbsWyGHvoh8ckM_P_xyJglpuY/ZF4lwsl-A0fykULXLGO4L0m-ZWhjeBD1-swyi-sSrbM)",Admin OR Assessor,Claim Assessment,"""Claim Assessment"" button clicked in [⚡Info Gathering ] and 
+[📅Assessment] Record Created 
+Fields: {assessorId},{calendarEventId},{date} ","Assessment Status update
+‘Scheduled | ’ &
+If(assignedAssessor, {assignedAssessor}, ‘needs Assessor’)
+Start Assessor Assignment ",,📅Scheduling,,,"1. Intake | Admin,1. Intake | Assessor",1. Intake,2,1. Intake: Initial Contact,"1. Intake: Phase 1 Complete,1. Intake: Schedule Assessment",,,,recF2WGQH6T5TLPNl,1,1. Intake: Initial Contact,,{Assessment Status},,Assessment Builder,,,,2,2.1,1,ALL#,[P:1] [ALL] [T:2.1],📅,_ASSESSOR_ASSIGN_SELF_,,_ASSESSMENT_CLAIM_,,,_ASSESSMENT_CLAIM_,"recCByobmCHKpl1c4, recNQKAjLe2rgXbb6",1.2.1,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,/assess,1. Intake: Assign Assessor,,1. Intake: Assign Assessor,/upcoming,/assess/upcoming,assess:,assess:claims,#e3d9f2,"-----START-----
+### ⚙️Claim Assessment > Triggers 1 tasks:
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+------END------
+
+","-----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+",,,,,,,1,1,,,,,,,2,Assign Assessor,"### ⚙️Claim Assessment > Triggers 1 tasks:
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_",,"### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_",_ASSESSOR_ASSIGN_,,1. Intake,3.1,1.1
+1. Intake: Assign Assessor,"assess.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/IJtarznbFScxywDXlP9BwA/k6XBX6MVUL1sHh5Mh2y5T308wHINsq0ciCQ5uUw3mZdZnx7oLX6aMkv_AHn7TyWRzWOEH-jHQhCbqTFSUkpIP9idm34e0p5hhp9ddCNuOAWeqkw6TRwa8w2bJfAnFBXlfT6iYAZIKMDKoqc4R5cbsWyGHvoh8ckM_P_xyJglpuY/ZF4lwsl-A0fykULXLGO4L0m-ZWhjeBD1-swyi-sSrbM),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Assessor,Assign Assessor,"Assessment Scheduled, no assigned Assessor","Assessment Status Update
+‘Scheduled | ‘&{assignedAssessor}",,↔️Decision,,,"1. Intake | Assessor,1. Intake | Admin",1. Intake,2,1. Intake: Initial Contact,"1. Intake: Phase 1 Complete,2. Processing: Perform Assessment",,,Always,recJ1xTX2ObRDAUci,1,1. Intake: Initial Contact,,,checked,Assessment Builder,,,,2,2.2,1,ALL#,[!] [P:1] [ALL] [T:2.2],↔️,_ASSESSOR_ASSIGN_,,,,,_ASSESSOR_ASSIGN_,"recCByobmCHKpl1c4, rec5swkBSeLw6M7l8",1.2.2,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,/assess,1. Intake: Claim Assessment,"2. Processing: Perform Assessment,1. Intake: Claim Assessment,1. Intake: Phase 1 Complete",1. Intake: Initial Contact,/upcoming,/assess/upcoming,assess:,assess:claims,#e3d9f2,"-----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+",,,,,,,,1,,,,,,,,1,Initial Contact,"### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_",,"### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_",_INITIAL_CONTACT_,,1. Intake,3.2,1.2
+2. Processing: Perform Assessment,assess.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/IJtarznbFScxywDXlP9BwA/k6XBX6MVUL1sHh5Mh2y5T308wHINsq0ciCQ5uUw3mZdZnx7oLX6aMkv_AHn7TyWRzWOEH-jHQhCbqTFSUkpIP9idm34e0p5hhp9ddCNuOAWeqkw6TRwa8w2bJfAnFBXlfT6iYAZIKMDKoqc4R5cbsWyGHvoh8ckM_P_xyJglpuY/ZF4lwsl-A0fykULXLGO4L0m-ZWhjeBD1-swyi-sSrbM),Assessor,Perform Assessment,‘Assessment Report’ created in Assessor Base,,,❇️Action,,,2. Processing | Assessor,2. Processing,1,"1. Intake: Assign Assessor,1. Intake: Schedule Assessment","2. Processing: Create Project Scope of Work,2. Processing: Create Assessment Report,2. Processing: Upload Before Photos",,,Always,rec5swkBSeLw6M7l8,2,"1. Intake: Assign Assessor, 1. Intake: Schedule Assessment",,,,Assessment Builder,[R] Create Repair Need,,,3,2.0,2,ALL#,[!] [P:2] [ALL] [T:2],❇️,,,,_ASSESSMENT_REPORT_CREATED_,,_ASSESSMENT_REPORT_CREATED_,"recTCAtwFN5QzX26C, rec1nyw9tMmUKhlnc, recrGlehSKp7xjXWc",2.2,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/assess,,2. Processing: Phase 2 Complete,"1. Intake: Assign Assessor,1. Intake: Initial Contact,1. Intake: Schedule Assessment",,/assess,assess:,assess:reports,#d9f0f2,"-----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+","-----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+",,,,,,,3,1,,,,,,,4,"Assign Assessor
+Initial Contact
+Schedule Assessment","### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- ",,"### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- ","_ASSESSOR_ASSIGN_, _INITIAL_CONTACT_",,2. Processing,3.0,1.0
+1. Intake: Collect Income Documents,admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Admin,Collect Income Documents,"Description: 
+When Income Documents (w2, paystubs, ssi benefits letter, zero income affidavit) for all >18yo Household Members are present in Project Documents, ","Income Status Update
+‘Has Documents’",,❇️Action,,,1. Intake | Admin,1. Intake,1,,"1. Intake: Phase 1 Complete,2. Processing: Verify Income Documents",,,Always,recJ6am1dcJUywrLK,0,,,{Income Proven},,App Documents,,checked,[POI] | Proof of Income,2,4.0,1,ALL#,[!] [P:1] [ALL] [T:4],❇️,,,,_DOCTYPE_POI_,,_DOCTYPE_POI_,"recCByobmCHKpl1c4, recjjuHYa4oxnfX0S",1.4,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,/appdoc,,"2. Processing: Confirm Eligibility,5. Report: Complete ARCHR Draw Request Workbook",,/app,/appdoc/app,docs:,docs:applicant,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Collect Income Documents > Triggers 0 tasks:
+- ⬛
+🔮",,,,[POI] | Proof of Income,1. Intake,5.0,3.0
+2. Processing: Confirm Eligibility,admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Admin,Confirm Eligibility,"Proven income < 80%AMI, 
+Property Card Matches Application,
+OR Mobile Home Title/Bill of Sale Collected",,,🟰Calculation,,,2. Processing | Admin,2. Processing,1,"2. Processing: Verify Income Documents,2. Processing: Verify Ownership Documents",1. Intake: Phase 1 Complete,,,Always,recP0l6lcNAYOXehl,2,"2. Processing: Verify Income Documents, 2. Processing: Verify Ownership Documents",,"{Assessor Assigned},{Income Proven},{Ownership Proven}",,Info Gather,,checked,,1,3.0,2,ALL#,[!] [P:2] [ALL] [T:3],🟰,,"_CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_",,,,"_CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_",recCByobmCHKpl1c4,2.3,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/review,,"5. Report: Complete ARCHR Draw Request Workbook,1. Intake: Phase 1 Complete","1. Intake: Collect Income Documents,1. Intake: Collect Ownership Documents",/confirm,/review/confirm,progress:,progress:events,#e3d9f2,"-----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+",,,,,,,,2,,,,,,,,2,"Collect Income Documents
+Collect Ownership Documents","### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_",,"### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_","_DOCTYPE_POI_, _DOCTYPE_POI_",,2. Processing,4.0,2.0
+2. Processing: Create Repair Task List,pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),Project Manager,Create Repair Task List,Project Tasks Created,"Marketplace Status Update:
+‘Tasks Available’",,↔️Decision,,,2. Processing | Project Manager,2. Processing,1,2. Processing: Create Assessment Report,1. Intake: Phase 1 Complete,,,Always,recZPEng4aO9gUM14,1,2. Processing: Create Assessment Report,,{Scope Tasks},,Workflow Builder,,checked,,1,4.0,2,ALL#,[!] [P:2] [ALL] [T:4],↔️,_REPAIR_TASKS_,,,,,_REPAIR_TASKS_,recCByobmCHKpl1c4,2.4,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/workflow,,"2. Processing: Create Project Scope of Work,3. Planning: Schedule Project Start",,/upcoming/tasks,/workflow/upcoming/tasks,project:,project:tasks,#d0defb,,,,,,,,,0,,,,,,,,0,,"### ⚙️Create Repair Task List > Triggers 0 tasks:
+- ⬛
+🔮",,,,,2. Processing,5.0,3.0
+1. Intake: Phase 1 Complete,,,Phase 1 Complete,All ,"Enters View ‘Phase 1 Complete’ 
+Visible in Phase 2: Processing Base",,🤖Automation,,,1. Intake | ,1. Intake,1,"2. Processing: Create Repair Task List,1. Intake: Initial Contact,1. Intake: Claim Assessment,1. Intake: Assign Assessor,1. Intake: Collect Income Documents,2. Processing: Confirm Eligibility,1. Intake: Collect Ownership Documents","3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,2. Processing: Upload Subcontractor Estimate,2. Processing: Phase 2 Complete,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Reject Contract",,,Always,recCByobmCHKpl1c4,7,"2. Processing: Create Repair Task List, 1. Intake: Initial Contact, 1. Intake: Claim Assessment, 1. Intake: Assign Assessor, 1. Intake: Collect Income Documents, 2. Processing: Confirm Eligibility, 1. Intake: Collect Ownership Documents",,,,,,checked,,10,11.0,1,ALL#,[!] [P:1] [ALL] [T:11],🤖,,,,,_PHASE_1_COMPLETE_,_PHASE_1_COMPLETE_,"recpArSUCM6Ym0HXI, rec8oWBvtgAf4Ihta, recRREfIHvazevhTG, receP7AJFhLCdVLbj, recBmRIcSI9HjIhfw, recj1JzqhKneYqULZ, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, recjuZlvBfPn8KW25",1.11,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,,,"5. Report: Phase 5 Complete,2. Processing: Phase 2 Complete,3. Planning: Phase 3 Complete,4. Project: Phase 4 Complete","1. Intake: Initial Contact,1. Intake: Pass Pre-Screening,2. Processing: Confirm Eligibility,1. Intake: 🎯Project Record Created,1. Intake: Assign Assessor",,,progress:,progress:events,,"-----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+","-----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+",,,,,,,5,"2, 1",,,,,,,8,"Initial Contact
+Pass Pre-Screening
+Confirm Eligibility
+🎯Project Record Created
+Assign Assessor","### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_",,"### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_","_INITIAL_CONTACT_, _PRESCREEN_PASS_, _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_, _ANCHOR_PROJECT_NEW_, _ASSESSOR_ASSIGN_",,1. Intake,12.0,10.0
+2. Processing: Create Project Scope of Work,pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),Project Manager,Create Project Scope of Work,"Phase 1 Complete
+Marketplace Tasks Claimed","Active Partner(s) Update: add {User:Org}
+If(availableTasks=0,
+Marketplace Task Status Update:
+‘Tasks Claimed’) ",,↔️Decision,,,2. Processing | Project Manager,2. Processing,1,2. Processing: Perform Assessment,"3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,2. Processing: Upload Subcontractor Estimate,2. Processing: Phase 2 Complete,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,3. Planning: Reject Contract",,,Always,recTCAtwFN5QzX26C,1,2. Processing: Perform Assessment,"Subcontractor,Volunteer,Staff",Scopes of Work,,Workflow Builder,,checked,,11,4.2,2,ALL#,[!] [P:2] [ALL] [T:4.2],↔️,_AVAILABLE_TASKS_,,,,,_AVAILABLE_TASKS_,"recpArSUCM6Ym0HXI, rec8oWBvtgAf4Ihta, recRREfIHvazevhTG, receP7AJFhLCdVLbj, recBmRIcSI9HjIhfw, recj1JzqhKneYqULZ, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recjuZlvBfPn8KW25",2.4.2,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/workflow,,2. Processing: Phase 2 Complete,2. Processing: Create Repair Task List,/upcoming/tasks,/workflow/upcoming/tasks,project:,project:tasks,#d0defb,"-----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+",,,,,,,,1,,,,,,,,1,Create Repair Task List,"### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_",,"### _EVENT_LOOKUP_
+- _REPAIR_TASKS_",_REPAIR_TASKS_,,2. Processing,5.2,3.2
+3. Planning: Assign Work Crew,pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),Project Manager,Assign Work Crew,,,,↔️Decision,,,3. Planning | Project Manager,3. Planning,1,2. Processing: Determine Labor Pool,"3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,4. Project: Initial Material Run,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Create Initial Materiasl List,3. Planning: Sign Contract,3. Planning: Reject Contract",,,Path,recxTlj79rRVcKveB,1,2. Processing: Determine Labor Pool,Staff,,,Workflow Builder,,,,9,2.1,3,STAFF#,[!] [P:3] [STAFF] [T:2.1],↔️,_LABOR_STAFF_ASSIGN_,,,,,_LABOR_STAFF_ASSIGN_,"recBmRIcSI9HjIhfw, recj1JzqhKneYqULZ, recDLDbkj5VNmQI1U, recADe9hQj7RMDSsb, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recMdZquXC9Kq8BU0, recjuZlvBfPn8KW25",3.2.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/workflow,,4. Project: Initial Material Run,2. Processing: Determine Labor Pool,/upcoming/crews,/workflow/upcoming/crews,project:,project:labor,#d0defb,"-----START-----
+### ⚙️Assign Work Crew > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,,1,,,,,,,,1,Determine Labor Pool,"### ⚙️Assign Work Crew > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮",,,,,3. Planning,3.1,1.1
+2. Processing: Determine Labor Pool,pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),Project Manager,Determine Labor Pool,Scope Of Work created,Phase 2. Processing Application>,,↔️Decision,,,2. Processing | Project Manager,2. Processing,1,2. Processing: Create Assessment Report,"3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Assign Work Crew,2. Processing: Upload Subcontractor Estimate,2. Processing: Phase 2 Complete,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,3. Planning: Reject Contract,3. Planning: Assign Volunteer Groups",,,Always,recfYo3Z4XUbrMV9Y,1,2. Processing: Create Assessment Report,"Subcontractor,Volunteer,Staff",,,Workflow Builder,,,,13,4.1,2,ALL#,[!] [P:2] [ALL] [T:4.1],↔️,,,,_LABOR_SET_,,,"recpArSUCM6Ym0HXI, rec8oWBvtgAf4Ihta, recxTlj79rRVcKveB, recRREfIHvazevhTG, receP7AJFhLCdVLbj, recBmRIcSI9HjIhfw, recj1JzqhKneYqULZ, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recjuZlvBfPn8KW25, recgqOYUhiKGhCVno",2.4.1,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/workflow,,"3. Planning: Create Contract,2. Processing: Determine Volunteer Slots,3. Planning: Assign Work Crew,3. Planning: Assign Volunteer Groups,3. Planning: Assign Subcontractor,5. Report: Record Actual Labor Expenses,4. Project: Assign Vehicle Drivers",,/upcomming/labor,/workflow/upcomming/labor,project:,project:labor,#d0defb,,,,,,,,,0,,,,,,,,0,,"### ⚙️Determine Labor Pool > Triggers 0 tasks:
+- ⬛
+🔮",,,,,2. Processing,5.1,3.1
+2. Processing: Determine Volunteer Slots,pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),Project Manager,Determine Volunteer Slots,Scope Of Work:{Labor} HAS Volunteer,"Phase2App> Volunteer Status Update: 
+If({Volunteer Capacity}, {Volunteer Capacity}, ‘No’ & ‘ Volunteer(s) Needed’)
+
+
+8/20 Field needed:{Volunteer Capacity}>Roundup@Task
+Only Show:{taskStatus != ‘Complete’} [sum(volunteerSlots)]",,↔️Decision,,,2. Processing | Project Manager,2. Processing,1,2. Processing: Create Assessment Report,"3. Planning: Determine Project Timeline,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,3. Planning: Reject Contract,3. Planning: Assign Volunteer Groups",checked,,Path,rec7ZstZpVhT8SJOY,1,2. Processing: Create Assessment Report,Volunteer,,,Workflow Builder,,,,7,4.2,2,VOL#,[!] [P:2] [VOL] [T:4.2],↔️,_VOL_COUNT_,,,,,_VOL_COUNT_,"recBmRIcSI9HjIhfw, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recjuZlvBfPn8KW25, recgqOYUhiKGhCVno",2.4.2,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/workflow,2. Processing: Determine Labor Pool,"3. Planning: Assign Volunteer Groups,4. Project: Sign In Volunteers,4. Project:  Assign Tomorrow Volunteers",2. Processing: Determine Labor Pool,/upcoming/vols,/workflow/upcoming/vols,project:,project:vols,#d0defb,"-----START-----
+### ⚙️Determine Volunteer Slots > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,,1,,,,,,,,1,Determine Labor Pool,"### ⚙️Determine Volunteer Slots > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮",,,,,2. Processing,5.2,3.2
+3. Planning: Assign Subcontractor,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es)",Crew Lead OR Project Manager,Assign Subcontractor,Scope of Work:{Labor} HAS ‘Subcontractor’,"Alert! 
+Bid Request @{Subcontractor}>{Contact}
+
+{Subcontractor Status} Update:
+‘Bid Request Sent’",,↔️Decision,,,"3. Planning | Project Manager,2. Processing | Crew Lead",3. Planning,2,"2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,1. Intake: Phase 1 Complete","2. Processing: Schedule Subcontractor Estimate,2. Processing: Upload Subcontractor Estimate,2. Processing: Phase 2 Complete,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,3. Planning: Schedule Subcontractor Start,5. Report: Record Actual Subcontractor Expenses,3. Planning: Reject Contract",,checked,Path,recpArSUCM6Ym0HXI,3,"2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 1. Intake: Phase 1 Complete",Subcontractor,,,Workflow Builder,,,,12,2.1,3,SUB#,[!] [P:3] [SUB] [T:2.1],↔️,_LABOR_SUB_ASSIGN_,,,,,_LABOR_SUB_ASSIGN_,"rec8oWBvtgAf4Ihta, recRREfIHvazevhTG, receP7AJFhLCdVLbj, recBmRIcSI9HjIhfw, recj1JzqhKneYqULZ, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recbWRwkEMXROgQxQ, recSEg4Dygg4MEZJ0, recjuZlvBfPn8KW25",3.2.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/workflow,,"2. Processing: Schedule Subcontractor Estimate,3. Planning: Approve Subcontractor Estimate,3. Planning: Schedule Subcontractor Start,5. Report: Record Actual Subcontractor Expenses",2. Processing: Determine Labor Pool,/upcomming/subs,/workflow/upcomming/subs,project:,project:labor,#fbe2d0,"-----START-----
+### ⚙️Assign Subcontractor > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,,1,,,,,,,,1,Determine Labor Pool,"### ⚙️Assign Subcontractor > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮",,,,[SUB] | Subcontractor Documents,"3. Planning, 2. Processing",3.1,1.1
+2. Processing: Schedule Subcontractor Estimate,"admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Subcontractor.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/0mGS0t9N1MRfKw3KKaRBnA/kxoHBJTrUo-55dGA3s8C_gIqo7sj56cOnahNvJlTpzYOhc_mGmsvKL3gagd4Hdhqo77Bl_8DubwXGIe62FyZ9-Q7bAqkbKoABMGwVGxf5qpfiJw4OvePx_OCbGNrB8dS7pFZGMP4wxPKDIUMsTqp_DAZffxoIPbRJtH6PQJapg4/1ly70gwCkJZkm2nW7n76pjxPSFRh_zdyoGrvDYkEoOA)",Admin OR Subcontractor,Schedule Subcontractor Estimate,Subcontractor Accepts Bid Request,"Calendar Event Created> Subcontractor Estimate
+
+Alert! PM & Admin",,📅Scheduling,,,"2. Processing | Admin,2. Processing | Subcontractor",2. Processing,2,"2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,1. Intake: Phase 1 Complete,3. Planning: Assign Subcontractor","2. Processing: Upload Subcontractor Estimate,2. Processing: Phase 2 Complete,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,5. Report: Record Actual Subcontractor Expenses,3. Planning: Reject Contract",,checked,Path,rec8oWBvtgAf4Ihta,4,"2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 1. Intake: Phase 1 Complete, 3. Planning: Assign Subcontractor",Subcontractor,,,Workflow Builder,,,,10,4.2,2,SUB#,[!] [P:2] [SUB] [T:4.2],📅,,,_SUB_WALK_DATE_,,,_SUB_WALK_DATE_,"recRREfIHvazevhTG, receP7AJFhLCdVLbj, recBmRIcSI9HjIhfw, recj1JzqhKneYqULZ, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recSEg4Dygg4MEZJ0, recjuZlvBfPn8KW25",2.4.2,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/workflow,,2. Processing: Upload Subcontractor Estimate,3. Planning: Assign Subcontractor,/upcoming/subs,/workflow/upcoming/subs,project:,project:subs,#e3d9f2,"-----START-----
+### ⚙️Schedule Subcontractor Estimate > Triggers 1 tasks:
+- ⬛Assign Subcontractor
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_
+------END------
+
+","-----START-----
+### ⚙️Assign Subcontractor > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,1,1,,,,,,,2,Assign Subcontractor,"### ⚙️Schedule Subcontractor Estimate > Triggers 1 tasks:
+- ⬛Assign Subcontractor
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_",,"### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_",_LABOR_SUB_ASSIGN_,,2. Processing,5.2,3.2
+2. Processing: Upload Subcontractor Estimate,"Subcontractor.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/0mGS0t9N1MRfKw3KKaRBnA/kxoHBJTrUo-55dGA3s8C_gIqo7sj56cOnahNvJlTpzYOhc_mGmsvKL3gagd4Hdhqo77Bl_8DubwXGIe62FyZ9-Q7bAqkbKoABMGwVGxf5qpfiJw4OvePx_OCbGNrB8dS7pFZGMP4wxPKDIUMsTqp_DAZffxoIPbRJtH6PQJapg4/1ly70gwCkJZkm2nW7n76pjxPSFRh_zdyoGrvDYkEoOA),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Project Manager OR Subcontractor,Upload Subcontractor Estimate,Calendar Event ‘Subcontractor Estimate’ BEFORE NOW(),"Update {Subcontractor Status} 
+‘Estimate Created’
+
+Calendar Event ‘Subcontractor Estimate Received’ Created
+
+Alert! PM",,❇️Action,,,"2. Processing | Subcontractor,2. Processing | Project Manager",2. Processing,2,"2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,1. Intake: Phase 1 Complete,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate","3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,3. Planning: Reject Subcontractor Estimate,3. Planning: Reject Contract,3. Planning: Approve Subcontractor Estimate",,checked,Path,recRREfIHvazevhTG,5,"2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 1. Intake: Phase 1 Complete, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate",Subcontractor,,,App Documents,,,Estimate,9,4.3,2,SUB#,[!] [P:2] [SUB] [T:4.3],❇️,,,,_DOCTYPE_EST_,,_DOCTYPE_EST_,"recBmRIcSI9HjIhfw, recj1JzqhKneYqULZ, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, reckaLsrem7kYOWuX, recjuZlvBfPn8KW25, recOab4qTVhWacn2V",2.4.3,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/appdoc,,3. Planning: Approve Subcontractor Estimate,2. Processing: Schedule Subcontractor Estimate,/subs,/appdoc/subs,docs:,docs:sub,#d0defb,"-----START-----
+### ⚙️Upload Subcontractor Estimate > Triggers 1 tasks:
+- ⬛Schedule Subcontractor Estimate
+🔮### _EVENT_LOOKUP_
+- _SUB_WALK_DATE_
+------END------
+
+","-----START-----
+### ⚙️Schedule Subcontractor Estimate > Triggers 1 tasks:
+- ⬛Assign Subcontractor
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_
+------END------
+
+","-----START-----
+### ⚙️Assign Subcontractor > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,1,1,1,,,,,,3,Schedule Subcontractor Estimate,"### ⚙️Upload Subcontractor Estimate > Triggers 1 tasks:
+- ⬛Schedule Subcontractor Estimate
+🔮### _EVENT_LOOKUP_
+- _SUB_WALK_DATE_",,"### _EVENT_LOOKUP_
+- _SUB_WALK_DATE_",_SUB_WALK_DATE_,Estimate,2. Processing,5.3,3.3
+3. Planning: Determine Project Timeline,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es)",Crew Lead OR Project Manager,Determine Project Timeline,"IF(FIND(‘Subcontractor’, 
+Scope of Work:{Labor}), 
+IF({Subcontractor Status}=‘Estimate Uploaded’, TRUE()),
+IF(FIND(‘Staff’, 
+Scope of Work:{Labor}), 
+IF({Work Crew}, TRUE()),
+IF(FIND(‘Volunteers’, 
+Scope of Work:{Labor}), 
+{Volunteer Status}, TRUE())))))","Scope Of Work: {Estimated Project Duration} Set
+
+",,🟰Calculation,,,"3. Planning | Project Manager,2. Processing | Crew Lead",3. Planning,2,"2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,1. Intake: Phase 1 Complete,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Assign Work Crew,2. Processing: Upload Subcontractor Estimate,2. Processing: Determine Volunteer Slots","2. Processing: Phase 2 Complete,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,3. Planning: Reject Contract",,,Always,recBmRIcSI9HjIhfw,8,"2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 1. Intake: Phase 1 Complete, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate, 3. Planning: Assign Work Crew, 2. Processing: Upload Subcontractor Estimate, 2. Processing: Determine Volunteer Slots","Subcontractor,Volunteer,Staff",,,Workflow Builder,,checked,,7,1.0,3,ALL#,[!] [P:3] [ALL] [T:1],🟰,,_PROJECT_END_DATE_,,,,_PROJECT_END_DATE_,"receP7AJFhLCdVLbj, recj1JzqhKneYqULZ, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recjuZlvBfPn8KW25",3.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/workflow,,"3. Planning: Schedule Project Start,2. Processing: Phase 2 Complete",,/upcoming/timeline,/workflow/upcoming/timeline,project:,project:timeline,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Determine Project Timeline > Triggers 0 tasks:
+- ⬛
+🔮",,,,,"3. Planning, 2. Processing",2.0,0.0
+2. Processing: Determine Project Budget,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Crew Lead OR Project Manager,Determine Project Budget,"Scope of Work Created
+IF({Subcontractor}, {subEstimate})",,,🟰Calculation,,,"2. Processing | Crew Lead,2. Processing | Project Manager",2. Processing,2,"2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,1. Intake: Phase 1 Complete,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Assign Work Crew,2. Processing: Upload Subcontractor Estimate,3. Planning: Determine Project Timeline","2. Processing: Phase 2 Complete,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,3. Planning: Reject Contract",,,Always,recj1JzqhKneYqULZ,8,"2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 1. Intake: Phase 1 Complete, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate, 3. Planning: Assign Work Crew, 2. Processing: Upload Subcontractor Estimate, 3. Planning: Determine Project Timeline","Subcontractor,Volunteer,Staff",,,Workflow Builder,,checked,,6,5.0,2,ALL#,[!] [P:2] [ALL] [T:5],🟰,,"_REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_",,,,"_REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_","receP7AJFhLCdVLbj, recDLDbkj5VNmQI1U, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recjuZlvBfPn8KW25",2.5,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,/workflow,,"3. Planning: Create Contract,2. Processing: Phase 2 Complete",,/upcoming/budget,/workflow/upcoming/budget,project:,project:budgets,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Determine Project Budget > Triggers 0 tasks:
+- ⬛
+🔮",,,,,2. Processing,6.0,4.0
+3. Planning: Create Contract,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Create Contract,"‘Create Contract’ Clicked
+Webhook: Create Contract success","Contract Record Created
+Contracts:{generatedContract} uploaded
+Contract Status = ‘Awaiting Approval’
+
+Begin Contract Approval
+Alert! {Active Partner(s)}:{Contract Signatory}
+",,❇️Action,,,"3. Planning | Project Manager,2. Processing | Admin",3. Planning,2,"3. Planning: Reject Contract,2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,1. Intake: Phase 1 Complete,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Assign Work Crew,2. Processing: Upload Subcontractor Estimate,2. Processing: Determine Volunteer Slots,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget","2. Processing: Phase 2 Complete,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract,3. Planning: Reject Contract",,,Always,recDLDbkj5VNmQI1U,11,"3. Planning: Reject Contract, 2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 1. Intake: Phase 1 Complete, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate, 3. Planning: Assign Work Crew, 2. Processing: Upload Subcontractor Estimate, 2. Processing: Determine Volunteer Slots, 3. Planning: Determine Project Timeline, 2. Processing: Determine Project Budget","Subcontractor,Volunteer,Staff",,,App Documents,,checked,"Contract,[PRJ] | Project Documents",5,3.0,3,ALL#,[!] [P:3] [ALL] [T:3],❇️,,,,_DOCTYPE_CON_,,_DOCTYPE_CON_,"receP7AJFhLCdVLbj, recNKLgmE3mt27uMY, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ, recjuZlvBfPn8KW25",3.3,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/appdoc,,"3. Planning: Sign Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing,2. Processing: Phase 2 Complete","2. Processing: Determine Project Budget,2. Processing: Determine Labor Pool",/create,/appdoc/create,docs:,docs:project,#e3d9f2,"-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,,,,,,,2,,,,,,,,2,"Determine Project Budget
+Determine Labor Pool","### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- ",,"### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- ","_REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_","Contract,[PRJ] | Project Documents","3. Planning, 2. Processing",4.0,2.0
+3. Planning: Approve Contract,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Approve Contract,{contractSignatory} responds to Alert!,"Contract Status Updated 
+IF(Approve, ‘Approved’)
+Copy {Contract Signatory}>{Signature}
+TO Contract:{approvalSignature}
+Calendar Event ‘Contract Approved’ Created
+
+Alert! PM & Admin
+IF({eSign}=checked, begin eSignContract)
+
+
+IF(Reject, ‘Rejected’)
+Calendar Event ‘Contract Rejected’ Created
+Alert! PM & Admin",,↔️Decision,,,"3. Planning | Project Manager,2. Processing | Admin",3. Planning,2,"2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,1. Intake: Phase 1 Complete,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Assign Work Crew,2. Processing: Upload Subcontractor Estimate,2. Processing: Determine Volunteer Slots,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract","2. Processing: Phase 2 Complete,3. Planning: Schedule Contract Signing,3. Planning: Sign Contract",,,Always,recNKLgmE3mt27uMY,11,"2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 1. Intake: Phase 1 Complete, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate, 3. Planning: Assign Work Crew, 2. Processing: Upload Subcontractor Estimate, 2. Processing: Determine Volunteer Slots, 3. Planning: Determine Project Timeline, 2. Processing: Determine Project Budget, 3. Planning: Create Contract","Subcontractor,Volunteer,Staff",,,App Documents,,checked,"Contract,[PRJ] | Project Documents",3,3.1,3,ALL#,[!] [P:3] [ALL] [T:3.1],↔️,_DOCTYPE_CON_APPROVE_,,,,,_DOCTYPE_CON_APPROVE_,"receP7AJFhLCdVLbj, recvW0lhfbCUhV4YI, reciZB2oCungIvAUZ",3.3.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/appdoc,2. Processing: Reject Contract,"3. Planning: Sign Contract,2. Processing: Phase 2 Complete",3. Planning: Create Contract,/approve,/appdoc/approve,docs:,docs:events,#e3d9f2,"-----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,,,,,,1,2,,,,,,,3,Create Contract,"### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_",,"### _EVENT_LOOKUP_
+- _DOCTYPE_CON_",_DOCTYPE_CON_,,"3. Planning, 2. Processing",4.1,2.1
+3. Planning: Schedule Contract Signing,admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Admin,Schedule Contract Signing,"Contract{e-sign!=checked)
+Contract Status = ‘Approved’","Calendar Event ‘Contract Signing’ Created
+Alert! PM & Admin & Crew Lead",,📅Scheduling,,,3. Planning | Admin,3. Planning,1,"2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,1. Intake: Phase 1 Complete,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Assign Work Crew,2. Processing: Upload Subcontractor Estimate,2. Processing: Determine Volunteer Slots,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract","2. Processing: Phase 2 Complete,3. Planning: Sign Contract",,,,recvW0lhfbCUhV4YI,12,"2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 1. Intake: Phase 1 Complete, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate, 3. Planning: Assign Work Crew, 2. Processing: Upload Subcontractor Estimate, 2. Processing: Determine Volunteer Slots, 3. Planning: Determine Project Timeline, 2. Processing: Determine Project Budget, 3. Planning: Create Contract, 3. Planning: Approve Contract","Subcontractor,Volunteer,Staff",,,Scheduler,,,"Contract,[PRJ] | Project Documents",2,3.2,3,ALL#,[P:3] [ALL] [T:3.2],📅,,,_CONTRACT_SIGN_DATE_,,,_CONTRACT_SIGN_DATE_,"receP7AJFhLCdVLbj, reciZB2oCungIvAUZ",3.3.2,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/sched,,,3. Planning: Create Contract,,/sched,progress:,progress:events,#e3d9f2,"-----START-----
+### ⚙️Schedule Contract Signing > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,,,,,,1,2,,,,,,,3,Create Contract,"### ⚙️Schedule Contract Signing > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_",,"### _EVENT_LOOKUP_
+- _DOCTYPE_CON_",_DOCTYPE_CON_,,3. Planning,4.2,2.2
+3. Planning: Sign Contract,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Sign Contract,,,,❇️Action,,,"3. Planning | Project Manager,3. Planning | Admin",3. Planning,2,"2. Processing: Determine Volunteer Slots,2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Assign Work Crew,2. Processing: Upload Subcontractor Estimate,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing","2. Processing: Phase 2 Complete,4. Project: Complete Project Repair Tasks",,,Always,reciZB2oCungIvAUZ,12,"2. Processing: Determine Volunteer Slots, 2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate, 3. Planning: Assign Work Crew, 2. Processing: Upload Subcontractor Estimate, 3. Planning: Determine Project Timeline, 2. Processing: Determine Project Budget, 3. Planning: Create Contract, 3. Planning: Approve Contract, 3. Planning: Schedule Contract Signing","Subcontractor,Volunteer,Staff",,,App Documents,,checked,"Contract,[PRJ] | Project Documents",2,4.0,3,ALL#,[!] [P:3] [ALL] [T:4],❇️,,,,_DOCTYPE_CON_SIGNED_,,_DOCTYPE_CON_SIGNED_,"receP7AJFhLCdVLbj, recKqH0TYFAX8twEd",3.4,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/appdoc,,"4. Project: Create Scope of Work Change Order,2. Processing: Phase 2 Complete","3. Planning: Create Contract,3. Planning: Approve Contract",/sign,/appdoc/sign,docs:,docs:project,#e3d9f2,"-----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,,,,,2,"2, 1",2,,,,,,7,"Create Contract
+Approve Contract","### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_",,"### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_","_DOCTYPE_CON_, _DOCTYPE_CON_APPROVE_",,3. Planning,5.0,3.0
+2. Processing: Phase 2 Complete,,,Phase 2 Complete,,"Enters View ‘Phase 2 Complete’ 
+Visible in Phase 3: Planning Base",,🤖Automation,,,2. Processing | ,2. Processing,1,"1. Intake: Phase 1 Complete,3. Planning: Sign Contract,2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Schedule Contract Signing","3. Planning: Phase 3 Complete,4. Project: Initial Material Run,3. Planning: Create Initial Materiasl List,3. Planning: Schedule Subcontractor Start,3. Planning: Schedule Project Start,3. Planning: Reject Subcontractor Estimate,3. Planning: Approve Subcontractor Estimate,3. Planning: Assign Volunteer Groups",,,Always,receP7AJFhLCdVLbj,11,"1. Intake: Phase 1 Complete, 3. Planning: Sign Contract, 2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate, 3. Planning: Determine Project Timeline, 2. Processing: Determine Project Budget, 3. Planning: Create Contract, 3. Planning: Approve Contract, 3. Planning: Schedule Contract Signing",,,,,,checked,,8,22.0,2,ALL#,[!] [P:2] [ALL] [T:22],🤖,,,,,_PHASE_2_COMPLETE_,_PHASE_2_COMPLETE_,"recWSNbRCPmAFHhXe, recADe9hQj7RMDSsb, recjEvewSHf37h1yr, recMdZquXC9Kq8BU0, recbWRwkEMXROgQxQ, reckaLsrem7kYOWuX, recOab4qTVhWacn2V, recgqOYUhiKGhCVno",2.22,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,,,"3. Planning: Phase 3 Complete,4. Project: Phase 4 Complete,5. Report: Phase 5 Complete","2. Processing: Create Project Scope of Work,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,3. Planning: Approve Contract,3. Planning: Sign Contract,1. Intake: Phase 1 Complete,2. Processing: Perform Assessment",,,progress:,progress:events,,"-----START-----
+### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_
+------END------
+
+","-----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,,,,8,"1, 2, 1, 2, 5, 3","2, 2, 1, 2, 1, 1",2,,,,,33,"Create Project Scope of Work
+Determine Project Timeline
+Determine Project Budget
+Create Contract
+Approve Contract
+Sign Contract
+Phase 1 Complete
+Perform Assessment","### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_",,"### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_","_AVAILABLE_TASKS_, _PROJECT_END_DATE_, _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_, _DOCTYPE_CON_, _DOCTYPE_CON_APPROVE_, _DOCTYPE_CON_SIGNED_, _PHASE_1_COMPLETE_, _ASSESSMENT_REPORT_CREATED_",,2. Processing,23.0,21.0
+3. Planning: Schedule Project Start,"admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es)",Admin OR Crew Lead OR Project Manager,Schedule Project Start,,,,📅Scheduling,,,"3. Planning | Admin,3. Planning | Project Manager,3. Planning | Crew Lead",3. Planning,3,"2. Processing: Phase 2 Complete,4. Project: Initial Material Run","3. Planning: Phase 3 Complete,4. Project: Complete Project Repair Tasks",,,Always,recjEvewSHf37h1yr,2,"2. Processing: Phase 2 Complete, 4. Project: Initial Material Run","Subcontractor,Volunteer,Staff",,,Workflow Builder,,checked,,2,5.0,3,"SUB#,STAFF#,VOL#,ALL#","[!] [P:3] [SUB] [T:5]
+[!] [P:3] [STAFF] [T:5]
+[!] [P:3] [VOL] [T:5]
+[!] [P:3] [ALL] [T:5]",📅,,,_PROJECT_START_DATE_,,,_PROJECT_START_DATE_,"recWSNbRCPmAFHhXe, recKqH0TYFAX8twEd",3.5,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/workflow,,3. Planning: Phase 3 Complete,"3. Planning: Determine Project Timeline,2. Processing: Create Repair Task List",/upcoming,/workflow/upcoming,project:,project:timeline,#e3d9f2,"-----START-----
+### ⚙️Schedule Project Start > Triggers 2 tasks:
+- ⬛Determine Project Timeline
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _PROJECT_END_DATE_
+- _REPAIR_TASKS_
+------END------
+
+",,,,,,,,2,,,,,,,,2,"Determine Project Timeline
+Create Repair Task List","### ⚙️Schedule Project Start > Triggers 2 tasks:
+- ⬛Determine Project Timeline
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _PROJECT_END_DATE_
+- _REPAIR_TASKS_",,"### _EVENT_LOOKUP_
+- _PROJECT_END_DATE_
+- _REPAIR_TASKS_","_PROJECT_END_DATE_, _REPAIR_TASKS_",,3. Planning,6.0,4.0
+3. Planning: Create Initial Materiasl List,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member OR Project Manager,Create Initial Materiasl List,,,,🟰Calculation,,,"3. Planning | Project Manager,3. Planning | Crew Lead,3. Planning | Crew Member",3. Planning,3,"3. Planning: Assign Work Crew,2. Processing: Phase 2 Complete","4. Project: Initial Material Run,5. Report: Record Actual Material Expenses",,,Path,recMdZquXC9Kq8BU0,2,"3. Planning: Assign Work Crew, 2. Processing: Phase 2 Complete",Staff,,,Workflow Builder,,,,2,5.1,3,STAFF#,[!] [P:3] [STAFF] [T:5.1],🟰,,_TAKEOFF_MATERIALS_,,,,_TAKEOFF_MATERIALS_,"recADe9hQj7RMDSsb, rectNLJlS5XRuvQXf",3.5.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/workflow,,4. Project: Initial Material Run,,/project/materials,/workflow/project/materials,project:,project:materials,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Create Initial Materiasl List > Triggers 0 tasks:
+- ⬛
+🔮",,,,,3. Planning,6.1,4.1
+3. Planning: Reject Subcontractor Estimate,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Reject Subcontractor Estimate,Calendar Event ‘Subcontractor Estimate’ BEFORE NOW(),"Update {Subcontractor Status} 
+‘Estimate Created’
+
+Calendar Event ‘Subcontractor Estimate {Response}’ Created
+
+Alert! PM",,↔️Decision,,,"3. Planning | Project Manager,3. Planning | Admin",3. Planning,2,"2. Processing: Upload Subcontractor Estimate,2. Processing: Phase 2 Complete",3. Planning: Schedule Subcontractor Start,,checked,Path,reckaLsrem7kYOWuX,2,"2. Processing: Upload Subcontractor Estimate, 2. Processing: Phase 2 Complete",Subcontractor,,,App Documents,,checked,Estimate,1,5.1,3,SUB#,[!] [P:3] [SUB] [T:5.1],↔️,"
+_SUB_EST_REJECT_",,,,,"
+_SUB_EST_REJECT_",recbWRwkEMXROgQxQ,3.5.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/appdoc,3. Planning: Approve Subcontractor Estimate,,,/subs,/appdoc/subs,docs:,docs:events,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Reject Subcontractor Estimate > Triggers 0 tasks:
+- ⬛
+🔮",,,,,3. Planning,6.1,4.1
+3. Planning: Assign Volunteer Groups,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Assign Volunteer Groups,,,,↔️Decision,,,"3. Planning | Project Manager,3. Planning | Admin",3. Planning,2,"2. Processing: Determine Labor Pool,2. Processing: Determine Volunteer Slots,2. Processing: Phase 2 Complete",,checked,,Path,recgqOYUhiKGhCVno,3,"2. Processing: Determine Labor Pool, 2. Processing: Determine Volunteer Slots, 2. Processing: Phase 2 Complete",Volunteer,,,Workflow Builder,,,,0,2.1,3,VOL#,[!] [P:3] [VOL] [T:2.1],↔️,_LABOR_VOL_ASSIGN_,,,,,_LABOR_VOL_ASSIGN_,,3.2.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/workflow,,,"2. Processing: Determine Labor Pool,2. Processing: Determine Volunteer Slots",/upcoming/vols,/workflow/upcoming/vols,project:,project:vols,#e3d9f2,"-----START-----
+### ⚙️Assign Volunteer Groups > Triggers 2 tasks:
+- ⬛Determine Labor Pool
+- ⬛Determine Volunteer Slots
+🔮### _EVENT_LOOKUP_
+- 
+- _VOL_COUNT_
+------END------
+
+","-----START-----
+### ⚙️Determine Volunteer Slots > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,2,1,,,,,,,3,"Determine Labor Pool
+Determine Volunteer Slots","### ⚙️Assign Volunteer Groups > Triggers 2 tasks:
+- ⬛Determine Labor Pool
+- ⬛Determine Volunteer Slots
+🔮### _EVENT_LOOKUP_
+- 
+- _VOL_COUNT_",,"### _EVENT_LOOKUP_
+- 
+- _VOL_COUNT_",_VOL_COUNT_,,3. Planning,3.1,1.1
+3. Planning: Schedule Subcontractor Start,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Schedule Subcontractor Start,,,,📅Scheduling,,,"3. Planning | Project Manager,3. Planning | Admin",3. Planning,2,"3. Planning: Reject Subcontractor Estimate,3. Planning: Approve Subcontractor Estimate,3. Planning: Assign Subcontractor,2. Processing: Phase 2 Complete",5. Report: Record Actual Subcontractor Expenses,,checked,Path,recbWRwkEMXROgQxQ,4,"3. Planning: Reject Subcontractor Estimate, 3. Planning: Approve Subcontractor Estimate, 3. Planning: Assign Subcontractor, 2. Processing: Phase 2 Complete",Subcontractor,,,Workflow Builder,,,Estimate,1,5.2,3,SUB#,[!] [P:3] [SUB] [T:5.2],📅,,,_SUB_START_DATE_,,,_SUB_START_DATE_,recSEg4Dygg4MEZJ0,3.5.2,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/workflow,,,3. Planning: Assign Subcontractor,/upcoming/subs,/workflow/upcoming/subs,project:,project:timeline,#e3d9f2,"-----START-----
+### ⚙️Schedule Subcontractor Start > Triggers 1 tasks:
+- ⬛Assign Subcontractor
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_
+------END------
+
+","-----START-----
+### ⚙️Assign Subcontractor > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,1,1,,,,,,,2,Assign Subcontractor,"### ⚙️Schedule Subcontractor Start > Triggers 1 tasks:
+- ⬛Assign Subcontractor
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_",,"### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_",_LABOR_SUB_ASSIGN_,,3. Planning,6.2,4.2
+4. Project: Initial Material Run,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member OR Project Manager,Initial Material Run,,,,❇️Action,,,"4. Project | Project Manager,4. Project | Crew Lead,4. Project | Crew Member",4. Project,3,"3. Planning: Assign Work Crew,2. Processing: Phase 2 Complete,3. Planning: Create Initial Materiasl List","3. Planning: Phase 3 Complete,3. Planning: Schedule Project Start,5. Report: Record Actual Material Expenses",,,Path,recADe9hQj7RMDSsb,3,"3. Planning: Assign Work Crew, 2. Processing: Phase 2 Complete, 3. Planning: Create Initial Materiasl List",Staff,,,Site Work,,,,3,1.0,4,STAFF#,[!] [P:4] [STAFF] [T:1],❇️,,,,_CHECKBOX_INITIAL_MATERIAL_RUN_,,_CHECKBOX_INITIAL_MATERIAL_RUN_,"recWSNbRCPmAFHhXe, recjEvewSHf37h1yr, rectNLJlS5XRuvQXf",4.1,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,"3. Planning: Assign Work Crew,3. Planning: Create Initial Materiasl List",/project,/otg/project,project:,project:events,#fbe2d0,"-----START-----
+### ⚙️Initial Material Run > Triggers 2 tasks:
+- ⬛Assign Work Crew
+- ⬛Create Initial Materiasl List
+🔮### _EVENT_LOOKUP_
+- _LABOR_STAFF_ASSIGN_
+- _TAKEOFF_MATERIALS_
+------END------
+
+","-----START-----
+### ⚙️Assign Work Crew > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,2,1,,,,,,,3,"Assign Work Crew
+Create Initial Materiasl List","### ⚙️Initial Material Run > Triggers 2 tasks:
+- ⬛Assign Work Crew
+- ⬛Create Initial Materiasl List
+🔮### _EVENT_LOOKUP_
+- _LABOR_STAFF_ASSIGN_
+- _TAKEOFF_MATERIALS_",,"### _EVENT_LOOKUP_
+- _LABOR_STAFF_ASSIGN_
+- _TAKEOFF_MATERIALS_","_LABOR_STAFF_ASSIGN_, _TAKEOFF_MATERIALS_",,4. Project,2.0,0.0
+3. Planning: Phase 3 Complete,,,Phase 3 Complete,,,,🤖Automation,,,3. Planning | ,3. Planning,1,"3. Planning: Schedule Project Start,2. Processing: Phase 2 Complete,4. Project: Initial Material Run","4. Project: Complete Punch List,4. Project: Perform Final Walkthrough,4. Project: Upload After Photos,4. Project: Determine Jobsite Hazards,4. Project: Material Run,4. Project: Determine Tomorrow Materials Needs,4. Project: Determine Tomorrow Weather Needs,4. Project: Sign Completion,4. Project: Fill Timesheet,4. Project: Approve Subcontractor Invoice,4. Project: Phase 4 Complete,4. Project: Check Supplies Stock,4. Project:  Assign Tomorrow Volunteers,4. Project: Safety Talk,4. Project: Assign Vehicle Drivers,4. Project: Resupply Run,4. Project: Determine Equipment Needs,4. Project: Upload Progress Photos,4. Project: Record Progress Notes,4. Project: Update Project Timeline,4. Project: Create Scope of Work Change Order,4. Project: Code Receipts,4. Project: Sign In Volunteers,4. Project: Create Subcontractor Change Order",,,Always,recWSNbRCPmAFHhXe,3,"3. Planning: Schedule Project Start, 2. Processing: Phase 2 Complete, 4. Project: Initial Material Run",,,,,,checked,,24,33.0,3,ALL#,[!] [P:3] [ALL] [T:33],🤖,,,,,_PHASE_3_COMPLETE_,_PHASE_3_COMPLETE_,"rec9rDty2s39Q5Lmt, recBVK6wiYYtgoo4f, reckwAH2TbOUgrFkX, recrM2NADRNniHvDX, rec6G3XP6fu1MJZS2, recS7rSv01Zf1xZKi, recKQnwwXSmVWZB6Y, recTf1FGykKX4pAJZ, recQmaVH3UCKAPokm, recSxgxAx1cV5yVj5, recB9K4pOMg5AsJxA, recL5gVbiHmxgdXr8, recCBp2zBtt9fGtxb, recVzt82jphfBVyLj, recbF66SCDvaclL8W, recAbbhAfx8Tbo1Pi, recA9sTKkVMYfrCM0, rectvSoIQaWHCMGbh, recF36RGIuZcfJa7i, rechm3cekIETGXpUG, recm6vUgqqbSxCG6Q, recDaW02YoXmqks9e, recXq6QzMvqVmPrIf, recZg17lfCutcgiJp",3.33,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,,,"4. Project: Phase 4 Complete,5. Report: Phase 5 Complete","3. Planning: Schedule Project Start,1. Intake: Phase 1 Complete,2. Processing: Phase 2 Complete",,,progress:,progress:events,,"-----START-----
+### ⚙️Phase 3 Complete > Triggers 3 tasks:
+- ⬛Schedule Project Start
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+🔮### _EVENT_LOOKUP_
+- _PROJECT_START_DATE_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+------END------
+
+","-----START-----
+### ⚙️Schedule Project Start > Triggers 2 tasks:
+- ⬛Determine Project Timeline
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _PROJECT_END_DATE_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_
+------END------
+
+","-----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,,,3,"2, 5, 8","2, 1, 1, 2, 1, 2, 5, 3","2, 2, 1, 2, 1, 1",2,,,,46,"Schedule Project Start
+Phase 1 Complete
+Phase 2 Complete","### ⚙️Phase 3 Complete > Triggers 3 tasks:
+- ⬛Schedule Project Start
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+🔮### _EVENT_LOOKUP_
+- _PROJECT_START_DATE_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_",,"### _EVENT_LOOKUP_
+- _PROJECT_START_DATE_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_","_PROJECT_START_DATE_, _PHASE_1_COMPLETE_, _PHASE_2_COMPLETE_",,3. Planning,34.0,32.0
+4. Project: Determine Jobsite Hazards,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member OR Project Manager,Determine Jobsite Hazards,,,,↔️Decision,AM,,"4. Project | Project Manager,4. Project | Crew Lead,4. Project | Crew Member",4. Project,3,3. Planning: Phase 3 Complete,4. Project: Safety Talk,checked,,Path,recrM2NADRNniHvDX,1,3. Planning: Phase 3 Complete,"Volunteer,Staff",,,Workflow Builder,,,,1,0.0,4,"VOL#,STAFF#","[!] [P:4] [VOL] [AM] [T:0]
+[!] [P:4] [STAFF] [AM] [T:0]",↔️,_SITE_HAZARDS_,,,,,_SITE_HAZARDS_,recVzt82jphfBVyLj,4.0,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/workflow,,4. Project: Safety Talk,,/project/hazards,/workflow/project/hazards,project:,project:hazards,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Determine Jobsite Hazards > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,1.0,-1.0
+4. Project: Check Supplies Stock,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member OR Project Manager,Check Supplies Stock,,,,❇️Action,WEEK,,"4. Project | Project Manager,4. Project | Crew Lead,4. Project | Crew Member",4. Project,3,3. Planning: Phase 3 Complete,,,,,recL5gVbiHmxgdXr8,1,3. Planning: Phase 3 Complete,Staff,,,Warehouse,,,,0,11.0,4,STAFF#,[P:4] [STAFF] [WEEK] [T:11],❇️,,,,_CHECKBOX_SUPPLIES_STOCK_,,_CHECKBOX_SUPPLIES_STOCK_,,4.11,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/warehouse,,,,/stock,/warehouse/stock,warehouse:,warehouse:stock,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Check Supplies Stock > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,12.0,10.0
+4. Project: Assign Vehicle Drivers,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member OR Project Manager,Assign Vehicle Drivers,,,,↔️Decision,AM,,"4. Project | Project Manager,4. Project | Crew Lead,4. Project | Crew Member",4. Project,3,3. Planning: Phase 3 Complete,,,,Path,recbF66SCDvaclL8W,1,3. Planning: Phase 3 Complete,Staff,,,Site Work,,,,0,12.2,4,STAFF#,[!] [P:4] [STAFF] [AM] [T:12.2],↔️,_DRIVERS_,,,,,_DRIVERS_,,4.12.2,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,2. Processing: Determine Labor Pool,/project,/otg/project,project:,project:equiptment,#fbe2d0,"-----START-----
+### ⚙️Assign Vehicle Drivers > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,,1,,,,,,,,1,Determine Labor Pool,"### ⚙️Assign Vehicle Drivers > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮",,,,,4. Project,13.2,11.2
+4. Project: Resupply Run,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member,Resupply Run,,,,❇️Action,WEEK,,"4. Project | Crew Lead,4. Project | Crew Member",4. Project,2,3. Planning: Phase 3 Complete,,,,,recAbbhAfx8Tbo1Pi,1,3. Planning: Phase 3 Complete,Staff,,,Warehouse,,,,0,11.0,4,STAFF#,[P:4] [STAFF] [WEEK] [T:11],❇️,,,,_CHECKBOX_RESUPPLY_RUN_,,_CHECKBOX_RESUPPLY_RUN_,,4.11,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/warehouse,,,,/stock,/warehouse/stock,warehouse:,warehouse:events,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Resupply Run > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,12.0,10.0
+4. Project: Material Run,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member,Material Run,,,,❇️Action,*,,"4. Project | Crew Lead,4. Project | Crew Member",4. Project,2,3. Planning: Phase 3 Complete,5. Report: Record Actual Material Expenses,,,,rec6G3XP6fu1MJZS2,1,3. Planning: Phase 3 Complete,"Volunteer,Staff",,,Site Work,,,,1,11.0,4,STAFF#,[P:4] [STAFF] [*] [T:11],❇️,,,,_CHECKBOX_MATERIAL_RUN_,,_CHECKBOX_MATERIAL_RUN_,rectNLJlS5XRuvQXf,4.11,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,,/project,/otg/project,project:,project:materials,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Material Run > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,12.0,10.0
+4. Project: Determine Tomorrow Materials Needs,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Crew Lead OR Crew Member OR Project Manager,Determine Tomorrow Materials Needs,,,,↔️Decision,PM,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager",4. Project,3,3. Planning: Phase 3 Complete,5. Report: Record Actual Material Expenses,,,Path,recS7rSv01Zf1xZKi,1,3. Planning: Phase 3 Complete,Staff,,,Site Work,,,,1,11.0,4,STAFF#,[!] [P:4] [STAFF] [PM] [T:11],↔️,_TOMORROW_MATERIALS_,,,,,_TOMORROW_MATERIALS_,rectNLJlS5XRuvQXf,4.11,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,,/project,/otg/project,project:,project:materials,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Determine Tomorrow Materials Needs > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,12.0,10.0
+4. Project: Determine Equipment Needs,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member OR Project Manager,Determine Equipment Needs,,,,↔️Decision,PM,,"4. Project | Project Manager,4. Project | Crew Lead,4. Project | Crew Member",4. Project,3,3. Planning: Phase 3 Complete,,,,Path,recA9sTKkVMYfrCM0,1,3. Planning: Phase 3 Complete,Staff,,,Workflow Builder,,,,0,11.0,4,STAFF#,[!] [P:4] [STAFF] [PM] [T:11],↔️,_EQUIPMENT_,,,,,_EQUIPMENT_,,4.11,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/workflow,,,,/project/equp,/workflow/project/equp,project:,project:equip,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Determine Equipment Needs > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,12.0,10.0
+4. Project: Determine Tomorrow Weather Needs,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Crew Lead OR Crew Member OR Project Manager,Determine Tomorrow Weather Needs,,,,↔️Decision,PM,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager",4. Project,3,3. Planning: Phase 3 Complete,4. Project:  Assign Tomorrow Volunteers,,,Path,recKQnwwXSmVWZB6Y,1,3. Planning: Phase 3 Complete,Staff,,,Site Work,,,,1,12.5,4,STAFF#,[!] [P:4] [STAFF] [PM] [T:12.5],↔️,"_INSIDE_, _OUTSIDE_",,,,,"_INSIDE_, _OUTSIDE_",recCBp2zBtt9fGtxb,4.12.5,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,,/project,/otg/project,project:,project:timeline,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Determine Tomorrow Weather Needs > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,13.5,11.5
+4. Project: Upload Progress Photos,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member,Upload Progress Photos,,,,❇️Action,PM,,"4. Project | Crew Lead,4. Project | Crew Member",4. Project,2,3. Planning: Phase 3 Complete,,,,Path,rectvSoIQaWHCMGbh,1,3. Planning: Phase 3 Complete,Staff,,,Site Work,,checked,,0,10.2,4,STAFF#,[!] [P:4] [STAFF] [PM] [T:10.2],❇️,,,,_PICTYPE_PROGRESS_,,_PICTYPE_PROGRESS_,,4.10.2,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,,/project,/otg/project,project:,project:photos,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Upload Progress Photos > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,11.2,9.2
+4. Project: Record Progress Notes,CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),Crew Lead,Record Progress Notes,,,,❇️Action,PM,,4. Project | Crew Lead,4. Project,1,3. Planning: Phase 3 Complete,,,,Path,recF36RGIuZcfJa7i,1,3. Planning: Phase 3 Complete,Staff,,,Site Work,,checked,,0,10.1,4,STAFF#,[!] [P:4] [STAFF] [PM] [T:10.1],❇️,,,,_CHECHBOX_DAILY_NOTES_,,_CHECHBOX_DAILY_NOTES_,,4.10.1,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,,/project,/otg/project,project:,project:notes,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Record Progress Notes > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,11.1,9.1
+4. Project: Complete Punch List,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Crew Lead OR Crew Member OR Project Manager,Complete Punch List,,,,↔️Decision,,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager",4. Project,3,3. Planning: Phase 3 Complete,"4. Project: Upload After Photos,4. Project: Sign Completion,4. Project: Phase 4 Complete",,,Path,rec9rDty2s39Q5Lmt,1,3. Planning: Phase 3 Complete,Staff,,,Site Work,,,,3,3.0,4,STAFF#,[!] [P:4] [STAFF] [T:3],↔️,_PUNCH_LIST_ITEMS_,,,,,_PUNCH_LIST_ITEMS_,"reckwAH2TbOUgrFkX, recTf1FGykKX4pAJZ, recB9K4pOMg5AsJxA",4.3,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,,/project,/otg/project,project:,project:tasks,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Complete Punch List > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,4.0,2.0
+4. Project: Update Project Timeline,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Crew Lead OR Crew Member OR Project Manager,Update Project Timeline,,,,↔️Decision,WEEK,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager",4. Project,3,3. Planning: Phase 3 Complete,,,,,rechm3cekIETGXpUG,1,3. Planning: Phase 3 Complete,Staff,,,Workflow Builder,,checked,,0,10.5,4,ALL#,[P:4] [ALL] [WEEK] [T:10.5],↔️,_PROJECT_DATES_,,,,,_PROJECT_DATES_,,4.10.5,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/workflow,,,,/project/timeline,/workflow/project/timeline,project:,project:timeline,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Update Project Timeline > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,11.5,9.5
+4. Project: Perform Final Walkthrough,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Crew Lead OR Crew Member OR Project Manager,Perform Final Walkthrough,,,,❇️Action,,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager,4. Project | Admin",4. Project,4,3. Planning: Phase 3 Complete,"4. Project: Sign Completion,4. Project: Phase 4 Complete",,,Always,recBVK6wiYYtgoo4f,1,3. Planning: Phase 3 Complete,"Volunteer,Staff",,,Site Work,,,,2,4.0,4,ALL#,[!] [P:4] [ALL] [T:4],❇️,,,,_FINAL_WALK_,,_FINAL_WALK_,"recTf1FGykKX4pAJZ, recB9K4pOMg5AsJxA",4.4,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,"4. Project: Upload After Photos,4. Project: Sign Completion",,/project,/otg/project,project:,project:events,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Perform Final Walkthrough > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,5.0,3.0
+4. Project: Create Scope of Work Change Order,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Crew Lead OR Project Manager,Create Scope of Work Change Order,,,,❇️Action,*,,"4. Project | Crew Lead,4. Project | Project Manager,4. Project | Admin",4. Project,3,3. Planning: Phase 3 Complete,,,,,recm6vUgqqbSxCG6Q,1,3. Planning: Phase 3 Complete,"Volunteer,Staff",,,App Documents,,checked,Change Order,0,0.0,4,ALL#,[P:4] [ALL] [*] [T:0],❇️,,,,_DOCTYPE_CO_,,_DOCTYPE_CO_,,4.0,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/appdoc,,,3. Planning: Sign Contract,/create,/appdoc/create,docs:,docs:project,#e3d9f2,"-----START-----
+### ⚙️Create Scope of Work Change Order > Triggers 1 tasks:
+- ⬛Sign Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_SIGNED_
+------END------
+
+","-----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,,,,1,2,"2, 1",2,,,,,8,Sign Contract,"### ⚙️Create Scope of Work Change Order > Triggers 1 tasks:
+- ⬛Sign Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_SIGNED_",,"### _EVENT_LOOKUP_
+- _DOCTYPE_CON_SIGNED_",_DOCTYPE_CON_SIGNED_,Change Order,4. Project,1.0,-1.0
+4. Project: Code Receipts,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU)",Crew Lead OR Crew Member,Code Receipts,,,,❇️Action,WEEK,,"4. Project | Crew Lead,4. Project | Crew Member",4. Project,2,3. Planning: Phase 3 Complete,,,,Path,recDaW02YoXmqks9e,1,3. Planning: Phase 3 Complete,Staff,,,Site Work,,,,0,11.0,4,STAFF#,[!] [P:4] [STAFF] [WEEK] [T:11],❇️,,,,_CHECKBOX_RECEIPTS_CODED_,,_CHECKBOX_RECEIPTS_CODED_,,4.11,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,5. Report: Record Actual Material Expenses,,/project,/otg/project,project:,project:receipts,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Code Receipts > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,12.0,10.0
+4. Project: Fill Timesheet,CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),Crew Member,Fill Timesheet,,,,❇️Action,WEEK,,4. Project | Crew Member,4. Project,1,3. Planning: Phase 3 Complete,5. Report: Record Actual Labor Expenses,,,Path,recQmaVH3UCKAPokm,1,3. Planning: Phase 3 Complete,Staff,,,Site Work,,checked,,1,10.3,4,STAFF#,[!] [P:4] [STAFF] [WEEK] [T:10.3],❇️,,,,_TIMESHEET_FILLED_,,_TIMESHEET_FILLED_,recbzGV9AbvKQuK3T,4.10.3,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,5. Report: Record Actual Labor Expenses,,/project,/otg/project,project:,project:timesheets,#fbe8d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Fill Timesheet > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,11.3,9.3
+4. Project: Approve Subcontractor Invoice,pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),Project Manager,Approve Subcontractor Invoice,,,,↔️Decision,*,,4. Project | Project Manager,4. Project,1,3. Planning: Phase 3 Complete,5. Report: Record Actual Subcontractor Expenses,,checked,Path,recSxgxAx1cV5yVj5,1,3. Planning: Phase 3 Complete,Subcontractor,,,App Documents,,,Invoice,1,13.1,4,SUB#,[!] [P:4] [SUB] [*] [T:13.1],↔️,_DOCTYPE_INV_APPROVE_,,,,,_DOCTYPE_INV_APPROVE_,recSEg4Dygg4MEZJ0,4.13.1,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/appdoc,4. Project: Reject Subcontractor Invoice,,,/approve,/appdoc/approve,docs:,docs:events,#d0defb,,,,,,,,,0,,,,,,,,0,,"### ⚙️Approve Subcontractor Invoice > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,14.1,12.1
+4. Project: Sign In Volunteers,CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),Crew Lead,Sign In Volunteers,,,,❇️Action,AM,,4. Project | Crew Lead,4. Project,1,3. Planning: Phase 3 Complete,,checked,,Path,recXq6QzMvqVmPrIf,1,3. Planning: Phase 3 Complete,Volunteer,,,Site Work,,,,0,12.1,4,VOL#,[!] [P:4] [VOL] [AM] [T:12.1],❇️,,,,_VOL_SIGN_IN_,,_VOL_SIGN_IN_,,4.12.1,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,2. Processing: Determine Volunteer Slots,/project,/otg/project,project:,project:vols,#fbe2d0,"-----START-----
+### ⚙️Sign In Volunteers > Triggers 1 tasks:
+- ⬛Determine Volunteer Slots
+🔮### _EVENT_LOOKUP_
+- _VOL_COUNT_
+------END------
+
+","-----START-----
+### ⚙️Determine Volunteer Slots > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,1,1,,,,,,,2,Determine Volunteer Slots,"### ⚙️Sign In Volunteers > Triggers 1 tasks:
+- ⬛Determine Volunteer Slots
+🔮### _EVENT_LOOKUP_
+- _VOL_COUNT_",,"### _EVENT_LOOKUP_
+- _VOL_COUNT_",_VOL_COUNT_,,4. Project,13.1,11.1
+4. Project:  Assign Tomorrow Volunteers,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Crew Lead OR Crew Member OR Project Manager, Assign Tomorrow Volunteers,,,,↔️Decision,PM,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager,4. Project | Admin",4. Project,4,"4. Project: Determine Tomorrow Weather Needs,3. Planning: Phase 3 Complete",,checked,,Path,recCBp2zBtt9fGtxb,2,"4. Project: Determine Tomorrow Weather Needs, 3. Planning: Phase 3 Complete",Volunteer,,,Site Work,,,,0,12.6,4,VOL#,[!] [P:4] [VOL] [PM] [T:12.6],↔️,_TOMORROW_VOLUNTEERS_,,,,,_TOMORROW_VOLUNTEERS_,,4.12.6,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,2. Processing: Determine Volunteer Slots,/project,/otg/project,project:,project:vols,#e3d9f2,"-----START-----
+### ⚙️ Assign Tomorrow Volunteers > Triggers 1 tasks:
+- ⬛Determine Volunteer Slots
+🔮### _EVENT_LOOKUP_
+- _VOL_COUNT_
+------END------
+
+","-----START-----
+### ⚙️Determine Volunteer Slots > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,1,1,,,,,,,2,Determine Volunteer Slots,"### ⚙️ Assign Tomorrow Volunteers > Triggers 1 tasks:
+- ⬛Determine Volunteer Slots
+🔮### _EVENT_LOOKUP_
+- _VOL_COUNT_",,"### _EVENT_LOOKUP_
+- _VOL_COUNT_",_VOL_COUNT_,,4. Project,13.6,11.6
+4. Project: Safety Talk,CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),Crew Lead,Safety Talk,,,,❇️Action,AM,,4. Project | Crew Lead,4. Project,1,"3. Planning: Phase 3 Complete,4. Project: Determine Jobsite Hazards",,checked,,Path,recVzt82jphfBVyLj,2,"3. Planning: Phase 3 Complete, 4. Project: Determine Jobsite Hazards",Volunteer,,,Site Work,,,,0,12.4,4,VOL#,[!] [P:4] [VOL] [AM] [T:12.4],❇️,,,,_VOL_SAFETY_TALK_,,_VOL_SAFETY_TALK_,,4.12.4,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,4. Project: Determine Jobsite Hazards,/project,/otg/project,project:,project:vols,#fbe2d0,"-----START-----
+### ⚙️Safety Talk > Triggers 1 tasks:
+- ⬛Determine Jobsite Hazards
+🔮### _EVENT_LOOKUP_
+- _SITE_HAZARDS_
+------END------
+
+",,,,,,,,1,,,,,,,,1,Determine Jobsite Hazards,"### ⚙️Safety Talk > Triggers 1 tasks:
+- ⬛Determine Jobsite Hazards
+🔮### _EVENT_LOOKUP_
+- _SITE_HAZARDS_",,"### _EVENT_LOOKUP_
+- _SITE_HAZARDS_",_SITE_HAZARDS_,,4. Project,13.4,11.4
+4. Project: Upload After Photos,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Crew Lead OR Crew Member OR Project Manager,Upload After Photos,,,,❇️Action,,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager",4. Project,3,"3. Planning: Phase 3 Complete,4. Project: Complete Punch List","4. Project: Sign Completion,4. Project: Phase 4 Complete",,,Always,reckwAH2TbOUgrFkX,2,"3. Planning: Phase 3 Complete, 4. Project: Complete Punch List","Volunteer,Staff",,,Site Work,,checked,,2,6.0,4,ALL#,[!] [P:4] [ALL] [T:6],❇️,,,,_PICTYPE_AFTER_,,_PICTYPE_AFTER_,"recTf1FGykKX4pAJZ, recB9K4pOMg5AsJxA",4.6,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/otg,,,4. Project: Perform Final Walkthrough,/project,/otg/project,photos:,photos:project,#fbe2d0,"-----START-----
+### ⚙️Upload After Photos > Triggers 1 tasks:
+- ⬛Perform Final Walkthrough
+🔮### _EVENT_LOOKUP_
+- _FINAL_WALK_
+------END------
+
+",,,,,,,,1,,,,,,,,1,Perform Final Walkthrough,"### ⚙️Upload After Photos > Triggers 1 tasks:
+- ⬛Perform Final Walkthrough
+🔮### _EVENT_LOOKUP_
+- _FINAL_WALK_",,"### _EVENT_LOOKUP_
+- _FINAL_WALK_",_FINAL_WALK_,,4. Project,7.0,5.0
+4. Project: Sign Completion,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Crew Lead OR Crew Member OR Project Manager,Sign Completion,,,,❇️Action,,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager",4. Project,3,"4. Project: Perform Final Walkthrough,4. Project: Complete Punch List,4. Project: Upload After Photos,3. Planning: Phase 3 Complete",4. Project: Phase 4 Complete,,,Always,recTf1FGykKX4pAJZ,4,"4. Project: Perform Final Walkthrough, 4. Project: Complete Punch List, 4. Project: Upload After Photos, 3. Planning: Phase 3 Complete","Volunteer,Staff",,,App Documents,,checked,Certificate of Completion,1,5.0,4,ALL#,[!] [P:4] [ALL] [T:5],❇️,_CERT_COMPLETE_,,,_DOCTYPE_COC_,,_DOCTYPE_COC_,recB9K4pOMg5AsJxA,4.5,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/appdoc,,"5. Report: Record Actual Material Expenses,4. Project: Phase 4 Complete",4. Project: Perform Final Walkthrough,/sign,/appdoc/sign,docs:,docs:events,#fbe2d0,"-----START-----
+### ⚙️Sign Completion > Triggers 1 tasks:
+- ⬛Perform Final Walkthrough
+🔮### _EVENT_LOOKUP_
+- _FINAL_WALK_
+------END------
+
+",,,,,,,,1,,,,,,,,1,Perform Final Walkthrough,"### ⚙️Sign Completion > Triggers 1 tasks:
+- ⬛Perform Final Walkthrough
+🔮### _EVENT_LOOKUP_
+- _FINAL_WALK_",,"### _EVENT_LOOKUP_
+- _FINAL_WALK_",_FINAL_WALK_,Certificate of Completion,4. Project,6.0,4.0
+4. Project: Phase 4 Complete,,,Phase 4 Complete,,,,🤖Automation,,,4. Project | ,4. Project,1,"4. Project: Perform Final Walkthrough,4. Project: Complete Punch List,4. Project: Upload After Photos,4. Project: Sign Completion,3. Planning: Phase 3 Complete",5. Report: Complete ARCHR Draw Request Workbook,,,Always,recB9K4pOMg5AsJxA,5,"4. Project: Perform Final Walkthrough, 4. Project: Complete Punch List, 4. Project: Upload After Photos, 4. Project: Sign Completion, 3. Planning: Phase 3 Complete",,,,,,checked,,1,44.0,4,ALL#,[!] [P:4] [ALL] [T:44],🤖,,,,,_PHASE_4_COMPLETE_,_PHASE_4_COMPLETE_,recXjtXyShlsGtdsK,4.44,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,,,5. Report: Phase 5 Complete,"4. Project: Sign Completion,1. Intake: Phase 1 Complete,2. Processing: Phase 2 Complete,3. Planning: Phase 3 Complete",,,progress:,progress:events,,"-----START-----
+### ⚙️Phase 4 Complete > Triggers 4 tasks:
+- ⬛Sign Completion
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+- ⬛Phase 3 Complete
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_COC_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+- _PHASE_3_COMPLETE_
+------END------
+
+","-----START-----
+### ⚙️Sign Completion > Triggers 1 tasks:
+- ⬛Perform Final Walkthrough
+🔮### _EVENT_LOOKUP_
+- _FINAL_WALK_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_
+------END------
+
+, -----START-----
+### ⚙️Phase 3 Complete > Triggers 3 tasks:
+- ⬛Schedule Project Start
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+🔮### _EVENT_LOOKUP_
+- _PROJECT_START_DATE_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+------END------
+
+","-----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+, -----START-----
+### ⚙️Schedule Project Start > Triggers 2 tasks:
+- ⬛Determine Project Timeline
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _PROJECT_END_DATE_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,,4,"1, 5, 8, 3","2, 1, 1, 2, 1, 2, 5, 3, 2, 5, 8","2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 5, 3","2, 2, 2, 1, 2, 1, 1",2,,,92,"Sign Completion
+Phase 1 Complete
+Phase 2 Complete
+Phase 3 Complete","### ⚙️Phase 4 Complete > Triggers 4 tasks:
+- ⬛Sign Completion
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+- ⬛Phase 3 Complete
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_COC_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+- _PHASE_3_COMPLETE_",,"### _EVENT_LOOKUP_
+- _DOCTYPE_COC_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+- _PHASE_3_COMPLETE_","_DOCTYPE_COC_, _PHASE_1_COMPLETE_, _PHASE_2_COMPLETE_, _PHASE_3_COMPLETE_",,4. Project,45.0,43.0
+5. Report: Record Actual Labor Expenses,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Record Actual Labor Expenses,,,,🟰Calculation,,,"5. Report | Project Manager,5. Report | Admin",5. Report,2,4. Project: Fill Timesheet,5. Report: Phase 5 Complete,,,Always,recbzGV9AbvKQuK3T,1,4. Project: Fill Timesheet,Staff,,,Reporting,,checked,,1,1.0,5,STAFF#,[!] [P:5] [STAFF] [T:1],🟰,,_PROJECT_LABOR_COST_,,,,_PROJECT_LABOR_COST_,rec7ci4qJdtfsv7gJ,5.1,recRAiWo823VJ52nd,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, reciRDrvxHNn0cRcL, recJKQ2jMR5x6KhRC, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn",,,,/report,,5. Report: Phase 5 Complete,"2. Processing: Determine Labor Pool,4. Project: Fill Timesheet",/drawreq,/report/drawreq,report:,report:timesheets,#e3d9f2,"-----START-----
+### ⚙️Record Actual Labor Expenses > Triggers 2 tasks:
+- ⬛Determine Labor Pool
+- ⬛Fill Timesheet
+🔮### _EVENT_LOOKUP_
+- 
+- _TIMESHEET_FILLED_
+------END------
+
+",,,,,,,,2,,,,,,,,2,"Determine Labor Pool
+Fill Timesheet","### ⚙️Record Actual Labor Expenses > Triggers 2 tasks:
+- ⬛Determine Labor Pool
+- ⬛Fill Timesheet
+🔮### _EVENT_LOOKUP_
+- 
+- _TIMESHEET_FILLED_",,"### _EVENT_LOOKUP_
+- 
+- _TIMESHEET_FILLED_",_TIMESHEET_FILLED_,,5. Report,2.0,0.0
+5. Report: Complete ARCHR Draw Request Workbook,admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Admin,Complete ARCHR Draw Request Workbook,,,,🟰Calculation,,,5. Report | Admin,5. Report,1,4. Project: Phase 4 Complete,5. Report: Phase 5 Complete,,,Always,recXjtXyShlsGtdsK,1,4. Project: Phase 4 Complete,"Subcontractor,Volunteer,Staff",,,Reporting,,checked,,1,3.0,5,ALL#,[!] [P:5] [ALL] [T:3],🟰,,_PROGRAM_REQUIRED_DOCS_,,,,_PROGRAM_REQUIRED_DOCS_,rec7ci4qJdtfsv7gJ,5.3,recRAiWo823VJ52nd,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, reciRDrvxHNn0cRcL, recJKQ2jMR5x6KhRC, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn",,,,/report,,5. Report: Phase 5 Complete,"2. Processing: Confirm Eligibility,1. Intake: Collect Income Documents,1. Intake: Collect Ownership Documents",/drawreq,/report/drawreq,report:,report:applicant,#e3d9f2,"-----START-----
+### ⚙️Complete ARCHR Draw Request Workbook > Triggers 3 tasks:
+- ⬛Confirm Eligibility
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+","-----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+",,,,,,,3,2,,,,,,,5,"Confirm Eligibility
+Collect Income Documents
+Collect Ownership Documents","### ⚙️Complete ARCHR Draw Request Workbook > Triggers 3 tasks:
+- ⬛Confirm Eligibility
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_",,"### _EVENT_LOOKUP_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_","_CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_, _DOCTYPE_POI_, _DOCTYPE_POI_",,5. Report,4.0,2.0
+5. Report: Record Actual Material Expenses,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Record Actual Material Expenses,,,,🟰Calculation,,,"5. Report | Project Manager,5. Report | Admin",5. Report,2,"4. Project: Material Run,4. Project: Determine Tomorrow Materials Needs,4. Project: Initial Material Run,3. Planning: Create Initial Materiasl List",5. Report: Phase 5 Complete,,,Always,rectNLJlS5XRuvQXf,4,"4. Project: Material Run, 4. Project: Determine Tomorrow Materials Needs, 4. Project: Initial Material Run, 3. Planning: Create Initial Materiasl List","Volunteer,Staff",,,Reporting,,checked,,1,1.0,5,STAFF#,[!] [P:5] [STAFF] [T:1],🟰,,_PROJECT_MATERIAL_COST_,,,,_PROJECT_MATERIAL_COST_,rec7ci4qJdtfsv7gJ,5.1,recRAiWo823VJ52nd,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, reciRDrvxHNn0cRcL, recJKQ2jMR5x6KhRC, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn",,,,/report,,5. Report: Phase 5 Complete,"4. Project: Code Receipts,4. Project: Sign Completion",/drawreq,/report/drawreq,report:,report:receipts,#e3d9f2,"-----START-----
+### ⚙️Record Actual Material Expenses > Triggers 2 tasks:
+- ⬛Code Receipts
+- ⬛Sign Completion
+🔮### _EVENT_LOOKUP_
+- _CHECKBOX_RECEIPTS_CODED_
+- _DOCTYPE_COC_
+------END------
+
+","-----START-----
+### ⚙️Sign Completion > Triggers 1 tasks:
+- ⬛Perform Final Walkthrough
+🔮### _EVENT_LOOKUP_
+- _FINAL_WALK_
+------END------
+
+",,,,,,,2,1,,,,,,,3,"Code Receipts
+Sign Completion","### ⚙️Record Actual Material Expenses > Triggers 2 tasks:
+- ⬛Code Receipts
+- ⬛Sign Completion
+🔮### _EVENT_LOOKUP_
+- _CHECKBOX_RECEIPTS_CODED_
+- _DOCTYPE_COC_",,"### _EVENT_LOOKUP_
+- _CHECKBOX_RECEIPTS_CODED_
+- _DOCTYPE_COC_","_CHECKBOX_RECEIPTS_CODED_, _DOCTYPE_COC_",,5. Report,2.0,0.0
+5. Report: Record Actual Subcontractor Expenses,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Record Actual Subcontractor Expenses,,,,🟰Calculation,,,"5. Report | Project Manager,5. Report | Admin",5. Report,2,"2. Processing: Schedule Subcontractor Estimate,3. Planning: Schedule Subcontractor Start,4. Project: Approve Subcontractor Invoice,3. Planning: Assign Subcontractor",5. Report: Phase 5 Complete,,checked,Path,recSEg4Dygg4MEZJ0,4,"2. Processing: Schedule Subcontractor Estimate, 3. Planning: Schedule Subcontractor Start, 4. Project: Approve Subcontractor Invoice, 3. Planning: Assign Subcontractor",Subcontractor,,,Reporting,,checked,Invoice,1,2.0,5,SUB#,[!] [P:5] [SUB] [T:2],🟰,,_SUB_INVOICE_TOTAL_,,,,_SUB_INVOICE_TOTAL_,rec7ci4qJdtfsv7gJ,5.2,recRAiWo823VJ52nd,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, reciRDrvxHNn0cRcL, recJKQ2jMR5x6KhRC, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn",,,,/report,,,3. Planning: Assign Subcontractor,/drawreq,/report/drawreq,report:,report:invoices,#e3d9f2,"-----START-----
+### ⚙️Record Actual Subcontractor Expenses > Triggers 1 tasks:
+- ⬛Assign Subcontractor
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_
+------END------
+
+","-----START-----
+### ⚙️Assign Subcontractor > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,,,1,1,,,,,,,2,Assign Subcontractor,"### ⚙️Record Actual Subcontractor Expenses > Triggers 1 tasks:
+- ⬛Assign Subcontractor
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_",,"### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_",_LABOR_SUB_ASSIGN_,,5. Report,3.0,1.0
+5. Report: Phase 5 Complete,,,Phase 5 Complete,,,,🤖Automation,,,5. Report | ,5. Report,1,"5. Report: Complete ARCHR Draw Request Workbook,5. Report: Record Actual Subcontractor Expenses,5. Report: Record Actual Labor Expenses,5. Report: Record Actual Material Expenses",,,,Always,rec7ci4qJdtfsv7gJ,4,"5. Report: Complete ARCHR Draw Request Workbook, 5. Report: Record Actual Subcontractor Expenses, 5. Report: Record Actual Labor Expenses, 5. Report: Record Actual Material Expenses",,,,,,checked,,0,55.0,5,ALL#,[!] [P:5] [ALL] [T:55],🤖,,,,,_PHASE_5_COMPLETE_,_PHASE_5_COMPLETE_,,5.55,recRAiWo823VJ52nd,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, reciRDrvxHNn0cRcL, recJKQ2jMR5x6KhRC, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn",,,,,,,"5. Report: Record Actual Labor Expenses,5. Report: Record Actual Material Expenses,5. Report: Complete ARCHR Draw Request Workbook,1. Intake: Phase 1 Complete,2. Processing: Phase 2 Complete,3. Planning: Phase 3 Complete,4. Project: Phase 4 Complete",,,progress:,progress:events,,"-----START-----
+### ⚙️Phase 5 Complete > Triggers 7 tasks:
+- ⬛Record Actual Labor Expenses
+- ⬛Record Actual Material Expenses
+- ⬛Complete ARCHR Draw Request Workbook
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+- ⬛Phase 3 Complete
+- ⬛Phase 4 Complete
+🔮### _EVENT_LOOKUP_
+- _PROJECT_LABOR_COST_
+- _PROJECT_MATERIAL_COST_
+- _PROGRAM_REQUIRED_DOCS_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+- _PHASE_3_COMPLETE_
+- _PHASE_4_COMPLETE_
+------END------
+
+","-----START-----
+### ⚙️Record Actual Labor Expenses > Triggers 2 tasks:
+- ⬛Determine Labor Pool
+- ⬛Fill Timesheet
+🔮### _EVENT_LOOKUP_
+- 
+- _TIMESHEET_FILLED_
+------END------
+
+, -----START-----
+### ⚙️Record Actual Material Expenses > Triggers 2 tasks:
+- ⬛Code Receipts
+- ⬛Sign Completion
+🔮### _EVENT_LOOKUP_
+- _CHECKBOX_RECEIPTS_CODED_
+- _DOCTYPE_COC_
+------END------
+
+, -----START-----
+### ⚙️Complete ARCHR Draw Request Workbook > Triggers 3 tasks:
+- ⬛Confirm Eligibility
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_
+------END------
+
+, -----START-----
+### ⚙️Phase 3 Complete > Triggers 3 tasks:
+- ⬛Schedule Project Start
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+🔮### _EVENT_LOOKUP_
+- _PROJECT_START_DATE_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+------END------
+
+, -----START-----
+### ⚙️Phase 4 Complete > Triggers 4 tasks:
+- ⬛Sign Completion
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+- ⬛Phase 3 Complete
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_COC_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+- _PHASE_3_COMPLETE_
+------END------
+
+","-----START-----
+### ⚙️Sign Completion > Triggers 1 tasks:
+- ⬛Perform Final Walkthrough
+🔮### _EVENT_LOOKUP_
+- _FINAL_WALK_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+, -----START-----
+### ⚙️Schedule Project Start > Triggers 2 tasks:
+- ⬛Determine Project Timeline
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _PROJECT_END_DATE_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_
+------END------
+
+, -----START-----
+### ⚙️Sign Completion > Triggers 1 tasks:
+- ⬛Perform Final Walkthrough
+🔮### _EVENT_LOOKUP_
+- _FINAL_WALK_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_
+------END------
+
+, -----START-----
+### ⚙️Phase 3 Complete > Triggers 3 tasks:
+- ⬛Schedule Project Start
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+🔮### _EVENT_LOOKUP_
+- _PROJECT_START_DATE_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+, -----START-----
+### ⚙️Schedule Project Start > Triggers 2 tasks:
+- ⬛Determine Project Timeline
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _PROJECT_END_DATE_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Phase 2 Complete > Triggers 8 tasks:
+- ⬛Create Project Scope of Work
+- ⬛Determine Project Timeline
+- ⬛Determine Project Budget
+- ⬛Create Contract
+- ⬛Approve Contract
+- ⬛Sign Contract
+- ⬛Phase 1 Complete
+- ⬛Perform Assessment
+🔮### _EVENT_LOOKUP_
+- _AVAILABLE_TASKS_
+- _PROJECT_END_DATE_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+- _DOCTYPE_CON_SIGNED_
+- _PHASE_1_COMPLETE_
+- _ASSESSMENT_REPORT_CREATED_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Create Project Scope of Work > Triggers 1 tasks:
+- ⬛Create Repair Task List
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASKS_
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Sign Contract > Triggers 2 tasks:
+- ⬛Create Contract
+- ⬛Approve Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+- _DOCTYPE_CON_APPROVE_
+------END------
+
+, -----START-----
+### ⚙️Phase 1 Complete > Triggers 5 tasks:
+- ⬛Initial Contact
+- ⬛Pass Pre-Screening
+- ⬛Confirm Eligibility
+- ⬛🎯Project Record Created
+- ⬛Assign Assessor
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+- _PRESCREEN_PASS_
+- _CHECKBOX_POI_INCOME_,  _CHECKBOX_LOCATION_, _CHECKBOX_DEMOGRAPHICS_
+- _ANCHOR_PROJECT_NEW_
+- _ASSESSOR_ASSIGN_
+------END------
+
+, -----START-----
+### ⚙️Perform Assessment > Triggers 3 tasks:
+- ⬛Assign Assessor
+- ⬛Initial Contact
+- ⬛Schedule Assessment
+🔮### _EVENT_LOOKUP_
+- _ASSESSOR_ASSIGN_
+- _INITIAL_CONTACT_
+- 
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+, -----START-----
+### ⚙️Approve Contract > Triggers 1 tasks:
+- ⬛Create Contract
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_CON_
+------END------
+
+, -----START-----
+### ⚙️Confirm Eligibility > Triggers 2 tasks:
+- ⬛Collect Income Documents
+- ⬛Collect Ownership Documents
+🔮### _EVENT_LOOKUP_
+- _DOCTYPE_POI_
+- _DOCTYPE_POI_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+, -----START-----
+### ⚙️Assign Assessor > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+","-----START-----
+### ⚙️Create Contract > Triggers 2 tasks:
+- ⬛Determine Project Budget
+- ⬛Determine Labor Pool
+🔮### _EVENT_LOOKUP_
+- _REPAIR_TASK_PRICE_, _SUBCONTRACTOR_ESTIMATE_
+- 
+------END------
+
+",,7,"2, 2, 3, 5, 8, 3, 4","1, 2, 2, 1, 1, 2, 1, 2, 5, 3, 2, 5, 8, 1, 5, 8, 3","2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 5, 3, 2, 1, 1, 2, 1, 2, 5, 3, 2, 5, 8","2, 2, 2, 1, 2, 1, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 5, 3","2, 2, 2, 2, 1, 2, 1, 1",2,,196,"Record Actual Labor Expenses
+Record Actual Material Expenses
+Complete ARCHR Draw Request Workbook
+Phase 1 Complete
+Phase 2 Complete
+Phase 3 Complete
+Phase 4 Complete","### ⚙️Phase 5 Complete > Triggers 7 tasks:
+- ⬛Record Actual Labor Expenses
+- ⬛Record Actual Material Expenses
+- ⬛Complete ARCHR Draw Request Workbook
+- ⬛Phase 1 Complete
+- ⬛Phase 2 Complete
+- ⬛Phase 3 Complete
+- ⬛Phase 4 Complete
+🔮### _EVENT_LOOKUP_
+- _PROJECT_LABOR_COST_
+- _PROJECT_MATERIAL_COST_
+- _PROGRAM_REQUIRED_DOCS_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+- _PHASE_3_COMPLETE_
+- _PHASE_4_COMPLETE_",,"### _EVENT_LOOKUP_
+- _PROJECT_LABOR_COST_
+- _PROJECT_MATERIAL_COST_
+- _PROGRAM_REQUIRED_DOCS_
+- _PHASE_1_COMPLETE_
+- _PHASE_2_COMPLETE_
+- _PHASE_3_COMPLETE_
+- _PHASE_4_COMPLETE_","_PROJECT_LABOR_COST_, _PROJECT_MATERIAL_COST_, _PROGRAM_REQUIRED_DOCS_, _PHASE_1_COMPLETE_, _PHASE_2_COMPLETE_, _PHASE_3_COMPLETE_, _PHASE_4_COMPLETE_",,5. Report,56.0,54.0
+3. Planning: Reject Contract,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Reject Contract,{contractSignatory} responds to Alert!,"Contract Status Updated 
+IF(Approve, ‘Approved’)
+Copy {Contract Signatory}>{Signature}
+TO Contract:{approvalSignature}
+Calendar Event ‘Contract Approved’ Created
+
+Alert! PM & Admin
+IF({eSign}=checked, begin eSignContract)
+
+
+IF(Reject, ‘Rejected’)
+Calendar Event ‘Contract Rejected’ Created
+Alert! PM & Admin",,↔️Decision,,,"3. Planning | Project Manager,2. Processing | Admin",3. Planning,2,"2. Processing: Determine Volunteer Slots,2. Processing: Determine Labor Pool,2. Processing: Create Project Scope of Work,3. Planning: Assign Subcontractor,2. Processing: Schedule Subcontractor Estimate,3. Planning: Assign Work Crew,2. Processing: Upload Subcontractor Estimate,3. Planning: Determine Project Timeline,2. Processing: Determine Project Budget,3. Planning: Create Contract,1. Intake: Phase 1 Complete",3. Planning: Create Contract,,,,recjuZlvBfPn8KW25,11,"2. Processing: Determine Volunteer Slots, 2. Processing: Determine Labor Pool, 2. Processing: Create Project Scope of Work, 3. Planning: Assign Subcontractor, 2. Processing: Schedule Subcontractor Estimate, 3. Planning: Assign Work Crew, 2. Processing: Upload Subcontractor Estimate, 3. Planning: Determine Project Timeline, 2. Processing: Determine Project Budget, 3. Planning: Create Contract, 1. Intake: Phase 1 Complete","Subcontractor,Volunteer,Staff",,,App Documents,,checked,"Contract,[PRJ] | Project Documents",1,3.1,3,ALL#,[P:3] [ALL] [T:3.1],↔️,_DOCTYPE_CON_REJECT_,,,,,_DOCTYPE_CON_REJECT_,recDLDbkj5VNmQI1U,3.3.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/appdoc,,,,/approve,/appdoc/approve,docs:,docs:events,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Reject Contract > Triggers 0 tasks:
+- ⬛
+🔮",,,,,"3. Planning, 2. Processing",4.1,2.1
+4. Project: Create Subcontractor Change Order,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Crew Lead OR Project Manager,Create Subcontractor Change Order,,,,❇️Action,*,,"4. Project | Crew Lead,4. Project | Project Manager,4. Project | Admin",4. Project,3,3. Planning: Phase 3 Complete,,,,,recZg17lfCutcgiJp,1,3. Planning: Phase 3 Complete,Staff,,,App Documents,,checked,Change Order,0,13.0,4,ALL#,[P:4] [ALL] [*] [T:13],❇️,,,,_DOCTYPE_SCO_,,_DOCTYPE_SCO_,,4.13,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,/appdoc,,,,/subs,/appdoc/subs,docs:,docs:sub,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Create Subcontractor Change Order > Triggers 0 tasks:
+- ⬛
+🔮",,,,Subcontractor Change Order,4. Project,14.0,12.0
+3. Planning: Approve Subcontractor Estimate,"pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U),admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo)",Admin OR Project Manager,Approve Subcontractor Estimate,Calendar Event ‘Subcontractor Estimate’ BEFORE NOW(),"Update {Subcontractor Status} 
+‘Estimate Created’
+
+Calendar Event ‘Subcontractor Estimate {Response}’ Created
+
+Alert! PM",,↔️Decision,,,"3. Planning | Project Manager,3. Planning | Admin",3. Planning,2,"2. Processing: Upload Subcontractor Estimate,2. Processing: Phase 2 Complete",3. Planning: Schedule Subcontractor Start,,checked,Path,recOab4qTVhWacn2V,2,"2. Processing: Upload Subcontractor Estimate, 2. Processing: Phase 2 Complete",Subcontractor,,,App Documents,,checked,Estimate,1,5.1,3,SUB#,[!] [P:3] [SUB] [T:5.1],↔️,_SUB_EST_APPROVE_,,,,,_SUB_EST_APPROVE_,recbWRwkEMXROgQxQ,3.5.1,rec0sguRX9majiBtx,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx, reczBuogrNf54Q0Pa",,,,/appdoc,3. Planning: Reject Subcontractor Estimate,,"3. Planning: Assign Subcontractor,2. Processing: Upload Subcontractor Estimate",/subs,/appdoc/subs,docs:,docs:events,#e3d9f2,"-----START-----
+### ⚙️Approve Subcontractor Estimate > Triggers 2 tasks:
+- ⬛Assign Subcontractor
+- ⬛Upload Subcontractor Estimate
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_
+- _DOCTYPE_EST_
+------END------
+
+","-----START-----
+### ⚙️Assign Subcontractor > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+, -----START-----
+### ⚙️Upload Subcontractor Estimate > Triggers 1 tasks:
+- ⬛Schedule Subcontractor Estimate
+🔮### _EVENT_LOOKUP_
+- _SUB_WALK_DATE_
+------END------
+
+","-----START-----
+### ⚙️Schedule Subcontractor Estimate > Triggers 1 tasks:
+- ⬛Assign Subcontractor
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_
+------END------
+
+","-----START-----
+### ⚙️Assign Subcontractor > Triggers 1 tasks:
+- ⬛Determine Labor Pool
+🔮
+------END------
+
+",,,,,2,"1, 1",1,1,,,,,6,"Assign Subcontractor
+Upload Subcontractor Estimate","### ⚙️Approve Subcontractor Estimate > Triggers 2 tasks:
+- ⬛Assign Subcontractor
+- ⬛Upload Subcontractor Estimate
+🔮### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_
+- _DOCTYPE_EST_",,"### _EVENT_LOOKUP_
+- _LABOR_SUB_ASSIGN_
+- _DOCTYPE_EST_","_LABOR_SUB_ASSIGN_, _DOCTYPE_EST_",,3. Planning,6.1,4.1
+1. Intake: 🎯Project Record Created,,,🎯Project Record Created,,,,🤖Automation,,,,1. Intake,0,"0. Submission: Income Check,1. Intake: Pass Pre-Screening,0. Submission: Application Withdrawn,0. Submission: Demographic Check,0. Submission: GIS Check",,,,,recA7zimWpPTU0I9a,5,"0. Submission: Income Check, 1. Intake: Pass Pre-Screening, 0. Submission: Application Withdrawn, 0. Submission: Demographic Check, 0. Submission: GIS Check",,,,,,,,0,0.0,,,[P:] [,🤖,,,,,_ANCHOR_PROJECT_NEW_,_ANCHOR_PROJECT_NEW_,,.0,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,,,1. Intake: Phase 1 Complete,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️🎯Project Record Created > Triggers 0 tasks:
+- ⬛
+🔮",,,,,,1.0,-1.0
+0. Submission: Application Withdrawn,,,Application Withdrawn,"Record Enters view
+[Base] Eligibility
+[Table] ARCHR Intake: Homes Sync
+[View] Report Fields","Attach all (Eligibility) Location records (County, City, Legacy) 
+Start income Check",,🤖Automation,,,,0. Submission,0,1. Intake: Pass Pre-Screening,"0. Submission: Income Check,1. Intake: 🎯Project Record Created,0. Submission: Demographic Check,0. Submission: GIS Check",,,,rec03EoSZw54uQW58,1,1. Intake: Pass Pre-Screening,,,,,,,,4,99.0,,ALL#,[P:] [ALL] [T:99],🤖,,,,,_APP_WITHDRAWL_,_APP_WITHDRAWL_,"recJODf4aW4wqYwKQ, recvV9VKQsYRJkiLR, recZkjSpdhcyFDwxF, recA7zimWpPTU0I9a",.99,recAdQdRQWMbu0ciw,,,,,,,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Application Withdrawn > Triggers 0 tasks:
+- ⬛
+🔮",,,,,,100.0,98.0
+0. Submission: Application Ineligible,,,Application Ineligible,,"Attach all (Eligibility) Location records (County, City, Legacy) 
+Start income Check",,❇️Action,,,,0. Submission,0,,,,,,recFWEMuHcFcf6kE1,0,,,,,,,,,0,99.0,,ALL#,[P:] [ALL] [T:99],❇️,,,,_APP_INELIGIBLE_,,_APP_INELIGIBLE_,,.99,recAdQdRQWMbu0ciw,,,,,,,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Application Ineligible > Triggers 0 tasks:
+- ⬛
+🔮",,,,,,100.0,98.0
+0. Submission: Application Paused,,,Application Paused,>3 Unsuccessful Contact Attempt,,,❇️Action,,,,0. Submission,0,,,,,,rec3qMwSJZifqppM3,0,,,,,,,,,0,88.0,,ALL#,[P:] [ALL] [T:88],❇️,,,,_APP_PAUSED_,,_APP_PAUSED_,,.88,recAdQdRQWMbu0ciw,,,,,,: Contact Made,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Application Paused > Triggers 0 tasks:
+- ⬛
+🔮",,,,,,89.0,87.0
+0. Submission: Check Helene Related,,,Check Helene Related,"Record Enters view
+[Base] Eligibility
+[Table] ARCHR Intake: Homes Sync
+[View] Report Fields","Attach all (Eligibility) Location records (County, City, Legacy) 
+Start income Check",,🤖Automation,,,0. Submission | ,0. Submission,1,0. Submission: Application Submitted,,,,,recnl8gOcDKxpjj0i,1,0. Submission: Application Submitted,,,,,,,,0,1.0,0,ALL#,[P:0] [ALL] [T:1],🤖,,,,,_SCREEN_HELENE_,_SCREEN_HELENE_,,0.1,recAdQdRQWMbu0ciw,,,,,,,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Check Helene Related > Triggers 0 tasks:
+- ⬛
+🔮",,,,,0. Submission,2.0,0.0
+0. Submission: Application Submitted,,,Application Submitted,,,,❇️Action,,,,0. Submission,0,,"0. Submission: Check Helene Related,0. Submission: Income Check,0. Submission: Location Check,0. Submission: Demographic Check,0. Submission: GIS Check",,,,recYaksTDIiPGu9Xq,0,,,,,,,,,5,0.0,,ALL#,[P:] [ALL] [T:0],❇️,,,,_APP_SUBMIT_,,_APP_SUBMIT_,"recJODf4aW4wqYwKQ, recvV9VKQsYRJkiLR, recZkjSpdhcyFDwxF, recYVvmpYYPnX0aoI, recnl8gOcDKxpjj0i",.0,recAdQdRQWMbu0ciw,,,,,,,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Application Submitted > Triggers 0 tasks:
+- ⬛
+🔮",,,,,,1.0,-1.0
+0. Submission: Demographic Check,,,Demographic Check,"Record Enters view
+[Base] Eligibility
+[Table] Reports Results
+[View] Location Check Complete",Search all (Eligibility) ,,🤖Automation,,,0. Submission | ,0. Submission,1,"0. Submission: Application Withdrawn,0. Submission: Application Submitted",1. Intake: 🎯Project Record Created,,,,recvV9VKQsYRJkiLR,2,"0. Submission: Application Withdrawn, 0. Submission: Application Submitted",,,,,,,,1,1.3,0,ALL#,[P:0] [ALL] [T:1.3],🤖,,,,,_SCREEN_DEMO_,_SCREEN_DEMO_,recA7zimWpPTU0I9a,0.1.3,recAdQdRQWMbu0ciw,,,,,,,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Demographic Check > Triggers 0 tasks:
+- ⬛
+🔮",,,,,0. Submission,2.3,0.3
+0. Submission: GIS Check,,,GIS Check,"Record Enters view
+[Base] Eligibility
+[Table] Reports Results
+[View] Location Check Complete",Search all (Eligibility) ,,🤖Automation,,,0. Submission | ,0. Submission,1,"0. Submission: Application Withdrawn,0. Submission: Application Submitted",1. Intake: 🎯Project Record Created,,,,recZkjSpdhcyFDwxF,2,"0. Submission: Application Withdrawn, 0. Submission: Application Submitted",,,,,,,,1,1.4,0,ALL#,[P:0] [ALL] [T:1.4],🤖,,,,,_SCREEN_GIS_,_SCREEN_GIS_,recA7zimWpPTU0I9a,0.1.4,recAdQdRQWMbu0ciw,,,,,,,,,,,progress:,progress:events,,,,,,,,,,0,,,,,,,,0,,"### ⚙️GIS Check > Triggers 0 tasks:
+- ⬛
+🔮",,,,,0. Submission,2.4,0.4
+: Communication Log Event,,,Communication Log Event,Contact Record,,,❇️Action,,,,,0,,,,,Always,recKxUy3ZtE105wH1,0,,,,,Communication Log,,,,0,,,,[!] [P:] [,❇️,,,,_COMM_,,_COMM_,,.,,,,,,/comm,,,: Contact Attempt,,/comm,comms,comms,,"-----START-----
+### ⚙️Communication Log Event > Triggers 1 tasks:
+- ⬛Contact Attempt
+🔮### _EVENT_LOOKUP_
+- _COMM_SMS_ ,_COMM_VM_, _COMM_EMAIL_,_COMM_OTHER_
+------END------
+
+",,,,,,,,1,,,,,,,,1,Contact Attempt,"### ⚙️Communication Log Event > Triggers 1 tasks:
+- ⬛Contact Attempt
+🔮### _EVENT_LOOKUP_
+- _COMM_SMS_ ,_COMM_VM_, _COMM_EMAIL_,_COMM_OTHER_",,"### _EVENT_LOOKUP_
+- _COMM_SMS_ ,_COMM_VM_, _COMM_EMAIL_,_COMM_OTHER_","_COMM_SMS_ ,_COMM_VM_, _COMM_EMAIL_,_COMM_OTHER_",,,1.0,-1.0
+: Contact Made,,,Contact Made,,,,❇️Action,,,,,0,,,,,,rechEFprZibBanyZK,0,,,,,Communication Log,,,,0,,,,[P:] [,❇️,,,,_COMM_SUCCESS_,,_COMM_SUCCESS_,,.,,,,,,/comm,0. Submission: Application Paused,,1. Intake: Initial Contact,,/comm,comms,comms,,"-----START-----
+### ⚙️Contact Made > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_
+------END------
+
+",,,,,,,,1,,,,,,,,1,Initial Contact,"### ⚙️Contact Made > Triggers 1 tasks:
+- ⬛Initial Contact
+🔮### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_",,"### _EVENT_LOOKUP_
+- _INITIAL_CONTACT_",_INITIAL_CONTACT_,,,1.0,-1.0
+: Contact Attempt,,,Contact Attempt,,,,❇️Action,,,,,0,,,,,Always,recB46wCzLtukxXit,0,,,,,Communication Log,,,,0,,,,[!] [P:] [,❇️,,,,"_COMM_SMS_ ,_COMM_VM_, _COMM_EMAIL_,_COMM_OTHER_",,"_COMM_SMS_ ,_COMM_VM_, _COMM_EMAIL_,_COMM_OTHER_",,.,,,,,,/comm,,: Communication Log Event,,,/comm,comms,comms,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Contact Attempt > Triggers 0 tasks:
+- ⬛
+🔮",,,,,,1.0,-1.0
+: Check Out,,,Check Out,,,,❇️Action,,,,,0,,,,,Always,recX8UYc1pbPgCSwg,0,,,,,,,,,0,0.0,,,[!] [P:] [,❇️,,,,,,,,.0,,,,,,,,,,/checkout?recordId=_ANCHOR_ID_,/checkout?recordId=_ANCHOR_ID_,,,,,,,,,,,,0,,,,,,,,0,,"### ⚙️Check Out > Triggers 0 tasks:
+- ⬛
+🔮",,,,,,1.0,-1.0
+2. Processing: Verify Income Documents,admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Admin,Verify Income Documents,,,,👀Verify,,,2. Processing | Admin,2. Processing,1,1. Intake: Collect Income Documents,2. Processing: Confirm Eligibility,,,,recjjuHYa4oxnfX0S,1,1. Intake: Collect Income Documents,,,,,,,,1,1.0,2,,[P:2] [,👀,,,,,,,recP0l6lcNAYOXehl,2.1,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,,,,,,,,,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Verify Income Documents > Triggers 0 tasks:
+- ⬛
+🔮",,,,,2. Processing,2.0,0.0
+2. Processing: Verify Ownership Documents,admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Admin,Verify Ownership Documents,,,,👀Verify,,,2. Processing | Admin,2. Processing,1,1. Intake: Collect Ownership Documents,2. Processing: Confirm Eligibility,,,,rec4SnQvg6RzgFDqQ,1,1. Intake: Collect Ownership Documents,,,,,,,,1,1.0,2,,[P:2] [,👀,,,,,,,recP0l6lcNAYOXehl,2.1,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,,,,,,,,,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Verify Ownership Documents > Triggers 0 tasks:
+- ⬛
+🔮",,,,,2. Processing,2.0,0.0
+1. Intake: Collect Ownership Documents,admin.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/JMNLPlqHzOeLfbZ9oizmMg/73b6qtytX6txBMIVxEzrX9NbLvj2iAG7u-e0npHy4VrM38YCah922_SOoSMyPZRSBtmWfUneirJsfN6viZ_fnbNobdS4wHd_Iq3OPA_nYZ2UqH4iFLDjb4DZ15qsEr4SYGQfZgXQeFdV6UPNA8J4-w/jSr_c5YbzOsfwwt89_NZr2AdkMdscApIYwaJbb4-7qo),Admin,Collect Ownership Documents,"Description: 
+When Income Documents (w2, paystubs, ssi benefits letter, zero income affidavit) for all >18yo Household Members are present in Project Documents, ","Income Status Update
+‘Has Documents’",,❇️Action,,,1. Intake | Admin,1. Intake,1,,"1. Intake: Phase 1 Complete,2. Processing: Verify Ownership Documents",,,Always,recisidnXNMR1ED6o,0,,,{Income Proven},,App Documents,,checked,[POI] | Proof of Income,2,4.0,1,ALL#,[!] [P:1] [ALL] [T:4],❇️,,,,_DOCTYPE_POI_,,_DOCTYPE_POI_,"recCByobmCHKpl1c4, rec4SnQvg6RzgFDqQ",1.4,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,/appdoc,,"2. Processing: Confirm Eligibility,5. Report: Complete ARCHR Draw Request Workbook",,/app,/appdoc/app,docs:,docs:applicant,#e3d9f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Collect Ownership Documents > Triggers 0 tasks:
+- ⬛
+🔮",,,,[POI] | Proof of Income,1. Intake,5.0,3.0
+1. Intake: Schedule Assessment,assess.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/IJtarznbFScxywDXlP9BwA/k6XBX6MVUL1sHh5Mh2y5T308wHINsq0ciCQ5uUw3mZdZnx7oLX6aMkv_AHn7TyWRzWOEH-jHQhCbqTFSUkpIP9idm34e0p5hhp9ddCNuOAWeqkw6TRwa8w2bJfAnFBXlfT6iYAZIKMDKoqc4R5cbsWyGHvoh8ckM_P_xyJglpuY/ZF4lwsl-A0fykULXLGO4L0m-ZWhjeBD1-swyi-sSrbM),Assessor,Schedule Assessment,,,,📅Scheduling,,,1. Intake | Assessor,1. Intake,1,1. Intake: Claim Assessment,2. Processing: Perform Assessment,,,Always,recNQKAjLe2rgXbb6,1,1. Intake: Claim Assessment,,,,,,,,1,,1,,[!] [P:1] [,📅,,,,,,,rec5swkBSeLw6M7l8,1.,recXKsbM45ZbSAFCH,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recNnHGvboVebh8Pn, recUMc3mQvvWCLpEx",,,,,,2. Processing: Perform Assessment,,,,,,#d9f0f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Schedule Assessment > Triggers 0 tasks:
+- ⬛
+🔮",,,,,1. Intake,1.0,-1.0
+2. Processing: Create Assessment Report,assess.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/IJtarznbFScxywDXlP9BwA/k6XBX6MVUL1sHh5Mh2y5T308wHINsq0ciCQ5uUw3mZdZnx7oLX6aMkv_AHn7TyWRzWOEH-jHQhCbqTFSUkpIP9idm34e0p5hhp9ddCNuOAWeqkw6TRwa8w2bJfAnFBXlfT6iYAZIKMDKoqc4R5cbsWyGHvoh8ckM_P_xyJglpuY/ZF4lwsl-A0fykULXLGO4L0m-ZWhjeBD1-swyi-sSrbM),Assessor,Create Assessment Report,,,,❇️Action,,,2. Processing | Assessor,2. Processing,1,2. Processing: Perform Assessment,"2. Processing: Create Repair Task List,2. Processing: Determine Volunteer Slots,2. Processing: Determine Labor Pool",,,,rec1nyw9tMmUKhlnc,1,2. Processing: Perform Assessment,,,,,,,,3,3.0,2,,[P:2] [,❇️,,,,,,,"recfYo3Z4XUbrMV9Y, rec7ZstZpVhT8SJOY, recZPEng4aO9gUM14",2.3,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,,,,,,,,,#d9f0f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Create Assessment Report > Triggers 0 tasks:
+- ⬛
+🔮",,,,,2. Processing,4.0,2.0
+2. Processing: Upload Before Photos,assess.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/IJtarznbFScxywDXlP9BwA/k6XBX6MVUL1sHh5Mh2y5T308wHINsq0ciCQ5uUw3mZdZnx7oLX6aMkv_AHn7TyWRzWOEH-jHQhCbqTFSUkpIP9idm34e0p5hhp9ddCNuOAWeqkw6TRwa8w2bJfAnFBXlfT6iYAZIKMDKoqc4R5cbsWyGHvoh8ckM_P_xyJglpuY/ZF4lwsl-A0fykULXLGO4L0m-ZWhjeBD1-swyi-sSrbM),Assessor,Upload Before Photos,,,,📷Photo,,,2. Processing | Assessor,2. Processing,1,2. Processing: Perform Assessment,,,,,recrGlehSKp7xjXWc,1,2. Processing: Perform Assessment,,,,,,,,0,2.1,2,,[P:2] [,📷,,,,,,,,2.2.1,recdLJpp5LDSkwnJ8,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, recUMc3mQvvWCLpEx",,,,,,,,,,,,#d9f0f2,,,,,,,,,0,,,,,,,,0,,"### ⚙️Upload Before Photos > Triggers 0 tasks:
+- ⬛
+🔮",,,,,2. Processing,3.1,1.1
+4. Project: Complete Project Repair Tasks,"CrewLead.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/zPV-B-3It4fgOBUs0GRRaA/RfBp3ZYCWz_FRd-rBmUIcPO6AlBdda__VqmIBE_Vg6NMLVcbOTdqKFnMvujUBfz0cNcGZLC_I9YBowGHVuZcaQ05RkT5TiNaG9vgU_KRmFTd-uX4HvbIyORSfXS8FoXZVJuPHrp-c-oiT4dR_JbZmcx5lpyHA7ZI8N9HvE6oaX4/A7L8Dv4evxslJHsTt48HKnIgGLCKlrEFXvkS0_vg6es),CrewMember.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Y9PMD2SIk6q93KQN2ky09w/l5-K-HYY9tmwcaaB5QB_fL2v0q6iKlvtNO3Kx4qGBtUncFInHX8Kq1sz6VFiP8JbqLsi8dWEpL4VGJoHfog5MPke5uxKyD5CsFrCnVBvP_5CR7hrO9BjL9AaZKus7d2uZkjEJSYiCJRSvRS-OePGc9mulikOw15Y271kJMto6nE/H0Vyt8G-1OMh5RIcI2Gtq7N_Q7bga1D86QxId04iIwU),pm.png (https://v5.airtableusercontent.com/v3/u/52/52/1777658400000/Gur4xG7N6-19urUI86yS-w/yVRhD6NnPYTj602dsyzKI9k1uHQ8mNJp49t0jf0rSxCxTmXf0VzSH0ItW4L7QG0qIKqeLxhVuIGoF14QxLObmTasSJUFGyEYzd9abJWkeLqnY9dq0STvaouYhrzArS7yOdHTF67p8WPXaRQ4lxu3QA/tADtJjPFdDp7kvS6GF96UjLNXLQQtPHwuXNzKOKNn3U)",Crew Lead OR Crew Member OR Project Manager,Complete Project Repair Tasks,,,,❇️Action,,,"4. Project | Crew Lead,4. Project | Crew Member,4. Project | Project Manager",4. Project,3,"3. Planning: Sign Contract,3. Planning: Schedule Project Start",,,,,recKqH0TYFAX8twEd,2,"3. Planning: Sign Contract, 3. Planning: Schedule Project Start",Staff,,,,,,,0,2.0,4,,[P:4] [,❇️,,,,,,,,4.2,rec6l6qxamxzWEYHr,"rec7EvhJscGO509ms, rec7Mii4Sk5mVuzfb, recAlOnxeMy09g39H, recbmOJC7kR7x2qdG, recFjFu0QhIzi0vpp, recjdRs4Z42PHN21n, recjW3ndwO694WMxR, recjy4Emo3K4E7wXq, recNnHGvboVebh8Pn, recOfcyhcQGvprgB1, reczBuogrNf54Q0Pa",,,,,,,,,,,,#fbe2d0,,,,,,,,,0,,,,,,,,0,,"### ⚙️Complete Project Repair Tasks > Triggers 0 tasks:
+- ⬛
+🔮",,,,,4. Project,3.0,1.0

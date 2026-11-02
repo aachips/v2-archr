@@ -1,0 +1,45 @@
+{
+  "component_name": "Suggested Tasks",
+  "component_id": "cmp_suggested_tasks",
+  "component_type": "list",
+  "data_sources": {
+    "tasks": "work_tasks where status = 'available' AND task_type IN (SELECT trade_specialty FROM subcontractor_profiles WHERE user_id = current_user)"
+  },
+  "list_item_fields": [
+    {
+      "field": "job_code",
+      "label": "Job Code",
+      "type": "placecode"
+    },
+    {
+      "field": "subtasks",
+      "label": "Subtasks",
+      "type": "progress",
+      "format": "{completed}/{total}"
+    },
+    {
+      "field": "task_type",
+      "label": "Type",
+      "type": "trade_badge"
+    },
+    {
+      "field": "estimated_hours",
+      "label": "Est. Hours",
+      "type": "duration"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "Claim Task",
+      "action": "api",
+      "endpoint": "/api/subcontractor/tasks/claim",
+      "method": "POST",
+      "confirm": "Claim this task?",
+      "success_message": "Task claimed successfully!",
+      "auto_refresh": true
+    }
+  ],
+  "sort_order": "priority DESC, created_at ASC",
+  "empty_state": "No tasks available matching your trade. Check back later.",
+  "mobile_layout": "cards"
+}

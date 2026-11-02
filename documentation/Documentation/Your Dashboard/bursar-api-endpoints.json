@@ -1,0 +1,195 @@
+"api_endpoints": {
+    "dashboard": {
+      "GET /api/bursar/dashboard": {
+        "description": "Get all dashboard data in one call",
+        "response": {
+          "last_application": {},
+          "kpi_data": {},
+          "funding_table": [],
+          "reimbursement_queue": [],
+          "funding_sources": {},
+          "duplicate_alerts": []
+        }
+      }
+    },
+
+    "funding": {
+      "GET /api/bursar/funding-overview": {
+        "description": "KPI card data",
+        "response": {
+          "total_approved": 2400000,
+          "pending_reimbursement": 350000,
+          "reimbursed_to_date": 1850000,
+          "on_hold_amount": 125000,
+          "active_cases": 48
+        }
+      },
+      "GET /api/bursar/cases/funding": {
+        "description": "List of cases with funding details",
+        "parameters": {"status": "optional", "limit": "optional", "offset": "optional"},
+        "response": {"cases": []}
+      },
+      "GET /api/bursar/cases/:id/funding": {
+        "description": "Single case funding detail",
+        "response": {
+          "approved_amount": 45000,
+          "incurred_amount": 12000,
+          "reimbursed_amount": 9500,
+          "remaining_amount": 33000,
+          "funding_sources": [],
+          "invoices": []
+        }
+      }
+    },
+
+    "reimbursements": {
+      "GET /api/bursar/reimbursements": {
+        "description": "List reimbursement requests",
+        "parameters": {"status": "optional", "limit": "optional"},
+        "response": {"requests": []}
+      },
+      "GET /api/bursar/reimbursements/:id": {
+        "description": "Single reimbursement detail",
+        "response": {
+          "request_id": "REIMB-2024-00187",
+          "case_id": 1234,
+          "organization": "Habitat for Humanity",
+          "invoice_number": "INV-2024-0456",
+          "amount": 8450,
+          "status": "pending",
+          "submitted_at": "2024-11-15T14:30:00Z",
+          "aging_days": 34,
+          "line_items": [],
+          "documents": []
+        }
+      },
+      "POST /api/bursar/reimbursements": {
+        "description": "Submit new reimbursement request",
+        "body": {
+          "case_id": "integer",
+          "organization_id": "integer",
+          "invoice_number": "string",
+          "invoice_date": "date",
+          "invoice_amount": "decimal",
+          "invoice_document_id": "integer",
+          "line_items": "array",
+          "notes": "string"
+        },
+        "response": {"success": true, "request_id": "REIMB-YYYY-XXXXX"}
+      },
+      "POST /api/bursar/reimbursements/:id/approve": {
+        "description": "Approve a reimbursement request",
+        "body": {"notes": "string"},
+        "response": {"success": true, "status": "approved"}
+      },
+      "POST /api/bursar/reimbursements/:id/reject": {
+        "description": "Reject a reimbursement request",
+        "body": {"reason": "string", "notes": "string"},
+        "response": {"success": true, "status": "rejected"}
+      },
+      "POST /api/bursar/reimbursements/:id/pay": {
+        "description": "Mark reimbursement as paid",
+        "body": {"payment_reference": "string", "paid_date": "date"},
+        "response": {"success": true, "status": "paid"}
+      }
+    },
+
+    "funding_sources": {
+      "GET /api/bursar/funding-sources": {
+        "description": "List all funding sources",
+        "response": {"sources": []}
+      },
+      "GET /api/bursar/funding-sources/:id": {
+        "description": "Single funding source detail",
+        "response": {
+          "id": 1,
+          "source_name": "Habitat Grant 2024",
+          "source_type": "grant",
+          "total_amount": 1000000,
+          "remaining_amount": 150000,
+          "allocated_to_cases": 850000,
+          "utilization_percentage": 85,
+          "health_status": "healthy"
+        }
+      },
+      "POST /api/bursar/funding-sources": {
+        "description": "Create new funding source",
+        "body": {
+          "source_name": "string",
+          "source_type": "string",
+          "total_amount": "decimal",
+          "start_date": "date",
+          "end_date": "date",
+          "restrictions": "string"
+        },
+        "response": {"success": true, "id": "integer"}
+      },
+      "POST /api/bursar/funding-sources/:id/allocate": {
+        "description": "Allocate funds to a case",
+        "body": {"case_id": "integer", "amount": "decimal", "notes": "string"},
+        "response": {"success": true, "new_remaining": "decimal"}
+      }
+    },
+
+    "duplicates": {
+      "GET /api/bursar/duplicates": {
+        "description": "List duplicate alerts",
+        "response": {"alerts": []}
+      },
+      "GET /api/bursar/duplicates/:id": {
+        "description": "Single duplicate alert detail",
+        "response": {
+          "alert_type": "same_address",
+          "submission_id_1": 1234,
+          "submission_id_2": 5678,
+          "case_number_1": "ARCHR-2024-001234",
+          "case_number_2": "ARCHR-2024-001189",
+          "org_1": "Habitat for Humanity",
+          "org_2": "Community Housing Coalition"
+        }
+      },
+      "POST /api/bursar/duplicates/:id/resolve": {
+        "description": "Resolve a duplicate alert",
+        "body": {"resolution": "string", "notes": "string"},
+        "response": {"success": true}
+      }
+    },
+
+    "reports": {
+      "GET /api/bursar/reports/funding": {
+        "description": "Generate funding report",
+        "parameters": {"start_date": "optional", "end_date": "optional", "format": "csv|pdf"}
+      },
+      "GET /api/bursar/reports/aging": {
+        "description": "Generate aging report",
+        "parameters": {"format": "csv|pdf"}
+      }
+    },
+
+    "audit": {
+      "GET /api/bursar/audit": {
+        "description": "Get audit log for bursar actions",
+        "parameters": {"case_id": "optional", "limit": "optional"},
+        "response": {"logs": []}
+      }
+    },
+
+    "tasks": {
+      "GET /api/bursar/tasks": {
+        "description": "Get bursar's task queue",
+        "response": {"pending": [], "in_progress": [], "completed": []}
+      },
+      "PUT /api/bursar/tasks/:id": {
+        "description": "Update task status",
+        "body": {"status": "string", "notes": "string"}
+      }
+    },
+
+    "calendar": {
+      "GET /api/bursar/calendar": {
+        "description": "Get calendar events for a month",
+        "parameters": {"month": "integer", "year": "integer"},
+        "response": {"events": []}
+      }
+    }
+  },

@@ -1,0 +1,32 @@
+// Case Directory Tree - the structured per-case document folder layout.
+// Mirrors sql/document-storage.sql document_categories + the case folder
+// structure in document-generation/document-storage.md. Rendered on the Case
+// Documents page; the tree drives which DocCodes are expected per folder and
+// whether each is generated on the spot or uploaded and verified.
+
+{
+  "component_name": "Case Directory Tree",
+  "component_role": "documents",
+  "component_id": "tree_case_directory",
+  "component_type": "config",
+  "component_context": {
+    "target": "documents.directory",
+    "target_key": "{case}.{case_number}",
+    "action": "DOCS.LIST_TREE",
+    "webhookSlug": "[documentsWebhook]",
+    "root": "/organizations/{org_id}/cases/{case_number}/",
+    "storage_provider": "abstracted (dropbox | s3 | local home server)"
+  },
+  "folders": {
+    "application":    { "label": "Application",          "icon": "fa-file-signature",      "docCodes": ["APP", "CONSENT"], "flow": "generated-on-submission + upload" },
+    "property":       { "label": "Property",             "icon": "fa-house-chimney",       "docCodes": ["PROP", "DEED", "TAX"], "flow": "generated-from-county-data + upload" },
+    "income":         { "label": "Income Verification",  "icon": "fa-hand-holding-dollar", "docCodes": ["INC_PAYSTUB", "INC_W2", "INC_SS", "INC_BANK"], "flow": "requestor-upload + staff-verify" },
+    "assessments":    { "label": "Assessments",          "icon": "fa-clipboard-check",     "docCodes": ["ASSESS", "PH_B", "PH_D"], "flow": "generated + assessor-upload" },
+    "contracts":      { "label": "Contracts",            "icon": "fa-file-contract",       "docCodes": ["CONT", "CO"], "flow": "generated-on-the-spot + signature" },
+    "work_orders":    { "label": "Work Orders",          "icon": "fa-helmet-safety",       "docCodes": ["WO", "PH_D"], "flow": "generated + crew photos" },
+    "financial":      { "label": "Financial & Grants",   "icon": "fa-coins",               "docCodes": ["QUOTE", "INV", "GRANT", "ENV", "SHPO", "CENST", "IDIS"], "flow": "generated CDBG forms + sub uploads" },
+    "completion":     { "label": "Completion",           "icon": "fa-award",               "docCodes": ["CERT", "PH_A"], "flow": "generated + final photos" },
+    "communications": { "label": "Communications",       "icon": "fa-comments",            "docCodes": ["COMM"], "flow": "auto-generated log export" }
+  },
+  "naming_convention": "{case_number}_{DOCTYPE}_{version_or_date}_{descriptor}.{ext}"
+}

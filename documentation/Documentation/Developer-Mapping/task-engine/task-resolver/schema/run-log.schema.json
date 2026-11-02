@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eventResolver.runLog.v1",
+  "title": "Resolver Persistent Run Log",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema", "log"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "eventResolver.runLog.v1"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "log": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/logEntry"
+      }
+    }
+  },
+  "$defs": {
+    "logEntry": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["timestamp", "step", "status"],
+      "properties": {
+        "timestamp": {
+          "type": "string"
+        },
+        "step": {
+          "type": "string",
+          "enum": ["step1", "step2", "step3", "stepX", "step4"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["complete", "error"]
+        },
+        "resolver": {
+          "type": "object"
+        },
+        "summary": {
+          "type": "object"
+        },
+        "error": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

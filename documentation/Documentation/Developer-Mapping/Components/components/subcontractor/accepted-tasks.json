@@ -1,0 +1,46 @@
+// Accepted Tasks
+
+{
+  "component_name": "Accepted Tasks",
+  "component_id": "cmp_accepted_tasks",
+  "component_type": "list",
+  "data_sources": {
+    "tasks": "work_tasks where assigned_to_id = current_user AND status != 'completed'"
+  },
+  "list_item_fields": [
+    {
+      "field": "job_code",
+      "label": "Job Code",
+      "type": "placecode"
+    },
+    {
+      "field": "subtasks",
+      "label": "Subtasks",
+      "type": "progress",
+      "format": "{completed}/{total}"
+    },
+    {
+      "field": "todo_tasks",
+      "label": "Todo Tasks",
+      "type": "list",
+      "max_display": 3
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "Update Status",
+      "action": "modal",
+      "target": "/taskHammer",
+      "modal_type": "status_update"
+    },
+    {
+      "label": "View Task",
+      "action": "modal",
+      "target": "/taskHammer",
+      "modal_type": "detail"
+    }
+  ],
+  "sort_order": "priority DESC, estimated_start ASC",
+  "empty_state": "No active tasks. Check suggested tasks below.",
+  "mobile_layout": "cards"
+}

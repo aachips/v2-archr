@@ -1,0 +1,165 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:13.028Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblAPEKmG3qID4SeM",
+    "name": "material_requests",
+    "description": null,
+    "primaryFieldId": "fldU9cZNxPTyUzJ7y",
+    "fields": [
+      {
+        "id": "fldU9cZNxPTyUzJ7y",
+        "name": "task_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldiDHAqidttgfd5e",
+        "name": "requested_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldV3ya2698kQnbxL",
+        "name": "material_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld11iwVsMztSIrry",
+        "name": "quantity",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fld25NopJvNaZPb4o",
+        "name": "unit",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldi64iKW5fVZIPja",
+        "name": "estimated_cost",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldHm21AIZRnongiS",
+        "name": "supplier",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld2adDwYAyHspxxg",
+        "name": "status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld6F0fgRbCNjRm04",
+        "name": "approved_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldrGObo4kcJVinXW",
+        "name": "approved_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fld2teGynUxM3i4pl",
+        "name": "order_date",
+        "type": "date",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          }
+        }
+      },
+      {
+        "id": "fldJkoDMtut9MWQz8",
+        "name": "received_date",
+        "type": "date",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          }
+        }
+      },
+      {
+        "id": "fldnfT05kJSzLX8zv",
+        "name": "notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldRT6JPEUbvp3FdR",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwvxJjB4dKd4X8E2",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

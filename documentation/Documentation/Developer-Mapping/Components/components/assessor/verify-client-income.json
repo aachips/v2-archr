@@ -1,0 +1,62 @@
+// 2.1 Verify Income (POI - Proof of Income) - Verify client's income documentation
+
+{
+  "task_name": "Verify Income",
+  "task_id": "task_verify_income",
+  "task_type": "document_verification",
+  "document_code": "POI",
+  "document_action": "VERIFY",
+  "reversible": true,
+  "fields": [
+    {
+      "name": "document_type",
+      "label": "Document Type",
+      "type": "select",
+      "options": [
+        "Pay Stub (last 3 months)",
+        "W-2 Form",
+        "Tax Return (last year)",
+        "Bank Statement (last 3 months)",
+        "Benefits Award Letter",
+        "Self-Employment Documentation",
+        "Other"
+      ]
+    },
+    {
+      "name": "income_amount",
+      "label": "Monthly Income Shown",
+      "type": "currency"
+    },
+    {
+      "name": "verification_notes",
+      "label": "Verification Notes",
+      "type": "textarea",
+      "placeholder": "Any discrepancies or notes about this document..."
+    },
+    {
+      "name": "matches_client",
+      "label": "Does the name match the client?",
+      "type": "boolean"
+    },
+    {
+      "name": "is_current",
+      "label": "Is this documentation current?",
+      "type": "boolean"
+    },
+    {
+      "name": "verification_status",
+      "label": "Verification Status",
+      "type": "select",
+      "options": ["verified", "needs_clarification", "rejected"]
+    }
+  ],
+  "compliance": {
+    "privacy_level": "high",
+    "document_retention": "7 years"
+  },
+  "button_config": {
+    "button_text": "Verify Income",
+    "webhook_slug": "[documentWebhook]",
+    "target_key": "{firstName}.{lastName}.ProofIncome.jpg"
+  }
+}

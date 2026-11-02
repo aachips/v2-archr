@@ -1,0 +1,58 @@
+// Active Projects List - Shows all active projects assigned to this PM
+
+{
+  "component_name": "Active Projects List",
+  "component_id": "cmp_pm_active_projects",
+  "component_type": "list",
+  "data_sources": {
+    "projects": "projects where project_manager_id = current_user AND status IN ('active', 'in_progress', 'pending')"
+  },
+  "list_item_fields": [
+    {
+      "field": "project_code",
+      "label": "Project Code",
+      "type": "text"
+    },
+    {
+      "field": "address",
+      "label": "Address",
+      "type": "text"
+    },
+    {
+      "field": "status",
+      "label": "Status",
+      "type": "badge",
+      "color_mapping": {
+        "active": "green",
+        "in_progress": "blue",
+        "pending": "amber"
+      }
+    },
+    {
+      "field": "crew_assigned",
+      "label": "Crew",
+      "type": "text"
+    },
+    {
+      "field": "completion_percentage",
+      "label": "Progress",
+      "type": "progress_bar"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "View Project",
+      "action": "navigate",
+      "target": "/project/{project_id}"
+    },
+    {
+      "label": "Assign Crew",
+      "action": "modal",
+      "target": "/assignCrew",
+      "modal_type": "assign_crew"
+    }
+  ],
+  "sort_order": "start_date DESC",
+  "empty_state": "No active projects. Check pending assignments.",
+  "mobile_layout": "cards"
+}

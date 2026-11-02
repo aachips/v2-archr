@@ -1,0 +1,186 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:13.350Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tbloiQxxg9nmstILS",
+    "name": "invoices",
+    "description": null,
+    "primaryFieldId": "fldPLISjfX0STiPWc",
+    "fields": [
+      {
+        "id": "fldPLISjfX0STiPWc",
+        "name": "case_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldWWxbkzgFdxTuoW",
+        "name": "invoice_number",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldWi0AAwspJuT98s",
+        "name": "vendor_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldqy2UDO5rJPD2xY",
+        "name": "vendor_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "flddRdtrajuttURZW",
+        "name": "invoice_date",
+        "type": "date",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          }
+        }
+      },
+      {
+        "id": "fld6Gghvck0JxB68X",
+        "name": "due_date",
+        "type": "date",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          }
+        }
+      },
+      {
+        "id": "fldoLYdfkqLVNxiAH",
+        "name": "paid_date",
+        "type": "date",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          }
+        }
+      },
+      {
+        "id": "fld2ZrcHAbhKtDkvG",
+        "name": "subtotal",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldnzFkOJQpo3YBeL",
+        "name": "tax",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldGBCOfLybx1AxQn",
+        "name": "total_amount",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldDsdiTrgxHHeZ4y",
+        "name": "status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldwnQumDo0juPhMz",
+        "name": "approved_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldRh6h1GAYhhdqBt",
+        "name": "approved_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldrCPC1nAmAeRdzD",
+        "name": "paid_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldyKvTfOUEAjvYhI",
+        "name": "notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld5xBashFjPcgPJW",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwo7MCcO0AIRzmMS",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

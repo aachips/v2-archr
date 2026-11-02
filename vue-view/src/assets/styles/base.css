@@ -1,0 +1,161 @@
+/* ---------------------------------------------------------------------------
+ * Base styles: theme variables + shared primitives. Imported once in
+ * src/main.js. Component styles live in app-shell.css / case-review.css.
+ * Theme: [data-theme="dark"] on #app flips the variables (AppHeader toggle).
+ * Components should consume ONLY the variables below so dark mode keeps
+ * working as the UI grows.
+ * ------------------------------------------------------------------------ */
+
+#app {
+  --color-bg: #f3f4f6;
+  --color-panel: #ffffff;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-border-strong: #d1d5db;
+  --color-accent: #1f6feb;
+  --color-danger: #b91c1c;
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fca5a5;
+  --color-warning-bg: #fef3c7;
+  --color-warning-text: #92400e;
+  --color-success-bg: #dcfce7;
+  --color-success-text: #166534;
+  --color-info-bg: #dbeafe;
+  --color-info-text: #1d4ed8;
+  --color-sidebar-bg: #1f2937;
+  --color-sidebar-text: #d1d5db;
+
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text);
+}
+
+#app[data-theme="dark"] {
+  --color-bg: #111827;
+  --color-panel: #1f2937;
+  --color-text: #f3f4f6;
+  --color-muted: #9ca3af;
+  --color-border: #374151;
+  --color-border-strong: #4b5563;
+  --color-accent: #60a5fa;
+  --color-danger: #f87171;
+  --color-danger-bg: #450a0a;
+  --color-danger-border: #7f1d1d;
+  --color-warning-bg: #451a03;
+  --color-warning-text: #fbbf24;
+  --color-success-bg: #052e16;
+  --color-success-text: #4ade80;
+  --color-info-bg: #172554;
+  --color-info-text: #93c5fd;
+  --color-sidebar-bg: #0b1220;
+  --color-sidebar-text: #d1d5db;
+}
+
+/* --- Shared primitives (mirrors the class vocabulary of app/assets) ------ */
+
+.panel {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.muted { color: var(--color-muted); }
+
+/* Status / flag pills */
+.pill {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--color-border);
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.pill--blue { background: var(--color-info-bg); color: var(--color-info-text); }
+.pill--green { background: var(--color-success-bg); color: var(--color-success-text); }
+.pill--amber { background: var(--color-warning-bg); color: var(--color-warning-text); }
+.pill--red { background: var(--color-danger-bg); color: var(--color-danger); }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover { background: var(--color-bg); }
+.btn:disabled { opacity: 0.6; cursor: default; }
+.btn--primary { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+.btn--danger { background: var(--color-danger); border-color: var(--color-danger); color: #fff; }
+.btn--sm { padding: 0.25rem 0.7rem; font-size: 0.85rem; }
+
+/* Definition lists used by the Summary* components */
+.def-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+.def-list dt { font-size: 0.8rem; font-weight: 600; color: var(--color-muted); }
+.def-list dd { margin: 0; }
+
+/* Alerts (urgent banner, terminal status, limited-view notices) */
+.alert {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background: var(--color-panel);
+}
+.alert--danger {
+  border-color: var(--color-danger-border);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+.alert--info {
+  border-color: var(--color-info-text);
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+
+/* Modal (shared overlay/dialog pattern — port of the QuickTasks modal) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(17, 24, 39, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  width: min(28rem, 90vw);
+  padding: 1.25rem;
+  border-radius: 8px;
+  background: var(--color-panel);
+  color: var(--color-text);
+}
+.modal h2 { margin-top: 0; font-size: 1.05rem; }
+.modal label { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.75rem; }
+.modal label span { font-size: 0.8rem; font-weight: 600; color: var(--color-muted); }
+.modal select,
+.modal textarea,
+.modal input {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font: inherit;
+}
+.modal__actions { display: flex; gap: 0.5rem; }

@@ -1,0 +1,26 @@
+// Message Caseworker Button - Send message to assigned caseworker
+
+{
+  "component_name": "Message Caseworker Button",
+  "component_role": "requestor",
+  "component_id": "btn_requestor_message",
+  "component_class": ".btn.btn-secondary",
+  "component_context": {
+    "taskId": "rec[applicationIdentifier]",
+    "target": "messages",
+    "target_key": "{message}.{requestor_id}",
+    "action": "SEND.MESSAGE",
+    "buttonText": "Message Caseworker",
+    "webhookSlug": "[sendMessageWebhook]",
+    "confirm": null,
+    "successMessage": "Message sent!",
+    "reversible": "no"
+  },
+  "display_text": "Message Caseworker",
+  "icon": "fa-envelope",
+  "action": {
+    "type": "modal",
+    "target": "/messageModal"
+  },
+  "role_access": "requestor"
+}

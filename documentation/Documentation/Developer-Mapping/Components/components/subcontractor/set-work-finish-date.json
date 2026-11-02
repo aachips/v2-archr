@@ -1,0 +1,34 @@
+// Set Work Finished Date - Set when work will be completed
+
+{
+  "feature_name": "Set Work Finished Date",
+  "feature_id": "feat_set_finish_date",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "accepted_tasks"
+    },
+    {
+      "name": "work_finish_date",
+      "label": "Work Finish Date",
+      "type": "date",
+      "min": "today",
+      "required": true
+    },
+    {
+      "name": "notes",
+      "label": "Completion Notes",
+      "type": "textarea",
+      "placeholder": "Any outstanding items or follow-up needed?"
+    }
+  ],
+  "submit": {
+    "label": "Set Finish Date",
+    "action": "api",
+    "endpoint": "/api/subcontractor/work/finish",
+    "method": "PUT"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "mode": "view",
+  "projectKEY": "",
+  "input": {
+    "baseId": "",
+    "tableId": "",
+    "viewId": "",
+    "fieldIds": {
+      "projectKEY": ""
+    }
+  },
+  "[[DocCode]]": "",
+  "format": "pdf",
+  "limit": null,
+  "dryRun": false,
+  "strict": false,
+  "stopOnError": false
+}

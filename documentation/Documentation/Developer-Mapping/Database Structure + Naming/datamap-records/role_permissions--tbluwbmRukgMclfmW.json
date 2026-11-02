@@ -1,0 +1,62 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:12.145Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tbluwbmRukgMclfmW",
+    "name": "role_permissions",
+    "description": null,
+    "primaryFieldId": "fldKu0TYuhsOT1suu",
+    "fields": [
+      {
+        "id": "fldKu0TYuhsOT1suu",
+        "name": "role_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "flddNuWzMnyJDsw24",
+        "name": "permission_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldXzx8ehxGkfb1vm",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwOx3SjtLlgyD6Iv",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

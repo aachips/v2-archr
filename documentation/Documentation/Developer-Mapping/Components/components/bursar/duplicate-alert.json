@@ -1,0 +1,40 @@
+// Duplicate Alert - Shows potential duplicate invoice warnings
+
+{
+  "component_name": "Duplicate Invoice Alert",
+  "component_id": "cmp_bursar_duplicate_alert",
+  "component_type": "alert",
+  "data_sources": {
+    "duplicates": "duplicate_flags where status = 'active' AND flagged_by = 'system'"
+  },
+  "alert_fields": [
+    {
+      "field": "invoice_number",
+      "label": "Invoice",
+      "type": "text"
+    },
+    {
+      "field": "potential_duplicate",
+      "label": "Matches",
+      "type": "text"
+    },
+    {
+      "field": "similarity_score",
+      "label": "Match %",
+      "type": "percentage"
+    }
+  ],
+  "actions": [
+    {
+      "label": "Review Both",
+      "action": "navigate",
+      "target": "/duplicateReview/{flag_id}"
+    },
+    {
+      "label": "Mark Not Duplicate",
+      "action": "confirm",
+      "target": "/api/bursar/duplicates/:id/resolve"
+    }
+  ],
+  "alert_level": "warning"
+}

@@ -16,7 +16,7 @@ try {
         SELECT COUNT(*)
           FROM user_role_assignments ura
           JOIN roles r ON r.id = ura.role_id
-         WHERE r.role_code = 'super_admin'
+         WHERE LOWER(r.role_code) = 'super_admin'
            AND ura.is_active = true
     ")->fetchColumn();
     if ($superAdminCount === 0 && basename($_SERVER['PHP_SELF']) !== 'setup.php') {
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($passwordOk) {
                 // Get user's role from user_role_assignments
                 $roleStmt = $pdo->prepare("
-                    SELECT r.role_code, r.role_name
+                    SELECT LOWER(r.role_code) AS role_code, r.role_name
                     FROM user_role_assignments ura
                     JOIN roles r ON ura.role_id = r.id
                     WHERE ura.user_id = ? AND ura.is_active = true
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $roleRow = $roleStmt->fetch();
 
                 if ($roleRow) {
-                    $role_code = $roleRow['role_code'];
+                    $role_code = strtoupper($roleRow['role_code']);
                     $authenticated = true;
                     $_SESSION['archr_user_id'] = $user['id'];
                     $_SESSION['archr_user_name'] = $user['full_name'];

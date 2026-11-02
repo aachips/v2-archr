@@ -1,0 +1,34 @@
+// Upload Document Form - staff-side upload into the case directory.
+// The file lands in Bucket intake, search-token matching proposes the case
+// folder and DocCode (document-search-token-matching.md), and the record is
+// created as UPLOADED = pending verification. Mirrors the requestor-facing
+// upload button but with staff classification controls.
+
+{
+  "component_name": "Upload Document Form",
+  "component_role": "documents",
+  "component_id": "form_upload_document",
+  "component_type": "document_upload",
+  "component_context": {
+    "taskId": "rec[uploadDocument]",
+    "target": "documents.bucket",
+    "target_key": "{document}.{case_id}",
+    "action": "UPLOAD.DOCUMENT",
+    "buttonText": "Upload to case folder",
+    "webhookSlug": "[uploadDocumentWebhook]",
+    "confirm": null,
+    "successMessage": "Document uploaded and queued for verification.",
+    "reversible": "yes",
+    "intake": "bucket + search-token matching proposes folder/DocCode",
+    "on_status": "UPLOADED"
+  },
+  "fields": [
+    { "name": "folder",  "label": "Case folder", "type": "select", "required": true,
+      "options": ["Application", "Property", "Income Verification", "Assessments", "Contracts", "Work Orders", "Financial & Grants", "Completion", "Communications"] },
+    { "name": "doc_code", "label": "Document code", "type": "select", "required": true,
+      "options": ["APP", "CONSENT", "PROP", "DEED", "TAX", "INC_PAYSTUB", "INC_W2", "INC_SS", "INC_BANK", "ASSESS", "CONT", "CO", "WO", "QUOTE", "INV", "GRANT", "ENV", "SHPO", "CERT", "COMM", "PH_B", "PH_D", "PH_A"] },
+    { "name": "file",    "label": "File", "type": "file", "required": true },
+    { "name": "notes",   "label": "Notes for the reviewer", "type": "textarea", "required": false }
+  ],
+  "role_access": "admin, org-admin, project-manager, assessor"
+}

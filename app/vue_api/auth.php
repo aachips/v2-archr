@@ -355,6 +355,19 @@ $updateStmt->execute([':id' => $user['id']]);
 // Clear rate limit for this IP on successful login
 clear_login_attempts($pdo, $clientIp);
 
+// Map role_code to our consolidated 0-3 permission level (matches app/lib/permissions.php).
+// The database role_level column uses the old 0-80 scale; this normalizes it.
+$ROLE_LEVEL_MAP = [
+    'volunteer'     => 0, 'requestor'     => 0, 'crew-member'   => 0,
+    'assessor'      => 1, 'subcontractor' => 1, 'envoy'         => 2,
+    'crew-lead'     => 1, 'tle-poc'       => 1,
+    'project-manager' => 2, 'bursar'      => 2, 'org-admin'     => 2,
+    'admin'         => 2, 'caseworker'    => 2,
+    'super-admin'   => 3,
+];
+$rawRoleCode = strtolower((string)($user['role_code'] ?? 'viewer'));
+$consolidatedLevel = $ROLE_LEVEL_MAP[str_replace('_', '-', $rawRoleCode)] ?? 0;
+
 // Determine token TTL: indefinite (1 year) > remember_me (30 days) > default (24 hours)
 $indefinite = (bool)($user['session_indefinite'] ?? false);
 $ttl = $indefinite ? 31536000 : ($remember ? 2592000 : 86400);
@@ -362,9 +375,9 @@ $tokenPayload = [
     'user_id'      => (int)$user['id'],
     'email'        => $user['email'],
     'full_name'    => $user['full_name'],
-    'role'         => strtolower((string)($user['role_code'] ?? 'viewer')),
+    'role'         => $rawRoleCode,
     'role_display' => $user['role_name'] ?? 'Viewer',
-    'role_level'   => (int)($user['role_level'] ?? 0),
+    'role_level'   => $consolidatedLevel,
 ];
 $token = create_auth_token($tokenPayload, $ttl);
 
@@ -389,8 +402,8 @@ auth_ok([
         'id'           => (int)$user['id'],
         'email'        => $user['email'],
         'full_name'    => $user['full_name'],
-        'role'         => strtolower((string)($user['role_code'] ?? 'viewer')),
+        'role'         => $rawRoleCode,
         'role_display' => $user['role_name'] ?? 'Viewer',
-        'role_level'   => (int)($user['role_level'] ?? 0),
+        'role_level'   => $consolidatedLevel,
     ],
 ]);

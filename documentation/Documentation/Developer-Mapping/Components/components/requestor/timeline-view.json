@@ -1,0 +1,54 @@
+// Timeline View - Shows application timeline and updates
+
+{
+  "component_name": "Application Timeline",
+  "component_id": "cmp_requestor_timeline",
+  "component_type": "timeline",
+  "data_sources": {
+    "events": "timeline_events where application_id = current_application ORDER BY event_date DESC"
+  },
+  "timeline_fields": {
+    "date_field": "event_date",
+    "title_field": "event_title",
+    "description_field": "event_description",
+    "icon_field": "event_icon"
+  },
+  "event_types": [
+    {
+      "type": "submitted",
+      "icon": "fa-paper-plane",
+      "color": "blue"
+    },
+    {
+      "type": "document_uploaded",
+      "icon": "fa-file-upload",
+      "color": "teal"
+    },
+    {
+      "type": "approved",
+      "icon": "fa-check-circle",
+      "color": "green"
+    },
+    {
+      "type": "message_received",
+      "icon": "fa-envelope",
+      "color": "purple"
+    },
+    {
+      "type": "assessment_scheduled",
+      "icon": "fa-calendar",
+      "color": "orange"
+    },
+    {
+      "type": "work_started",
+      "icon": "fa-hard-hat",
+      "color": "amber"
+    },
+    {
+      "type": "completed",
+      "icon": "fa-home",
+      "color": "green"
+    }
+  ],
+  "mobile_layout": "vertical"
+}

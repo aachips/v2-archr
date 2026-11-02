@@ -1,0 +1,26 @@
+{
+  "ability": "Alert Job Complete",
+  "component": {
+    "type": "confirmation",
+    "trigger": "job completion action",
+    "title": "Complete Job",
+    "fields": [
+      {"name": "job_id", "type": "hidden"},
+      {"name": "all_tasks_complete", "type": "toggle", "required": true},
+      {"name": "client_present", "type": "toggle"},
+      {"name": "client_signature", "type": "signature_pad", "required": true},
+      {"name": "completion_notes", "type": "textarea"},
+      {"name": "after_photos", "type": "file_upload", "required": true}
+    ],
+    "actions": [
+      {"label": "Cancel", "action": "close"},
+      {"label": "Complete Job", "action": "submit"}
+    ]
+  },
+  "business_rules": {
+    "requires_after_photos": true,
+    "requires_client_signature": true,
+    "triggers_bursar_notification": true,
+    "creates_completion_document": true
+  }
+}

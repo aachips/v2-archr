@@ -1,0 +1,1070 @@
+//==========================================================
+// ARCHR Master Schema (DBML)
+// Consolidated from:
+//   - intake.sql
+//   - role-based-access.sql
+//   - partner-organizations.sql
+//   - document-storage.sql
+//   - documentation-sops.sql
+//   - project-level-finance.sql
+//   - metric-tracking.sql (referenced columns only)
+//
+// Paste into https://dbdiagram.io to render the ERD.
+//
+// Notes on reconciliation:
+//   * case_funding is defined in both role-based-access.sql and
+//     project-level-finance.sql with overlapping fields. The
+//     superset is used below.
+//   * project-level-finance.sql references organizations(id);
+//     this is treated as coalition_organizations(id).
+//   * metric-tracking.sql references intake_submissions.is_test
+//     and property_assessments.assigned_at / assessment_id which
+//     are included here as nullable supplemental columns.
+//==========================================================
+
+Project archr {
+  database_type: 'PostgreSQL'
+  Note: 'ARCHR coalition home-repair case management system'
+}
+
+//==========================================================
+// INTAKE
+//==========================================================
+
+Table intake_submissions {
+  id serial [pk]
+  submission_uuid uuid [unique, default: `gen_random_uuid()`]
+  submitted_at timestamp [default: `CURRENT_TIMESTAMP`]
+  language varchar(3) [default: 'eng']
+
+  is_referral boolean
+  referrer_name varchar(255)
+  referrer_organization varchar(255)
+  referrer_email varchar(255)
+  referrer_notes text
+
+  consent_agreed boolean
+
+  applicant_first_name varchar(100)
+  applicant_last_name varchar(100)
+  applicant_dob date
+  applicant_dob_unknown boolean [default: false]
+
+  preferred_phone boolean [default: false]
+  preferred_text boolean [default: false]
+  preferred_email boolean [default: false]
+  preferred_other boolean [default: false]
+  home_phone varchar(20)
+  cell_phone varchar(20)
+  contact_email varchar(255)
+  other_contact_method_description varchar(500)
+  contact_notes text
+
+  home_address varchar(500)
+  home_city varchar(100)
+  home_state varchar(50)
+  home_zip varchar(20)
+  is_primary_residence boolean
+  receives_different_mail boolean
+  mail_address varchar(500)
+  mail_city varchar(100)
+  mail_state varchar(50)
+  mail_zip varchar(20)
+
+  home_type varchar(50)
+  year_built integer
+  move_in_date date
+  owns_home boolean
+  owns_lot boolean
+  insurance_provider varchar(255)
+  lived_one_year boolean
+
+  household_size integer
+  household_adults integer
+
+  additional_repair_details text
+
+  urgent_unable_to_stay boolean [default: false]
+  urgent_no_hvac boolean [default: false]
+  urgent_no_potable_water boolean [default: false]
+  urgent_no_bathroom boolean [default: false]
+  urgent_no_kitchen boolean [default: false]
+  urgent_open_to_elements boolean [default: false]
+  urgent_no_entry boolean [default: false]
+  urgent_accessibility boolean [default: false]
+  urgent_other_issue boolean [default: false]
+  urgent_eviction_risk boolean [default: false]
+
+  helene_related boolean
+
+  fema_claim_filed boolean
+  fema_outcome varchar(20)
+  fema_settlement_amount decimal(12,2)
+  fema_remaining_exists boolean
+  fema_remaining_amount decimal(12,2)
+
+  insurance_claim_filed boolean
+  insurance_outcome varchar(20)
+  insurance_settlement_amount decimal(12,2)
+  insurance_remaining_exists boolean
+  insurance_remaining_amount decimal(12,2)
+
+  has_income boolean
+  income_method varchar(10)
+  gross_annual_income decimal(12,2)
+  income_docs_method varchar(20)
+
+  zero_income_first_name varchar(100)
+  zero_income_last_name varchar(100)
+  zero_income_address varchar(500)
+  zero_income_agreed boolean
+
+  applicant_signature text
+  zero_income_signature text
+
+  submission_status varchar(20) [default: 'pending']
+  assigned_organization varchar(100)
+  reviewed_by varchar(100)
+  reviewed_at timestamp
+
+  is_test boolean [note: 'Supplemental; referenced by metric-tracking.sql']
+
+  Indexes {
+    submitted_at
+    submission_status
+    helene_related
+    has_income
+  }
+}
+
+
+Table household_attributes {
+  id serial [pk]
+  attribute_name varchar(50) [unique, not null, note: 'single_parent, child_under_5, person_over_62, person_with_disability, snap_wic, veteran']
+}
+
+Table submission_household_attributes {
+  submission_id integer [ref: > intake_submissions.id]
+  attribute_id integer [ref: > household_attributes.id]
+
+  Indexes {
+    (submission_id, attribute_id) [pk]
+  }
+}
+
+Table repair_requests {
+  id serial [pk]
+  submission_id integer [ref: > intake_submissions.id]
+  repair_need text [not null]
+  priority integer
+  sort_order integer
+
+  Indexes {
+    submission_id
+  }
+}
+
+Table repair_categories {
+  id serial [pk]
+  category_code varchar(50) [unique, not null]
+  category_label varchar(100) [not null]
+}
+
+Table submission_repair_categories {
+  submission_id integer [ref: > intake_submissions.id]
+  category_id integer [ref: > repair_categories.id]
+
+  Indexes {
+    (submission_id, category_id) [pk]
+  }
+}
+
+Table repair_category_details {
+  id serial [pk]
+  submission_id integer [ref: > intake_submissions.id]
+  category_id integer [ref: > repair_categories.id]
+  details_text text
+  heating_woodstove boolean [default: false]
+  heating_gas_propane boolean [default: false]
+  heating_electric boolean [default: false]
+  heating_kerosene boolean [default: false]
+  water_source varchar(20)
+
+  Indexes {
+    (submission_id, category_id) [unique]
+    submission_id
+  }
+}
+
+Table income_records {
+  id serial [pk]
+  submission_id integer [ref: > intake_submissions.id]
+  whose_income varchar(10)
+  income_source varchar(30)
+  frequency varchar(15)
+  amount decimal(12,2)
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    submission_id
+  }
+}
+
+Table contact_methods {
+  id serial [pk]
+  method_code varchar(10) [unique, not null]
+}
+
+Table submission_contact_methods {
+  submission_id integer [ref: > intake_submissions.id]
+  method_id integer [ref: > contact_methods.id]
+
+  Indexes {
+    (submission_id, method_id) [pk]
+  }
+}
+
+Table audit_log {
+  id serial [pk]
+  submission_id integer [ref: > intake_submissions.id]
+  action varchar(50)
+  old_value text
+  new_value text
+  performed_by varchar(100)
+  performed_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+
+//==========================================================
+// COALITION / PARTNER ORGANIZATIONS
+//==========================================================
+
+Table coalition_organizations {
+  id serial [pk]
+  organization_code varchar(20) [unique, not null]
+  organization_name varchar(200) [not null]
+  description text
+  website_url varchar(255)
+  contact_email varchar(255)
+  contact_phone varchar(20)
+  logo_url varchar(255)
+  is_active boolean [default: true]
+  max_active_applications integer [default: 50]
+  auto_claim_enabled boolean [default: false]
+  notification_email varchar(255)
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+  created_by varchar(100)
+  updated_by varchar(100)
+}
+
+Table organization_users {
+  id serial [pk]
+  organization_id integer [ref: > coalition_organizations.id]
+  email varchar(255) [not null]
+  full_name varchar(200)
+  role varchar(50) [default: 'viewer']
+  is_active boolean [default: true]
+  last_login timestamp
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (organization_id, email) [unique]
+  }
+}
+
+Table criteria_types {
+  id serial [pk]
+  type_code varchar(50) [unique, not null]
+  type_name varchar(100) [not null]
+  input_type varchar(20) [not null, note: 'text, number, select, multiselect, boolean, range']
+  description text
+}
+
+Table organization_eligibility_rules {
+  id serial [pk]
+  organization_id integer [ref: > coalition_organizations.id]
+  criteria_type_id integer [ref: > criteria_types.id]
+  rule_operator varchar(10) [default: 'equals']
+  rule_value text [not null]
+  priority integer [default: 0]
+  is_active boolean [default: true]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table application_assignments {
+  id serial [pk]
+  submission_id integer [ref: > intake_submissions.id]
+  organization_id integer [ref: > coalition_organizations.id]
+  status varchar(20) [default: 'pending', note: 'pending, claimed, rejected, completed, expired']
+  match_score integer
+  claimed_by integer [ref: > organization_users.id]
+  claimed_at timestamp
+  rejected_by integer [ref: > organization_users.id]
+  rejected_at timestamp
+  rejection_reason text
+  assigned_at timestamp [default: `CURRENT_TIMESTAMP`]
+  expires_at timestamp
+  notes text
+
+  Indexes {
+    (submission_id, organization_id) [unique]
+  }
+}
+
+Table assignment_log {
+  id serial [pk]
+  assignment_id integer [ref: > application_assignments.id]
+  action varchar(50)
+  old_value text
+  new_value text
+  performed_by integer [ref: > organization_users.id]
+  performed_at timestamp [default: `CURRENT_TIMESTAMP`]
+  notes text
+}
+
+Table organization_metrics {
+  id serial [pk]
+  organization_id integer [ref: > coalition_organizations.id]
+  metric_date date [not null]
+  applications_assigned integer [default: 0]
+  applications_claimed integer [default: 0]
+  applications_rejected integer [default: 0]
+  applications_completed integer [default: 0]
+  applications_expired integer [default: 0]
+  avg_time_to_claim_hours decimal(10,2)
+  avg_time_to_complete_days decimal(10,2)
+  avg_match_score decimal(5,2)
+  rejection_rate decimal(5,2)
+  completion_rate decimal(5,2)
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (organization_id, metric_date) [unique]
+  }
+}
+
+
+//==========================================================
+// RBAC: ROLES, PERMISSIONS, USERS
+//==========================================================
+
+Table roles {
+  id serial [pk]
+  role_code varchar(50) [unique, not null]
+  role_name varchar(100) [not null]
+  role_level integer [not null]
+  description text
+  is_system_role boolean [default: false]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table permission_categories {
+  id serial [pk]
+  category_code varchar(50) [unique, not null]
+  category_name varchar(100) [not null]
+  description text
+}
+
+Table permissions {
+  id serial [pk]
+  permission_code varchar(100) [unique, not null]
+  permission_name varchar(200) [not null]
+  category_id integer [ref: > permission_categories.id]
+  description text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table role_permissions {
+  id serial [pk]
+  role_id integer [ref: > roles.id]
+  permission_id integer [ref: > permissions.id]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (role_id, permission_id) [unique]
+  }
+}
+
+Table system_users {
+  id serial [pk]
+  email varchar(255) [unique, not null]
+  full_name varchar(200) [not null]
+  phone varchar(20)
+  avatar_url varchar(500)
+  is_active boolean [default: true]
+  last_login timestamp
+  last_ip inet
+  password_hash varchar(255)
+  reset_token varchar(255)
+  reset_token_expires timestamp
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+  created_by integer [ref: > system_users.id]
+  updated_by integer [ref: > system_users.id]
+}
+
+Table user_role_assignments {
+  id serial [pk]
+  user_id integer [ref: > system_users.id]
+  organization_id integer [ref: > coalition_organizations.id]
+  role_id integer [ref: > roles.id]
+  assigned_by integer [ref: > system_users.id]
+  assigned_at timestamp [default: `CURRENT_TIMESTAMP`]
+  expires_at timestamp
+  is_active boolean [default: true]
+  notes text
+
+  Indexes {
+    (user_id, organization_id, role_id) [unique]
+  }
+}
+
+
+//==========================================================
+// CASES & WORKFLOW
+//==========================================================
+
+Table case_statuses {
+  id serial [pk]
+  status_code varchar(50) [unique, not null]
+  status_name varchar(100) [not null]
+  status_sequence integer [not null]
+  is_terminal boolean [default: false]
+  allowed_roles_for_transition "text[]"
+  description text
+}
+
+Table cases {
+  id serial [pk]
+  submission_id integer [ref: > intake_submissions.id]
+  case_number varchar(50) [unique, not null]
+  status_id integer [ref: > case_statuses.id]
+  assigned_caseworker_id integer [ref: > system_users.id]
+  assigned_project_manager_id integer [ref: > system_users.id]
+  assigned_assessor_id integer [ref: > system_users.id]
+  intake_completed_at timestamp
+  assessment_scheduled_at timestamp
+  assessment_completed_at timestamp
+  approved_at timestamp
+  work_started_at timestamp
+  work_completed_at timestamp
+  total_budget decimal(12,2)
+  total_actual_cost decimal(12,2)
+  notes text
+  internal_notes text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+  created_by integer [ref: > system_users.id]
+  updated_by integer [ref: > system_users.id]
+}
+
+Table case_status_history {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  from_status_id integer [ref: > case_statuses.id]
+  to_status_id integer [ref: > case_statuses.id]
+  changed_by integer [ref: > system_users.id]
+  notes text
+  changed_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table property_assessments {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  assessor_id integer [ref: > system_users.id]
+  assessment_date date [not null]
+  property_condition text
+  structural_issues text
+  electrical_issues text
+  plumbing_issues text
+  hvac_issues text
+  roofing_issues text
+  accessibility_needs text
+  safety_hazards text
+  photos jsonb
+  square_footage decimal(10,2)
+  num_bedrooms integer
+  num_bathrooms integer
+  recommended_repairs text
+  priority_repairs text
+  estimated_hours decimal(10,2)
+  estimated_material_cost decimal(12,2)
+  estimated_labor_cost decimal(12,2)
+  total_estimate decimal(12,2)
+  assessment_notes text
+  assigned_at timestamp [note: 'Supplemental; referenced by metric-tracking.sql']
+  assessment_completed_at timestamp [note: 'Supplemental; referenced by metric-tracking.sql']
+  assessment_id integer [note: 'Supplemental alias referenced by metric-tracking.sql triage view']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table repair_estimates {
+  id serial [pk]
+  assessment_id integer [ref: > property_assessments.id]
+  repair_category_id integer [ref: > repair_categories.id]
+  description text [not null]
+  quantity decimal(10,2)
+  unit_cost decimal(10,2)
+  material_cost decimal(12,2)
+  labor_hours decimal(10,2)
+  labor_rate decimal(10,2)
+  labor_cost decimal(12,2)
+  total_cost decimal(12,2)
+  is_approved boolean [default: false]
+  approved_by integer [ref: > system_users.id]
+  approved_at timestamp
+  notes text
+}
+
+
+//==========================================================
+// WORK ORDERS & TASKS
+//==========================================================
+
+Table work_orders {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  work_order_number varchar(50) [unique, not null]
+  project_manager_id integer [ref: > system_users.id]
+  crew_lead_id integer [ref: > system_users.id]
+  scheduled_start_date date
+  scheduled_end_date date
+  actual_start_date date
+  actual_end_date date
+  status varchar(50) [default: 'planned', note: 'planned, in_progress, on_hold, completed, cancelled']
+  approved_budget decimal(12,2)
+  current_cost decimal(12,2)
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table work_tasks {
+  id serial [pk]
+  work_order_id integer [ref: > work_orders.id]
+  assigned_to_id integer [ref: > system_users.id]
+  task_type varchar(50)
+  description text
+  repair_category_id integer [ref: > repair_categories.id]
+  estimate_id integer [ref: > repair_estimates.id]
+  status varchar(50) [default: 'assigned']
+  priority integer [default: 1]
+  estimated_hours decimal(10,2)
+  actual_hours decimal(10,2)
+  due_date date
+  completed_at timestamp
+  instructions text
+  completion_notes text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+  created_by integer [ref: > system_users.id]
+}
+
+Table task_status_history {
+  id serial [pk]
+  task_id integer [ref: > work_tasks.id]
+  from_status varchar(50)
+  to_status varchar(50)
+  changed_by integer [ref: > system_users.id]
+  notes text
+  changed_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table material_requests {
+  id serial [pk]
+  task_id integer [ref: > work_tasks.id]
+  requested_by integer [ref: > system_users.id]
+  material_name varchar(200)
+  quantity decimal(10,2)
+  unit varchar(20)
+  estimated_cost decimal(12,2)
+  supplier varchar(200)
+  status varchar(50) [default: 'pending']
+  approved_by integer [ref: > system_users.id]
+  approved_at timestamp
+  order_date date
+  received_date date
+  notes text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table case_communications {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  from_user_id integer [ref: > system_users.id]
+  to_user_id integer [ref: > system_users.id]
+  to_applicant boolean [default: false]
+  communication_type varchar(50)
+  subject varchar(500)
+  body text
+  attachments jsonb
+  sent_at timestamp [default: `CURRENT_TIMESTAMP`]
+  is_read boolean [default: false]
+  read_at timestamp
+  notes text
+}
+
+Table volunteer_hours {
+  id serial [pk]
+  user_id integer [ref: > system_users.id]
+  work_order_id integer [ref: > work_orders.id]
+  date date [not null]
+  hours decimal(5,2)
+  task_description text
+  verified_by integer [ref: > system_users.id]
+  verified_at timestamp
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table volunteer_skills {
+  id serial [pk]
+  user_id integer [ref: > system_users.id]
+  skill_name varchar(100)
+  proficiency_level integer [default: 1]
+  certified boolean [default: false]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+
+//==========================================================
+// FINANCE
+//==========================================================
+
+Table funding_sources {
+  id serial [pk]
+  organization_id integer [ref: > coalition_organizations.id]
+  source_name varchar(200) [not null]
+  source_type varchar(50) [note: 'grant, donation, government, partner, other']
+  total_amount decimal(12,2)
+  remaining_amount decimal(12,2)
+  start_date date
+  end_date date
+  restrictions text
+  contact_name varchar(200)
+  contact_email varchar(255)
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table case_funding {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  funding_source_id integer [ref: > funding_sources.id]
+  allocated_amount decimal(12,2)
+  spent_amount decimal(12,2) [default: 0]
+  approved_date date [note: 'From project-level-finance.sql']
+  expiration_date date [note: 'From project-level-finance.sql']
+  status varchar(50) [note: 'pending, approved, expired, depleted']
+  allocated_at timestamp [default: `CURRENT_TIMESTAMP`]
+  allocated_by integer [ref: > system_users.id]
+  notes text
+}
+
+Table reimbursement_requests {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  organization_id integer [ref: > coalition_organizations.id, note: 'project-level-finance.sql referenced organizations(id); treated as coalition_organizations']
+  amount decimal(12,2) [not null]
+  submitted_date date [not null]
+  approved_date date
+  paid_date date
+  status varchar(50) [note: 'submitted, approved, paid, denied']
+  denial_reason text
+  funding_source_id integer [ref: > funding_sources.id]
+}
+
+Table case_claims {
+  case_id integer [pk, ref: > cases.id]
+  claimed_by_org_id integer [ref: > coalition_organizations.id]
+  claimed_at timestamp
+  expires_at timestamp
+  is_locked boolean [default: true]
+}
+
+Table invoices {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  invoice_number varchar(50) [unique, not null]
+  vendor_name varchar(200)
+  vendor_type varchar(50)
+  invoice_date date
+  due_date date
+  paid_date date
+  subtotal decimal(12,2)
+  tax decimal(12,2)
+  total_amount decimal(12,2)
+  status varchar(50) [default: 'pending']
+  approved_by integer [ref: > system_users.id]
+  approved_at timestamp
+  paid_by integer [ref: > system_users.id]
+  notes text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table invoice_line_items {
+  id serial [pk]
+  invoice_id integer [ref: > invoices.id]
+  task_id integer [ref: > work_tasks.id]
+  description text
+  quantity decimal(10,2)
+  unit_price decimal(12,2)
+  total decimal(12,2)
+}
+
+
+//==========================================================
+// DOCUMENT STORAGE
+//==========================================================
+
+Table document_categories {
+  id serial [pk]
+  category_code varchar(50) [unique, not null]
+  category_name varchar(100) [not null]
+  parent_category_id integer [ref: > document_categories.id]
+  storage_path_template text
+  requires_encryption boolean [default: true]
+  retention_months integer
+  description text
+}
+
+Table document_statuses {
+  id serial [pk]
+  status_code varchar(50) [unique, not null]
+  status_name varchar(100) [not null]
+}
+
+Table case_documents {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  category_id integer [ref: > document_categories.id]
+  status_id integer [ref: > document_statuses.id, default: 1]
+  file_name varchar(255) [not null]
+  file_size_bytes bigint
+  file_hash varchar(64)
+  mime_type varchar(100)
+  storage_path varchar(1000) [not null]
+  storage_provider varchar(50) [default: 'dropbox']
+  storage_bucket varchar(255)
+  storage_region varchar(100)
+  version_number integer [default: 1]
+  parent_document_id integer [ref: > case_documents.id]
+  metadata jsonb [default: `'{}'::jsonb`]
+  extracted_text text
+  thumbnail_path varchar(1000)
+  uploaded_by integer [ref: > system_users.id]
+  uploaded_at timestamp [default: `CURRENT_TIMESTAMP`]
+  verified_by integer [ref: > system_users.id]
+  verified_at timestamp
+  expires_at timestamp
+  deleted_at timestamp
+  access_roles "text[]"
+  notes text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table document_templates {
+  id serial [pk]
+  template_code varchar(50) [unique, not null]
+  template_name varchar(200) [not null]
+  category_id integer [ref: > document_categories.id]
+  template_file_path varchar(1000)
+  template_type varchar(50)
+  output_format varchar(20) [default: 'pdf']
+  requires_signature boolean [default: false]
+  signature_fields jsonb
+  version integer [default: 1]
+  is_active boolean [default: true]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table document_generation_jobs {
+  id serial [pk]
+  case_id integer [ref: > cases.id]
+  template_id integer [ref: > document_templates.id]
+  status varchar(20) [default: 'pending']
+  data_source jsonb [not null]
+  output_document_id integer [ref: > case_documents.id]
+  error_message text
+  priority integer [default: 5]
+  created_by integer [ref: > system_users.id]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  completed_at timestamp
+  expires_at timestamp
+}
+
+Table document_access_log {
+  id serial [pk]
+  document_id integer [ref: > case_documents.id]
+  accessed_by integer [ref: > system_users.id]
+  access_type varchar(20)
+  ip_address inet
+  user_agent text
+  accessed_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table document_share_links {
+  id serial [pk]
+  document_id integer [ref: > case_documents.id]
+  share_token uuid [unique, default: `gen_random_uuid()`]
+  shared_by integer [ref: > system_users.id]
+  recipient_email varchar(255)
+  expires_at timestamp
+  max_accesses integer
+  access_count integer [default: 0]
+  requires_auth boolean [default: false]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table storage_providers {
+  id serial [pk]
+  provider_name varchar(50) [unique, not null]
+  is_default boolean [default: false]
+  configuration jsonb [not null]
+  base_url varchar(500)
+  max_file_size_bytes bigint [default: 104857600]
+  allowed_mime_types "text[]"
+  is_active boolean [default: true]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+
+//==========================================================
+// HELP DOCS / SOPs
+//==========================================================
+
+Table help_categories {
+  id serial [pk]
+  category_code varchar(50) [unique, not null]
+  category_name varchar(100) [not null]
+  parent_category_id integer [ref: > help_categories.id]
+  display_order integer [default: 0]
+  icon_class varchar(100)
+  is_active boolean [default: true]
+  description text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table help_document_types {
+  id serial [pk]
+  type_code varchar(50) [unique, not null]
+  type_name varchar(100) [not null]
+  icon_class varchar(100)
+  is_interactive boolean [default: false]
+  requires_authentication boolean [default: true]
+  description text
+}
+
+Table help_documents {
+  id serial [pk]
+  document_id varchar(50) [unique, not null]
+  doc_type_id integer [ref: > help_document_types.id]
+  category_id integer [ref: > help_categories.id]
+  title varchar(500) [not null]
+  subtitle varchar(500)
+  version varchar(20) [default: '1.0']
+  content text
+  content_format varchar(20) [default: 'markdown']
+  file_path varchar(1000)
+  language varchar(5) [default: 'en']
+  original_document_id integer [ref: > help_documents.id]
+  author varchar(200)
+  author_email varchar(255)
+  owner_role_id integer [ref: > roles.id]
+  reviewer_id integer [ref: > system_users.id]
+  reviewer_notes text
+  target_roles "text[]"
+  tags "text[]"
+  search_keywords "text[]"
+  estimated_minutes integer
+  related_documents "integer[]"
+  prerequisite_documents "integer[]"
+  status varchar(20) [default: 'draft', note: 'draft, review, published, archived, deprecated']
+  is_featured boolean [default: false]
+  is_required boolean [default: false]
+  view_count integer [default: 0]
+  helpful_count integer [default: 0]
+  not_helpful_count integer [default: 0]
+  last_viewed_at timestamp
+  publish_at timestamp
+  expires_at timestamp
+  review_required_by date
+  previous_version_id integer [ref: > help_documents.id]
+  change_notes text
+  created_by integer [ref: > system_users.id]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_by integer [ref: > system_users.id]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+  reviewed_at timestamp
+  reviewed_by integer [ref: > system_users.id]
+  archived_at timestamp
+  archived_by integer [ref: > system_users.id]
+  custom_fields jsonb [default: `'{}'::jsonb`]
+  notes text
+}
+
+Table help_document_attachments {
+  id serial [pk]
+  document_id integer [ref: > help_documents.id]
+  attachment_type varchar(50)
+  file_name varchar(255) [not null]
+  file_path varchar(1000) [not null]
+  file_size_bytes bigint
+  mime_type varchar(100)
+  alt_text varchar(500)
+  caption text
+  display_order integer [default: 0]
+  uploaded_by integer [ref: > system_users.id]
+  uploaded_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table help_document_versions {
+  id serial [pk]
+  document_id integer [ref: > help_documents.id]
+  version_number varchar(20) [not null]
+  title varchar(500)
+  content text
+  change_notes text
+  created_by integer [ref: > system_users.id]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  is_current boolean [default: false]
+}
+
+Table help_document_feedback {
+  id serial [pk]
+  document_id integer [ref: > help_documents.id]
+  user_id integer [ref: > system_users.id]
+  is_helpful boolean
+  rating integer [note: '1-5']
+  comment text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table help_user_progress {
+  id serial [pk]
+  user_id integer [ref: > system_users.id]
+  document_id integer [ref: > help_documents.id]
+  status varchar(20) [default: 'not_started']
+  started_at timestamp
+  completed_at timestamp
+  last_position integer
+  notes text
+
+  Indexes {
+    (user_id, document_id) [unique]
+  }
+}
+
+Table help_search_log {
+  id serial [pk]
+  search_term varchar(500)
+  user_id integer [ref: > system_users.id]
+  result_count integer
+  clicked_document_id integer [ref: > help_documents.id]
+  search_type varchar(20)
+  ip_address inet
+  user_agent text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table help_document_reviews {
+  id serial [pk]
+  document_id integer [ref: > help_documents.id]
+  reviewer_id integer [ref: > system_users.id]
+  review_status varchar(20) [note: 'pending, approved, changes_requested, rejected']
+  comments text
+  requested_changes text
+  assigned_at timestamp [default: `CURRENT_TIMESTAMP`]
+  completed_at timestamp
+}
+
+
+//==========================================================
+// TABLE GROUPS (visual clustering in dbdiagram)
+//==========================================================
+
+TableGroup intake {
+  intake_submissions
+  household_attributes
+  submission_household_attributes
+  repair_requests
+  repair_categories
+  submission_repair_categories
+  repair_category_details
+  income_records
+  contact_methods
+  submission_contact_methods
+  audit_log
+}
+
+TableGroup coalition {
+  coalition_organizations
+  organization_users
+  criteria_types
+  organization_eligibility_rules
+  application_assignments
+  assignment_log
+  organization_metrics
+}
+
+TableGroup rbac {
+  roles
+  permission_categories
+  permissions
+  role_permissions
+  system_users
+  user_role_assignments
+}
+
+TableGroup cases {
+  case_statuses
+  cases
+  case_status_history
+  property_assessments
+  repair_estimates
+}
+
+TableGroup work {
+  work_orders
+  work_tasks
+  task_status_history
+  material_requests
+  case_communications
+  volunteer_hours
+  volunteer_skills
+}
+
+TableGroup finance {
+  funding_sources
+  case_funding
+  reimbursement_requests
+  case_claims
+  invoices
+  invoice_line_items
+}
+
+TableGroup documents {
+  document_categories
+  document_statuses
+  case_documents
+  document_templates
+  document_generation_jobs
+  document_access_log
+  document_share_links
+  storage_providers
+}
+
+TableGroup help {
+  help_categories
+  help_document_types
+  help_documents
+  help_document_attachments
+  help_document_versions
+  help_document_feedback
+  help_user_progress
+  help_search_log
+  help_document_reviews
+}

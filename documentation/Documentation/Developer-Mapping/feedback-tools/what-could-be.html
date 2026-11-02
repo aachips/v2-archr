@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>What Could Be · Feedback Meeting Prep</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f4f7fb;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      padding: 2rem 1rem;
+      color: #1e2a3a;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    .intro-card {
+      background: linear-gradient(135deg, #2c5f2d 0%, #1e3a2f 100%);
+      color: white;
+      border-radius: 32px;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .intro-card h1 { font-size: 1.8rem; font-weight: 600; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+    .intro-card p { font-size: 1rem; line-height: 1.5; opacity: 0.9; margin-bottom: 0.25rem; }
+    .intro-card .role {
+      font-family: monospace;
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+    }
+    .form-card {
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2edf2;
+    }
+    .form-group { margin-bottom: 1.6rem; }
+    label { font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 0.5rem; color: #1f3b4c; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid #cbdde6;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #ffffff;
+      transition: all 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #2c5f2d;
+      box-shadow: 0 0 0 3px rgba(44, 95, 45, 0.2);
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    .inline-hint { font-size: 0.75rem; color: #5f7f6b; margin-top: 0.3rem; }
+    .name-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .name-row .form-group { flex: 1; }
+    .option-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.6rem; }
+    .option-card {
+      background: #f9fdfe;
+      border: 1px solid #cbdde6;
+      border-radius: 20px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+    .option-card:hover { background: #eef4f8; border-color: #2c5f2d; }
+    .option-card input { width: auto; margin-top: 0.15rem; }
+    .option-card span { font-weight: 400; }
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #2c5f2d;
+      margin: 1.8rem 0 0.8rem;
+      border-bottom: 1px solid #d4e2ea;
+      padding-bottom: 0.4rem;
+    }
+    .btn {
+      background: #2c5f2d;
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    .btn:hover { background: #1e4620; }
+    .btn:active { transform: scale(0.98); }
+    .footnote { text-align: center; font-size: 0.75rem; color: #5c7b6b; margin-top: 1.5rem; }
+    .hp-field { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    @media (max-width: 600px) {
+      .form-card { padding: 1.5rem; }
+      .name-row { flex-direction: column; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="intro-card">
+    <h1>💡 What could be — help shape the meeting</h1>
+    <p>We're getting together in two days to walk through what's been built and decide what comes next.
+    This 3-minute form sets the agenda: you pick the demos, vote on the pain points, and ask the questions.</p>
+    <div class="role">📋 Your answers build the agenda — nothing here is wasted</div>
+  </div>
+
+  <div class="form-card">
+    <form id="wcbForm" method="post" action="what-could-be-handler.php">
+      <!-- Honeypot: real users don't see/fill this; bots do. -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="hp_website">Website</label>
+        <input type="text" id="hp_website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="name-row">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" placeholder="First name or how I can address you" required>
+        </div>
+        <div class="form-group">
+          <label>Email or Signal / WhatsApp</label>
+          <input type="text" name="contact" placeholder="best way to reach you" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Role / team (optional)</label>
+        <input type="text" name="role" placeholder="e.g., Home Repair, Family Services, Ops">
+      </div>
+
+      <div class="form-group">
+        <label>📅 Can you make the feedback meeting?</label>
+        <select name="attendance">
+          <option value="yes-in-person">Yes — I'll be there in person</option>
+          <option value="yes-remote">Yes — I'll join remotely</option>
+          <option value="no-recap">Can't make it — send me the recap</option>
+        </select>
+      </div>
+
+      <div class="section-label">1 · Pick what we spend time on</div>
+      <div class="form-group">
+        <label>What do you want to see demoed or discussed? <span style="font-weight:400">(check all that apply)</span></label>
+        <div class="option-grid">
+          <label class="option-card"><input type="checkbox" name="topics[]" value="Prototype login & role dashboards"><span>🔐 Prototype login &amp; the 11 role dashboards</span></label>
+          <label class="option-card"><input type="checkbox" name="topics[]" value="Task engine quick-add"><span>⚡ Task engine — "if it happened, log it" quick-add</span></label>
+          <label class="option-card"><input type="checkbox" name="topics[]" value="Document generation"><span>📄 Document generation (contracts, CDBG forms)</span></label>
+          <label class="option-card"><input type="checkbox" name="topics[]" value="Metric tracking & reporting"><span>📊 Metric tracking — monthly &amp; quarterly reporting</span></label>
+          <label class="option-card"><input type="checkbox" name="topics[]" value="Intake & case search"><span>🧭 Intake, case search &amp; Placecode tracking</span></label>
+          <label class="option-card"><input type="checkbox" name="topics[]" value="Database & schema"><span>🗄️ The new database &amp; schema (under the hood)</span></label>
+        </div>
+      </div>
+
+      <div class="section-label">2 · Vote on what hurts most</div>
+      <div class="form-group">
+        <label>From the interviews so far — which pain point should we fix first?</label>
+        <div class="option-grid">
+          <label class="option-card"><input type="radio" name="painPriority" value="Info not in one place"><span>Can't find information in one place</span></label>
+          <label class="option-card"><input type="radio" name="painPriority" value="Uploads get lost"><span>Uploads get lost</span></label>
+          <label class="option-card"><input type="radio" name="painPriority" value="Financial metrics"><span>Can't track financial metrics</span></label>
+          <label class="option-card"><input type="radio" name="painPriority" value="Airtable is difficult"><span>Airtable is difficult to work with</span></label>
+          <label class="option-card"><input type="radio" name="painPriority" value="Task button bugs"><span>Task button bugs (claiming, communication)</span></label>
+          <label class="option-card"><input type="radio" name="painPriority" value="Communication not logged"><span>Communication doesn't get logged / duplicates</span></label>
+          <label class="option-card"><input type="radio" name="painPriority" value="No training or help docs"><span>No training / help documents</span></label>
+          <label class="option-card"><input type="radio" name="painPriority" value="Volunteer chaos"><span>Volunteer scheduling chaos since the storm</span></label>
+          <label class="option-card"><input type="radio" name="painPriority" value="other" id="painOtherRadio"><span>Something else (below)</span></label>
+        </div>
+        <div id="painOtherBlock" style="display:none;margin-top:0.6rem">
+          <input type="text" name="painOther" id="painOtherInput" placeholder="What's the pain point we should hear about?">
+        </div>
+      </div>
+
+      <div class="section-label">3 · Your questions, answered live</div>
+      <div class="form-group">
+        <label>What questions do you want answered at the meeting?</label>
+        <textarea name="questions" rows="3" placeholder="e.g., When can I actually use this? What happens to my Airtable data? Will this work on my phone?"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>What's the ONE thing the system must do that it doesn't today?</label>
+        <textarea name="mustDo" rows="2" placeholder="Be greedy — what's the missing piece that would change your week?"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Anything else? (concerns, ideas, wild dreams)</label>
+        <textarea name="anythingElse" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn">Send — see you at the meeting →</button>
+      <div class="footnote">3 minutes now = a meeting that actually answers your questions.</div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Show "other" pain point text box only when selected
+  const otherRadio = document.getElementById('painOtherRadio');
+  const otherBlock = document.getElementById('painOtherBlock');
+  document.querySelectorAll('[name="painPriority"]').forEach(r => {
+    r.addEventListener('change', () => {
+      otherBlock.style.display = otherRadio.checked ? 'block' : 'none';
+    });
+  });
+
+  // Simple required-field validation
+  document.getElementById('wcbForm').addEventListener('submit', (e) => {
+    const nameVal = document.querySelector('[name="name"]').value.trim();
+    const contactVal = document.querySelector('[name="contact"]').value.trim();
+    if (!nameVal || !contactVal) {
+      e.preventDefault();
+      alert("Please leave your name and a way to reach you.");
+    }
+  });
+</script>
+</body>
+</html>

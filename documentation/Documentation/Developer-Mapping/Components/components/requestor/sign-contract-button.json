@@ -1,0 +1,26 @@
+// Sign Contract Button - E-sign contract documents
+
+{
+  "component_name": "Sign Contract Button",
+  "component_role": "requestor",
+  "component_id": "btn_requestor_sign_contract",
+  "component_class": ".btn.btn-success",
+  "component_context": {
+    "taskId": "rec[contractIdentifier]",
+    "target": "contracts",
+    "target_key": "{contract}.{signed_by_requestor}",
+    "action": "SIGN.CONTRACT",
+    "buttonText": "Sign Contract",
+    "webhookSlug": "[signContractWebhook]",
+    "confirm": "Proceed to sign this contract?",
+    "successMessage": "Contract signed successfully!",
+    "reversible": "no"
+  },
+  "display_text": "Sign Contract",
+  "icon": "fa-signature",
+  "action": {
+    "type": "modal",
+    "target": "/eSignModal"
+  },
+  "role_access": "requestor"
+}

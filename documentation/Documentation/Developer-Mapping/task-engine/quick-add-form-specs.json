@@ -1,0 +1,53 @@
+{
+  "quick_add_task_form": {
+    "purpose": "Minimal friction entry for field workers",
+    "fields": [
+      {
+        "name": "case",
+        "type": "autocomplete",
+        "required": true,
+        "placeholder": "Search case number or address..."
+      },
+      {
+        "name": "description",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "What needs to be done or what happened?",
+        "max_chars": 500,
+        "rows": 3
+      },
+      {
+        "name": "date",
+        "type": "date",
+        "required": true,
+        "default": "today"
+      },
+      {
+        "name": "time",
+        "type": "time",
+        "default": "now"
+      },
+      {
+        "name": "user_initials",
+        "type": "text",
+        "required": true,
+        "max_chars": 3,
+        "auto_fill": "current_user.initials"
+      },
+      {
+        "name": "quick_type",
+        "type": "select",
+        "options": ["Task", "Event", "Communication"],
+        "default": "Task"
+      }
+    ],
+    "actions": [
+      {"label": "Save Quick Entry", "action": "save_draft"},
+      {"label": "Save & Add Another", "action": "save_and_new"}
+    ],
+    "confirmation": {
+      "message": "Quick entry saved to unverified queue.",
+      "next_steps": "A reviewer will standardize and approve this item."
+    }
+  }
+}

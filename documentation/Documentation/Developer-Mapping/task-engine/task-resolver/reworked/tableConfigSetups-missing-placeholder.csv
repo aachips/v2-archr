@@ -1,0 +1,6 @@
+step,genericEngine,🔷Tables,includeKeys,keyMap,ResolverConfigSetup,🟦Bases
+3,Update Log,[🤖Event_Resolver],log,log,◼️>🤖Resolver>Step3>writeLog,
+x,Update Log,[🤖Event_Resolver],log,log,◼️>🤖Resolver>StepX>writeLog,
+4,Merge,[◼️Project Event V2],"merge.tables.toTable.tableId,merge.tables.toTable.mergeFields,merge.tables.toTable.mergeRules","merge.tables.toTable.tableId,merge.tables.toTable.mergeFields,merge.tables.toTable.mergeRules",◼️>🤖Resolver>Step4>mergeEvent,
+4,Update,[◼️Project Event V2],"write.toTable.table.tableId,write.toTable.table.toRecord,write.toTable.table.toRecord.record.toFields","write.toTable.table.tableId,write.toTable.table.toRecord,write.toTable.table.toRecord.record.toFields",◼️>🤖Resolver>Step4>writeEvent,
+4,Update Log,[🤖Event_Resolver],log,log,◼️>🤖Resolver>Step4>writeLog,

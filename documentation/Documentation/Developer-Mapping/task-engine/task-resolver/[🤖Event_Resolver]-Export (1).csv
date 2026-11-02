@@ -1,0 +1,2685 @@
+﻿Name,🤖Resolver_Mode,Create ☑️Completion Records,debugSource,Step,🤖Advance,step1_config,step2_config,step2Mode,step3_config,step4_config,step1🎯_Config,step1⚙️_Config,step1💜_Config,step1💟_Config,step1☑️_Config,step2🎯_Config,step2⚙️_Config,step2💜_Config,step2💟_Config,step3☑️_Config,step4☑️_Config,⁉️Conflict_Resolution_Rules,[◼️Project Event V2],🤖Input Config,◼️eventJSON,Current◼️Event,◼️eventNumber,found🎯Project,found⚙️Tasks,found💜Org,found💟People,found☑️Completion,🤖Step 1 Message,🤖Step 2 Message,🤖Step 3 Message,🤖Step 4 Message,🤖Resolver_Message,Current◼️Event Id,created☑️Completion,Next_Step,_SOURCE_,_CREATE_BOOL_,🤖Advance_Step,canonicalContextJSON,Dry Run,Active,⁉️Conflict Decision,stepX⁉️_Config
+Julian,Step,checked,,Step 1,,"{""step1"":[{""projectSearch"":{""searchTableId"": ""tbl4HhGi7F6lKzhfB"",
+""searchPrimaryFieldId"": ""fldnRScSsfp3I8Y1Y"",
+""searchDeepFieldIds"": [""fldnRScSsfp3I8Y1Y"",""fldhZnK0J8ucktSgY""],
+""jsonPrimaryKey"": ""eventProjectId"",
+""jsonDeepKeys"": [""eventProjectId"",""projectRecordId"",""eventProject""]}},{""taskSearch"":{""searchTableId"": ""tblECgtClvoenWXJn"",
+""searchPrimaryFieldId"": ""fldULcvgqT3tqLgmc"",
+""searchDeepFieldIds"": [""fldULcvgqT3tqLgmc"",""fldXFp3GKWTzF9tU2"",""fldTl4KHW1ZkZ3A35""],
+""jsonPrimaryKey"": ""eventLookup"",
+""jsonDeepKeys"": [""eventLookup"",""taskName"",""phaseTaskId"",""fromPhaseTaskId""]}},{""orgSearch"":{""searchTableId"": ""tble3Hu7TwYwsJyKZ"",
+""searchPrimaryFieldId"": ""fldnVR4H3PKBSLaWG"",
+""searchDeepFieldIds"": [""fldnVR4H3PKBSLaWG"",""fldADXXfYuycCnHiM"",""fld0DNWpCNmmsLdDq"",""fldvki6CMV82bevJO"",""fldtl7zogy0XymkIC"",""fldvYbLJciY7sKeO9"",""fldqsHDxgrEAmJBZH"",""fldN7RRjdkUzxRjf5""],
+""jsonPrimaryKey"": ""partnerOrg"",
+""jsonDeepKeys"": [""partnerOrg"",""eventPartner""]}},{""personSearch"":{""searchTableId"": ""tbljSOvZOrolS2At3"",
+""searchPrimaryFieldId"": ""fldahrTBg0ASw7JyT"",
+""searchDeepFieldIds"": [""fldahrTBg0ASw7JyT"",""fldGyGzB785pu9oZ2"",""fldAAWrP6OgSFtW1P"",""fldNbhakW4CtDAMPE"",""flda37gZnN996g7jl""],
+""jsonPrimaryKey"": ""partnerPerson"",
+""jsonDeepKeys"": [""partnerPerson"",""person""]}}]}","{""step2"":{""mode"":""replace"",""fieldWrites"":[{""writeName"":""projectWrite"", ""source"":""outputs.projectFound"", ""writeTo"":[{""tableId"":""tblOhnfdIlabxXOqL"",""recordId"":""recawA1KVYAUBUx7w"",""fields"":[{""fieldId"":""fldf9H8hS2Qka3Pcr"",
+""fieldType"":""multipleRecordLinks"",
+ ""mode"":""replace""}]},{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":""recjD7tzZWfLiQvqd"",""fields"":[{""fieldId"":""fldFpq2RRrImJ2VKT"",
+""fieldType"":""singleLineText"",
+ ""mode"":""replace""}]}]},{""writeName"":""taskWrite"",""source"":""outputs.taskFound"",""writeTo"":[{""tableId"":""tblOhnfdIlabxXOqL"",""recordId"":""recawA1KVYAUBUx7w"",""fields"":[{""fieldId"":""fld7nIq32wgLERY6Y"",
+""fieldType"":""multipleRecordLinks"",
+ ""mode"":""replace""}]},{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":""recjD7tzZWfLiQvqd"",""fields"":[{""fieldId"":""fldekXfmgBRNPciQj"",
+""fieldType"":""singleLineText"",
+ ""mode"":""replace""}]}]},{""writeName"":""orgWrite"",""source"":""outputs.orgFound"", ""writeTo"":[{""tableId"":""tblOhnfdIlabxXOqL"",""recordId"":""recawA1KVYAUBUx7w"",""fields"":[{""fieldId"":""fld9xEMyUPJJFjTYL"",
+""fieldType"":""multipleRecordLinks"",
+ ""mode"":""replace""}]},{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":""recjD7tzZWfLiQvqd"",""fields"":[{""fieldId"":""fld9tmYEV7LPs2cs0"",
+""fieldType"":""singleLineText"",
+ ""mode"":""replace""}]}]},{""writeName"":""personWrite"",""source"":""outputs.personFound"", ""writeTo"":[{""tableId"":""tblOhnfdIlabxXOqL"",""recordId"":""recawA1KVYAUBUx7w"",""fields"":[{""fieldId"":""fldELoHodyPNYl1pz"",
+""fieldType"":""multipleRecordLinks"",
+ ""mode"":""replace""}]},{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":""recjD7tzZWfLiQvqd"",""fields"":[{""fieldId"":""flddkg19RMoCgFvEN"",
+""fieldType"":""singleLineText"",
+ ""mode"":""replace""}]}]}]}}",replace,"{""step3"":[{""completionSearch"":{""searchTableId"": ""tbl1mIQg2utmj7Vqt"",
+""searchPrimaryFieldId"": ""fldU5d3NTJYCQJAK0"",
+""searchDeepFieldIds"": [],
+""jsonPrimaryKey"": ""completionSearchKey"",
+""jsonDeepKeys"": []}}]}","{""step4"": {""mode"": ""createIfNoMatch"",""completionSearchSource"": ""outputs.completionFound"",""createTableId"": ""tbl1mIQg2utmj7Vqt"",""createIfNoMatch"": true,""createRecord"": {""fields"":[{""fieldId"":""fldvrN5KrY6rFsgRc"",
+""fieldType"":""singleLineText"",
+ ""source"":""inputs.completionKey"",  ""mode"":""replace""},{""fieldId"":""fldU5d3NTJYCQJAK0"",
+""fieldType"":""singleLineText"",
+ ""source"":""inputs.completionSearchKey"",  ""mode"":""replace""},{""fieldId"":""fld5PZvVc1sOfHBv2"",
+""fieldType"":""singleLineText"",
+ ""source"":""inputs.eventProjectId"",  ""mode"":""replace""},{""fieldId"":""fldlB5WykyfFXUoK1"",
+""fieldType"":""multipleRecordLinks"",
+ ""source"":""outputs.projectFound"",  ""mode"":""replace""},{""fieldId"":""fldyNekr5x0sUllmO"",
+""fieldType"":""multipleRecordLinks"",
+ ""source"":""outputs.taskFound"",  ""mode"":""replace""},{""fieldId"":""fldtX1EJ3ez1tVIBl"",
+""fieldType"":""date"",
+ ""source"":""inputs.eventDate"",  ""mode"":""replace""},{""fieldId"":""fldT3U8DIaHuEoP2a"",
+""fieldType"":""multipleRecordLinks"",
+ ""source"":""inputs.currentEventRecordId"",  ""mode"":""replace""},{""fieldId"":""fld8CIhhTNhUFsmhn"",
+""fieldType"":""singleSelect"",
+  ""value"":""Active"", ""mode"":""replace""}]},""writeCreatedRecordTo"":[{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":""recjD7tzZWfLiQvqd"",""fields"":[{""fieldId"":""flds9LlWVCoMFJvak"",
+""fieldType"":""singleLineText"",
+ ""mode"":""replace""}]}]}}","{""searchTableId"": ""tbl4HhGi7F6lKzhfB"",
+""searchPrimaryFieldId"": ""fldnRScSsfp3I8Y1Y"",
+""searchDeepFieldIds"": [""fldnRScSsfp3I8Y1Y"",""fldhZnK0J8ucktSgY""],
+""jsonPrimaryKey"": ""eventProjectId"",
+""jsonDeepKeys"": [""eventProjectId"",""projectRecordId"",""eventProject""]}","{""searchTableId"": ""tblECgtClvoenWXJn"",
+""searchPrimaryFieldId"": ""fldULcvgqT3tqLgmc"",
+""searchDeepFieldIds"": [""fldULcvgqT3tqLgmc"",""fldXFp3GKWTzF9tU2"",""fldTl4KHW1ZkZ3A35""],
+""jsonPrimaryKey"": ""eventLookup"",
+""jsonDeepKeys"": [""eventLookup"",""taskName"",""phaseTaskId"",""fromPhaseTaskId""]}","{""searchTableId"": ""tble3Hu7TwYwsJyKZ"",
+""searchPrimaryFieldId"": ""fldnVR4H3PKBSLaWG"",
+""searchDeepFieldIds"": [""fldnVR4H3PKBSLaWG"",""fldADXXfYuycCnHiM"",""fld0DNWpCNmmsLdDq"",""fldvki6CMV82bevJO"",""fldtl7zogy0XymkIC"",""fldvYbLJciY7sKeO9"",""fldqsHDxgrEAmJBZH"",""fldN7RRjdkUzxRjf5""],
+""jsonPrimaryKey"": ""partnerOrg"",
+""jsonDeepKeys"": [""partnerOrg"",""eventPartner""]}","{""searchTableId"": ""tbljSOvZOrolS2At3"",
+""searchPrimaryFieldId"": ""fldahrTBg0ASw7JyT"",
+""searchDeepFieldIds"": [""fldahrTBg0ASw7JyT"",""fldGyGzB785pu9oZ2"",""fldAAWrP6OgSFtW1P"",""fldNbhakW4CtDAMPE"",""flda37gZnN996g7jl""],
+""jsonPrimaryKey"": ""partnerPerson"",
+""jsonDeepKeys"": [""partnerPerson"",""person""]}","{""searchTableId"": ""tbl1mIQg2utmj7Vqt"",
+""searchPrimaryFieldId"": ""fldU5d3NTJYCQJAK0"",
+""searchDeepFieldIds"": [""fldU5d3NTJYCQJAK0""],
+""jsonPrimaryKey"": ""completionSearchKey"",
+""jsonDeepKeys"": [""completionSearchKey""]}","{""writeName"":""projectWrite"", ""source"":""_SOURCE_.projectFound"", ""writeTo"":[{""tableId"":""tblOhnfdIlabxXOqL"",""recordId"":_EVENT_REC_ID_,""fields"":[{""fieldId"":""fldf9H8hS2Qka3Pcr"",
+""fieldType"":""multipleRecordLinks"",
+ ""mode"":""_MODE_""}]},{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":_LOG_REC_ID_,""fields"":[{""fieldId"":""fldFpq2RRrImJ2VKT"",
+""fieldType"":""singleLineText"",
+ ""mode"":""_MODE_""}]}]}","{""writeName"":""taskWrite"",""source"":""_SOURCE_.taskFound"",""writeTo"":[{""tableId"":""tblOhnfdIlabxXOqL"",""recordId"":_EVENT_REC_ID_,""fields"":[{""fieldId"":""fld7nIq32wgLERY6Y"",
+""fieldType"":""multipleRecordLinks"",
+ ""mode"":""_MODE_""}]},{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":_LOG_REC_ID_,""fields"":[{""fieldId"":""fldekXfmgBRNPciQj"",
+""fieldType"":""singleLineText"",
+ ""mode"":""_MODE_""}]}]}","{""writeName"":""orgWrite"",""source"":""_SOURCE_.orgFound"", ""writeTo"":[{""tableId"":""tblOhnfdIlabxXOqL"",""recordId"":_EVENT_REC_ID_,""fields"":[{""fieldId"":""fld9xEMyUPJJFjTYL"",
+""fieldType"":""multipleRecordLinks"",
+ ""mode"":""_MODE_""}]},{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":_LOG_REC_ID_,""fields"":[{""fieldId"":""fld9tmYEV7LPs2cs0"",
+""fieldType"":""singleLineText"",
+ ""mode"":""_MODE_""}]}]}","{""writeName"":""personWrite"",""source"":""_SOURCE_.personFound"", ""writeTo"":[{""tableId"":""tblOhnfdIlabxXOqL"",""recordId"":_EVENT_REC_ID_,""fields"":[{""fieldId"":""fldELoHodyPNYl1pz"",
+""fieldType"":""multipleRecordLinks"",
+ ""mode"":""_MODE_""}]},{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":_LOG_REC_ID_,""fields"":[{""fieldId"":""flddkg19RMoCgFvEN"",
+""fieldType"":""singleLineText"",
+ ""mode"":""_MODE_""}]}]}","{""searchTableId"": ""tbl1mIQg2utmj7Vqt"",
+""searchPrimaryFieldId"": ""fldU5d3NTJYCQJAK0"",
+""searchDeepFieldIds"": [],
+""jsonPrimaryKey"": ""completionSearchKey"",
+""jsonDeepKeys"": []}","{""mode"": ""createIfNoMatch"",""completionSearchSource"": ""_SOURCE_.completionFound"",""createTableId"": ""tbl1mIQg2utmj7Vqt"",""createIfNoMatch"": _CREATE_BOOL_,""createRecord"": {""fields"":[{""fieldId"":""fldvrN5KrY6rFsgRc"",
+""fieldType"":""singleLineText"",
+ ""source"":""inputs.completionKey"",  ""mode"":""replace""},{""fieldId"":""fldU5d3NTJYCQJAK0"",
+""fieldType"":""singleLineText"",
+ ""source"":""inputs.completionSearchKey"",  ""mode"":""replace""},{""fieldId"":""fld5PZvVc1sOfHBv2"",
+""fieldType"":""singleLineText"",
+ ""source"":""inputs.eventProjectId"",  ""mode"":""replace""},{""fieldId"":""fldlB5WykyfFXUoK1"",
+""fieldType"":""multipleRecordLinks"",
+ ""source"":""outputs.projectFound"",  ""mode"":""replace""},{""fieldId"":""fldyNekr5x0sUllmO"",
+""fieldType"":""multipleRecordLinks"",
+ ""source"":""outputs.taskFound"",  ""mode"":""replace""},{""fieldId"":""fldtX1EJ3ez1tVIBl"",
+""fieldType"":""date"",
+ ""source"":""inputs.eventDate"",  ""mode"":""replace""},{""fieldId"":""fldT3U8DIaHuEoP2a"",
+""fieldType"":""multipleRecordLinks"",
+ ""source"":""inputs.currentEventRecordId"",  ""mode"":""replace""},{""fieldId"":""fld8CIhhTNhUFsmhn"",
+""fieldType"":""singleSelect"",
+  ""value"":""Active"", ""mode"":""replace""}]},""writeCreatedRecordTo"":[{""tableId"":""tbloJ5eN46v1Zx7AG"",""recordId"":_LOG_REC_ID_,""fields"":[{""fieldId"":""flds9LlWVCoMFJvak"",
+""fieldType"":""singleLineText"",
+ ""mode"":""replace""}]}]}",,"recz0Wpx85w37h5t2|[◼️Project Event V1]|reccWobeS9JqWsPmp|_APP_PAUSED_,recIlLhBwkOy4Aqa5|[◼️Project Event V1]|recri778yhZGPqG5N|_APP_PAUSED_,recz0Wpx85w37h5t2|🟥 Status Updates|reccWobeS9JqWsPmp|_APP_PAUSED_,recIlLhBwkOy4Aqa5|🟥 Status Updates|recri778yhZGPqG5N|_APP_PAUSED_,recX7AAnbuT6J8svL|[◼️Project Event V1]|recrnV9xcBw42yLyK|_SESSION_CHECKOUT_,recX7AAnbuT6J8svL|[◼️Project Event V1]|recc2UxEYI3nAfqRd|_SESSION_CHECKOUT_,recX7AAnbuT6J8svL|❓Unknown|recc2UxEYI3nAfqRd|_SESSION_CHECKOUT_","{""step1"":[{""projectSearch"":{""searchTableId"": ""tbl4HhGi7F6lKzhfB"",
+""searchPrimaryFieldId"": ""fldnRScSsfp3I8Y1Y"",
+""searchDeepFieldIds"": [""fldnRScSsfp3I8Y1Y"",""fldhZnK0J8ucktSgY""],
+""jsonPrimaryKey"": ""eventProjectId"",
+""jsonDeepKeys"": [""eventProjectId"",""projectRecordId"",""eventProject""]}},{""taskSearch"":{""searchTableId"": ""tblECgtClvoenWXJn"",
+""searchPrimaryFieldId"": ""fldULcvgqT3tqLgmc"",
+""searchDeepFieldIds"": [""fldULcvgqT3tqLgmc"",""fldXFp3GKWTzF9tU2"",""fldTl4KHW1ZkZ3A35""],
+""jsonPrimaryKey"": ""eventLookup"",
+""jsonDeepKeys"": [""eventLookup"",""taskName"",""phaseTaskId"",""fromPhaseTaskId""]}},{""orgSearch"":{""searchTableId"": ""tble3Hu7TwYwsJyKZ"",
+""searchPrimaryFieldId"": ""fldnVR4H3PKBSLaWG"",
+""searchDeepFieldIds"": [""fldnVR4H3PKBSLaWG"",""fldADXXfYuycCnHiM"",""fld0DNWpCNmmsLdDq"",""fldvki6CMV82bevJO"",""fldtl7zogy0XymkIC"",""fldvYbLJciY7sKeO9"",""fldqsHDxgrEAmJBZH"",""fldN7RRjdkUzxRjf5""],
+""jsonPrimaryKey"": ""partnerOrg"",
+""jsonDeepKeys"": [""partnerOrg"",""eventPartner""]}},{""personSearch"":{""searchTableId"": ""tbljSOvZOrolS2At3"",
+""searchPrimaryFieldId"": ""fldahrTBg0ASw7JyT"",
+""searchDeepFieldIds"": [""fldahrTBg0ASw7JyT"",""fldGyGzB785pu9oZ2"",""fldAAWrP6OgSFtW1P"",""fldNbhakW4CtDAMPE"",""flda37gZnN996g7jl""],
+""jsonPrimaryKey"": ""partnerPerson"",
+""jsonDeepKeys"": [""partnerPerson"",""person""]}}]}","{
+  ""eventJSON"": {
+    ""schema"": ""projectEvent.v2"",
+    ""eventType"": ""SOURCE_EVENT"",
+    ""eventSource"": {
+      ""datasource"": ""🟥 Status Updates"",
+      ""sourceTable"": ""[◼️Project Event]"",
+      ""sourceRecordId"": ""recri778yhZGPqG5N"",
+      ""sourceEventId"": ""recri778yhZGPqG5N"",
+      ""sourceUrl"": null
+    },
+    ""eventLookup"": [
+      ""_APP_PAUSED_""
+    ],
+    ""eventDate"": ""2025-05-15T00:00:00.000Z"",
+    ""eventProject"": ""recIlLhBwkOy4Aqa5"",
+    ""eventPartner"": {
+      ""partnerPerson"": [
+        ""rec9oDL8E0tlVUeJR""
+      ],
+      ""partnerOrg"": [
+        ""recj4C98NbIeZqwES""
+      ],
+      ""partnerProgram"": []
+    },
+    ""eventDisplay"": {
+      ""label"": """",
+      ""person"": """",
+      ""action"": """",
+      ""notes"": """"
+    },
+    ""eventEvidence"": {
+      ""completionEvidence"": true,
+      ""migratedFrom"": ""legacy_project_event"",
+      ""legacyTable"": ""[◼️Project Event]"",
+      ""legacyRecordId"": ""recri778yhZGPqG5N"",
+      ""legacyEventId"": ""recri778yhZGPqG5N"",
+      ""rawStatus"": ""Paused, 5/15/2025"",
+      ""archrMarkedComplete"": null,
+      ""phaseTaskIds"": [
+        ""rec3qMwSJZifqppM3""
+      ],
+      ""phaseIds"": [
+        ""recAdQdRQWMbu0ciw""
+      ],
+      ""phaseTaskNames"": [
+        ""0. Submission: Application Paused""
+      ],
+      ""phaseNames"": [
+        ""0. Submission""
+      ],
+      ""sourceLinks"": {
+        ""v1EventsSync"": {
+          ""recordIds"": [
+            ""recIxgySYfgiF952c""
+          ],
+          ""labels"": [
+            ""recM6VWGJGcX2UDAu""
+          ]
+        }
+      },
+      ""partnerLookups"": {
+        ""dirPersonId"": [],
+        ""partnerProgramId"": [],
+        ""autocompleteProgramId"": [],
+        ""claimedOrgName"": [],
+        ""archrPartnerProgram"": []
+      },
+      ""oldAutocompleteEvidence"": {
+        ""autocompleteList"": [],
+        ""writeList"": [],
+        ""writeListRollup"": [],
+        ""autoCompleteSuccess"": null,
+        ""autoCompleting"": """",
+        ""triggeredByEventRecordIds"": [],
+        ""triggeredEventRecordIds"": []
+      }
+    },
+    ""autocomplete"": {
+      ""isAutoComplete"": false,
+      ""chainId"": ""recIlLhBwkOy4Aqa5|🟥 Status Updates|recri778yhZGPqG5N"",
+      ""level"": 0,
+      ""triggeredByEventKey"": null,
+      ""triggeredByLookup"": [],
+      ""triggeredByPhaseTaskId"": null,
+      ""reason"": ""direct_source_event""
+    }
+  }
+}",recIlLhBwkOy4Aqa5|🟥 Status Updates|recri778yhZGPqG5N|_APP_PAUSED_,70372,recIlLhBwkOy4Aqa5,rechVIlW4prLOboWX,recj4C98NbIeZqwES,rec9oDL8E0tlVUeJR,,"Step 1 Complete
+
+Resolver row: Julian
+
+Resolver record: recjD7tzZWfLiQvqd
+
+Active records: 1
+
+Searches run: 4
+
+Total matched records: 4
+
+- projectSearch: 1 match(es) via deep
+- taskSearch: 1 match(es) via primary
+- orgSearch: 1 match(es) via deep
+- personSearch: 1 match(es) via deep","Step 2 Complete
+
+Resolver row: Julian
+
+Resolver record: recjD7tzZWfLiQvqd
+
+Active records: 1
+
+Dry run: true
+
+Write groups: 4
+
+Writes planned: 8
+
+Writes performed: 4
+
+Business-table writes simulated: 4
+
+Destinations updated: 1","Step 3 Complete
+
+Resolver row: Julian
+
+Resolver record: recjD7tzZWfLiQvqd
+
+Active records: 1
+
+Searches run: 1
+
+Completion records found: 0
+
+- completionSearch: 0 match(es) via none
+
+Next action: No existing completion found. Continue to Step 4 creation.",,"{
+  ""schema"": ""eventResolver.runLog.v1"",
+  ""log"": [
+    {
+      ""timestamp"": ""2026-07-10T11:47:49.542Z"",
+      ""step"": ""step1"",
+      ""status"": ""complete"",
+      ""resolver"": {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""viewId"": ""viwT48UlenhQ9OBbh"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""recordName"": ""Julian"",
+        ""activeRecordCount"": 1
+      },
+      ""summary"": {
+        ""searchesRun"": 4,
+        ""totalMatches"": 4
+      },
+      ""results"": [
+        {
+          ""searchName"": ""projectSearch"",
+          ""outputKey"": ""projectFound"",
+          ""tableId"": ""tbl4HhGi7F6lKzhfB"",
+          ""tableName"": ""[🎯 Sync]"",
+          ""primaryFieldId"": ""fldnRScSsfp3I8Y1Y"",
+          ""deepFieldIds"": [
+            ""fldnRScSsfp3I8Y1Y"",
+            ""fldhZnK0J8ucktSgY""
+          ],
+          ""jsonPrimaryKey"": ""eventProjectId"",
+          ""jsonDeepKeys"": [
+            ""eventProjectId"",
+            ""projectRecordId"",
+            ""eventProject""
+          ],
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""recIlLhBwkOy4Aqa5""
+          ],
+          ""primarySearchValues"": [
+            ""recIlLhBwkOy4Aqa5""
+          ],
+          ""deepSearchValues"": [
+            ""recIlLhBwkOy4Aqa5""
+          ]
+        },
+        {
+          ""searchName"": ""taskSearch"",
+          ""outputKey"": ""taskFound"",
+          ""tableId"": ""tblECgtClvoenWXJn"",
+          ""tableName"": ""[⚙️Progress Tasks]"",
+          ""primaryFieldId"": ""fldULcvgqT3tqLgmc"",
+          ""deepFieldIds"": [
+            ""fldULcvgqT3tqLgmc"",
+            ""fldXFp3GKWTzF9tU2"",
+            ""fldTl4KHW1ZkZ3A35""
+          ],
+          ""jsonPrimaryKey"": ""eventLookup"",
+          ""jsonDeepKeys"": [
+            ""eventLookup"",
+            ""taskName"",
+            ""phaseTaskId"",
+            ""fromPhaseTaskId""
+          ],
+          ""matchMethod"": ""primary"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""rechVIlW4prLOboWX""
+          ],
+          ""primarySearchValues"": [
+            ""_APP_PAUSED_""
+          ],
+          ""deepSearchValues"": []
+        },
+        {
+          ""searchName"": ""orgSearch"",
+          ""outputKey"": ""orgFound"",
+          ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+          ""tableName"": ""[💜Orgs]"",
+          ""primaryFieldId"": ""fldnVR4H3PKBSLaWG"",
+          ""deepFieldIds"": [
+            ""fldnVR4H3PKBSLaWG"",
+            ""fldADXXfYuycCnHiM"",
+            ""fld0DNWpCNmmsLdDq"",
+            ""fldvki6CMV82bevJO"",
+            ""fldtl7zogy0XymkIC"",
+            ""fldvYbLJciY7sKeO9"",
+            ""fldqsHDxgrEAmJBZH"",
+            ""fldN7RRjdkUzxRjf5""
+          ],
+          ""jsonPrimaryKey"": ""partnerOrg"",
+          ""jsonDeepKeys"": [
+            ""partnerOrg"",
+            ""eventPartner""
+          ],
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""primarySearchValues"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""deepSearchValues"": [
+            ""recj4C98NbIeZqwES"",
+            ""rec9oDL8E0tlVUeJR""
+          ]
+        },
+        {
+          ""searchName"": ""personSearch"",
+          ""outputKey"": ""personFound"",
+          ""tableId"": ""tbljSOvZOrolS2At3"",
+          ""tableName"": ""[💜People]"",
+          ""primaryFieldId"": ""fldahrTBg0ASw7JyT"",
+          ""deepFieldIds"": [
+            ""fldahrTBg0ASw7JyT"",
+            ""fldGyGzB785pu9oZ2"",
+            ""fldAAWrP6OgSFtW1P"",
+            ""fldNbhakW4CtDAMPE"",
+            ""flda37gZnN996g7jl""
+          ],
+          ""jsonPrimaryKey"": ""partnerPerson"",
+          ""jsonDeepKeys"": [
+            ""partnerPerson"",
+            ""person""
+          ],
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""primarySearchValues"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""deepSearchValues"": [
+            ""rec9oDL8E0tlVUeJR""
+          ]
+        }
+      ],
+      ""outputs"": {
+        ""projectFound"": [
+          ""recIlLhBwkOy4Aqa5""
+        ],
+        ""taskFound"": [
+          ""rechVIlW4prLOboWX""
+        ],
+        ""orgFound"": [
+          ""recj4C98NbIeZqwES""
+        ],
+        ""personFound"": [
+          ""rec9oDL8E0tlVUeJR""
+        ]
+      }
+    },
+    {
+      ""timestamp"": ""2026-07-10T11:47:59.006Z"",
+      ""step"": ""step1"",
+      ""status"": ""complete"",
+      ""resolver"": {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""viewId"": ""viwT48UlenhQ9OBbh"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""recordName"": ""Julian"",
+        ""activeRecordCount"": 1
+      },
+      ""summary"": {
+        ""searchesRun"": 4,
+        ""totalMatches"": 4
+      },
+      ""results"": [
+        {
+          ""searchName"": ""projectSearch"",
+          ""outputKey"": ""projectFound"",
+          ""tableId"": ""tbl4HhGi7F6lKzhfB"",
+          ""tableName"": ""[🎯 Sync]"",
+          ""primaryFieldId"": ""fldnRScSsfp3I8Y1Y"",
+          ""deepFieldIds"": [
+            ""fldnRScSsfp3I8Y1Y"",
+            ""fldhZnK0J8ucktSgY""
+          ],
+          ""jsonPrimaryKey"": ""eventProjectId"",
+          ""jsonDeepKeys"": [
+            ""eventProjectId"",
+            ""projectRecordId"",
+            ""eventProject""
+          ],
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""recIlLhBwkOy4Aqa5""
+          ],
+          ""primarySearchValues"": [
+            ""recIlLhBwkOy4Aqa5""
+          ],
+          ""deepSearchValues"": [
+            ""recIlLhBwkOy4Aqa5""
+          ]
+        },
+        {
+          ""searchName"": ""taskSearch"",
+          ""outputKey"": ""taskFound"",
+          ""tableId"": ""tblECgtClvoenWXJn"",
+          ""tableName"": ""[⚙️Progress Tasks]"",
+          ""primaryFieldId"": ""fldULcvgqT3tqLgmc"",
+          ""deepFieldIds"": [
+            ""fldULcvgqT3tqLgmc"",
+            ""fldXFp3GKWTzF9tU2"",
+            ""fldTl4KHW1ZkZ3A35""
+          ],
+          ""jsonPrimaryKey"": ""eventLookup"",
+          ""jsonDeepKeys"": [
+            ""eventLookup"",
+            ""taskName"",
+            ""phaseTaskId"",
+            ""fromPhaseTaskId""
+          ],
+          ""matchMethod"": ""primary"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""rechVIlW4prLOboWX""
+          ],
+          ""primarySearchValues"": [
+            ""_APP_PAUSED_""
+          ],
+          ""deepSearchValues"": []
+        },
+        {
+          ""searchName"": ""orgSearch"",
+          ""outputKey"": ""orgFound"",
+          ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+          ""tableName"": ""[💜Orgs]"",
+          ""primaryFieldId"": ""fldnVR4H3PKBSLaWG"",
+          ""deepFieldIds"": [
+            ""fldnVR4H3PKBSLaWG"",
+            ""fldADXXfYuycCnHiM"",
+            ""fld0DNWpCNmmsLdDq"",
+            ""fldvki6CMV82bevJO"",
+            ""fldtl7zogy0XymkIC"",
+            ""fldvYbLJciY7sKeO9"",
+            ""fldqsHDxgrEAmJBZH"",
+            ""fldN7RRjdkUzxRjf5""
+          ],
+          ""jsonPrimaryKey"": ""partnerOrg"",
+          ""jsonDeepKeys"": [
+            ""partnerOrg"",
+            ""eventPartner""
+          ],
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""primarySearchValues"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""deepSearchValues"": [
+            ""recj4C98NbIeZqwES"",
+            ""rec9oDL8E0tlVUeJR""
+          ]
+        },
+        {
+          ""searchName"": ""personSearch"",
+          ""outputKey"": ""personFound"",
+          ""tableId"": ""tbljSOvZOrolS2At3"",
+          ""tableName"": ""[💜People]"",
+          ""primaryFieldId"": ""fldahrTBg0ASw7JyT"",
+          ""deepFieldIds"": [
+            ""fldahrTBg0ASw7JyT"",
+            ""fldGyGzB785pu9oZ2"",
+            ""fldAAWrP6OgSFtW1P"",
+            ""fldNbhakW4CtDAMPE"",
+            ""flda37gZnN996g7jl""
+          ],
+          ""jsonPrimaryKey"": ""partnerPerson"",
+          ""jsonDeepKeys"": [
+            ""partnerPerson"",
+            ""person""
+          ],
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""primarySearchValues"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""deepSearchValues"": [
+            ""rec9oDL8E0tlVUeJR""
+          ]
+        }
+      ],
+      ""outputs"": {
+        ""projectFound"": [
+          ""recIlLhBwkOy4Aqa5""
+        ],
+        ""taskFound"": [
+          ""rechVIlW4prLOboWX""
+        ],
+        ""orgFound"": [
+          ""recj4C98NbIeZqwES""
+        ],
+        ""personFound"": [
+          ""rec9oDL8E0tlVUeJR""
+        ]
+      }
+    },
+    {
+      ""timestamp"": ""2026-07-10T11:48:29.002Z"",
+      ""step"": ""step2"",
+      ""status"": ""complete"",
+      ""dryRun"": true,
+      ""resolver"": {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""viewId"": ""viwT48UlenhQ9OBbh"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""recordName"": ""Julian"",
+        ""activeRecordCount"": 1
+      },
+      ""summary"": {
+        ""writeGroups"": 4,
+        ""writesPlanned"": 8,
+        ""writesPerformed"": 4,
+        ""writesSkipped"": 4,
+        ""destinationsUpdated"": 1
+      },
+      ""performedWrites"": [
+        {
+          ""writeName"": ""projectWrite"",
+          ""sourcePath"": ""outputs.projectFound"",
+          ""sourceValue"": [
+            ""recIlLhBwkOy4Aqa5""
+          ],
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fldFpq2RRrImJ2VKT"",
+          ""fieldName"": ""found🎯Project"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""recIlLhBwkOy4Aqa5""
+        },
+        {
+          ""writeName"": ""taskWrite"",
+          ""sourcePath"": ""outputs.taskFound"",
+          ""sourceValue"": [
+            ""rechVIlW4prLOboWX""
+          ],
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fldekXfmgBRNPciQj"",
+          ""fieldName"": ""found⚙️Tasks"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""rechVIlW4prLOboWX""
+        },
+        {
+          ""writeName"": ""orgWrite"",
+          ""sourcePath"": ""outputs.orgFound"",
+          ""sourceValue"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fld9tmYEV7LPs2cs0"",
+          ""fieldName"": ""found💜Org"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""recj4C98NbIeZqwES""
+        },
+        {
+          ""writeName"": ""personWrite"",
+          ""sourcePath"": ""outputs.personFound"",
+          ""sourceValue"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""flddkg19RMoCgFvEN"",
+          ""fieldName"": ""found💟People"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""rec9oDL8E0tlVUeJR""
+        }
+      ],
+      ""skippedWrites"": [
+        {
+          ""writeName"": ""projectWrite"",
+          ""sourcePath"": ""outputs.projectFound"",
+          ""sourceValue"": [
+            ""recIlLhBwkOy4Aqa5""
+          ],
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fldf9H8hS2Qka3Pcr"",
+          ""fieldName"": ""[🎯 Sync]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""recIlLhBwkOy4Aqa5""
+            }
+          ],
+          ""reason"": ""Dry run: business-table write skipped.""
+        },
+        {
+          ""writeName"": ""taskWrite"",
+          ""sourcePath"": ""outputs.taskFound"",
+          ""sourceValue"": [
+            ""rechVIlW4prLOboWX""
+          ],
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fld7nIq32wgLERY6Y"",
+          ""fieldName"": ""[⚙️Progress Tasks]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""rechVIlW4prLOboWX""
+            }
+          ],
+          ""reason"": ""Dry run: business-table write skipped.""
+        },
+        {
+          ""writeName"": ""orgWrite"",
+          ""sourcePath"": ""outputs.orgFound"",
+          ""sourceValue"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fld9xEMyUPJJFjTYL"",
+          ""fieldName"": ""[💜Orgs]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""recj4C98NbIeZqwES""
+            }
+          ],
+          ""reason"": ""Dry run: business-table write skipped.""
+        },
+        {
+          ""writeName"": ""personWrite"",
+          ""sourcePath"": ""outputs.personFound"",
+          ""sourceValue"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fldELoHodyPNYl1pz"",
+          ""fieldName"": ""[💟People]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""rec9oDL8E0tlVUeJR""
+            }
+          ],
+          ""reason"": ""Dry run: business-table write skipped.""
+        }
+      ],
+      ""executions"": [
+        {
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldIds"": [
+            ""fldFpq2RRrImJ2VKT"",
+            ""fldekXfmgBRNPciQj"",
+            ""fld9tmYEV7LPs2cs0"",
+            ""flddkg19RMoCgFvEN""
+          ]
+        }
+      ]
+    },
+    {
+      ""timestamp"": ""2026-07-10T11:48:52.463Z"",
+      ""step"": ""step2"",
+      ""status"": ""complete"",
+      ""dryRun"": true,
+      ""resolver"": {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""viewId"": ""viwT48UlenhQ9OBbh"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""recordName"": ""Julian"",
+        ""activeRecordCount"": 1
+      },
+      ""summary"": {
+        ""writeGroups"": 4,
+        ""writesPlanned"": 8,
+        ""writesPerformed"": 4,
+        ""writesSkipped"": 4,
+        ""destinationsUpdated"": 1
+      },
+      ""performedWrites"": [
+        {
+          ""writeName"": ""projectWrite"",
+          ""sourcePath"": ""outputs.projectFound"",
+          ""sourceValue"": [
+            ""recIlLhBwkOy4Aqa5""
+          ],
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fldFpq2RRrImJ2VKT"",
+          ""fieldName"": ""found🎯Project"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""recIlLhBwkOy4Aqa5""
+        },
+        {
+          ""writeName"": ""taskWrite"",
+          ""sourcePath"": ""outputs.taskFound"",
+          ""sourceValue"": [
+            ""rechVIlW4prLOboWX""
+          ],
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fldekXfmgBRNPciQj"",
+          ""fieldName"": ""found⚙️Tasks"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""rechVIlW4prLOboWX""
+        },
+        {
+          ""writeName"": ""orgWrite"",
+          ""sourcePath"": ""outputs.orgFound"",
+          ""sourceValue"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fld9tmYEV7LPs2cs0"",
+          ""fieldName"": ""found💜Org"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""recj4C98NbIeZqwES""
+        },
+        {
+          ""writeName"": ""personWrite"",
+          ""sourcePath"": ""outputs.personFound"",
+          ""sourceValue"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""flddkg19RMoCgFvEN"",
+          ""fieldName"": ""found💟People"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""rec9oDL8E0tlVUeJR""
+        }
+      ],
+      ""skippedWrites"": [
+        {
+          ""writeName"": ""projectWrite"",
+          ""sourcePath"": ""outputs.projectFound"",
+          ""sourceValue"": [
+            ""recIlLhBwkOy4Aqa5""
+          ],
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fldf9H8hS2Qka3Pcr"",
+          ""fieldName"": ""[🎯 Sync]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""recIlLhBwkOy4Aqa5""
+            }
+          ],
+          ""reason"": ""Dry run: business-table write skipped.""
+        },
+        {
+          ""writeName"": ""taskWrite"",
+          ""sourcePath"": ""outputs.taskFound"",
+          ""sourceValue"": [
+            ""rechVIlW4prLOboWX""
+          ],
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fld7nIq32wgLERY6Y"",
+          ""fieldName"": ""[⚙️Progress Tasks]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""rechVIlW4prLOboWX""
+            }
+          ],
+          ""reason"": ""Dry run: business-table write skipped.""
+        },
+        {
+          ""writeName"": ""orgWrite"",
+          ""sourcePath"": ""outputs.orgFound"",
+          ""sourceValue"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fld9xEMyUPJJFjTYL"",
+          ""fieldName"": ""[💜Orgs]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""recj4C98NbIeZqwES""
+            }
+          ],
+          ""reason"": ""Dry run: business-table write skipped.""
+        },
+        {
+          ""writeName"": ""personWrite"",
+          ""sourcePath"": ""outputs.personFound"",
+          ""sourceValue"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fldELoHodyPNYl1pz"",
+          ""fieldName"": ""[💟People]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""rec9oDL8E0tlVUeJR""
+            }
+          ],
+          ""reason"": ""Dry run: business-table write skipped.""
+        }
+      ],
+      ""executions"": [
+        {
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldIds"": [
+            ""fldFpq2RRrImJ2VKT"",
+            ""fldekXfmgBRNPciQj"",
+            ""fld9tmYEV7LPs2cs0"",
+            ""flddkg19RMoCgFvEN""
+          ]
+        }
+      ]
+    },
+    {
+      ""timestamp"": ""2026-07-10T11:55:08.782Z"",
+      ""step"": ""step3"",
+      ""status"": ""complete"",
+      ""resolver"": {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""viewId"": ""viwT48UlenhQ9OBbh"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""recordName"": ""Julian"",
+        ""activeRecordCount"": 1
+      },
+      ""summary"": {
+        ""searchesRun"": 1,
+        ""totalMatches"": 0,
+        ""shouldRunStep4"": true,
+        ""shouldRunStep5"": false
+      },
+      ""results"": [
+        {
+          ""searchName"": ""completionSearch"",
+          ""outputKey"": ""completionFound"",
+          ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+          ""tableName"": ""[☑️Project Task Completion]"",
+          ""primaryFieldId"": ""fldU5d3NTJYCQJAK0"",
+          ""deepFieldIds"": [],
+          ""jsonPrimaryKey"": ""completionSearchKey"",
+          ""jsonDeepKeys"": [],
+          ""matchMethod"": ""none"",
+          ""matchCount"": 0,
+          ""recordIds"": [],
+          ""primarySearchValues"": [],
+          ""deepSearchValues"": []
+        }
+      ],
+      ""outputs"": {
+        ""completionFound"": []
+      },
+      ""routing"": {
+        ""shouldRunStep4"": true,
+        ""shouldRunStep5"": false
+      }
+    }
+  ],
+  ""updatedAt"": ""2026-07-10T11:55:08.782Z""
+}",recawA1KVYAUBUx7w,,Step 2,outputs,true,,"{
+  ""schema"": ""eventResolver.context.v1"",
+  ""meta"": {
+    ""contextId"": ""context_recjD7tzZWfLiQvqd_1783678684802"",
+    ""generatedAt"": ""2026-07-10T10:18:04.802Z"",
+    ""resolverTableId"": ""tbloJ5eN46v1Zx7AG"",
+    ""resolverTableName"": ""[🤖Event_Resolver]"",
+    ""resolverRecordId"": ""recjD7tzZWfLiQvqd"",
+    ""resolverRecordName"": ""Julian"",
+    ""currentStep"": ""Step 1"",
+    ""nextStep"": ""Step 2"",
+    ""resolverMode"": ""Step"",
+    ""configFields"": {
+      ""step1"": {
+        ""fieldId"": ""fldoOZP6Mfr6OaUuu"",
+        ""fieldName"": ""step1_config""
+      },
+      ""step2"": {
+        ""fieldId"": ""fldXasJz9S80CRjyT"",
+        ""fieldName"": ""step2_config""
+      },
+      ""step3"": {
+        ""fieldId"": ""fldfHA7lnaPwOtKQn"",
+        ""fieldName"": ""step3_config""
+      },
+      ""step4"": {
+        ""fieldId"": ""flduDYxRQMBYHWv3H"",
+        ""fieldName"": ""step4_config""
+      }
+    },
+    ""updatedAt"": ""2026-07-10T11:55:08.782Z"",
+    ""lastCompletedStep"": ""step3"",
+    ""execution"": {
+      ""dryRun"": true,
+      ""step2StartedAt"": ""2026-07-10T11:48:44.155Z"",
+      ""step2CompletedAt"": ""2026-07-10T11:48:52.463Z""
+    }
+  },
+  ""inputs"": {
+    ""event"": {
+      ""schema"": ""projectEvent.v2"",
+      ""eventType"": ""SOURCE_EVENT"",
+      ""eventSource"": {
+        ""datasource"": ""🟥 Status Updates"",
+        ""sourceTable"": ""[◼️Project Event]"",
+        ""sourceRecordId"": ""recri778yhZGPqG5N"",
+        ""sourceEventId"": ""recri778yhZGPqG5N"",
+        ""sourceUrl"": null
+      },
+      ""eventLookup"": [
+        ""_APP_PAUSED_""
+      ],
+      ""eventDate"": ""2025-05-15T00:00:00.000Z"",
+      ""eventProject"": ""recIlLhBwkOy4Aqa5"",
+      ""eventPartner"": {
+        ""partnerPerson"": [
+          ""rec9oDL8E0tlVUeJR""
+        ],
+        ""partnerOrg"": [
+          ""recj4C98NbIeZqwES""
+        ],
+        ""partnerProgram"": []
+      },
+      ""eventDisplay"": {
+        ""label"": """",
+        ""person"": """",
+        ""action"": """",
+        ""notes"": """"
+      },
+      ""eventEvidence"": {
+        ""completionEvidence"": true,
+        ""migratedFrom"": ""legacy_project_event"",
+        ""legacyTable"": ""[◼️Project Event]"",
+        ""legacyRecordId"": ""recri778yhZGPqG5N"",
+        ""legacyEventId"": ""recri778yhZGPqG5N"",
+        ""rawStatus"": ""Paused, 5/15/2025"",
+        ""archrMarkedComplete"": null,
+        ""phaseTaskIds"": [
+          ""rec3qMwSJZifqppM3""
+        ],
+        ""phaseIds"": [
+          ""recAdQdRQWMbu0ciw""
+        ],
+        ""phaseTaskNames"": [
+          ""0. Submission: Application Paused""
+        ],
+        ""phaseNames"": [
+          ""0. Submission""
+        ],
+        ""sourceLinks"": {
+          ""v1EventsSync"": {
+            ""recordIds"": [
+              ""recIxgySYfgiF952c""
+            ],
+            ""labels"": [
+              ""recM6VWGJGcX2UDAu""
+            ]
+          }
+        },
+        ""partnerLookups"": {
+          ""dirPersonId"": [],
+          ""partnerProgramId"": [],
+          ""autocompleteProgramId"": [],
+          ""claimedOrgName"": [],
+          ""archrPartnerProgram"": []
+        },
+        ""oldAutocompleteEvidence"": {
+          ""autocompleteList"": [],
+          ""writeList"": [],
+          ""writeListRollup"": [],
+          ""autoCompleteSuccess"": null,
+          ""autoCompleting"": """",
+          ""triggeredByEventRecordIds"": [],
+          ""triggeredEventRecordIds"": []
+        }
+      },
+      ""autocomplete"": {
+        ""isAutoComplete"": false,
+        ""chainId"": ""recIlLhBwkOy4Aqa5|🟥 Status Updates|recri778yhZGPqG5N"",
+        ""level"": 0,
+        ""triggeredByEventKey"": null,
+        ""triggeredByLookup"": [],
+        ""triggeredByPhaseTaskId"": null,
+        ""reason"": ""direct_source_event""
+      }
+    },
+    ""eventEnvelope"": {
+      ""eventJSON"": {
+        ""schema"": ""projectEvent.v2"",
+        ""eventType"": ""SOURCE_EVENT"",
+        ""eventSource"": {
+          ""datasource"": ""🟥 Status Updates"",
+          ""sourceTable"": ""[◼️Project Event]"",
+          ""sourceRecordId"": ""recri778yhZGPqG5N"",
+          ""sourceEventId"": ""recri778yhZGPqG5N"",
+          ""sourceUrl"": null
+        },
+        ""eventLookup"": [
+          ""_APP_PAUSED_""
+        ],
+        ""eventDate"": ""2025-05-15T00:00:00.000Z"",
+        ""eventProject"": ""recIlLhBwkOy4Aqa5"",
+        ""eventPartner"": {
+          ""partnerPerson"": [
+            ""rec9oDL8E0tlVUeJR""
+          ],
+          ""partnerOrg"": [
+            ""recj4C98NbIeZqwES""
+          ],
+          ""partnerProgram"": []
+        },
+        ""eventDisplay"": {
+          ""label"": """",
+          ""person"": """",
+          ""action"": """",
+          ""notes"": """"
+        },
+        ""eventEvidence"": {
+          ""completionEvidence"": true,
+          ""migratedFrom"": ""legacy_project_event"",
+          ""legacyTable"": ""[◼️Project Event]"",
+          ""legacyRecordId"": ""recri778yhZGPqG5N"",
+          ""legacyEventId"": ""recri778yhZGPqG5N"",
+          ""rawStatus"": ""Paused, 5/15/2025"",
+          ""archrMarkedComplete"": null,
+          ""phaseTaskIds"": [
+            ""rec3qMwSJZifqppM3""
+          ],
+          ""phaseIds"": [
+            ""recAdQdRQWMbu0ciw""
+          ],
+          ""phaseTaskNames"": [
+            ""0. Submission: Application Paused""
+          ],
+          ""phaseNames"": [
+            ""0. Submission""
+          ],
+          ""sourceLinks"": {
+            ""v1EventsSync"": {
+              ""recordIds"": [
+                ""recIxgySYfgiF952c""
+              ],
+              ""labels"": [
+                ""recM6VWGJGcX2UDAu""
+              ]
+            }
+          },
+          ""partnerLookups"": {
+            ""dirPersonId"": [],
+            ""partnerProgramId"": [],
+            ""autocompleteProgramId"": [],
+            ""claimedOrgName"": [],
+            ""archrPartnerProgram"": []
+          },
+          ""oldAutocompleteEvidence"": {
+            ""autocompleteList"": [],
+            ""writeList"": [],
+            ""writeListRollup"": [],
+            ""autoCompleteSuccess"": null,
+            ""autoCompleting"": """",
+            ""triggeredByEventRecordIds"": [],
+            ""triggeredEventRecordIds"": []
+          }
+        },
+        ""autocomplete"": {
+          ""isAutoComplete"": false,
+          ""chainId"": ""recIlLhBwkOy4Aqa5|🟥 Status Updates|recri778yhZGPqG5N"",
+          ""level"": 0,
+          ""triggeredByEventKey"": null,
+          ""triggeredByLookup"": [],
+          ""triggeredByPhaseTaskId"": null,
+          ""reason"": ""direct_source_event""
+        }
+      }
+    },
+    ""schema"": ""projectEvent.v2"",
+    ""eventType"": ""SOURCE_EVENT"",
+    ""eventSource"": {
+      ""datasource"": ""🟥 Status Updates"",
+      ""sourceTable"": ""[◼️Project Event]"",
+      ""sourceRecordId"": ""recri778yhZGPqG5N"",
+      ""sourceEventId"": ""recri778yhZGPqG5N"",
+      ""sourceUrl"": null
+    },
+    ""datasource"": ""🟥 Status Updates"",
+    ""sourceTable"": ""[◼️Project Event]"",
+    ""sourceRecordId"": ""recri778yhZGPqG5N"",
+    ""sourceEventId"": ""recri778yhZGPqG5N"",
+    ""eventLookup"": [
+      ""_APP_PAUSED_""
+    ],
+    ""eventDate"": ""2025-05-15T00:00:00.000Z"",
+    ""eventProject"": ""recIlLhBwkOy4Aqa5"",
+    ""eventPartner"": {
+      ""partnerPerson"": [
+        ""rec9oDL8E0tlVUeJR""
+      ],
+      ""partnerOrg"": [
+        ""recj4C98NbIeZqwES""
+      ],
+      ""partnerProgram"": []
+    },
+    ""partnerPerson"": [
+      ""rec9oDL8E0tlVUeJR""
+    ],
+    ""partnerOrg"": [
+      ""recj4C98NbIeZqwES""
+    ],
+    ""eventDisplay"": {
+      ""label"": """",
+      ""person"": """",
+      ""action"": """",
+      ""notes"": """"
+    },
+    ""eventEvidence"": {
+      ""completionEvidence"": true,
+      ""migratedFrom"": ""legacy_project_event"",
+      ""legacyTable"": ""[◼️Project Event]"",
+      ""legacyRecordId"": ""recri778yhZGPqG5N"",
+      ""legacyEventId"": ""recri778yhZGPqG5N"",
+      ""rawStatus"": ""Paused, 5/15/2025"",
+      ""archrMarkedComplete"": null,
+      ""phaseTaskIds"": [
+        ""rec3qMwSJZifqppM3""
+      ],
+      ""phaseIds"": [
+        ""recAdQdRQWMbu0ciw""
+      ],
+      ""phaseTaskNames"": [
+        ""0. Submission: Application Paused""
+      ],
+      ""phaseNames"": [
+        ""0. Submission""
+      ],
+      ""sourceLinks"": {
+        ""v1EventsSync"": {
+          ""recordIds"": [
+            ""recIxgySYfgiF952c""
+          ],
+          ""labels"": [
+            ""recM6VWGJGcX2UDAu""
+          ]
+        }
+      },
+      ""partnerLookups"": {
+        ""dirPersonId"": [],
+        ""partnerProgramId"": [],
+        ""autocompleteProgramId"": [],
+        ""claimedOrgName"": [],
+        ""archrPartnerProgram"": []
+      },
+      ""oldAutocompleteEvidence"": {
+        ""autocompleteList"": [],
+        ""writeList"": [],
+        ""writeListRollup"": [],
+        ""autoCompleteSuccess"": null,
+        ""autoCompleting"": """",
+        ""triggeredByEventRecordIds"": [],
+        ""triggeredEventRecordIds"": []
+      }
+    },
+    ""completionEvidence"": true,
+    ""migratedFrom"": ""legacy_project_event"",
+    ""legacyTable"": ""[◼️Project Event]"",
+    ""legacyRecordId"": ""recri778yhZGPqG5N"",
+    ""legacyEventId"": ""recri778yhZGPqG5N"",
+    ""rawStatus"": ""Paused, 5/15/2025"",
+    ""phaseTaskIds"": [
+      ""rec3qMwSJZifqppM3""
+    ],
+    ""phaseIds"": [
+      ""recAdQdRQWMbu0ciw""
+    ],
+    ""phaseTaskNames"": [
+      ""0. Submission: Application Paused""
+    ],
+    ""phaseNames"": [
+      ""0. Submission""
+    ],
+    ""sourceLinks"": {
+      ""v1EventsSync"": {
+        ""recordIds"": [
+          ""recIxgySYfgiF952c""
+        ],
+        ""labels"": [
+          ""recM6VWGJGcX2UDAu""
+        ]
+      }
+    },
+    ""v1EventsSync"": {
+      ""recordIds"": [
+        ""recIxgySYfgiF952c""
+      ],
+      ""labels"": [
+        ""recM6VWGJGcX2UDAu""
+      ]
+    },
+    ""recordIds"": [
+      ""recIxgySYfgiF952c""
+    ],
+    ""labels"": [
+      ""recM6VWGJGcX2UDAu""
+    ],
+    ""partnerLookups"": {
+      ""dirPersonId"": [],
+      ""partnerProgramId"": [],
+      ""autocompleteProgramId"": [],
+      ""claimedOrgName"": [],
+      ""archrPartnerProgram"": []
+    },
+    ""oldAutocompleteEvidence"": {
+      ""autocompleteList"": [],
+      ""writeList"": [],
+      ""writeListRollup"": [],
+      ""autoCompleteSuccess"": null,
+      ""autoCompleting"": """",
+      ""triggeredByEventRecordIds"": [],
+      ""triggeredEventRecordIds"": []
+    },
+    ""autocomplete"": {
+      ""isAutoComplete"": false,
+      ""chainId"": ""recIlLhBwkOy4Aqa5|🟥 Status Updates|recri778yhZGPqG5N"",
+      ""level"": 0,
+      ""triggeredByEventKey"": null,
+      ""triggeredByLookup"": [],
+      ""triggeredByPhaseTaskId"": null,
+      ""reason"": ""direct_source_event""
+    },
+    ""isAutoComplete"": false,
+    ""chainId"": ""recIlLhBwkOy4Aqa5|🟥 Status Updates|recri778yhZGPqG5N"",
+    ""level"": 0,
+    ""reason"": ""direct_source_event"",
+    ""currentEventRecordId"": ""recG6MYEsupIrzEll"",
+    ""currentEventRecordIds"": [
+      ""recG6MYEsupIrzEll"",
+      ""recNdU2QBaoulXirZ"",
+      ""recWguHBprMaFwPpx"",
+      ""recawA1KVYAUBUx7w"",
+      ""recFdE4dMNh93ysrR"",
+      ""recRGJM6XBDmNur3D"",
+      ""recVtvKzhJ85L39C6"",
+      ""recIlLhBwkOy4Aqa5"",
+      ""recri778yhZGPqG5N""
+    ],
+    ""resolverRecordId"": ""recjD7tzZWfLiQvqd"",
+    ""eventNumber"": ""70372"",
+    ""eventProjectId"": ""recIlLhBwkOy4Aqa5"",
+    ""completionKey"": """",
+    ""completionSearchKey"": """"
+  },
+  ""outputs"": {
+    ""projectFound"": [
+      ""recIlLhBwkOy4Aqa5""
+    ],
+    ""taskFound"": [
+      ""rechVIlW4prLOboWX""
+    ],
+    ""orgFound"": [
+      ""recj4C98NbIeZqwES""
+    ],
+    ""personFound"": [
+      ""rec9oDL8E0tlVUeJR""
+    ],
+    ""completionFound"": [],
+    ""createdCompletion"": """"
+  },
+  ""debug"": {
+    ""projectFound"": [
+      ""recIlLhBwkOy4Aqa5""
+    ],
+    ""taskFound"": [
+      ""rechVIlW4prLOboWX""
+    ],
+    ""orgFound"": [
+      ""recj4C98NbIeZqwES""
+    ],
+    ""personFound"": [
+      ""rec9oDL8E0tlVUeJR""
+    ],
+    ""completionFound"": [],
+    ""createdCompletion"": """"
+  },
+  ""configs"": {
+    ""step1"": [
+      {
+        ""projectSearch"": {
+          ""searchTableId"": ""tbl4HhGi7F6lKzhfB"",
+          ""searchPrimaryFieldId"": ""fldnRScSsfp3I8Y1Y"",
+          ""searchDeepFieldIds"": [
+            ""fldnRScSsfp3I8Y1Y"",
+            ""fldhZnK0J8ucktSgY""
+          ],
+          ""jsonPrimaryKey"": ""eventProjectId"",
+          ""jsonDeepKeys"": [
+            ""eventProjectId"",
+            ""projectRecordId"",
+            ""eventProject""
+          ]
+        }
+      },
+      {
+        ""taskSearch"": {
+          ""searchTableId"": ""tblECgtClvoenWXJn"",
+          ""searchPrimaryFieldId"": ""fldULcvgqT3tqLgmc"",
+          ""searchDeepFieldIds"": [
+            ""fldULcvgqT3tqLgmc"",
+            ""fldXFp3GKWTzF9tU2"",
+            ""fldTl4KHW1ZkZ3A35""
+          ],
+          ""jsonPrimaryKey"": ""eventLookup"",
+          ""jsonDeepKeys"": [
+            ""eventLookup"",
+            ""taskName"",
+            ""phaseTaskId"",
+            ""fromPhaseTaskId""
+          ]
+        }
+      },
+      {
+        ""orgSearch"": {
+          ""searchTableId"": ""tble3Hu7TwYwsJyKZ"",
+          ""searchPrimaryFieldId"": ""fldnVR4H3PKBSLaWG"",
+          ""searchDeepFieldIds"": [
+            ""fldnVR4H3PKBSLaWG"",
+            ""fldADXXfYuycCnHiM"",
+            ""fld0DNWpCNmmsLdDq"",
+            ""fldvki6CMV82bevJO"",
+            ""fldtl7zogy0XymkIC"",
+            ""fldvYbLJciY7sKeO9"",
+            ""fldqsHDxgrEAmJBZH"",
+            ""fldN7RRjdkUzxRjf5""
+          ],
+          ""jsonPrimaryKey"": ""partnerOrg"",
+          ""jsonDeepKeys"": [
+            ""partnerOrg"",
+            ""eventPartner""
+          ]
+        }
+      },
+      {
+        ""personSearch"": {
+          ""searchTableId"": ""tbljSOvZOrolS2At3"",
+          ""searchPrimaryFieldId"": ""fldahrTBg0ASw7JyT"",
+          ""searchDeepFieldIds"": [
+            ""fldahrTBg0ASw7JyT"",
+            ""fldGyGzB785pu9oZ2"",
+            ""fldAAWrP6OgSFtW1P"",
+            ""fldNbhakW4CtDAMPE"",
+            ""flda37gZnN996g7jl""
+          ],
+          ""jsonPrimaryKey"": ""partnerPerson"",
+          ""jsonDeepKeys"": [
+            ""partnerPerson"",
+            ""person""
+          ]
+        }
+      }
+    ],
+    ""step2"": {
+      ""mode"": ""replace"",
+      ""fieldWrites"": [
+        {
+          ""writeName"": ""projectWrite"",
+          ""source"": ""outputs.projectFound"",
+          ""writeTo"": [
+            {
+              ""tableId"": ""tblOhnfdIlabxXOqL"",
+              ""recordId"": ""recawA1KVYAUBUx7w"",
+              ""fields"": [
+                {
+                  ""fieldId"": ""fldf9H8hS2Qka3Pcr"",
+                  ""fieldType"": ""multipleRecordLinks"",
+                  ""mode"": ""replace""
+                }
+              ]
+            },
+            {
+              ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+              ""recordId"": ""recjD7tzZWfLiQvqd"",
+              ""fields"": [
+                {
+                  ""fieldId"": ""fldFpq2RRrImJ2VKT"",
+                  ""fieldType"": ""singleLineText"",
+                  ""mode"": ""replace""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          ""writeName"": ""taskWrite"",
+          ""source"": ""outputs.taskFound"",
+          ""writeTo"": [
+            {
+              ""tableId"": ""tblOhnfdIlabxXOqL"",
+              ""recordId"": ""recawA1KVYAUBUx7w"",
+              ""fields"": [
+                {
+                  ""fieldId"": ""fld7nIq32wgLERY6Y"",
+                  ""fieldType"": ""multipleRecordLinks"",
+                  ""mode"": ""replace""
+                }
+              ]
+            },
+            {
+              ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+              ""recordId"": ""recjD7tzZWfLiQvqd"",
+              ""fields"": [
+                {
+                  ""fieldId"": ""fldekXfmgBRNPciQj"",
+                  ""fieldType"": ""singleLineText"",
+                  ""mode"": ""replace""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          ""writeName"": ""orgWrite"",
+          ""source"": ""outputs.orgFound"",
+          ""writeTo"": [
+            {
+              ""tableId"": ""tblOhnfdIlabxXOqL"",
+              ""recordId"": ""recawA1KVYAUBUx7w"",
+              ""fields"": [
+                {
+                  ""fieldId"": ""fld9xEMyUPJJFjTYL"",
+                  ""fieldType"": ""multipleRecordLinks"",
+                  ""mode"": ""replace""
+                }
+              ]
+            },
+            {
+              ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+              ""recordId"": ""recjD7tzZWfLiQvqd"",
+              ""fields"": [
+                {
+                  ""fieldId"": ""fld9tmYEV7LPs2cs0"",
+                  ""fieldType"": ""singleLineText"",
+                  ""mode"": ""replace""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          ""writeName"": ""personWrite"",
+          ""source"": ""outputs.personFound"",
+          ""writeTo"": [
+            {
+              ""tableId"": ""tblOhnfdIlabxXOqL"",
+              ""recordId"": ""recawA1KVYAUBUx7w"",
+              ""fields"": [
+                {
+                  ""fieldId"": ""fldELoHodyPNYl1pz"",
+                  ""fieldType"": ""multipleRecordLinks"",
+                  ""mode"": ""replace""
+                }
+              ]
+            },
+            {
+              ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+              ""recordId"": ""recjD7tzZWfLiQvqd"",
+              ""fields"": [
+                {
+                  ""fieldId"": ""flddkg19RMoCgFvEN"",
+                  ""fieldType"": ""singleLineText"",
+                  ""mode"": ""replace""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    ""step3"": [
+      {
+        ""completionSearch"": {
+          ""searchTableId"": ""tbl1mIQg2utmj7Vqt"",
+          ""searchPrimaryFieldId"": ""fldU5d3NTJYCQJAK0"",
+          ""searchDeepFieldIds"": [],
+          ""jsonPrimaryKey"": ""completionSearchKey"",
+          ""jsonDeepKeys"": []
+        }
+      }
+    ],
+    ""step4"": {
+      ""mode"": ""createIfNoMatch"",
+      ""completionSearchSource"": ""outputs.completionFound"",
+      ""createTableId"": ""tbl1mIQg2utmj7Vqt"",
+      ""createIfNoMatch"": true,
+      ""createRecord"": {
+        ""fields"": [
+          {
+            ""fieldId"": ""fldvrN5KrY6rFsgRc"",
+            ""fieldType"": ""singleLineText"",
+            ""source"": ""inputs.completionKey"",
+            ""mode"": ""replace""
+          },
+          {
+            ""fieldId"": ""fldU5d3NTJYCQJAK0"",
+            ""fieldType"": ""singleLineText"",
+            ""source"": ""inputs.completionSearchKey"",
+            ""mode"": ""replace""
+          },
+          {
+            ""fieldId"": ""fld5PZvVc1sOfHBv2"",
+            ""fieldType"": ""singleLineText"",
+            ""source"": ""inputs.eventProjectId"",
+            ""mode"": ""replace""
+          },
+          {
+            ""fieldId"": ""fldlB5WykyfFXUoK1"",
+            ""fieldType"": ""multipleRecordLinks"",
+            ""source"": ""outputs.projectFound"",
+            ""mode"": ""replace""
+          },
+          {
+            ""fieldId"": ""fldyNekr5x0sUllmO"",
+            ""fieldType"": ""multipleRecordLinks"",
+            ""source"": ""outputs.taskFound"",
+            ""mode"": ""replace""
+          },
+          {
+            ""fieldId"": ""fldtX1EJ3ez1tVIBl"",
+            ""fieldType"": ""date"",
+            ""source"": ""inputs.eventDate"",
+            ""mode"": ""replace""
+          },
+          {
+            ""fieldId"": ""fldT3U8DIaHuEoP2a"",
+            ""fieldType"": ""multipleRecordLinks"",
+            ""source"": ""inputs.currentEventRecordId"",
+            ""mode"": ""replace""
+          },
+          {
+            ""fieldId"": ""fld8CIhhTNhUFsmhn"",
+            ""fieldType"": ""singleSelect"",
+            ""value"": ""Active"",
+            ""mode"": ""replace""
+          }
+        ]
+      },
+      ""writeCreatedRecordTo"": [
+        {
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fields"": [
+            {
+              ""fieldId"": ""flds9LlWVCoMFJvak"",
+              ""fieldType"": ""singleLineText"",
+              ""mode"": ""replace""
+            }
+          ]
+        }
+      ]
+    }
+  },
+  ""references"": {
+    ""tables"": [
+      {
+        ""tableId"": ""tbl4HhGi7F6lKzhfB"",
+        ""usage"": ""search"",
+        ""configPath"": ""step1.projectSearch.searchTableId""
+      },
+      {
+        ""tableId"": ""tblECgtClvoenWXJn"",
+        ""usage"": ""search"",
+        ""configPath"": ""step1.taskSearch.searchTableId""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""usage"": ""search"",
+        ""configPath"": ""step1.orgSearch.searchTableId""
+      },
+      {
+        ""tableId"": ""tbljSOvZOrolS2At3"",
+        ""usage"": ""search"",
+        ""configPath"": ""step1.personSearch.searchTableId""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.writeTo[].tableId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.writeTo[].tableId""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.writeTo[].tableId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.writeTo[].tableId""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.writeTo[].tableId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.writeTo[].tableId""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.personWrite.writeTo[].tableId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.personWrite.writeTo[].tableId""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""usage"": ""search"",
+        ""configPath"": ""step3.completionSearch.searchTableId""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createTableId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""usage"": ""write"",
+        ""configPath"": ""step4.writeCreatedRecordTo.writeTo[].tableId""
+      }
+    ],
+    ""fields"": [
+      {
+        ""tableId"": ""tbl4HhGi7F6lKzhfB"",
+        ""fieldId"": ""fldnRScSsfp3I8Y1Y"",
+        ""expectedType"": """",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step1.projectSearch.searchPrimaryFieldId""
+      },
+      {
+        ""tableId"": ""tbl4HhGi7F6lKzhfB"",
+        ""fieldId"": ""fldnRScSsfp3I8Y1Y"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.projectSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tbl4HhGi7F6lKzhfB"",
+        ""fieldId"": ""fldhZnK0J8ucktSgY"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.projectSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tblECgtClvoenWXJn"",
+        ""fieldId"": ""fldULcvgqT3tqLgmc"",
+        ""expectedType"": """",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step1.taskSearch.searchPrimaryFieldId""
+      },
+      {
+        ""tableId"": ""tblECgtClvoenWXJn"",
+        ""fieldId"": ""fldULcvgqT3tqLgmc"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.taskSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tblECgtClvoenWXJn"",
+        ""fieldId"": ""fldXFp3GKWTzF9tU2"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.taskSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tblECgtClvoenWXJn"",
+        ""fieldId"": ""fldTl4KHW1ZkZ3A35"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.taskSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fldnVR4H3PKBSLaWG"",
+        ""expectedType"": """",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step1.orgSearch.searchPrimaryFieldId""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fldnVR4H3PKBSLaWG"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fldADXXfYuycCnHiM"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fld0DNWpCNmmsLdDq"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fldvki6CMV82bevJO"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fldtl7zogy0XymkIC"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fldvYbLJciY7sKeO9"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fldqsHDxgrEAmJBZH"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+        ""fieldId"": ""fldN7RRjdkUzxRjf5"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tbljSOvZOrolS2At3"",
+        ""fieldId"": ""fldahrTBg0ASw7JyT"",
+        ""expectedType"": """",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step1.personSearch.searchPrimaryFieldId""
+      },
+      {
+        ""tableId"": ""tbljSOvZOrolS2At3"",
+        ""fieldId"": ""fldahrTBg0ASw7JyT"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.personSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tbljSOvZOrolS2At3"",
+        ""fieldId"": ""fldGyGzB785pu9oZ2"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.personSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tbljSOvZOrolS2At3"",
+        ""fieldId"": ""fldAAWrP6OgSFtW1P"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.personSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tbljSOvZOrolS2At3"",
+        ""fieldId"": ""fldNbhakW4CtDAMPE"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.personSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tbljSOvZOrolS2At3"",
+        ""fieldId"": ""flda37gZnN996g7jl"",
+        ""expectedType"": """",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.personSearch.searchDeepFieldIds[]""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""fieldId"": ""fldf9H8hS2Qka3Pcr"",
+        ""expectedType"": ""multipleRecordLinks"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.writeTo[].fields[]""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""fieldId"": ""fldFpq2RRrImJ2VKT"",
+        ""expectedType"": ""singleLineText"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.writeTo[].fields[]""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""fieldId"": ""fld7nIq32wgLERY6Y"",
+        ""expectedType"": ""multipleRecordLinks"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.writeTo[].fields[]""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""fieldId"": ""fldekXfmgBRNPciQj"",
+        ""expectedType"": ""singleLineText"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.writeTo[].fields[]""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""fieldId"": ""fld9xEMyUPJJFjTYL"",
+        ""expectedType"": ""multipleRecordLinks"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.writeTo[].fields[]""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""fieldId"": ""fld9tmYEV7LPs2cs0"",
+        ""expectedType"": ""singleLineText"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.writeTo[].fields[]""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""fieldId"": ""fldELoHodyPNYl1pz"",
+        ""expectedType"": ""multipleRecordLinks"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.personWrite.writeTo[].fields[]""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""fieldId"": ""flddkg19RMoCgFvEN"",
+        ""expectedType"": ""singleLineText"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.personWrite.writeTo[].fields[]""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fldU5d3NTJYCQJAK0"",
+        ""expectedType"": """",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step3.completionSearch.searchPrimaryFieldId""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fldvrN5KrY6rFsgRc"",
+        ""expectedType"": ""singleLineText"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[]""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fldU5d3NTJYCQJAK0"",
+        ""expectedType"": ""singleLineText"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[]""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fld5PZvVc1sOfHBv2"",
+        ""expectedType"": ""singleLineText"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[]""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fldlB5WykyfFXUoK1"",
+        ""expectedType"": ""multipleRecordLinks"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[]""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fldyNekr5x0sUllmO"",
+        ""expectedType"": ""multipleRecordLinks"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[]""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fldtX1EJ3ez1tVIBl"",
+        ""expectedType"": ""date"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[]""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fldT3U8DIaHuEoP2a"",
+        ""expectedType"": ""multipleRecordLinks"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[]""
+      },
+      {
+        ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+        ""fieldId"": ""fld8CIhhTNhUFsmhn"",
+        ""expectedType"": ""singleSelect"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[]""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""fieldId"": ""flds9LlWVCoMFJvak"",
+        ""expectedType"": ""singleLineText"",
+        ""usage"": ""write"",
+        ""configPath"": ""step4.writeCreatedRecordTo.writeTo[].fields[]""
+      }
+    ],
+    ""records"": [
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""recordId"": ""recawA1KVYAUBUx7w"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.writeTo[].recordId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.writeTo[].recordId""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""recordId"": ""recawA1KVYAUBUx7w"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.writeTo[].recordId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.writeTo[].recordId""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""recordId"": ""recawA1KVYAUBUx7w"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.writeTo[].recordId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.writeTo[].recordId""
+      },
+      {
+        ""tableId"": ""tblOhnfdIlabxXOqL"",
+        ""recordId"": ""recawA1KVYAUBUx7w"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.personWrite.writeTo[].recordId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""usage"": ""write"",
+        ""configPath"": ""step2.fieldWrites.personWrite.writeTo[].recordId""
+      },
+      {
+        ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+        ""recordId"": ""recjD7tzZWfLiQvqd"",
+        ""usage"": ""write"",
+        ""configPath"": ""step4.writeCreatedRecordTo.writeTo[].recordId""
+      }
+    ],
+    ""sources"": [
+      {
+        ""source"": ""outputs.projectFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.source""
+      },
+      {
+        ""source"": ""outputs.taskFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.source""
+      },
+      {
+        ""source"": ""outputs.orgFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.source""
+      },
+      {
+        ""source"": ""outputs.personFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step2.fieldWrites.personWrite.source""
+      },
+      {
+        ""source"": ""outputs.completionFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""completionExistenceCheck"",
+        ""configPath"": ""step4.completionSearchSource""
+      },
+      {
+        ""source"": ""inputs.completionKey"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source""
+      },
+      {
+        ""source"": ""inputs.completionSearchKey"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source""
+      },
+      {
+        ""source"": ""inputs.eventProjectId"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source""
+      },
+      {
+        ""source"": ""outputs.projectFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source""
+      },
+      {
+        ""source"": ""outputs.taskFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source""
+      },
+      {
+        ""source"": ""inputs.eventDate"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source""
+      },
+      {
+        ""source"": ""inputs.currentEventRecordId"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source""
+      },
+      {
+        ""source"": ""outputs.createdCompletion"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step4.writeCreatedRecordTo.source""
+      }
+    ],
+    ""searchOutputs"": [
+      {
+        ""searchName"": ""projectSearch"",
+        ""outputPath"": ""outputs.projectFound"",
+        ""configPath"": ""step1.projectSearch""
+      },
+      {
+        ""searchName"": ""taskSearch"",
+        ""outputPath"": ""outputs.taskFound"",
+        ""configPath"": ""step1.taskSearch""
+      },
+      {
+        ""searchName"": ""orgSearch"",
+        ""outputPath"": ""outputs.orgFound"",
+        ""configPath"": ""step1.orgSearch""
+      },
+      {
+        ""searchName"": ""personSearch"",
+        ""outputPath"": ""outputs.personFound"",
+        ""configPath"": ""step1.personSearch""
+      },
+      {
+        ""searchName"": ""completionSearch"",
+        ""outputPath"": ""outputs.completionFound"",
+        ""configPath"": ""step3.completionSearch""
+      }
+    ],
+    ""writeNames"": [
+      {
+        ""writeName"": ""projectWrite"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.writeName""
+      },
+      {
+        ""writeName"": ""taskWrite"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.writeName""
+      },
+      {
+        ""writeName"": ""orgWrite"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.writeName""
+      },
+      {
+        ""writeName"": ""personWrite"",
+        ""configPath"": ""step2.fieldWrites.personWrite.writeName""
+      },
+      {
+        ""writeName"": ""writeCreatedCompletion"",
+        ""configPath"": ""step4.writeCreatedRecordTo.writeName""
+      }
+    ],
+    ""jsonKeys"": [
+      {
+        ""key"": ""eventProjectId"",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step1.projectSearch.jsonPrimaryKey""
+      },
+      {
+        ""key"": ""eventProjectId"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.projectSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""projectRecordId"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.projectSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""eventProject"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.projectSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""eventLookup"",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step1.taskSearch.jsonPrimaryKey""
+      },
+      {
+        ""key"": ""eventLookup"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.taskSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""taskName"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.taskSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""phaseTaskId"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.taskSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""fromPhaseTaskId"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.taskSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""partnerOrg"",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step1.orgSearch.jsonPrimaryKey""
+      },
+      {
+        ""key"": ""partnerOrg"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""eventPartner"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.orgSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""partnerPerson"",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step1.personSearch.jsonPrimaryKey""
+      },
+      {
+        ""key"": ""partnerPerson"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.personSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""person"",
+        ""usage"": ""deepSearch"",
+        ""configPath"": ""step1.personSearch.jsonDeepKeys[]""
+      },
+      {
+        ""key"": ""completionSearchKey"",
+        ""usage"": ""primarySearch"",
+        ""configPath"": ""step3.completionSearch.jsonPrimaryKey""
+      }
+    ],
+    ""sourceResolution"": [
+      {
+        ""source"": ""outputs.projectFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step2.fieldWrites.projectWrite.source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": []
+      },
+      {
+        ""source"": ""outputs.taskFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step2.fieldWrites.taskWrite.source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": []
+      },
+      {
+        ""source"": ""outputs.orgFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step2.fieldWrites.orgWrite.source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": []
+      },
+      {
+        ""source"": ""outputs.personFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step2.fieldWrites.personWrite.source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": []
+      },
+      {
+        ""source"": ""outputs.completionFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""completionExistenceCheck"",
+        ""configPath"": ""step4.completionSearchSource"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": []
+      },
+      {
+        ""source"": ""inputs.completionKey"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": """"
+      },
+      {
+        ""source"": ""inputs.completionSearchKey"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": """"
+      },
+      {
+        ""source"": ""inputs.eventProjectId"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": false,
+        ""currentValue"": ""recIlLhBwkOy4Aqa5""
+      },
+      {
+        ""source"": ""outputs.projectFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": []
+      },
+      {
+        ""source"": ""outputs.taskFound"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": []
+      },
+      {
+        ""source"": ""inputs.eventDate"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": false,
+        ""currentValue"": ""2025-05-15T00:00:00.000Z""
+      },
+      {
+        ""source"": ""inputs.currentEventRecordId"",
+        ""namespace"": ""inputs"",
+        ""usage"": ""create"",
+        ""configPath"": ""step4.createRecord.fields[].source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": false,
+        ""currentValue"": ""recG6MYEsupIrzEll""
+      },
+      {
+        ""source"": ""outputs.createdCompletion"",
+        ""namespace"": ""outputs"",
+        ""usage"": ""fieldWrite"",
+        ""configPath"": ""step4.writeCreatedRecordTo.source"",
+        ""currentlyResolvable"": true,
+        ""currentlyBlank"": true,
+        ""currentValue"": """"
+      }
+    ]
+  },
+  ""state"": {
+    ""step1"": {
+      ""status"": ""complete"",
+      ""startedAt"": ""2026-07-10T11:47:58.095Z"",
+      ""completedAt"": ""2026-07-10T11:47:59.006Z"",
+      ""searchesRun"": 4,
+      ""totalMatches"": 4,
+      ""results"": [
+        {
+          ""searchName"": ""projectSearch"",
+          ""outputKey"": ""projectFound"",
+          ""tableId"": ""tbl4HhGi7F6lKzhfB"",
+          ""tableName"": ""[🎯 Sync]"",
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""recIlLhBwkOy4Aqa5""
+          ]
+        },
+        {
+          ""searchName"": ""taskSearch"",
+          ""outputKey"": ""taskFound"",
+          ""tableId"": ""tblECgtClvoenWXJn"",
+          ""tableName"": ""[⚙️Progress Tasks]"",
+          ""matchMethod"": ""primary"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""rechVIlW4prLOboWX""
+          ]
+        },
+        {
+          ""searchName"": ""orgSearch"",
+          ""outputKey"": ""orgFound"",
+          ""tableId"": ""tble3Hu7TwYwsJyKZ"",
+          ""tableName"": ""[💜Orgs]"",
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""recj4C98NbIeZqwES""
+          ]
+        },
+        {
+          ""searchName"": ""personSearch"",
+          ""outputKey"": ""personFound"",
+          ""tableId"": ""tbljSOvZOrolS2At3"",
+          ""tableName"": ""[💜People]"",
+          ""matchMethod"": ""deep"",
+          ""matchCount"": 1,
+          ""recordIds"": [
+            ""rec9oDL8E0tlVUeJR""
+          ]
+        }
+      ]
+    },
+    ""step2"": {
+      ""status"": ""complete"",
+      ""dryRun"": true,
+      ""startedAt"": ""2026-07-10T11:48:44.155Z"",
+      ""completedAt"": ""2026-07-10T11:48:52.463Z"",
+      ""writeGroups"": 4,
+      ""writesPlanned"": 8,
+      ""writesPerformed"": 4,
+      ""writesSkipped"": 4,
+      ""destinationsUpdated"": 1,
+      ""performed"": [
+        {
+          ""writeName"": ""projectWrite"",
+          ""sourcePath"": ""outputs.projectFound"",
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fldFpq2RRrImJ2VKT"",
+          ""fieldName"": ""found🎯Project"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""recIlLhBwkOy4Aqa5""
+        },
+        {
+          ""writeName"": ""taskWrite"",
+          ""sourcePath"": ""outputs.taskFound"",
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fldekXfmgBRNPciQj"",
+          ""fieldName"": ""found⚙️Tasks"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""rechVIlW4prLOboWX""
+        },
+        {
+          ""writeName"": ""orgWrite"",
+          ""sourcePath"": ""outputs.orgFound"",
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""fld9tmYEV7LPs2cs0"",
+          ""fieldName"": ""found💜Org"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""recj4C98NbIeZqwES""
+        },
+        {
+          ""writeName"": ""personWrite"",
+          ""sourcePath"": ""outputs.personFound"",
+          ""tableId"": ""tbloJ5eN46v1Zx7AG"",
+          ""tableName"": ""[🤖Event_Resolver]"",
+          ""recordId"": ""recjD7tzZWfLiQvqd"",
+          ""fieldId"": ""flddkg19RMoCgFvEN"",
+          ""fieldName"": ""found💟People"",
+          ""fieldType"": ""singleLineText"",
+          ""mode"": ""replace"",
+          ""value"": ""rec9oDL8E0tlVUeJR""
+        }
+      ],
+      ""skipped"": [
+        {
+          ""writeName"": ""projectWrite"",
+          ""sourcePath"": ""outputs.projectFound"",
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fldf9H8hS2Qka3Pcr"",
+          ""fieldName"": ""[🎯 Sync]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""recIlLhBwkOy4Aqa5""
+            }
+          ],
+          ""reason"": ""Dry run: destination is not the resolver table.""
+        },
+        {
+          ""writeName"": ""taskWrite"",
+          ""sourcePath"": ""outputs.taskFound"",
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fld7nIq32wgLERY6Y"",
+          ""fieldName"": ""[⚙️Progress Tasks]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""rechVIlW4prLOboWX""
+            }
+          ],
+          ""reason"": ""Dry run: destination is not the resolver table.""
+        },
+        {
+          ""writeName"": ""orgWrite"",
+          ""sourcePath"": ""outputs.orgFound"",
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fld9xEMyUPJJFjTYL"",
+          ""fieldName"": ""[💜Orgs]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""recj4C98NbIeZqwES""
+            }
+          ],
+          ""reason"": ""Dry run: destination is not the resolver table.""
+        },
+        {
+          ""writeName"": ""personWrite"",
+          ""sourcePath"": ""outputs.personFound"",
+          ""tableId"": ""tblOhnfdIlabxXOqL"",
+          ""tableName"": ""[◼️Project Event V2]"",
+          ""recordId"": ""recawA1KVYAUBUx7w"",
+          ""fieldId"": ""fldELoHodyPNYl1pz"",
+          ""fieldName"": ""[💟People]"",
+          ""fieldType"": ""multipleRecordLinks"",
+          ""mode"": ""replace"",
+          ""simulatedValue"": [
+            {
+              ""id"": ""rec9oDL8E0tlVUeJR""
+            }
+          ],
+          ""reason"": ""Dry run: destination is not the resolver table.""
+        }
+      ]
+    },
+    ""step3"": {
+      ""status"": ""complete"",
+      ""startedAt"": ""2026-07-10T11:55:07.448Z"",
+      ""completedAt"": ""2026-07-10T11:55:08.782Z"",
+      ""searchesRun"": 1,
+      ""totalMatches"": 0,
+      ""completionFound"": [],
+      ""routing"": {
+        ""shouldRunStep4"": true,
+        ""shouldRunStep5"": false,
+        ""reason"": ""No matching completion was found.""
+      },
+      ""results"": [
+        {
+          ""searchName"": ""completionSearch"",
+          ""outputKey"": ""completionFound"",
+          ""tableId"": ""tbl1mIQg2utmj7Vqt"",
+          ""tableName"": ""[☑️Project Task Completion]"",
+          ""matchMethod"": ""none"",
+          ""matchCount"": 0,
+          ""recordIds"": []
+        }
+      ]
+    },
+    ""step4"": {
+      ""status"": ""notRun""
+    },
+    ""errors"": [],
+    ""messages"": [
+      {
+        ""step"": ""step1"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T10:37:56.944Z"",
+        ""message"": ""Step 1 completed with 4 searches.""
+      },
+      {
+        ""step"": ""step1"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T10:44:47.605Z"",
+        ""message"": ""Step 1 completed with 4 searches.""
+      },
+      {
+        ""step"": ""step2"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T11:03:42.195Z"",
+        ""message"": ""Step 2 dry run completed. 4 business-table writes simulated.""
+      },
+      {
+        ""step"": ""step1"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T11:07:42.603Z"",
+        ""message"": ""Step 1 completed with 4 searches.""
+      },
+      {
+        ""step"": ""step1"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T11:47:49.542Z"",
+        ""message"": ""Step 1 completed with 4 searches.""
+      },
+      {
+        ""step"": ""step1"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T11:47:59.006Z"",
+        ""message"": ""Step 1 completed with 4 searches.""
+      },
+      {
+        ""step"": ""step2"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T11:48:29.002Z"",
+        ""message"": ""Step 2 dry run completed. 4 business-table writes simulated.""
+      },
+      {
+        ""step"": ""step2"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T11:48:52.463Z"",
+        ""message"": ""Step 2 dry run completed. 4 business-table writes simulated.""
+      },
+      {
+        ""step"": ""step3"",
+        ""level"": ""info"",
+        ""timestamp"": ""2026-07-10T11:55:08.782Z"",
+        ""message"": ""Step 3 completed with no existing completion. Continue to Step 4.""
+      }
+    ]
+  }
+}",checked,checked,,

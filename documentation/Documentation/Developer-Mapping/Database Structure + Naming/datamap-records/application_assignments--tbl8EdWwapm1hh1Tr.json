@@ -1,0 +1,161 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:11.555Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tbl8EdWwapm1hh1Tr",
+    "name": "application_assignments",
+    "description": null,
+    "primaryFieldId": "fldP69Vfn9kradBVS",
+    "fields": [
+      {
+        "id": "fldP69Vfn9kradBVS",
+        "name": "submission_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fld7My8Y2tor3DV7h",
+        "name": "organization_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldBhnpm4yV8ku0W6",
+        "name": "status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld3ClenEq1Um6C4F",
+        "name": "match_score",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fld7kXAmw9n7BsQiF",
+        "name": "claimed_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldJPDCFJGOdmcU8t",
+        "name": "claimed_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fld5lWaHWgTXnYMev",
+        "name": "rejected_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fld29Q5HnD99zpCrH",
+        "name": "rejected_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fld2KDoNHRsXEOy5R",
+        "name": "rejection_reason",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldTxsprHnWh4MrE2",
+        "name": "assigned_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "flde0u48LMfllXatz",
+        "name": "expires_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldLyECu2zAAx6McX",
+        "name": "notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      }
+    ],
+    "views": [
+      {
+        "id": "viwWRAyS7vBVXxUwF",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

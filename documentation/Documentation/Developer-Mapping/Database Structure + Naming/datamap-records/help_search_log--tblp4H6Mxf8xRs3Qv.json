@@ -1,0 +1,99 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:14.567Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblp4H6Mxf8xRs3Qv",
+    "name": "help_search_log",
+    "description": null,
+    "primaryFieldId": "fldpjfGhg4oliWzLl",
+    "fields": [
+      {
+        "id": "fldpjfGhg4oliWzLl",
+        "name": "search_term",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld2BH6spqNH1i6Km",
+        "name": "user_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldEfRHpmC3X4lBf7",
+        "name": "result_count",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fld8kcK8NmQgOr9kx",
+        "name": "clicked_document_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldwNZekJvA8AJiyO",
+        "name": "search_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldPPW1CGlX4MaZPR",
+        "name": "ip_address",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld6EAJjH0f6SiPIa",
+        "name": "user_agent",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldGTYt1EtRYeEKuF",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwgOPc0wDSPvKSgj",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

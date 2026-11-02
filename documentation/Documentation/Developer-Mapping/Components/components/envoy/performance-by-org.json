@@ -1,0 +1,51 @@
+// Performance by Organization - Coalition performance breakdown
+
+{
+  "component_name": "Performance by Organization",
+  "component_id": "cmp_envoy_performance_by_org",
+  "component_type": "table",
+  "data_sources": {
+    "organizations": "organization_performance ORDER BY completion_rate DESC"
+  },
+  "columns": [
+    {
+      "field": "organization_name",
+      "label": "Organization",
+      "type": "text"
+    },
+    {
+      "field": "total_cases",
+      "label": "Cases",
+      "type": "number"
+    },
+    {
+      "field": "completed_cases",
+      "label": "Completed",
+      "type": "number"
+    },
+    {
+      "field": "completion_rate",
+      "label": "Completion %",
+      "type": "percentage"
+    },
+    {
+      "field": "avg_days_to_complete",
+      "label": "Avg Days",
+      "type": "number"
+    },
+    {
+      "field": "budget_utilization",
+      "label": "Budget Used %",
+      "type": "percentage"
+    }
+  ],
+  "actions": [
+    {
+      "label": "View Details",
+      "action": "navigate",
+      "target": "/organization/{org_id}"
+    }
+  ],
+  "sort_order": "completion_rate DESC",
+  "mobile_layout": "cards"
+}

@@ -1,0 +1,53 @@
+// Completion Signoff - Complete job and get client signature
+
+{
+  "component_name": "Completion Signoff Form",
+  "component_id": "form_crewlead_completion",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "job_id",
+      "type": "hidden",
+      "required": true
+    },
+    {
+      "name": "all_tasks_complete",
+      "label": "All Tasks Complete",
+      "type": "checkbox",
+      "required": true
+    },
+    {
+      "name": "quality_check_passed",
+      "label": "Quality Check Passed",
+      "type": "checkbox",
+      "required": true
+    },
+    {
+      "name": "client_present",
+      "label": "Client Present",
+      "type": "checkbox"
+    },
+    {
+      "name": "client_signature",
+      "label": "Client Signature",
+      "type": "signature",
+      "required": true
+    },
+    {
+      "name": "completion_notes",
+      "label": "Completion Notes",
+      "type": "textarea"
+    },
+    {
+      "name": "after_photos",
+      "label": "After Photos",
+      "type": "camera",
+      "required": true
+    }
+  ],
+  "submit_action": {
+    "endpoint": "/api/crewlead/jobs/complete",
+    "method": "POST"
+  },
+  "role_access": "crew_lead"
+}

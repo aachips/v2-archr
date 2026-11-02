@@ -1,0 +1,23 @@
+{
+  "ability": "Alert Task Complete",
+  "component": {
+    "type": "confirmation",
+    "trigger": "task completion action",
+    "title": "Mark Task Complete",
+    "fields": [
+      {"name": "task_id", "type": "hidden"},
+      {"name": "completed_by", "type": "hidden"},
+      {"name": "photos_uploaded", "type": "toggle", "required": true},
+      {"name": "notes", "type": "textarea", "placeholder": "Any notes about completion?"}
+    ],
+    "actions": [
+      {"label": "Cancel", "action": "close"},
+      {"label": "Mark Complete", "action": "submit"}
+    ]
+  },
+  "business_rules": {
+    "requires_photo": true,
+    "notifies_project_manager": true,
+    "creates_progress_entry": true
+  }
+}

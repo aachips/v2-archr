@@ -1,0 +1,272 @@
+/* ---------------------------------------------------------------------------
+ * Case Review page styles — one section per component under
+ * src/components/case-review/ plus the page grid in CaseReview.vue.
+ * Primitives (.panel, .pill, .btn, .def-list, .alert, .modal) are in base.css.
+ * ------------------------------------------------------------------------ */
+
+/* --- CaseBreadcrumbs ----------------------------------------------------- */
+
+.breadcrumbs { margin-bottom: 1rem; }
+.breadcrumbs__link {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+.breadcrumbs__link:hover { background: var(--color-bg); }
+
+/* --- UrgentOverview ------------------------------------------------------ */
+
+.urgent-banner ul { margin: 0.5rem 0 0; }
+
+/* --- SummaryHead (address-first page header) ------------------------------ */
+
+.summary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.summary-head__title { margin: 0; }
+.summary-head__subtitle { margin: 0.25rem 0 0; color: var(--color-muted); }
+.summary-head__keyfacts {
+  margin: 0.5rem 0 0;
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+.summary-head__meta { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+.org-badge {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-strong);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.org-badge--unclaimed { color: var(--color-muted); border-style: dashed; }
+
+/* --- ApplicationCaseList -------------------------------------------------- */
+
+.app-cases__intro { margin-top: 0; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--color-border-strong);
+}
+.data-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.data-table tr:last-child td { border-bottom: none; }
+
+/* --- PipelineProgress ----------------------------------------------------- */
+
+.phase-exit {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-warning-text);
+  border-radius: 6px;
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+.phase-tracker {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 5.5rem;
+  padding: 0.5rem 0.25rem;
+  border-radius: 6px;
+  color: var(--color-muted);
+}
+.phase-num {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-border-strong);
+  font-weight: 700;
+}
+.phase-name { font-size: 0.8rem; text-align: center; }
+.phase--done .phase-num {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-text);
+  color: var(--color-success-text);
+}
+.phase--active {
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+.phase--active .phase-num {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+.phase-next {
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.75rem;
+}
+.phase-next h3 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+
+/* --- DocsList ------------------------------------------------------------- */
+
+.docs-list__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.docs-list__count { font-size: 0.85rem; color: var(--color-muted); }
+.docs-list ul { list-style: none; margin: 0; padding: 0; }
+.doc-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.doc-row:last-child { border-bottom: none; }
+.doc-row__label { flex: 1; }
+.doc-row__action { margin-left: auto; }
+
+/* --- Shared summary sections + the page grid ------------------------------- */
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  gap: 0 1.25rem;
+  align-items: start;
+}
+.summary-section h2,
+.panel h2 {
+  margin-top: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.summary-subhead {
+  margin: 1rem 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.section-head h2 { margin: 0; }
+
+/* --- SummaryApplicant edit form ------------------------------------------- */
+
+.edit-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.75rem;
+}
+.edit-form label { display: flex; flex-direction: column; gap: 0.25rem; }
+.edit-form label span { font-size: 0.8rem; font-weight: 600; color: var(--color-muted); }
+.edit-form input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font: inherit;
+}
+.edit-actions { grid-column: 1 / -1; display: flex; gap: 0.5rem; }
+.edit-note { grid-column: 1 / -1; margin: 0; font-size: 0.8rem; color: var(--color-muted); }
+.edited-flag {
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* --- SummaryNeeds chips ---------------------------------------------------- */
+
+.chip {
+  display: inline-block;
+  margin: 0 0.4rem 0.4rem 0;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--color-border);
+  color: var(--color-text);
+  font-size: 0.85rem;
+}
+.chip--urgent { background: var(--color-danger-bg); color: var(--color-danger); }
+
+/* --- SummaryEligibility ---------------------------------------------------- */
+
+.flag-list { list-style: none; margin: 0; padding: 0; }
+.flag-list li { margin-bottom: 0.4rem; }
+
+/* --- SummaryFunding -------------------------------------------------------- */
+
+.funding-bar {
+  height: 0.6rem;
+  border-radius: 999px;
+  background: var(--color-border);
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+.funding-bar__fill { height: 100%; background: var(--color-accent); }
+.funding-bar-label { margin: 0.35rem 0 0; font-size: 0.85rem; }
+
+/* --- SummaryTasks (event log + quick-task modal) ---------------------------- */
+
+.tasks__list { list-style: none; margin: 0; padding: 0; }
+.event {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  margin-bottom: 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+.event__type {
+  flex: 0 0 9.5rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+.event__type[data-type="assessment_event"] { background: var(--color-warning-bg); color: var(--color-warning-text); }
+.event__type[data-type="progress_task"] { background: var(--color-success-bg); color: var(--color-success-text); }
+.event__desc { flex: 1; }
+.event__date { color: var(--color-muted); font-size: 0.85rem; }
+
+/* --- DangerZone ------------------------------------------------------------- */
+
+.danger-zone { border-color: var(--color-danger-border); }
+.danger-zone h2 { color: var(--color-danger); }
+.danger-zone__item { margin-bottom: 1rem; }
+.danger-zone__item:last-child { margin-bottom: 0; }

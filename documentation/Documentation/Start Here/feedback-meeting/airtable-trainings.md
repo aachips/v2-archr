@@ -1,0 +1,1 @@
+Proposal: Each Partner Coalition appoint one person to be the Airtable liaison. Offer a pay incentive of 1-2$ per hour pay raise to complete a LinkedIn Learning training (which the hours are also paid). And also have Standard Operating Procedures written out with guides and instructions on how to use the ARCHR

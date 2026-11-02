@@ -1,0 +1,375 @@
+{
+  "schemaVersion": "1.0.0",
+  "costingId": "costing_H29ALA",
+  "projectKey": "H29ALA",
+  "projectOrgId": "org_archr_partner_01",
+  "source": {
+    "system": "project-costing",
+    "recordId": "rec_example",
+    "url": "https://example.invalid/project/H29ALA"
+  },
+  "contract": {
+    "contractId": "contract_H29ALA",
+    "bucketRecordId": "rec_contract_bucket",
+    "clientId": "client_example",
+    "organizationId": "org_archr_partner_01",
+    "status": "completed",
+    "signedDate": "2026-04-01",
+    "completionCertificateDate": "2026-07-01",
+    "contractAmount": {
+      "value": "12500.00",
+      "currency": "USD"
+    },
+    "documentId": "doc_contract_H29ALA"
+  },
+  "costEntries": [
+    {
+      "costEntryId": "cost_task_roof_robo_01",
+      "costScope": "task",
+      "taskId": "task_roof_01",
+      "costType": "robo",
+      "costStatus": "superseded",
+      "amounts": {
+        "total": {
+          "value": "9800.00",
+          "currency": "USD"
+        },
+        "labor": {
+          "value": "2800.00",
+          "currency": "USD"
+        },
+        "materials": {
+          "value": "7000.00",
+          "currency": "USD"
+        }
+      },
+      "effectiveAt": "2026-02-10T14:00:00Z",
+      "evidenceIds": [],
+      "fundingSelectionIds": [],
+      "derivation": {
+        "method": "assessment_model",
+        "basisIds": [
+          "assessment_01"
+        ],
+        "engineVersion": "robo-cost/1.0",
+        "confidence": "medium"
+      },
+      "enteredBy": {
+        "name": "ARCHR Costing Automation",
+        "recordId": "automation_costing",
+        "sourceSystem": "task-library"
+      },
+      "notes": "Initial task projection generated during assessment."
+    },
+    {
+      "costEntryId": "cost_task_roof_est_02",
+      "costScope": "task",
+      "taskId": "task_roof_01",
+      "costType": "est",
+      "costStatus": "active",
+      "amounts": {
+        "total": {
+          "value": "11000.00",
+          "currency": "USD"
+        },
+        "labor": {
+          "value": "3000.00",
+          "currency": "USD"
+        },
+        "materials": {
+          "value": "8000.00",
+          "currency": "USD"
+        }
+      },
+      "effectiveAt": "2026-03-20T16:30:00Z",
+      "supersedesCostEntryId": "cost_task_roof_robo_01",
+      "evidenceIds": [
+        "invoice_quote_01"
+      ],
+      "fundingSelectionIds": [],
+      "derivation": {
+        "method": "project_manager_estimate",
+        "basisIds": [
+          "scope_01",
+          "invoice_quote_01"
+        ],
+        "confidence": "high"
+      },
+      "enteredBy": {
+        "name": "Example Project Manager",
+        "recordId": "user_pm_01",
+        "sourceSystem": "project-costing"
+      }
+    },
+    {
+      "costEntryId": "cost_task_roof_act_03",
+      "costScope": "task",
+      "taskId": "task_roof_01",
+      "costType": "act",
+      "costStatus": "active",
+      "amounts": {
+        "total": {
+          "value": "10750.00",
+          "currency": "USD"
+        },
+        "labor": {
+          "value": "2750.00",
+          "currency": "USD"
+        },
+        "materials": {
+          "value": "8000.00",
+          "currency": "USD"
+        }
+      },
+      "effectiveAt": "2026-07-02T15:00:00Z",
+      "supersedesCostEntryId": "cost_task_roof_est_02",
+      "evidenceIds": [
+        "receipt_materials_01",
+        "timesheet_01"
+      ],
+      "fundingSelectionIds": [
+        "funding_selection_01"
+      ],
+      "derivation": {
+        "method": "proportional_allocation",
+        "basisIds": [
+          "receipt_materials_01",
+          "timesheet_01",
+          "task_event_start_01",
+          "task_event_end_01"
+        ],
+        "engineVersion": "task-cost-resolver/1.0",
+        "confidence": "estimated-actual"
+      },
+      "enteredBy": {
+        "name": "ARCHR Cost Resolver",
+        "recordId": "automation_cost_resolver",
+        "sourceSystem": "project-costing"
+      }
+    }
+  ],
+  "fundingSelections": [
+    {
+      "fundingSelectionId": "funding_selection_01",
+      "fundingSourceId": "fund_cdbg_fy27",
+      "fundGroup": "CDBG",
+      "fundYear": "FY27",
+      "status": "approved",
+      "selectedAt": "2026-07-03T14:00:00Z",
+      "selectedBy": {
+        "name": "Example Grants Reviewer",
+        "recordId": "user_grants_01",
+        "sourceSystem": "funding-sources"
+      },
+      "costEntryIds": [
+        "cost_task_roof_act_03"
+      ],
+      "expenseAmount": {
+        "value": "10750.00",
+        "currency": "USD"
+      },
+      "eligibleAmount": {
+        "value": "10000.00",
+        "currency": "USD"
+      },
+      "requestedAmount": {
+        "value": "10000.00",
+        "currency": "USD"
+      },
+      "approvedAmount": {
+        "value": "10000.00",
+        "currency": "USD"
+      },
+      "drawRequestIds": [
+        "draw_01"
+      ]
+    }
+  ],
+  "fundingEvidence": {
+    "receipts": [
+      {
+        "receiptId": "receipt_materials_01",
+        "documentId": "doc_receipt_01",
+        "receiptDate": "2026-06-10",
+        "vendorId": "vendor_materials_01",
+        "vendorName": "Example Building Supply",
+        "amount": {
+          "value": "8000.00",
+          "currency": "USD"
+        },
+        "confirmed": true,
+        "confirmedAt": "2026-07-02T13:00:00Z",
+        "costEntryIds": [
+          "cost_task_roof_act_03"
+        ],
+        "taskIds": [
+          "task_roof_01"
+        ],
+        "proofOfPaymentDocumentId": "doc_card_statement_01"
+      }
+    ],
+    "invoices": [
+      {
+        "invoiceId": "invoice_quote_01",
+        "contractId": "contract_H29ALA",
+        "invoiceNumber": "INV-EXAMPLE-01",
+        "invoiceDate": "2026-03-20",
+        "status": "approved",
+        "vendor": {
+          "subcontractorPool": true,
+          "subcontractorId": "sub_roof_01",
+          "subcontractorName": "Example Roofing Partner"
+        },
+        "amount": {
+          "value": "11000.00",
+          "currency": "USD"
+        },
+        "taskIds": [
+          "task_roof_01"
+        ],
+        "costEntryIds": [
+          "cost_task_roof_est_02"
+        ],
+        "documentId": "doc_invoice_quote_01",
+        "documentEvents": [
+          {
+            "action": "uploaded",
+            "occurredAt": "2026-03-20T15:00:00Z",
+            "personId": "user_pm_01"
+          },
+          {
+            "action": "approved",
+            "occurredAt": "2026-03-21T14:00:00Z",
+            "personId": "user_director_01"
+          }
+        ]
+      }
+    ],
+    "timeSheets": [
+      {
+        "timeSheetId": "timesheet_01",
+        "personId": "staff_01",
+        "personName": "Example Construction Staff",
+        "hoursWorked": "25.00",
+        "personRate": {
+          "value": "110.00",
+          "currency": "USD"
+        },
+        "calculatedAmount": {
+          "value": "2750.00",
+          "currency": "USD"
+        },
+        "startAt": "2026-06-01T12:00:00Z",
+        "endAt": "2026-06-20T21:00:00Z",
+        "taskIds": [
+          "task_roof_01"
+        ],
+        "costEntryIds": [
+          "cost_task_roof_act_03"
+        ],
+        "documentId": "doc_timesheet_01",
+        "status": "approved"
+      }
+    ]
+  },
+  "drawRequests": [
+    {
+      "drawRequestId": "draw_01",
+      "drawNumber": "1",
+      "fundingSourceId": "fund_cdbg_fy27",
+      "fundingSelectionIds": [
+        "funding_selection_01"
+      ],
+      "contractId": "contract_H29ALA",
+      "costEntryIds": [
+        "cost_task_roof_act_03"
+      ],
+      "invoiceIds": [
+        "invoice_quote_01"
+      ],
+      "receiptIds": [
+        "receipt_materials_01"
+      ],
+      "timeSheetIds": [
+        "timesheet_01"
+      ],
+      "scopeOfWork": "Roof replacement and related weatherization repairs.",
+      "reportingPeriod": {
+        "startDate": "2026-06-01",
+        "endDate": "2026-06-30"
+      },
+      "contractPrice": {
+        "value": "12500.00",
+        "currency": "USD"
+      },
+      "expenseTotal": {
+        "value": "10750.00",
+        "currency": "USD"
+      },
+      "requestedAmount": {
+        "value": "10000.00",
+        "currency": "USD"
+      },
+      "approvedAmount": {
+        "value": "10000.00",
+        "currency": "USD"
+      },
+      "adminFeeAmount": {
+        "value": "500.00",
+        "currency": "USD"
+      },
+      "status": "paid",
+      "submittedAt": "2026-07-05T14:00:00Z",
+      "approvedAt": "2026-07-10T14:00:00Z",
+      "documentId": "doc_draw_workbook_01"
+    }
+  ],
+  "payments": [
+    {
+      "paymentId": "payment_01",
+      "drawRequestId": "draw_01",
+      "fundingSelectionIds": [
+        "funding_selection_01"
+      ],
+      "fundingSourceId": "fund_cdbg_fy27",
+      "recipientOrgId": "org_archr_partner_01",
+      "amount": {
+        "value": "10000.00",
+        "currency": "USD"
+      },
+      "paymentDate": "2026-07-17",
+      "paymentReference": "CHECK-EXAMPLE-01",
+      "status": "paid",
+      "financeSystemReference": "finance_txn_example"
+    }
+  ],
+  "reportingSummary": {
+    "currentProjectedCost": {
+      "value": "11000.00",
+      "currency": "USD"
+    },
+    "currentAttributedActualCost": {
+      "value": "10750.00",
+      "currency": "USD"
+    },
+    "totalRequested": {
+      "value": "10000.00",
+      "currency": "USD"
+    },
+    "totalApproved": {
+      "value": "10000.00",
+      "currency": "USD"
+    },
+    "totalPaid": {
+      "value": "10000.00",
+      "currency": "USD"
+    },
+    "unfundedAmount": {
+      "value": "750.00",
+      "currency": "USD"
+    },
+    "calculatedAt": "2026-07-17T20:00:00Z"
+  },
+  "createdAt": "2026-02-10T14:00:00Z",
+  "updatedAt": "2026-07-17T20:00:00Z"
+}

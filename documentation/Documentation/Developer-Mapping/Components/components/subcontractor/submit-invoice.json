@@ -1,0 +1,70 @@
+Submit Invoice - Submit invoice for completed work
+
+{
+  "feature_name": "Submit Invoice",
+  "feature_id": "feat_submit_invoice",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "completed_tasks"
+    },
+    {
+      "name": "invoice_number",
+      "label": "Invoice Number",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "invoice_date",
+      "label": "Invoice Date",
+      "type": "date",
+      "default": "today"
+    },
+    {
+      "name": "amount",
+      "label": "Invoice Amount",
+      "type": "currency",
+      "required": true
+    },
+    {
+      "name": "work_performed",
+      "label": "Work Performed",
+      "type": "textarea",
+      "required": true
+    },
+    {
+      "name": "invoice_document",
+      "label": "Upload Invoice",
+      "type": "file_upload",
+      "file_types": ["pdf", "jpg", "png"],
+      "required": true
+    },
+    {
+      "name": "payment_terms",
+      "label": "Payment Terms",
+      "type": "select",
+      "options": ["Net 30", "Net 45", "Net 60", "Due on Receipt"]
+    }
+  ],
+  "submit": {
+    "label": "Submit Invoice",
+    "action": "api",
+    "endpoint": "/api/subcontractor/invoice/submit",
+    "method": "POST",
+    "success_message": "Invoice submitted for processing!",
+    "notifications": [
+      {
+        "role": "bursar",
+        "message": "New invoice received for task {task_id}"
+      },
+      {
+        "role": "project_manager",
+        "message": "Invoice submitted for {task_id}"
+      }
+    ]
+  }
+}
+

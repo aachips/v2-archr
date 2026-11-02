@@ -1,0 +1,26 @@
+// Approve Contract Button - E-sign and approve a contract
+
+{
+  "component_name": "Approve Contract Button",
+  "component_role": "envoy",
+  "component_id": "btn_envoy_approve_contract",
+  "component_class": ".btn.btn-success",
+  "component_context": {
+    "taskId": "rec[contractIdentifier]",
+    "target": "contracts",
+    "target_key": "{contract}.{status}",
+    "action": "APPROVE.CONTRACT",
+    "buttonText": "Approve Contract",
+    "webhookSlug": "[approveContractWebhook]",
+    "confirm": "Approve and e-sign this contract?",
+    "successMessage": "Contract approved and signed!",
+    "reversible": "no"
+  },
+  "display_text": "Approve & Sign",
+  "icon": "fa-signature",
+  "action": {
+    "type": "modal",
+    "target": "/eSignContractModal"
+  },
+  "role_access": "envoy"
+}

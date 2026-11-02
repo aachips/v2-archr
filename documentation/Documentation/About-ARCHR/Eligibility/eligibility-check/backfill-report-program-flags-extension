@@ -1,0 +1,505 @@
+/******************************************************
+ * Script Extension: Backfill Report Program Flags
+ *
+ * Scans existing Eligibility Reports and creates any missing
+ * (Eligibility Report, Partner Program) junction records with
+ * the FlagList links stored in each reportJSON payload.
+ *
+ * Safe to rerun: existing Report + Program pairs are skipped.
+ ******************************************************/
+
+const CONFIG = {
+  reports: {
+    tableId: "tblhjd5DgkJ1m25Az",
+    fields: {
+      reportJSON: "fldajU39BEficvy7s",
+      organization: "flde6TE5eh7SP9qhp",
+    },
+  },
+  programFlags: {
+    tableId: "tblbxVXpcSjYplyM7",
+    fields: {
+      report: "fldKGOPMvaaj4ULAu",
+      flag: "fld02JrJxV0OcCGmf",
+      program: "fldZ3eNmMlDMUsz6g",
+    },
+  },
+  programs: {
+    tableId: "tblOR9OmQvyMybMGb",
+    primaryFieldId: "fldHZ3j3ZUUy7ITEb",
+  },
+  flags: {
+    tableId: "tbl35jooCnKRg6Avf",
+    primaryFieldId: "fldpASDez89pivRtp",
+  },
+};
+
+function parseJsonMaybe(value, label) {
+  if (value === null || value === undefined || value === "") return null;
+  if (typeof value === "object") return value;
+
+  const text = String(value).trim();
+  if (!text) return null;
+
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    throw new Error(`${label}: ${err.message}`);
+  }
+}
+
+function arrayify(value) {
+  if (value === null || value === undefined || value === "") return [];
+  return Array.isArray(value) ? value : [value];
+}
+
+function isRecordId(value) {
+  return /^rec[A-Za-z0-9]+$/.test(String(value ?? ""));
+}
+
+function normalizeFlagKey(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .trim()
+    .replace(/[’']/g, "")
+    .replace(/&/g, " and ")
+    .replace(/[^\p{L}\p{N}\s]+/gu, " ")
+    .replace(/\s+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function linkedRecordIds(record, fieldId) {
+  return arrayify(record.getCellValue(fieldId))
+    .map(link => link?.id)
+    .filter(isRecordId);
+}
+
+function groupAssignments(assignments) {
+  const byProgram = new Map();
+
+  for (const assignment of arrayify(assignments)) {
+    const programRecordId = assignment?.programRecordId ?? assignment?.progRecordId;
+    if (!isRecordId(programRecordId)) continue;
+
+    if (!byProgram.has(programRecordId)) {
+      byProgram.set(programRecordId, {
+        programRecordId,
+        programName: assignment.programName ?? null,
+        flagListRecordIds: [],
+        flagKeys: [],
+      });
+    }
+
+    if (isRecordId(assignment.flagListRecordId)) {
+      byProgram.get(programRecordId).flagListRecordIds.push(
+        assignment.flagListRecordId
+      );
+    }
+
+    if (assignment.flagKey) {
+      byProgram.get(programRecordId).flagKeys.push(assignment.flagKey);
+    }
+  }
+
+  return [...byProgram.values()];
+}
+
+function fromDetailedProgramResults(programResults) {
+  return arrayify(programResults).map(result => {
+    const flags = [
+      ...arrayify(result?.positiveFlags),
+      ...arrayify(result?.negativeFlags),
+      ...arrayify(result?.neutralFlags),
+      ...arrayify(result?.unconfiguredFlags),
+    ];
+
+    const detectedFlagKeys = [];
+
+    function collectEvidence(items) {
+      for (const item of arrayify(items)) {
+        if (item?.detectedFlagKey) detectedFlagKeys.push(item.detectedFlagKey);
+        for (const profile of arrayify(item?.profiles)) {
+          collectEvidence(profile?.passed);
+          collectEvidence(profile?.failed);
+          collectEvidence(profile?.neutralFlags);
+        }
+      }
+    }
+
+    for (const phase of arrayify(result?.evaluationDetails)) {
+      collectEvidence(phase?.passed);
+      collectEvidence(phase?.failed);
+      collectEvidence(phase?.neutralFlags);
+      collectEvidence(phase?.priority);
+    }
+
+    return {
+      programRecordId: result?.programRecordId ?? result?.progRecordId ?? null,
+      programName: result?.programName ?? null,
+      flagListRecordIds: flags
+        .map(flag => flag?.flagListRecordId)
+        .filter(isRecordId),
+      flagKeys: [
+        ...flags.map(flag => flag?.key),
+        ...detectedFlagKeys,
+      ].filter(Boolean),
+    };
+  });
+}
+
+function extractProgramResults(container) {
+  if (!container || typeof container !== "object") return [];
+
+  const combined = [];
+
+  const compact = parseJsonMaybe(
+    container.programFlagResultsJSON ?? container.programFlagResults,
+    "programFlagResults"
+  );
+  if (Array.isArray(compact)) combined.push(...compact);
+
+  if (Array.isArray(container.programResults)) {
+    combined.push(...fromDetailedProgramResults(container.programResults));
+  }
+
+  const assignments = parseJsonMaybe(
+    container.flagAssignmentsJSON ?? container.flagAssignments,
+    "flagAssignments"
+  );
+  if (Array.isArray(assignments)) {
+    combined.push(...groupAssignments(assignments));
+  }
+
+  return combined;
+}
+
+function selectReportContainer(payload, organizationRecordId) {
+  if (!payload || typeof payload !== "object") return null;
+
+  if (!Array.isArray(payload.organizationResults)) return payload;
+
+  if (organizationRecordId) {
+    const matching = payload.organizationResults.find(
+      result => result?.orgRecordId === organizationRecordId
+    );
+    if (matching) return matching;
+  }
+
+  return payload.organizationResults.length === 1
+    ? payload.organizationResults[0]
+    : null;
+}
+
+function normalizeProgramResults(results) {
+  const byProgram = new Map();
+
+  for (const result of arrayify(results)) {
+    const programRecordId = result?.programRecordId ?? result?.progRecordId;
+    if (!isRecordId(programRecordId)) continue;
+
+    if (!byProgram.has(programRecordId)) {
+      byProgram.set(programRecordId, {
+        programRecordId,
+        programName: result.programName ?? null,
+        flagListRecordIds: [],
+        flagKeys: [],
+      });
+    }
+
+    const target = byProgram.get(programRecordId);
+    target.flagListRecordIds.push(...arrayify(result.flagListRecordIds));
+    target.flagListRecordIds.push(
+      ...arrayify(result.flagLinks).map(link => link?.id)
+    );
+    target.flagKeys.push(...arrayify(result.flagKeys));
+    target.flagListRecordIds = [...new Set(
+      target.flagListRecordIds.filter(isRecordId)
+    )];
+    target.flagKeys = [...new Set(
+      target.flagKeys.map(normalizeFlagKey).filter(Boolean)
+    )];
+  }
+
+  return [...byProgram.values()];
+}
+
+async function main() {
+  output.markdown("# Backfill Report Program Flags");
+  output.text("Loading reports, existing junction records, programs, and flags...");
+
+  const reportsTable = base.getTable(CONFIG.reports.tableId);
+  const programFlagsTable = base.getTable(CONFIG.programFlags.tableId);
+  const programsTable = base.getTable(CONFIG.programs.tableId);
+  const flagsTable = base.getTable(CONFIG.flags.tableId);
+
+  const [reportsQuery, existingQuery, programsQuery, flagsQuery] = await Promise.all([
+    reportsTable.selectRecordsAsync({
+      fields: [
+        CONFIG.reports.fields.reportJSON,
+        CONFIG.reports.fields.organization,
+      ],
+    }),
+    programFlagsTable.selectRecordsAsync({
+      fields: [
+        CONFIG.programFlags.fields.report,
+        CONFIG.programFlags.fields.program,
+        CONFIG.programFlags.fields.flag,
+      ],
+    }),
+    programsTable.selectRecordsAsync({
+      fields: [CONFIG.programs.primaryFieldId],
+    }),
+    flagsTable.selectRecordsAsync({
+      fields: [CONFIG.flags.primaryFieldId],
+    }),
+  ]);
+
+  const validProgramIds = new Set(programsQuery.records.map(record => record.id));
+  const validFlagIds = new Set(flagsQuery.records.map(record => record.id));
+  const flagIdByKey = new Map(
+    flagsQuery.records.map(record => [
+      normalizeFlagKey(record.getCellValueAsString(CONFIG.flags.primaryFieldId)),
+      record.id,
+    ])
+  );
+  const existingByPair = new Map();
+
+  for (const record of existingQuery.records) {
+    const reportIds = linkedRecordIds(record, CONFIG.programFlags.fields.report);
+    const programIds = linkedRecordIds(record, CONFIG.programFlags.fields.program);
+    const flagIds = linkedRecordIds(record, CONFIG.programFlags.fields.flag);
+
+    for (const reportId of reportIds) {
+      for (const programId of programIds) {
+        const pairKey = `${reportId}:${programId}`;
+        if (!existingByPair.has(pairKey)) {
+          existingByPair.set(pairKey, {
+            recordId: record.id,
+            flagListRecordIds: flagIds,
+          });
+        }
+      }
+    }
+  }
+
+  const plannedCreates = [];
+  const plannedUpdates = [];
+  const issues = [];
+  let reportsWithoutJSON = 0;
+  let alreadyPresent = 0;
+
+  for (const reportRecord of reportsQuery.records) {
+    const rawReportJSON = reportRecord.getCellValueAsString(
+      CONFIG.reports.fields.reportJSON
+    );
+
+    if (!rawReportJSON.trim()) {
+      reportsWithoutJSON += 1;
+      continue;
+    }
+
+    try {
+      const payload = parseJsonMaybe(
+        rawReportJSON,
+        `Report ${reportRecord.id} reportJSON`
+      );
+      const organizationRecordId = linkedRecordIds(
+        reportRecord,
+        CONFIG.reports.fields.organization
+      )[0] ?? null;
+      const container = selectReportContainer(payload, organizationRecordId);
+
+      if (!container) {
+        issues.push({
+          reportRecordId: reportRecord.id,
+          reason: "Batch JSON contains multiple organizations and none matched the Report link.",
+        });
+        continue;
+      }
+
+      const programResults = normalizeProgramResults(
+        extractProgramResults(container)
+      );
+
+      if (!programResults.length) {
+        issues.push({
+          reportRecordId: reportRecord.id,
+          reason: "No flag-compatible program results found in reportJSON.",
+        });
+        continue;
+      }
+
+      for (const result of programResults) {
+        if (!validProgramIds.has(result.programRecordId)) {
+          issues.push({
+            reportRecordId: reportRecord.id,
+            programRecordId: result.programRecordId,
+            reason: "Partner Program record no longer exists.",
+          });
+          continue;
+        }
+
+        const resolvedKeyFlags = result.flagKeys
+          .map(key => flagIdByKey.get(normalizeFlagKey(key)))
+          .filter(Boolean);
+        const validFlags = [...new Set([
+          ...result.flagListRecordIds.filter(id => validFlagIds.has(id)),
+          ...resolvedKeyFlags,
+        ])];
+        const missingFlags = result.flagListRecordIds.filter(id =>
+          !validFlagIds.has(id)
+        );
+        const unresolvedKeys = result.flagKeys.filter(
+          key => !flagIdByKey.has(normalizeFlagKey(key))
+        );
+
+        if (missingFlags.length || unresolvedKeys.length) {
+          issues.push({
+            reportRecordId: reportRecord.id,
+            programRecordId: result.programRecordId,
+            reason: [
+              missingFlags.length
+                ? `Missing FlagList IDs: ${missingFlags.join(", ")}`
+                : "",
+              unresolvedKeys.length
+                ? `Unresolved flag keys: ${unresolvedKeys.join(", ")}`
+                : "",
+            ].filter(Boolean).join("; "),
+          });
+        }
+
+        if (!validFlags.length) {
+          issues.push({
+            reportRecordId: reportRecord.id,
+            programRecordId: result.programRecordId,
+            reason: "No resolvable flags; junction record was not created.",
+          });
+          continue;
+        }
+
+        const pairKey = `${reportRecord.id}:${result.programRecordId}`;
+        const existing = existingByPair.get(pairKey);
+
+        if (existing) {
+          const mergedFlags = [...new Set([
+            ...existing.flagListRecordIds,
+            ...validFlags,
+          ])];
+
+          if (mergedFlags.length === existing.flagListRecordIds.length) {
+            alreadyPresent += 1;
+            continue;
+          }
+
+          plannedUpdates.push({
+            recordId: existing.recordId,
+            reportRecordId: reportRecord.id,
+            programRecordId: result.programRecordId,
+            programName: result.programName || "",
+            flagListRecordIds: mergedFlags,
+          });
+          existing.flagListRecordIds = mergedFlags;
+          continue;
+        }
+
+        plannedCreates.push({
+          reportRecordId: reportRecord.id,
+          programRecordId: result.programRecordId,
+          programName: result.programName || "",
+          flagListRecordIds: validFlags,
+        });
+        existingByPair.set(pairKey, {
+          recordId: null,
+          flagListRecordIds: validFlags,
+        });
+      }
+    } catch (err) {
+      issues.push({
+        reportRecordId: reportRecord.id,
+        reason: err.message,
+      });
+    }
+  }
+
+  output.markdown(
+    `**Reports scanned:** ${reportsQuery.records.length}  \n` +
+    `**Missing junction records:** ${plannedCreates.length}  \n` +
+    `**Existing junctions to repair:** ${plannedUpdates.length}  \n` +
+    `**Already present:** ${alreadyPresent}  \n` +
+    `**Reports without reportJSON:** ${reportsWithoutJSON}  \n` +
+    `**Issues:** ${issues.length}`
+  );
+
+  const planned = [
+    ...plannedCreates.map(item => ({ ...item, action: "Create" })),
+    ...plannedUpdates.map(item => ({ ...item, action: "Repair flags" })),
+  ];
+
+  if (planned.length) {
+    output.markdown("## Preview (first 100)");
+    output.table(planned.slice(0, 100).map(item => ({
+      Report: item.reportRecordId,
+      Program: item.programName || item.programRecordId,
+      Action: item.action,
+      "Flag count": item.flagListRecordIds.length,
+    })));
+  }
+
+  if (issues.length) {
+    output.markdown("## Issues (first 100)");
+    output.table(issues.slice(0, 100));
+  }
+
+  if (!planned.length) {
+    output.markdown("No missing Report Program Flags records were found.");
+    return;
+  }
+
+  const choice = await input.buttonsAsync(
+    `Create ${plannedCreates.length} records and repair ${plannedUpdates.length} existing records?`,
+    ["Apply backfill", "Cancel"]
+  );
+
+  if (choice !== "Apply backfill") {
+    output.markdown("Backfill cancelled. No records were created.");
+    return;
+  }
+
+  const recordsToCreate = plannedCreates.map(item => ({
+    fields: {
+      [CONFIG.programFlags.fields.report]: [{ id: item.reportRecordId }],
+      [CONFIG.programFlags.fields.program]: [{ id: item.programRecordId }],
+      [CONFIG.programFlags.fields.flag]: item.flagListRecordIds.map(id => ({ id })),
+    },
+  }));
+
+  const recordsToUpdate = plannedUpdates.map(item => ({
+    id: item.recordId,
+    fields: {
+      [CONFIG.programFlags.fields.flag]: item.flagListRecordIds.map(id => ({ id })),
+    },
+  }));
+
+  let createdCount = 0;
+  let updatedCount = 0;
+
+  while (recordsToUpdate.length) {
+    const batch = recordsToUpdate.splice(0, 50);
+    await programFlagsTable.updateRecordsAsync(batch);
+    updatedCount += batch.length;
+    output.text(`Repaired ${updatedCount} of ${plannedUpdates.length} records...`);
+  }
+
+  while (recordsToCreate.length) {
+    const batch = recordsToCreate.splice(0, 50);
+    await programFlagsTable.createRecordsAsync(batch);
+    createdCount += batch.length;
+    output.text(`Created ${createdCount} of ${plannedCreates.length} records...`);
+  }
+
+  output.markdown(
+    `## Complete\nCreated **${createdCount}** and repaired **${updatedCount}** Report Program Flags records.`
+  );
+}
+
+await main();

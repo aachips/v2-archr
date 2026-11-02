@@ -1,0 +1,22 @@
+{
+  "name": "archr-airtable-builder",
+  "version": "1.0.0",
+  "description": "Build Airtable database from ARCHR PostgreSQL schema",
+  "main": "build-airtable.js",
+  "scripts": {
+    "test": "node test-parser.js",
+    "build": "node build-airtable.js",
+    "start": "node build-airtable.js"
+  },
+  "keywords": [
+    "airtable",
+    "postgresql",
+    "schema",
+    "migration"
+  ],
+  "author": "ARCHR",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

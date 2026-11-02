@@ -1,0 +1,38 @@
+// System Overview Card - System-wide metrics for admin
+
+{
+  "component_name": "System Overview Card",
+  "component_id": "cmp_admin_system_overview",
+  "component_type": "card",
+  "data_sources": {
+    "metrics": "system_metrics"
+  },
+  "display_fields": [
+    {
+      "field": "total_users",
+      "label": "Total Users",
+      "type": "number"
+    },
+    {
+      "field": "active_organizations",
+      "label": "Active Organizations",
+      "type": "number"
+    },
+    {
+      "field": "total_applications",
+      "label": "Total Applications",
+      "type": "number"
+    },
+    {
+      "field": "system_uptime",
+      "label": "System Uptime",
+      "type": "percentage"
+    },
+    {
+      "field": "storage_used",
+      "label": "Storage Used",
+      "type": "progress_bar"
+    }
+  ],
+  "mobile_layout": "grid"
+}

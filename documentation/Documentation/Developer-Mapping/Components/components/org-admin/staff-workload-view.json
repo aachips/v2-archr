@@ -1,0 +1,46 @@
+// Staff Workload View - Shows workload across all staff
+
+{
+  "component_name": "Staff Workload View",
+  "component_id": "cmp_orgadmin_staff_workload",
+  "component_type": "table",
+  "data_sources": {
+    "staff": "staff_members where organization_id = current_org AND active = true"
+  },
+  "columns": [
+    {
+      "field": "staff_name",
+      "label": "Staff Member",
+      "type": "text"
+    },
+    {
+      "field": "role",
+      "label": "Role",
+      "type": "badge"
+    },
+    {
+      "field": "active_cases",
+      "label": "Active Cases",
+      "type": "number"
+    },
+    {
+      "field": "pending_tasks",
+      "label": "Pending Tasks",
+      "type": "number"
+    },
+    {
+      "field": "workload_percentage",
+      "label": "Capacity",
+      "type": "progress_bar"
+    }
+  ],
+  "actions": [
+    {
+      "label": "View Details",
+      "action": "navigate",
+      "target": "/staff/{staff_id}/workload"
+    }
+  ],
+  "sort_order": "workload_percentage DESC",
+  "mobile_layout": "cards"
+}

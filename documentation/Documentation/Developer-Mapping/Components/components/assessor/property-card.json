@@ -1,0 +1,46 @@
+// Assess Issue - Conduct property inspection and record findings
+
+{
+  "task_name": "Assess Issue",
+  "task_id": "task_assess_issue",
+  "task_type": "field_work",
+  "required_actions": [
+    {
+      "action": "select_repair_areas",
+      "label": "Select affected areas",
+      "type": "multiselect",
+      "options": [
+        "Roof", "Walls", "Foundation", "Plumbing", 
+        "Electrical", "HVAC", "Windows", "Doors", 
+        "Flooring", "Accessibility", "Other"
+      ]
+    },
+    {
+      "action": "take_photos",
+      "label": "Take photos of damage",
+      "type": "camera",
+      "required": true,
+      "max": 20,
+      "categories": ["before", "during", "after"]
+    },
+    {
+      "action": "take_measurements",
+      "label": "Take measurements",
+      "type": "form",
+      "fields": [
+        {"name": "room_length", "label": "Length (ft)", "type": "number"},
+        {"name": "room_width", "label": "Width (ft)", "type": "number"},
+        {"name": "ceiling_height", "label": "Ceiling height (ft)", "type": "number"},
+        {"name": "damage_area", "label": "Damage area (sq ft)", "type": "number"}
+      ]
+    },
+    {
+      "action": "take_notes",
+      "label": "Enter assessment notes",
+      "type": "textarea",
+      "placeholder": "Describe the damage, cause, and any immediate safety concerns..."
+    }
+  ],
+  "offline_capable": true,
+  "estimated_time": "30-45 minutes"
+}

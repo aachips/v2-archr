@@ -1,0 +1,45 @@
+// Next Step Card - Shows what requestor needs to do next
+
+{
+  "component_name": "Next Step Card",
+  "component_id": "cmp_requestor_next_step",
+  "component_type": "card",
+  "data_sources": {
+    "next_step": "application_next_steps where requestor_id = current_user AND completed = false ORDER BY priority DESC LIMIT 1"
+  },
+  "display_fields": [
+    {
+      "field": "step_title",
+      "label": "What You Need to Do",
+      "type": "heading"
+    },
+    {
+      "field": "step_description",
+      "label": "Instructions",
+      "type": "text"
+    },
+    {
+      "field": "due_date",
+      "label": "Due Date",
+      "type": "date"
+    },
+    {
+      "field": "priority",
+      "label": "Priority",
+      "type": "badge"
+    }
+  ],
+  "actions": [
+    {
+      "label": "Complete This Step",
+      "action": "navigate",
+      "target": "/complete/{step_id}"
+    },
+    {
+      "label": "Get Help",
+      "action": "navigate",
+      "target": "/messages"
+    }
+  ],
+  "mobile_layout": "stacked"
+}

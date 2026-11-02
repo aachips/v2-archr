@@ -14,12 +14,12 @@
   <div v-else-if="authenticated" id="app" class="shell" :data-theme="theme">
     <AppHeader
       :cases="cases"
-      :role="role"
+      :role="effectiveRole"
       :theme="theme"
       :lang="lang"
       :user-name="$auth.displayName"
       @open-case="openCase"
-      @set-role="role = $event"
+      @set-role="handleRoleSwitch"
       @toggle-theme="toggleTheme"
       @set-lang="lang = $event"
       @logout="onLogout"
@@ -39,7 +39,11 @@
       <div v-if="mobileSidebarOpen" class="sidebar-overlay" @click="mobileSidebarOpen = false"></div>
 
       <main class="content">
-        <p v-if="!configured" class="notice">
+        <!-- Heads Up Display — context bar for the current view -->
+        <AppHUD :view="view" :user-name="$auth.displayName" :role="effectiveRole" />
+
+        <!-- Airtable warning only shows when on an Airtable-dependent view -->
+        <p v-if="!configured && needsAirtable" class="notice">
           Airtable isn't configured yet. Copy <code>.env.example</code> to
           <code>.env</code>, fill in your credentials, set your field names in
           <code>src/config/caseFields.js</code>, then restart the dev server.
@@ -48,7 +52,18 @@
           {{ error }}
           <button type="button" class="notice__dismiss" @click="error = ''">Dismiss</button>
         </p>
-        <template v-else>
+
+        <!-- Views that don't need Airtable — always render when their view is active -->
+        <SuperAdminView v-if="view === 'superadmin-orgs' || view === 'superadmin-users'" ref="superAdmin" />
+        <RequestorView v-else-if="view === 'requestor'" />
+        <AssessorView v-else-if="view === 'assessor'" />
+        <WhoAmI v-else-if="view === 'whoami'" />
+        <WelcomeView v-else-if="view === 'welcome'" />
+        <ProfileSettings v-else-if="view === 'profile'" />
+        <ActivityLog v-else-if="view === 'activity'" />
+
+        <!-- Views that DO need Airtable — only render when configured -->
+        <template v-if="configured">
           <CaseReview
             v-if="selectedCase"
             :case-item="selectedCase"
@@ -71,9 +86,7 @@
             @open-application="openCase"
           />
           <QuickTasks v-else-if="view === 'tasks'" :cases="cases" />
-          <ActivityLog v-else-if="view === 'activity'" />
           <DocumentsBucket v-else-if="view === 'documents'" />
-          <ProfileSettings v-else-if="view === 'profile'" />
           <ComponentLibrary v-else-if="view === 'components'" :cases="cases" />
         </template>
       </main>
@@ -96,6 +109,7 @@
 // hash in the URL (e.g. http://v2-archr.test/portal/#components).
 import AppHeader from "./components/layout/AppHeader.vue";
 import AppSidebar from "./components/layout/AppSidebar.vue";
+import AppHUD from "./components/layout/AppHUD.vue";
 import FilterableCaseList from "./components/FilterableCaseList.vue";
 import CaseReview from "./components/CaseReview.vue";
 import QuickTasks from "./components/QuickTasks.vue";
@@ -106,6 +120,11 @@ import ProfileSettings from "./components/ProfileSettings.vue";
 import SupportChat from "./components/SupportChat.vue";
 import ComponentLibrary from "./components/ComponentLibrary.vue";
 import Marketplace from "./components/Marketplace.vue";
+import WhoAmI from "./components/WhoAmI.vue";
+import WelcomeView from "./components/WelcomeView.vue";
+import SuperAdminView from "./components/SuperAdminView.vue";
+import RequestorView from "./components/RequestorView.vue";
+import AssessorView from "./components/AssessorView.vue";
 import { fetchCases, isConfigured, saveCaseContact } from "./services/caseService";
 import { translate } from "./config/i18n";
 import { logActivity } from "./services/authService";
@@ -115,6 +134,7 @@ export default {
   components: {
     AppHeader,
     AppSidebar,
+    AppHUD,
     FilterableCaseList,
     CaseReview,
     QuickTasks,
@@ -124,7 +144,12 @@ export default {
     ProfileSettings,
     SupportChat,
     ComponentLibrary,
-    Marketplace
+    Marketplace,
+    WhoAmI,
+    WelcomeView,
+    SuperAdminView,
+    RequestorView,
+    AssessorView
   },
   data() {
     return {
@@ -150,16 +175,83 @@ export default {
     initializing() {
       return this.$auth.initializing;
     },
+    needsAirtable() {
+      // These views require Airtable data
+      return ['search', 'marketplace', 'tasks', 'documents', 'components', 'caseReview'].includes(this.view);
+    },
+
+    // The effective role — always use $auth.role as source of truth.
+    // The local `role` data only matters for multi-role preview switching.
+    effectiveRole() {
+      const level = this.$auth?.roleLevel ?? 0;
+      const authRole = this.$auth?.role || '';
+      return (level >= 2) ? this.role : authRole;
+    },
 
     navItems() {
-      return [
-        { view: "search", label: this.t("nav.search") },
-        { view: "marketplace", label: "Marketplace" },
-        { view: null, label: this.t("nav.help"), href: "../help.php", external: true },
-        { view: "tasks", label: this.t("nav.tasks") },
-        { view: "activity", label: "Activity Log" },
-        { view: "documents", label: "Documents Bucket" }
+      const level = this.$auth?.roleLevel ?? 0;
+      const effectiveRole = this.effectiveRole;
+
+      // Super Admin gets a special nav (only when not viewing as another role)
+      if (level >= 3 && effectiveRole === 'super-admin') {
+        return [
+          { view: 'superadmin-orgs', label: 'My Organizations',       minLevel: 3 },
+          { view: 'superadmin-users', label: 'User Account Directory', minLevel: 3 },
+          { view: 'whoami',           label: 'Who Am I?',              minLevel: 0 },
+          { view: 'profile',          label: 'Profile',                minLevel: 0 },
+        ];
+      }
+
+      // Role-specific nav items
+      if (effectiveRole === 'subcontractor') {
+        return [
+          { view: 'marketplace', label: 'Marketplace', minLevel: 1 },
+          { view: 'welcome',     label: 'Welcome',     minLevel: 0 },
+          { view: 'whoami',      label: 'Who Am I?',   minLevel: 0 },
+          { view: 'profile',     label: 'Profile',     minLevel: 0 },
+        ];
+      }
+
+      if (effectiveRole === 'volunteer') {
+        return [
+          { view: 'welcome', label: 'Welcome',     minLevel: 0 },
+          { view: 'whoami',  label: 'Who Am I?',   minLevel: 0 },
+          { view: 'profile', label: 'Profile',     minLevel: 0 },
+        ];
+      }
+
+      if (effectiveRole === 'requestor') {
+        return [
+          { view: 'requestor', label: 'My Application',  minLevel: 0 },
+          { view: 'whoami',    label: 'Who Am I?',        minLevel: 0 },
+          { view: 'profile',   label: 'Profile',          minLevel: 0 },
+        ];
+      }
+
+      if (effectiveRole === 'assessor') {
+        return [
+          { view: 'whoami',              label: 'Who Am I?',              minLevel: 0 },
+          { view: 'assessor',            label: "Today's Assessments",     minLevel: 1 },
+          { view: 'marketplace',         label: 'Assessment Marketplace', minLevel: 1 },
+          { view: 'assessor-last',       label: 'Last Assessment',        minLevel: 1 },
+          { view: 'assessor-calendar',   label: 'Assessment Calendar',    minLevel: 1 },
+          { view: 'assessor-messages',   label: 'Messages & Alerts',      minLevel: 1 },
+          { view: 'profile',             label: 'Profile',                minLevel: 0 },
+        ];
+      }
+
+      // Default: level-gated items for org admins, super admins, and office workers
+      const all = [
+        { view: 'welcome',     label: 'Welcome',             minLevel: 0 },
+        { view: 'search',      label: this.t('nav.search'),  minLevel: 0 },
+        { view: 'marketplace', label: 'Marketplace',         minLevel: 1 },
+        { view: 'whoami',      label: 'Who Am I?',           minLevel: 0 },
+        { view: 'tasks',       label: this.t('nav.tasks'),   minLevel: 0 },
+        { view: 'activity',    label: 'Activity Log',        minLevel: 1 },
+        { view: 'documents',   label: 'Documents Bucket',    minLevel: 2 },
+        { view: 'profile',     label: 'Profile',             minLevel: 0 },
       ];
+      return all.filter(item => item.minLevel <= level);
     },
   },
   watch: {
@@ -189,8 +281,41 @@ export default {
       }
     });
 
-    // Initialize auth (checks for stored token)
+    // Set default view based on stored token (sync check)
+    const storedToken = localStorage.getItem('archr_auth_token');
+    if (storedToken) {
+      try {
+        const parts = storedToken.split('.');
+        if (parts.length === 3) {
+          const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+          if (payload.role_level >= 3) {
+            this.view = 'superadmin-orgs';
+          } else if (payload.role === 'requestor') {
+            this.view = 'requestor';
+          }
+        }
+      } catch (_) { /* ignore decode errors */ }
+    }
+
+    // Initialize auth (checks for stored token, verifies it)
     this.$auth.init().then(() => {
+      // If not already set to a role-specific view, re-check after auth resolves
+      if (!['superadmin-orgs', 'superadmin-users', 'requestor'].includes(this.view) && this.$auth.isLoggedIn) {
+        const level = this.$auth?.roleLevel ?? 0;
+        const role = this.$auth?.role || '';
+
+        // Check user's default page preference first
+        const savedDefault = localStorage.getItem('archr-default-page');
+        if (savedDefault && ['whoami', 'welcome', 'marketplace'].includes(savedDefault)) {
+          this.view = savedDefault;
+        } else if (level >= 3) {
+          this.view = 'superadmin-orgs';
+        } else if (role === 'requestor') {
+          this.view = 'requestor';
+        } else if (role === 'assessor') {
+          this.view = savedDefault || 'whoami';
+        }
+      }
       // Try to load cases after auth restores
       if (this.$auth.isLoggedIn) {
         this.loadCases();
@@ -199,6 +324,23 @@ export default {
   },
 
   methods: {
+    handleRoleSwitch(newRole) {
+      // Role switch from header — change the active view based on the selected role context
+      this.role = newRole;
+      const roleMap = {
+        'super-admin': 'superadmin-orgs',
+        'org-admin': 'search',
+        'staff': 'search',
+        'assessor': 'assessor',
+        'requestor': 'requestor',
+        'volunteer': 'welcome',
+        'subcontractor': 'marketplace',
+      };
+      const defaultView = roleMap[newRole] || 'search';
+      // Always switch to the target view when changing roles
+      this.view = defaultView;
+    },
+
     loadCases() {
       this.loading = true;
       fetchCases()
@@ -228,17 +370,30 @@ export default {
     t(key) {
       return translate(this.lang, key);
     },
-    go(view) {
+    go(view, section) {
       this.view = view;
       this.selectedCase = null;
       this.error = "";
+      if (section) {
+        this.$nextTick(() => {
+          const el = document.getElementById(section);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+      // If switching to superadmin-users, scroll to users section
+      if (view === 'superadmin-users') {
+        this.$nextTick(() => {
+          const el = document.getElementById('users');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
     },
 
     handleNav(item) {
       if (item.external && item.href) {
         window.open(item.href, '_blank');
       } else {
-        this.go(item.view);
+        this.go(item.view, item.targetSection);
       }
     },
     openCase(caseItem) {

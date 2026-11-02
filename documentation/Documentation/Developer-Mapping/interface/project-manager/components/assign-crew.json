@@ -1,0 +1,15 @@
+// 2: Assign Crew - Assign Crew Lead to project
+
+{
+  "feature": "Assign Crew",
+  "component_id": "btn_assign_crew",
+  "action": "form",
+  "target": "/crewAssignment",
+  "fields": [
+    {"name": "case_id", "type": "hidden"},
+    {"name": "crew_lead_id", "type": "select", "data_source": "system_users WHERE role = CREW_LEAD"},
+    {"name": "crew_members", "type": "multiselect", "data_source": "system_users WHERE role = CREW_MEMBER"},
+    {"name": "expected_start", "type": "date"},
+    {"name": "notes", "type": "textarea"}
+  ]
+}

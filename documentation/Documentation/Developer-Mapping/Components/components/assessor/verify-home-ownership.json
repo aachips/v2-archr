@@ -1,0 +1,53 @@
+// 2.2 Verify Home Ownership - Verify client owns the property
+
+{
+  "task_name": "Verify Ownership",
+  "task_id": "task_verify_ownership",
+  "task_type": "document_verification",
+  "document_code": "OWN",
+  "document_action": "VERIFY",
+  "fields": [
+    {
+      "name": "document_type",
+      "label": "Document Type",
+      "type": "select",
+      "options": [
+        "Deed",
+        "Property Tax Record",
+        "Mortgage Statement",
+        "Title Insurance",
+        "County Assessor Record"
+      ]
+    },
+    {
+      "name": "owner_name",
+      "label": "Name on Document",
+      "type": "text"
+    },
+    {
+      "name": "matches_client",
+      "label": "Does the name match the applicant?",
+      "type": "boolean"
+    },
+    {
+      "name": "parcel_id",
+      "label": "Parcel/Tax ID",
+      "type": "text"
+    },
+    {
+      "name": "property_address",
+      "label": "Property Address",
+      "type": "text"
+    },
+    {
+      "name": "verification_status",
+      "label": "Verification Status",
+      "type": "select",
+      "options": ["verified", "needs_clarification", "rejected"]
+    }
+  ],
+  "compliance": {
+    "privacy_level": "high",
+    "document_retention": "7 years"
+  }
+}

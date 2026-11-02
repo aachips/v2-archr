@@ -1,0 +1,92 @@
+<!-- Tasks, Logs & Events Page -->
+<div class="tle-dashboard">
+    <div class="tle-header">
+        <h2><i class="fas fa-list-check"></i> Tasks, Logs & Events</h2>
+        <div class="tle-actions">
+            <button class="btn btn-primary" onclick="openQuickAdd()">
+                <i class="fas fa-plus"></i> Quick Add
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-file-export"></i> Export
+            </button>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tle-tabs">
+        <button class="tab active" data-view="all">All Tasks</button>
+        <button class="tab" data-view="unverified">
+            Unverified <span class="badge badge-warning">3</span>
+        </button>
+        <button class="tab" data-view="my">My Tasks</button>
+        <button class="tab" data-view="completed">Completed</button>
+    </div>
+
+    <!-- Unverified Queue -->
+    <div class="tle-view" id="view-unverified">
+        <div class="tle-review-banner">
+            <i class="fas fa-clock"></i>
+            <span>3 items awaiting review</span>
+        </div>
+        <div class="tle-list">
+            <div class="tle-item unverified">
+                <div class="tle-item-meta">
+                    <span class="case-tag">42-CHERRY</span>
+                    <span class="date">Dec 15, 2024</span>
+                    <span class="initials">JD</span>
+                </div>
+                <div class="tle-item-description">
+                    Roof needs tarping before storm
+                </div>
+                <div class="tle-item-actions">
+                    <button class="btn btn-sm btn-primary" onclick="reviewTask(123)">Review</button>
+                    <button class="btn btn-sm btn-secondary">Notes</button>
+                </div>
+            </div>
+            <!-- More items -->
+        </div>
+    </div>
+
+    <!-- Approved Tasks View -->
+    <div class="tle-view active" id="view-all">
+        <div class="tle-filters">
+            <input type="text" placeholder="Filter tasks..." class="filter-input">
+            <select class="filter-select">
+                <option value="">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+            </select>
+            <select class="filter-select">
+                <option value="">Assigned To</option>
+                <option value="me">Me</option>
+                <option value="crew">Crew</option>
+                <option value="sub">Subcontractors</option>
+            </select>
+        </div>
+        <div class="tle-list">
+            <div class="tle-item approved">
+                <div class="tle-item-status">
+                    <span class="status-badge status-in_progress">In Progress</span>
+                </div>
+                <div class="tle-item-meta">
+                    <span class="case-tag">42-CHERRY</span>
+                    <span class="date">Due: Dec 20</span>
+                    <span class="assignee">Sarah M.</span>
+                </div>
+                <div class="tle-item-description">
+                    Schedule assessment - Roof inspection and estimate
+                </div>
+                <div class="tle-item-progress">
+                    <div class="progress-bar" style="width: 60%"></div>
+                    <span class="progress-label">3/5 subtasks</span>
+                </div>
+                <div class="tle-item-actions">
+                    <button class="btn btn-sm btn-primary">View</button>
+                    <button class="btn btn-sm btn-secondary">Update</button>
+                </div>
+            </div>
+            <!-- More items -->
+        </div>
+    </div>
+</div>

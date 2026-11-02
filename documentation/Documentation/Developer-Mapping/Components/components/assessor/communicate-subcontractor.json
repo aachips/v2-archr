@@ -1,0 +1,22 @@
+// 4.2: Direct communication with subcontractor
+
+{
+  "task_name": "Communicate with Subcontractor",
+  "task_id": "task_comm_subcontractor",
+  "task_type": "communication",
+  "channels": ["platform_message", "phone", "email"],
+  "communication_types": [
+    "Quote Request",
+    "Scheduling",
+    "Document Request",
+    "Status Update"
+  ],
+  "auto_log": true,
+  "template_options": [
+    {
+      "name": "Quote Request",
+      "subject": "Request for Quote - {case_number}",
+      "body": "Hello {subcontractor_name}, we need a quote for {repair_type} at {address}..."
+    }
+  ]
+}

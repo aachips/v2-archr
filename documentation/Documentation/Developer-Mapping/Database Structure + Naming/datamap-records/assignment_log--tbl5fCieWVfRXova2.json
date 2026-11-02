@@ -1,0 +1,90 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:11.671Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tbl5fCieWVfRXova2",
+    "name": "assignment_log",
+    "description": null,
+    "primaryFieldId": "fldNoiEFbQKSTZSoz",
+    "fields": [
+      {
+        "id": "fldNoiEFbQKSTZSoz",
+        "name": "assignment_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldarwGGb9eEvDg6E",
+        "name": "action",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldesI7nHj4mPb0ah",
+        "name": "old_value",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldpWwd87WXFs3BWR",
+        "name": "new_value",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld0rMQmgVUityShd",
+        "name": "performed_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldeE3JojiGSl1oxN",
+        "name": "performed_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldONFWknIxE4855o",
+        "name": "notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      }
+    ],
+    "views": [
+      {
+        "id": "viw0bzla637lYOw9R",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

@@ -1,0 +1,26 @@
+// Approve Estimate Button - Approve a subcontractor's estimate
+
+{
+  "component_name": "Approve Estimate Button",
+  "component_role": "project_manager",
+  "component_id": "btn_pm_approve_estimate",
+  "component_class": ".btn.btn-success",
+  "component_context": {
+    "taskId": "rec[estimateIdentifier]",
+    "target": "estimates",
+    "target_key": "{estimate}.{status}",
+    "action": "APPROVE.ESTIMATE",
+    "buttonText": "Approve Estimate",
+    "webhookSlug": "[approveEstimateWebhook]",
+    "confirm": "Approve this estimate?",
+    "successMessage": "Estimate approved!",
+    "reversible": "no"
+  },
+  "display_text": "Approve",
+  "icon": "fa-check-circle",
+  "action": {
+    "type": "approve",
+    "target": "/api/pm/estimates/:id/approve"
+  },
+  "role_access": "project_manager"
+}

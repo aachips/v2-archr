@@ -1,0 +1,14 @@
+// Submit Invoice Button
+{
+  "component_name": "Submit Invoice Button",
+  "component_role": "subcontractor",
+  "component_id": "btn_submit_invoice",
+  "component_class": ".btn.btn-invoice",
+  "component_context": {
+    "taskId": "rec[taskId]",
+    "action": "INVOICE.SUBMIT",
+    "buttonText": "Submit Invoice",
+    "webhookSlug": "[invoiceWebhook]",
+    "target": "/taskInvoice"
+  }
+}

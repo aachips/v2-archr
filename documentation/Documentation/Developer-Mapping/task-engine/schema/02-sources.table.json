@@ -1,0 +1,48 @@
+{
+  "sourceKey": "progress-task-v2:project-events",
+  "sourceKey.fieldType": "singleLineText",
+  "systemKey": "progress-task-v2",
+  "systemKey.fieldType": "singleLineText",
+  "sourceName": "Project Event V2",
+  "sourceName.fieldType": "singleLineText",
+  "sourceRole": "eventQueue",
+  "sourceRole.fieldType": "singleLineText",
+  "baseId": "appXXXXXXXXXXXXXX",
+  "baseId.fieldType": "singleLineText",
+  "baseName": "Progress Tracker V2",
+  "baseName.fieldType": "singleLineText",
+  "tableId": "tblXXXXXXXXXXXXXX",
+  "tableId.fieldType": "singleLineText",
+  "tableName": "[Project Event V2]",
+  "tableName.fieldType": "singleLineText",
+  "primaryFieldId": "fldXXXXXXXXXXXXXX",
+  "primaryFieldId.fieldType": "singleLineText",
+  "primaryFieldName": "eventKey",
+  "primaryFieldName.fieldType": "singleLineText",
+  "apiName": "",
+  "apiName.fieldType": "singleLineText",
+  "syncDirection": "readWrite",
+  "syncDirection.fieldType": "singleSelect",
+  "syncDirection.fieldOptions": {
+    "choices": [
+      { "name": "read" },
+      { "name": "write" },
+      { "name": "readWrite" }
+    ]
+  },
+  "environment": "production",
+  "environment.fieldType": "singleSelect",
+  "environment.fieldOptions": {
+    "choices": [
+      { "name": "development" },
+      { "name": "staging" },
+      { "name": "production" }
+    ]
+  },
+  "configJSON": "{}",
+  "configJSON.fieldType": "multilineText",
+  "active": true,
+  "active.fieldType": "checkbox",
+  "notes": "",
+  "notes.fieldType": "multilineText"
+}

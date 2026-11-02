@@ -1,0 +1,33 @@
+{
+  "ruleKey": "task-resolver:person-org-conflict",
+  "ruleKey.fieldType": "singleLineText",
+  "systemKey": "task-resolver",
+  "systemKey.fieldType": "singleLineText",
+  "engineKey": "task-resolver:compare",
+  "engineKey.fieldType": "singleLineText",
+  "stepKey": "task-resolver:stepX",
+  "stepKey.fieldType": "singleLineText",
+  "priority": 10,
+  "priority.fieldType": "number",
+  "priority.fieldOptions": {
+    "precision": 0
+  },
+  "stopOnMatch": true,
+  "stopOnMatch.fieldType": "checkbox",
+  "booleanJSON": "{\"operator\":\"anyCrossConflict\",\"left\":[\"trigger.personOrgIds\",\"conflicting.personOrgIds\"],\"right\":[\"trigger.orgDirIds\",\"conflicting.orgDirIds\"],\"requirePresent\":true}",
+  "booleanJSON.fieldType": "multilineText",
+  "decision": "createNewAndConflict",
+  "decision.fieldType": "singleLineText",
+  "actionsJSON": "[\"createNewCompletion\",\"createConflictRecord\"]",
+  "actionsJSON.fieldType": "multilineText",
+  "reasonCode": "PERSON_ORG_ORG_DIR_CONFLICT",
+  "reasonCode.fieldType": "singleLineText",
+  "requiredPathsJSON": "[\"trigger.personOrgIds\",\"conflicting.personOrgIds\",\"trigger.orgDirIds\",\"conflicting.orgDirIds\"]",
+  "requiredPathsJSON.fieldType": "multilineText",
+  "description": "Create a conflict when person-organization evidence crosses organization-directory evidence.",
+  "description.fieldType": "multilineText",
+  "active": true,
+  "active.fieldType": "checkbox",
+  "notes": "",
+  "notes.fieldType": "multilineText"
+}

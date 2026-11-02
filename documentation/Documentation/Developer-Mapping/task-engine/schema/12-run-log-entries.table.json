@@ -1,0 +1,43 @@
+{
+  "logEntryKey": "resolver_0000000000000:step1:0001",
+  "logEntryKey.fieldType": "singleLineText",
+  "runKey": "resolver_0000000000000",
+  "runKey.fieldType": "singleLineText",
+  "systemKey": "task-resolver",
+  "systemKey.fieldType": "singleLineText",
+  "stepKey": "task-resolver:step1",
+  "stepKey.fieldType": "singleLineText",
+  "sequence": 1,
+  "sequence.fieldType": "number",
+  "sequence.fieldOptions": {
+    "precision": 0
+  },
+  "timestamp": "2026-07-29T00:00:00.000Z",
+  "timestamp.fieldType": "dateTime",
+  "status": "complete",
+  "status.fieldType": "singleSelect",
+  "status.fieldOptions": {
+    "choices": [
+      { "name": "started" },
+      { "name": "complete" },
+      { "name": "skipped" },
+      { "name": "manualReview" },
+      { "name": "error" }
+    ]
+  },
+  "resolverJSON": "{}",
+  "resolverJSON.fieldType": "multilineText",
+  "summaryJSON": "{}",
+  "summaryJSON.fieldType": "multilineText",
+  "resultsJSON": "[]",
+  "resultsJSON.fieldType": "multilineText",
+  "errorJSON": "{}",
+  "errorJSON.fieldType": "multilineText",
+  "message": "Step completed.",
+  "message.fieldType": "multilineText",
+  "durationMs": 0,
+  "durationMs.fieldType": "number",
+  "durationMs.fieldOptions": {
+    "precision": 0
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:10.583Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblS07J8Gw8w46keO",
+    "name": "repair_requests",
+    "description": null,
+    "primaryFieldId": "fldRMhd3pyYMG7dzk",
+    "fields": [
+      {
+        "id": "fldRMhd3pyYMG7dzk",
+        "name": "submission_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldIAvvRTFzGX2TJj",
+        "name": "repair_need",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld5pVMyQKXKb3Qiw",
+        "name": "priority",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldpy9GkFFLocHUYH",
+        "name": "sort_order",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwKXU9SiMo7pGfV6",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

@@ -1,0 +1,42 @@
+// Schedule an Estimate - Set date/time for providing a quote
+
+{
+  "feature_name": "Schedule Estimate",
+  "feature_id": "feat_schedule_estimate",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "suggested_tasks"
+    },
+    {
+      "name": "estimate_date",
+      "label": "Estimate Date",
+      "type": "date",
+      "min": "today",
+      "required": true
+    },
+    {
+      "name": "estimate_time",
+      "label": "Estimate Time",
+      "type": "time",
+      "time_format": "12h",
+      "required": true
+    },
+    {
+      "name": "notes",
+      "label": "Notes for Client",
+      "type": "textarea",
+      "placeholder": "Any instructions or preparation needed..."
+    }
+  ],
+  "submit": {
+    "label": "Schedule Estimate",
+    "action": "api",
+    "endpoint": "/api/subcontractor/estimate/schedule",
+    "method": "POST",
+    "success_message": "Estimate scheduled successfully!"
+  }
+}

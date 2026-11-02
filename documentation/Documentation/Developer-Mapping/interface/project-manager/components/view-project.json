@@ -1,0 +1,12 @@
+// 1: View Project - Open project detail modal
+
+{
+  "feature": "View Project",
+  "component_id": "btn_view_project",
+  "action": "modal",
+  "target": "/projectHammer",
+  "modal_size": "large",
+  "data_sources": {
+    "project": "cases + work_orders + intake_submissions"
+  }
+}

@@ -1,0 +1,26 @@
+// Create User Button - Add new user to system
+
+{
+  "component_name": "Create User Button",
+  "component_role": "admin",
+  "component_id": "btn_admin_create_user",
+  "component_class": ".btn.btn-primary",
+  "component_context": {
+    "taskId": null,
+    "target": "users",
+    "target_key": "{user}",
+    "action": "CREATE.USER",
+    "buttonText": "Create User",
+    "webhookSlug": "[createUserWebhook]",
+    "confirm": null,
+    "successMessage": "User created successfully!",
+    "reversible": "yes"
+  },
+  "display_text": "Create User",
+  "icon": "fa-user-plus",
+  "action": {
+    "type": "modal",
+    "target": "/createUserModal"
+  },
+  "role_access": "admin"
+}

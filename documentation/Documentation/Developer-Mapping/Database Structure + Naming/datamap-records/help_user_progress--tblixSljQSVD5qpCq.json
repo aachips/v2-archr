@@ -1,0 +1,102 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:14.456Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblixSljQSVD5qpCq",
+    "name": "help_user_progress",
+    "description": null,
+    "primaryFieldId": "fld1qtneJ52vRtKHI",
+    "fields": [
+      {
+        "id": "fld1qtneJ52vRtKHI",
+        "name": "user_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldpt5xctHy1pUEhn",
+        "name": "document_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fld7uKJuBmg9r2vyd",
+        "name": "status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldLRAK8uHgwrdRKm",
+        "name": "started_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldhMwDBawe6xWp0E",
+        "name": "completed_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldhUnJdCHmwUeYFR",
+        "name": "last_position",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldrJ2OlakX2wD5KV",
+        "name": "notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      }
+    ],
+    "views": [
+      {
+        "id": "viwMZk8Y9Ymql4DsC",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

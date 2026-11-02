@@ -1,0 +1,588 @@
+/******************************************************
+ * Script Extension: Recalculate Report Program Flags
+ *
+ * Evaluates the subJSON and programJSON lookup values on every
+ * Report Program Flags record, resolves detected keys through
+ * FlagList, and replaces the linked Report Flags with the result.
+ ******************************************************/
+
+const CONFIG = {
+  programFlags: {
+    tableId: "tblbxVXpcSjYplyM7",
+    fields: {
+      flags: "fld02JrJxV0OcCGmf",
+      program: "fldZ3eNmMlDMUsz6g",
+      subJSON: "fldG1bGuFLCF6uIug",
+      programJSON: "fldEj3Lptqb04AJba",
+    },
+  },
+  flags: {
+    tableId: "tbl35jooCnKRg6Avf",
+    fields: {
+      key: "fldpASDez89pivRtp",
+    },
+  },
+};
+
+const OWNERSHIP_FLAG_KEYS = {
+  primaryRes: {
+    positive: "primary_residence",
+    negative: "not_primary_residence",
+    omitted: "no_primary_residence_restriction",
+    missing: "missing_primary_residence",
+  },
+  ownHome: {
+    positive: "owns_home",
+    negative: "does_not_own_home",
+    omitted: "no_home_ownership_restriction",
+    missing: "missing_home_ownership",
+  },
+  ownLot: {
+    positive: "owns_lot",
+    negative: "does_not_own_lot",
+    omitted: "no_lot_ownership_restriction",
+    missing: "missing_lot_ownership",
+  },
+};
+
+function cleanNull(value) {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "string" && value.trim().toLowerCase() === "null") {
+    return null;
+  }
+  return value;
+}
+
+function arrayify(value) {
+  value = cleanNull(value);
+  if (value === null || value === undefined || value === "") return [];
+  return Array.isArray(value) ? value : [value];
+}
+
+function parseJsonMaybe(value, label) {
+  if (value === null || value === undefined || value === "") return null;
+  if (typeof value === "object") return value;
+
+  const text = String(value).trim();
+  if (!text || text.toLowerCase() === "null") return null;
+
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    const repaired = text
+      .replace(/("(?:\\.|[^"\\])+")\s*:\s*(?=[,}])/g, "$1: null")
+      .replace(
+        /("typeHome"\s*:\s*)([A-Za-z][^,}\r\n]*)(?=\s*[,}])/g,
+        (match, prefix, value) => {
+          const cleaned = value.trim();
+          if (["true", "false", "null"].includes(cleaned)) return match;
+          return `${prefix}${JSON.stringify(cleaned)}`;
+        }
+      );
+
+    if (repaired !== text) {
+      try {
+        return JSON.parse(repaired);
+      } catch (repairErr) {
+        throw new Error(`${label}: ${repairErr.message}`);
+      }
+    }
+
+    throw new Error(`${label}: ${err.message}`);
+  }
+}
+
+function parseLookupJson(value, label) {
+  const values = arrayify(value).filter(item => item !== "");
+
+  if (!values.length) throw new Error(`${label} is blank.`);
+  if (values.length > 1) {
+    throw new Error(`${label} contains ${values.length} values; expected one.`);
+  }
+
+  const parsed = parseJsonMaybe(values[0], label);
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error(`${label} did not parse to one JSON object.`);
+  }
+  return parsed;
+}
+
+function toNumber(value) {
+  if (value === null || value === undefined || value === "") return NaN;
+  const number = Number(String(value).replace(/[,$%\s]/g, ""));
+  return Number.isFinite(number) ? number : NaN;
+}
+
+function toBool(value) {
+  if (value === null || value === undefined || value === "") return null;
+  if (typeof value === "boolean") return value;
+
+  const text = String(value).trim().toLowerCase();
+  if (["true", "t", "yes", "y", "1", "checked"].includes(text)) return true;
+  if (["false", "f", "no", "n", "0", "unchecked"].includes(text)) return false;
+  return null;
+}
+
+function norm(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .trim()
+    .replace(/[’']/g, "")
+    .replace(/&/g, " and ")
+    .replace(/[^\p{L}\p{N}\s]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function flagKey(value) {
+  return norm(value).replace(/\s+/g, "_");
+}
+
+function normPlace(scale, value) {
+  let text = norm(value);
+  const normalizedScale = norm(scale);
+
+  if (
+    normalizedScale === "state" &&
+    ["north carolina", "n carolina", "nc"].includes(text)
+  ) {
+    return "nc";
+  }
+
+  if (normalizedScale === "county") {
+    text = text.replace(/\bcounty\b/g, "").replace(/\s+/g, " ").trim();
+  }
+
+  if (["city", "town"].includes(normalizedScale)) {
+    text = text.replace(/^city of\s+/, "").replace(/^town of\s+/, "").trim();
+  }
+
+  return text;
+}
+
+function uniq(values) {
+  return [...new Set(values.filter(Boolean))];
+}
+
+function normalizeSubmission(rawSub) {
+  const phase1 = rawSub.subPhase1?.serviceArea ?? {};
+  const phase2 = arrayify(rawSub.subPhase2);
+  const phase3 = rawSub.subPhase3?.ownershipCheck ?? {};
+  const phase4 = cleanNull(rawSub.subPhase4) ?? {};
+  const income = {};
+
+  for (const item of phase2) {
+    const check = item?.incomeCheck ?? item;
+    const calc = String(check?.calc ?? "").trim().toUpperCase();
+    const percent = toNumber(check?.percent);
+    if (calc && Number.isFinite(percent)) income[calc] = percent;
+  }
+
+  const demoRaw = phase4.demoCheck ?? phase4.demoGroup ?? [];
+  let demoCodes = [];
+
+  if (Array.isArray(demoRaw)) {
+    demoCodes = demoRaw.map(String).map(value => value.trim()).filter(Boolean);
+  } else if (demoRaw && typeof demoRaw === "object") {
+    demoCodes = Object.entries(demoRaw)
+      .filter(([, value]) => toBool(value) === true)
+      .map(([key]) => key);
+  }
+
+  return {
+    serviceArea: {
+      state: phase1.state ?? "",
+      county: phase1.county ?? "",
+      city: phase1.city ?? "",
+      neighborhood: phase1.neighborhood ?? "",
+    },
+    income,
+    ownership: {
+      typeHome: phase3.typeHome ?? "",
+      bldgValue: toNumber(phase3.bldgValue),
+      primaryRes: toBool(phase3.primaryRes),
+      ownHome: toBool(phase3.ownHome),
+      ownLot: toBool(phase3.ownLot),
+      minTime: toNumber(phase3.minTime),
+    },
+    demoCodes,
+    demoSet: new Set(demoCodes),
+  };
+}
+
+function normalizeServiceArea(program) {
+  const items = arrayify(cleanNull(program.phase1)?.serviceArea);
+  const byScale = {};
+
+  for (const item of items) {
+    const scale = norm(item?.scale);
+    const specific = item?.specific;
+    if (!scale || specific === null || specific === undefined || specific === "") {
+      continue;
+    }
+    if (!byScale[scale]) byScale[scale] = [];
+    byScale[scale].push(normPlace(scale, specific));
+  }
+
+  for (const scale of Object.keys(byScale)) {
+    byScale[scale] = uniq(byScale[scale]);
+  }
+  return byScale;
+}
+
+function checkServiceArea(sub, program, add) {
+  const allowed = normalizeServiceArea(program);
+  let matchCount = 0;
+  let mismatchCount = 0;
+  let missingCount = 0;
+
+  for (const [scale, value] of [
+    ["state", sub.serviceArea.state],
+    ["county", sub.serviceArea.county],
+    ["city", sub.serviceArea.city],
+    ["neighborhood", sub.serviceArea.neighborhood],
+  ]) {
+    const allowedValues = allowed[scale] || [];
+    if (!allowedValues.length) {
+      add(`no_${scale}_restriction`);
+    } else if (!value) {
+      missingCount += 1;
+      add(`missing_${scale}`);
+    } else if (allowedValues.includes(normPlace(scale, value))) {
+      matchCount += 1;
+    } else {
+      mismatchCount += 1;
+      add("outside_service_area");
+    }
+  }
+
+  if (!mismatchCount && matchCount && !missingCount) add("in_service_area");
+}
+
+function normalizeIncomeRules(program) {
+  const raw = cleanNull(program.phase2);
+  const checks = raw?.incomeCheck ?? raw?.incomeChecks ?? raw;
+
+  return arrayify(checks)
+    .map(item => item?.incomeCheck ?? item)
+    .map(item => ({
+      calc: String(item?.calc ?? "").trim().toUpperCase(),
+      max: toNumber(item?.max),
+    }))
+    .filter(item => item.calc && Number.isFinite(item.max));
+}
+
+function checkIncome(sub, program, add) {
+  const rules = normalizeIncomeRules(program);
+  if (!rules.length) {
+    add("no_income_restriction");
+    return;
+  }
+
+  let hasPass = false;
+  let hasMissing = false;
+
+  for (const rule of rules) {
+    const actual = sub.income[rule.calc];
+    if (!Number.isFinite(actual)) {
+      hasMissing = true;
+      add("missing_income_value");
+    } else if (actual <= rule.max) {
+      hasPass = true;
+      add("within_income_limit");
+    }
+  }
+
+  if (!hasPass && !hasMissing) add("over_income_limit");
+}
+
+function normalizeOwnershipRules(program) {
+  const raw = cleanNull(program.phase3);
+  const checks = raw?.ownershipChecks ?? raw?.ownershipCheck ?? [];
+  return arrayify(checks)
+    .map(item => item?.ownershipCheck ?? item)
+    .filter(item => item && typeof item === "object");
+}
+
+function evaluateOwnershipProfile(sub, rule) {
+  const keys = [];
+  let pass = true;
+  const add = key => keys.push(key);
+
+  if (Array.isArray(rule.typeHome) && rule.typeHome.length) {
+    if (!sub.ownership.typeHome) {
+      add("missing_home_type");
+    } else if (rule.typeHome.map(norm).includes(norm(sub.ownership.typeHome))) {
+      add("eligible_home_type");
+    } else {
+      pass = false;
+      add("ineligible_home_type");
+    }
+  } else {
+    add("no_home_type_restriction");
+  }
+
+  if (rule.bldgValue !== undefined && rule.bldgValue !== null && rule.bldgValue !== "") {
+    const max = toNumber(rule.bldgValue);
+    const actual = sub.ownership.bldgValue;
+    if (!Number.isFinite(actual)) {
+      add("missing_building_value");
+    } else if (Number.isFinite(max) && actual <= max) {
+      add("within_building_value");
+    } else if (Number.isFinite(max)) {
+      pass = false;
+      add("over_building_value");
+    }
+  } else {
+    add("no_building_value_restriction");
+  }
+
+  for (const key of ["primaryRes", "ownHome", "ownLot"]) {
+    const expected = toBool(rule[key]);
+    const actual = sub.ownership[key];
+    const flags = OWNERSHIP_FLAG_KEYS[key];
+
+    if (expected === null) {
+      add(flags.omitted);
+    } else if (actual === null) {
+      add(flags.missing);
+    } else if (actual === expected) {
+      if (actual === true) add(flags.positive);
+    } else {
+      pass = false;
+      if (actual === false) add(flags.negative);
+    }
+  }
+
+  if (rule.minTime !== undefined && rule.minTime !== null && rule.minTime !== "") {
+    const minimum = toNumber(rule.minTime);
+    const actual = sub.ownership.minTime;
+    if (!Number.isFinite(actual)) {
+      add("missing_ownership_time");
+    } else if (Number.isFinite(minimum) && actual >= minimum) {
+      add("meets_minimum_ownership_time");
+    } else if (Number.isFinite(minimum)) {
+      pass = false;
+      add("below_minimum_ownership_time");
+    }
+  } else {
+    add("no_minimum_ownership_time_restriction");
+  }
+
+  return { pass, keys };
+}
+
+function checkOwnership(sub, program, add) {
+  const rules = normalizeOwnershipRules(program);
+  if (!rules.length) {
+    add(OWNERSHIP_FLAG_KEYS.ownHome.omitted);
+    add(OWNERSHIP_FLAG_KEYS.ownLot.omitted);
+    return;
+  }
+
+  const profiles = rules.map(rule => evaluateOwnershipProfile(sub, rule));
+  const passing = profiles.find(profile => profile.pass);
+  const selected = passing ? [passing] : profiles;
+  for (const profile of selected) {
+    for (const key of profile.keys) add(key);
+  }
+}
+
+function normalizeDemoRule(program) {
+  const raw = cleanNull(program.phase4);
+  if (!raw) return null;
+
+  const qual = String(raw.demoQual ?? raw.qual ?? "").trim();
+  const group = raw.demoGroup ?? raw.demoCheck ?? {};
+  let codes = [];
+
+  if (Array.isArray(group)) {
+    codes = group.map(String).map(value => value.trim()).filter(Boolean);
+  } else if (group && typeof group === "object") {
+    codes = Object.entries(group)
+      .filter(([, value]) => toBool(value) === true)
+      .map(([key]) => key);
+  }
+
+  return !qual && !codes.length ? null : { qual, codes };
+}
+
+function checkDemo(sub, program, add) {
+  const rule = normalizeDemoRule(program);
+  if (!rule || !rule.codes.length) {
+    add("no_demographic_restriction");
+    return;
+  }
+
+  const hits = rule.codes.filter(code => sub.demoSet.has(code));
+  const qual = norm(rule.qual);
+
+  if (qual === "required") {
+    if (!sub.demoCodes.length) add("missing_demographic_data");
+    else if (hits.length) add("required_demographic_match");
+    else add("missing_required_demographic");
+  } else if (qual === "prioritized" && hits.length) {
+    add("priority_demographic_match");
+  }
+}
+
+function evaluate(subJSON, programJSON) {
+  const sub = normalizeSubmission(subJSON);
+  const detected = new Set();
+  const add = key => detected.add(flagKey(key));
+
+  checkServiceArea(sub, programJSON, add);
+  checkIncome(sub, programJSON, add);
+  checkOwnership(sub, programJSON, add);
+  checkDemo(sub, programJSON, add);
+
+  return [...detected];
+}
+
+function sameIds(left, right) {
+  const a = [...new Set(left)].sort();
+  const b = [...new Set(right)].sort();
+  return a.length === b.length && a.every((id, index) => id === b[index]);
+}
+
+async function main() {
+  output.markdown("# Recalculate Report Program Flags");
+
+  const junctionTable = base.getTable(CONFIG.programFlags.tableId);
+  const flagsTable = base.getTable(CONFIG.flags.tableId);
+  const subJSONFieldId = CONFIG.programFlags.fields.subJSON;
+  const programJSONFieldId = CONFIG.programFlags.fields.programJSON;
+
+  output.text("Loading junction records and FlagList...");
+  const [junctionQuery, flagsQuery] = await Promise.all([
+    junctionTable.selectRecordsAsync({
+      fields: [
+        CONFIG.programFlags.fields.flags,
+        CONFIG.programFlags.fields.program,
+        subJSONFieldId,
+        programJSONFieldId,
+      ],
+    }),
+    flagsTable.selectRecordsAsync({
+      fields: [CONFIG.flags.fields.key],
+    }),
+  ]);
+
+  const flagByKey = new Map();
+  for (const record of flagsQuery.records) {
+    const key = flagKey(record.getCellValueAsString(CONFIG.flags.fields.key));
+    if (!key) continue;
+    if (flagByKey.has(key)) throw new Error(`Duplicate FlagList key: ${key}`);
+    flagByKey.set(key, record.id);
+  }
+
+  const updates = [];
+  const issues = [];
+  let unchanged = 0;
+
+  for (const record of junctionQuery.records) {
+    try {
+      const subJSON = parseLookupJson(
+        record.getCellValue(subJSONFieldId),
+        `${record.id} subJSON`
+      );
+      const programJSON = parseLookupJson(
+        record.getCellValue(programJSONFieldId),
+        `${record.id} programJSON`
+      );
+      const detectedKeys = evaluate(subJSON, programJSON);
+      const unresolvedKeys = detectedKeys.filter(key => !flagByKey.has(key));
+      const flagRecordIds = detectedKeys
+        .map(key => flagByKey.get(key))
+        .filter(Boolean);
+
+      if (unresolvedKeys.length) {
+        issues.push({
+          Record: record.id,
+          Issue: `Unconfigured flags: ${unresolvedKeys.join(", ")}`,
+        });
+      }
+
+      if (!flagRecordIds.length) {
+        issues.push({
+          Record: record.id,
+          Issue: "No detected flags resolved to FlagList records.",
+        });
+        continue;
+      }
+
+      const currentFlagIds = arrayify(
+        record.getCellValue(CONFIG.programFlags.fields.flags)
+      ).map(link => link?.id).filter(Boolean);
+
+      if (sameIds(currentFlagIds, flagRecordIds)) {
+        unchanged += 1;
+        continue;
+      }
+
+      updates.push({
+        recordId: record.id,
+        programName: programJSON.programName || programJSON.name || "",
+        detectedKeys,
+        flagRecordIds,
+      });
+    } catch (err) {
+      issues.push({ Record: record.id, Issue: err.message });
+    }
+  }
+
+  output.markdown(
+    `**Junction records scanned:** ${junctionQuery.records.length}  \n` +
+    `**Records to update:** ${updates.length}  \n` +
+    `**Already correct:** ${unchanged}  \n` +
+    `**Issues:** ${issues.length}`
+  );
+
+  if (updates.length) {
+    output.markdown("## Preview (first 100)");
+    output.table(updates.slice(0, 100).map(update => ({
+      Record: update.recordId,
+      Program: update.programName || "(unnamed)",
+      Flags: update.detectedKeys.join(", "),
+    })));
+  }
+
+  if (issues.length) {
+    output.markdown("## Issues (first 100)");
+    output.table(issues.slice(0, 100));
+  }
+
+  if (!updates.length) {
+    output.markdown("No junction records require flag updates.");
+    return;
+  }
+
+  const choice = await input.buttonsAsync(
+    `Replace linked flags on ${updates.length} records?`,
+    ["Apply updates", "Cancel"]
+  );
+
+  if (choice !== "Apply updates") {
+    output.markdown("Recalculation cancelled. No records were changed.");
+    return;
+  }
+
+  const records = updates.map(update => ({
+    id: update.recordId,
+    fields: {
+      [CONFIG.programFlags.fields.flags]: update.flagRecordIds.map(id => ({ id })),
+    },
+  }));
+
+  let updatedCount = 0;
+  while (records.length) {
+    const batch = records.splice(0, 50);
+    await junctionTable.updateRecordsAsync(batch);
+    updatedCount += batch.length;
+    output.text(`Updated ${updatedCount} of ${updates.length} records...`);
+  }
+
+  output.markdown(`## Complete\nUpdated **${updatedCount}** junction records.`);
+}
+
+await main();

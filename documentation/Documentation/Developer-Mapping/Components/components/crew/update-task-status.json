@@ -1,0 +1,24 @@
+{
+  "ability": "Update Task Status",
+  "component": {
+    "type": "modal",
+    "trigger": "tap task row",
+    "title": "Update Task Status",
+    "fields": [
+      {"name": "task_id", "type": "hidden"},
+      {"name": "status", "type": "select", "options": [
+        "Pending", "In Progress", "Blocked", "Complete"
+      ]},
+      {"name": "progress", "type": "slider", "min": 0, "max": 100, "step": 5},
+      {"name": "notes", "type": "textarea", "placeholder": "Any issues or updates?"}
+    ],
+    "actions": [
+      {"label": "Cancel", "action": "close"},
+      {"label": "Update", "action": "submit"}
+    ]
+  },
+  "business_rules": {
+    "requires_photo_for_complete": true,
+    "notifies_project_manager": true
+  }
+}

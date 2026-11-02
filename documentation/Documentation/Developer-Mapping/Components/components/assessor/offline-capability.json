@@ -1,0 +1,30 @@
+// Mobile-First Considerations
+// Offline Capability
+
+{
+  "offline_mode": {
+    "enabled": true,
+    "sync_on_connect": true,
+    "data_caching": {
+      "cache_duration": "24 hours",
+      "cache_items": ["today_assessments", "case_briefs", "templates"]
+    },
+    "offline_actions": [
+      {
+        "action": "take_photos",
+        "sync_action": "upload_photos",
+        "conflict_resolution": "last_write_wins"
+      },
+      {
+        "action": "take_notes",
+        "sync_action": "sync_notes",
+        "conflict_resolution": "merge_append"
+      },
+      {
+        "action": "verify_document",
+        "sync_action": "submit_verification",
+        "conflict_resolution": "user_resolve"
+      }
+    ]
+  }
+}

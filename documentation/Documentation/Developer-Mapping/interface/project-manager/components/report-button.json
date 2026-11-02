@@ -1,0 +1,11 @@
+{
+  "component_name": "Report Button",
+  "component_role": "project_manager",
+  "component_id": "btn_report",
+  "component_class": ".btn.btn-report",
+  "component_context": {
+    "action": "REPORT.GENERATE",
+    "buttonText": "Report",
+    "target": "/projectReports"
+  }
+}

@@ -1,0 +1,1415 @@
+ARCHR FIELD MAPPING CONFIRMATION REPORT
+Generated: 2026-08-11 (offline analysis - NOT connected to the live Airtable system)
+
+SCOPE
+  Objects analyzed:
+    1. elemental-integration/archr_anchor.json  (identical copy exists at js/json/archr_anchor.json)
+    2. costing/costingObject.json
+
+SOURCES USED FOR CONFIRMATION (all offline captures)
+  [DUMMY]  Dummy Database Airtable, base appiMfIEzULJtmi5v.
+           Source: elemental-integration/datamap-records/ (43 tables, exported 2026-07-14).
+           Table and field names here are intentionally identical to the PostgreSQL schema.
+  [PG]     PostgreSQL master schema: sql/master-schema.dbml + sql/*.sql + sql/add/*.sql
+           (96 tables including add-scripts: anchor, bursar, metric-tracking, crew, subcontractor).
+  [LIVE]   Offline schema captures of live bases in ben/datamap/Consoladate/capture/ and
+           eligibility-check/ (captured 2026-06-17 / 2026-06-26):
+             [P] ARCHR Eligibility        appIFBi7Rln8yFhCs  (captured)
+             ARCHR Partner Programs       appAmaLnsO0BTkKAk  (captured)
+             [D] ARCHR Project Documents  appjB8RyRb8VryrTd  (captured)
+             [P] ARCHR Progress Tracker   appjHNCJFj14C30X3  (captured)
+           NOT captured - fields in these bases cannot be confirmed from this repo:
+             [D](v1-2) ANCHOR Records     appWAmMNCsnsAgyTW  <-- the anchor base itself!
+             [D] (v2) ARCHR Directory     appfCMatXfknvXNkc
+             [D] ARCHR Multi Axis Task Library  appfhuefuekoCvL3J
+             Fillout Results              appdJHg317xbe3Sd4
+             [D] ARCHR Repair Requests    appBq2Z1a9dssVVbL
+           Anchor-related names ARE confirmed where they appear in the sync copies
+           (tables named ⚓📍Sync / ⚓🎯 Sync) inside the four captured bases.
+
+STATUS LEGEND
+  CONFIRMED in Dummy DB        Field name (camelCase/snake_case normalized) exists in the Dummy
+                               Database with the same name as Postgres. Safest fields.
+  IN POSTGRES, not in Dummy    Exists in the master schema but the Dummy DB table/column is not
+                               mirrored yet (capture 2026-07-14). Re-pull Dummy DB to confirm.
+  IN LIVE AIRTABLE only        Exists in a captured live base but has NO Postgres column.
+                               These are migration gaps - new columns/tables needed.
+  NO MATCH                     Not found in any captured system. Either a new boss-coined name,
+                               an Airtable pointer (rec.../URL), or lives in an uncaptured base.
+  WEAK                         Name matched something with a different meaning (coincidence).
+
+NAMING CONVENTIONS USED FOR SUGGESTIONS
+  - Postgres/Dummy: snake_case. JSON: boss's camelCase. Money {value,currency} -> DECIMAL(12,2)
+    (currency is always USD). dateUNIX -> TIMESTAMP (beware seconds vs milliseconds mix).
+  - *RecordId/*RecordURL are Airtable pointers; in PG they become integer FKs or a stored
+    airtable_record_id when dual-write traceability is needed.
+
+================================================================================
+SECTION A: archr_anchor.json - FIELD INVENTORY (111 fields)
+================================================================================
+anchor.placeCode.placeCode10   = "123EXAMPLE"
+    status: NO MATCH in any captured system
+    note:   10-char place code ("123EXAMPLE"). Live: ⚓📍PlaceCode. PG only has crew_job_cards.placecode (add-script). Suggest place_codes.place_code.
+
+anchor.placeCode.placeCodeRecordID   = "recbEW3LcgJBh1xNr"
+    status: IN POSTGRES, not yet in Dummy DB
+    pg:     crew_job_cards.placecode
+    live:   [P] ARCHR Eligibility > ✅Eligibility Report > ⚓📍PlaceCode ; [D] ARCHR Project Documents > ⚓🎯 Sync > ⚓📍PLACE_CODE
+    note:   Casing drift: this file also uses placeCodeRecordId (projects[]). Pick one (RecordId).
+
+anchor.placeCode.placeCodeRecordURL   = "https://airtable.com/appWAmMNCsnsAgyTW/tblTrmm24ZCt9nMkr/rec..."
+    status: NO MATCH in any captured system
+    target: place_codes. (NEW TABLE)
+
+anchor.placeCode.address.inputAddress   = "123 Example st, asheville"
+    status: NO MATCH in any captured system
+    note:   NOT in any capture. Raw pre-GIS user input. Live nearest: intake home_address. Confirm name with boss; suggest place_codes.input_address.
+
+anchor.placeCode.address.fullAddress   = "123 Example Street, Asheville, NC, 28806"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Eligibility > ⚓📍Sync > ⚓ Full Address ; [D] ARCHR Project Documents > ⚓📍Sync > ⚓ Full Address
+    target: place_codes.full_address
+
+anchor.placeCode.address.streetAddress   = "123 Example Street"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Eligibility > ⚓📍Sync > ⚓Street Address ; [D] ARCHR Project Documents > ⚓📍Sync > ⚓Street Address
+    target: place_codes.street_address
+
+anchor.placeCode.address.city   = "Asheville"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Progress Tracker > [💸Sync] > CITY?
+    target: place_codes.city
+
+anchor.placeCode.address.legacyNeighborhood   = "Example Estates"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Eligibility > ✅Eligibility Report > ⚓Legacy Neighborhood ; [P] ARCHR Eligibility > ⚓📍Sync > ⚓Legacy Neighborhood
+    note:   User-flagged. Confirmed live: Eligibility > ⚓📍Sync > ⚓Legacy Neighborhood. Missing from PG/Dummy. Suggest place_codes.legacy_neighborhood.
+
+anchor.placeCode.address.county   = "Buncombe"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   ARCHR Partner Programs > New Programs > County ; ARCHR Partner Programs > AMI/FPL > County
+    target: place_codes.county
+
+anchor.placeCode.address.state   = "NC"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   ARCHR Partner Programs > New Programs > State ; ARCHR Partner Programs > Section8-FY26 > state
+    target: place_codes.state
+
+anchor.placeCode.address.zip   = "28806"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > ❌Application Documents > zip
+    target: place_codes.zip
+
+anchor.placeCode.address.unit   = (empty)
+    status: WEAK - name matched but likely coincidental
+    dummy:  material_requests.unit
+    pg:     material_requests.unit
+    live:   [P] ARCHR Eligibility > ✅Eligibility Report > 📍Unit ; [P] ARCHR Eligibility > ⚓📍Sync > ⚓Unit
+    note:   Dummy match material_requests.unit is COINCIDENTAL (material unit, not address unit). Live ⚓Unit confirms address-unit concept. Suggest place_codes.unit.
+
+anchor.placeCode.address.lat   = "35.6194845"
+    status: NO MATCH in any captured system
+    note:   No match anywhere. Suggest place_codes.latitude DECIMAL.
+
+anchor.placeCode.address.long   = "-82.6250345"
+    status: NO MATCH in any captured system
+    note:   No match anywhere. Suggest place_codes.longitude DECIMAL.
+
+anchor.placeCode.address.gmapsPlaceId   = "ChIJ_Z5oywfzWYgR3zo2FjpyF38f"
+    status: NO MATCH in any captured system
+    note:   No match anywhere. Suggest place_codes.gmaps_place_id.
+
+anchor.placeCode.gisInfo.pinnum   = "0609867552345562"
+    status: NO MATCH in any captured system
+    note:   Confirmed live as GIS_PINNUM (Eligibility > ⚓📍Sync). Suggest place_codes.gis_pinnum.
+
+anchor.placeCode.gisInfo.gisAddress   = "123 EXAMPLE STREET, ASHEVILLE, NC, 28806"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Eligibility > ⚓📍Sync > GIS_ADDRESS ; [D] ARCHR Project Documents > ⚓📍Sync > GIS_ADDRESS
+    note:   Confirmed live as GIS_ADDRESS (⚓📍Sync). Suggest place_codes.gis_address.
+
+anchor.placeCode.gisInfo.countyCode   = "BUNCO"
+    status: NO MATCH in any captured system
+    target: place_codes.gis_* (new columns on NEW place_codes table)
+
+anchor.placeCode.gisInfo.owner   = "Jimmy Dean-Sausage"
+    status: NO MATCH in any captured system
+    target: place_codes.gis_* (new columns on NEW place_codes table)
+
+anchor.placeCode.gisInfo.bldgValue   = "235649"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Eligibility > (📚) Fillout Results > ⚓📍bldgValue
+    target: place_codes.gis_* (new columns on NEW place_codes table)
+
+anchor.placeCode.gisInfo.lastUpdateUNIX   = "1773360000000"
+    status: NO MATCH in any captured system
+    note:   Sample is 13 digits = MILLISECONDS; dateUNIX elsewhere is SECONDS. Standardize unit before migration. Suggest gis_updated_at TIMESTAMP.
+
+anchor.placeCode.gisInfo.propCardPrintURL   = "https://prc-buncombe.spatialest.com/#/property/9657230111000..."
+    status: NO MATCH in any captured system
+    target: place_codes.gis_* (new columns on NEW place_codes table)
+
+anchor.placeCode.gisInfo.gisQueryRecordID   = "recDfIu3nYpL5lDph"
+    status: NO MATCH in any captured system
+    target: place_codes.gis_* (new columns on NEW place_codes table)
+
+anchor.placeCode.gisInfo.gisQueryRecordURL   = "https://airtable.com/appWAmMNCsnsAgyTW/tblshhfUIX509LbZy/rec..."
+    status: NO MATCH in any captured system
+    target: place_codes.gis_* (new columns on NEW place_codes table)
+
+anchor.placeCode.dataSources[].readable   = "🟦AAHH Traditional Home Repair → 🔷CS_NRI → 🔹D123EX"
+    status: NO MATCH in any captured system
+    target: anchor_data_sources. (NEW TABLE)
+
+anchor.placeCode.dataSources[].baseId   = "appWHBZr8Mx2rSlul"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄Docupilot Params] > baseId ; [P] ARCHR Progress Tracker > [⚙️Progress Tasks] > base
+    target: anchor_data_sources. (NEW TABLE)
+
+anchor.placeCode.dataSources[].tableId   = "tblOmCfRljqa8NWUz"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄Docupilot Params] > tableId
+    target: anchor_data_sources. (NEW TABLE)
+
+anchor.placeCode.dataSources[].recordId   = "rec5SHsez3WyPToDf"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > ⚓🎯 Sync > [⚓🎯+📚] ; [P] ARCHR Progress Tracker > [◼️Project Event V2] > !!!
+    target: anchor_data_sources. (NEW TABLE)
+
+anchor.placeCode.dataSources[].sourceRecordURL   = "https://airtable.com/appWHBZr8Mx2rSlul/tblOmCfRljqa8NWUz/rec..."
+    status: NO MATCH in any captured system
+    target: anchor_data_sources. (NEW TABLE)
+
+anchor.placeCode.dataSources[].dates[].isARCHR   = "false"
+    status: NO MATCH in any captured system
+    target: project_events. (NEW TABLE)
+
+anchor.placeCode.dataSources[].dates[].projectRecordId   = (empty)
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Progress Tracker > [🔮Queue V2] > projectRecordId ; [P] ARCHR Progress Tracker > [☑️Project Task Completion] > projectRecordId
+    target: project_events. (NEW TABLE)
+
+anchor.placeCode.dataSources[].dates[].dateCode   = "_FIRST"
+    status: NO MATCH in any captured system
+    target: project_events. (NEW TABLE)
+
+anchor.placeCode.dataSources[].dates[].sourceLabel   = "Recieved From FS"
+    status: NO MATCH in any captured system
+    target: project_events. (NEW TABLE)
+
+anchor.placeCode.dataSources[].dates[].dateUNIX   = "1580688000"
+    status: NO MATCH in any captured system
+    note:   Seconds here; sample "17821728000" has a stray digit (11). Standardize.
+
+anchor.placeCode.dataSources[].dates[].dateDisplay   = "2/3/2020"
+    status: NO MATCH in any captured system
+    target: project_events. (NEW TABLE)
+
+anchor.placeCode.dataSources[].dates[].dateRecordId   = "rec9xwz8sE7lMyx8g"
+    status: WEAK - name matched but likely coincidental
+    dummy:  volunteer_hours.date
+    pg:     volunteer_hours.date
+    live:   [P] ARCHR Progress Tracker > [❌❌Project Event] > Date ; [P] ARCHR Progress Tracker > [🔍Sync] > Date
+    note:   Dummy match volunteer_hours.date is COINCIDENTAL.
+
+anchor.placeCode.dataSources[].dates[].dateRecordURL   = "https://airtable.com/appWAmMNCsnsAgyTW/tblybaQRHdc2fm0Jc/rec..."
+    status: NO MATCH in any captured system
+    target: project_events. (NEW TABLE)
+
+anchor.projects[].projectCode   = "X123EXAMPLE"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Progress Tracker > [🎯 Sync] > 🎯Project Code ; [P] ARCHR Progress Tracker > [❌❌Project Event] > 🎯 ProjectCode
+    note:   Live: Progress Tracker > 🎯 Sync > 🎯Project Code. PG nearest: cases.case_number. Also job-code convention [ORG]-D10WEBB (see notes.md).
+
+anchor.projects[].projectRecordId   = "recC0YkDrpvgZJnYS"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Progress Tracker > [🔮Queue V2] > projectRecordId ; [P] ARCHR Progress Tracker > [☑️Project Task Completion] > projectRecordId
+    target: cases.project_record_id
+
+anchor.projects[].placeCodeRecordId   = "recbEW3LcgJBh1xNr"
+    status: IN POSTGRES, not yet in Dummy DB
+    pg:     crew_job_cards.placecode
+    live:   [P] ARCHR Eligibility > ✅Eligibility Report > ⚓📍PlaceCode ; [D] ARCHR Project Documents > ⚓🎯 Sync > ⚓📍PLACE_CODE
+    target: cases.place_code_record_id
+
+anchor.projects[].applicationSubmissionSource   = "fillout"
+    status: NO MATCH in any captured system
+    target: cases.application_submission_source
+
+anchor.projects[].applicationSubmissionID   = "f621dfa5-c53d-49be-a163-7645b19edc8e"
+    status: NO MATCH in any captured system
+    note:   Fillout UUID. PG: intake_submissions.submission_uuid.
+
+anchor.projects[].projectClaims[].claimType   = "project | assessment | task | trade | scope"
+    status: NO MATCH in any captured system
+    note:   Value "project | assessment | task | trade | scope" is an ENUM PLACEHOLDER, not data. Same for photoType.
+
+anchor.projects[].projectClaims[].claimRecordId   = "recxhEWMhnJMskHB7"
+    status: NO MATCH in any captured system
+    target: application_assignments.claim_record_id
+
+anchor.projects[].projectClaims[].claimDateUnix   = "1587513600"
+    status: NO MATCH in any captured system
+    target: application_assignments.claim_date_unix
+
+anchor.projects[].projectClaims[].claimOrgRecordId   = "rece4YxvGuXoHDMTg"
+    status: NO MATCH in any captured system
+    target: application_assignments.claim_org_record_id
+
+anchor.projects[].applicationRepairRequests[].reqType   = "OPENENV"
+    status: NO MATCH in any captured system
+    note:   e.g. OPENENV. PG has no type column on repair_requests; repair_categories is closest.
+
+anchor.projects[].applicationRepairRequests[].reqText   = "I'm missing a window in the bathroom and critters are gettin..."
+    status: NO MATCH in any captured system
+    note:   PG equivalent: repair_requests.repair_need.
+
+anchor.projects[].applicationRepairRequests[].reqRecordId   = "recCobdkypLuNJWep"
+    status: NO MATCH in any captured system
+    target: repair_requests.req_record_id
+
+anchor.projects[].applicationRepairRequests[].reqRecordURL   = "https://airtable.com/appdJHg317xbe3Sd4/tblaDRBG24hOkNsHT/rec..."
+    status: NO MATCH in any captured system
+    target: repair_requests.req_record_url
+
+anchor.projects[].applicationRepairRequests[].reqAssessed   = "true"
+    status: NO MATCH in any captured system
+    target: repair_requests.req_assessed
+
+anchor.projects[].applicationRepairRequests[].reqAssessment.reqAssessed   = "true"
+    status: NO MATCH in any captured system
+    target: property_assessments.req_assessed
+
+anchor.projects[].applicationRepairRequests[].reqAssessment.reqAssessDamageScale   = "5"
+    status: NO MATCH in any captured system
+    target: property_assessments.req_assess_damage_scale
+
+anchor.projects[].applicationRepairRequests[].reqAssessment.reqAssessNotes   = "That window sure is gone"
+    status: NO MATCH in any captured system
+    target: property_assessments.req_assess_notes
+
+anchor.projects[].applicationRepairRequests[].reqAssessment.reqAssessMeasurments   = "window R/O : 23" x 46""
+    status: NO MATCH in any captured system
+    note:   TYPO in source: Measurments -> Measurements.
+
+anchor.projects[].applicationRepairRequests[].reqAssessment.assessmentId   = "recm2jzI2ORQAFUKz"
+    status: IN POSTGRES, not yet in Dummy DB
+    pg:     property_assessments.assessment_id ; repair_estimates.assessment_id ; assessment_tasks.assessment_id ; assessment_notes.assessment_id
+    target: property_assessments.assessment_id
+
+anchor.projects[].applicationRepairRequests[].reqAssessment.reqAssessedTaskIds[]   = "recgY5pr7i6zRKbZj"
+    status: NO MATCH in any captured system
+    target: property_assessments.req_assessed_task_ids
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedLabel   = "Carpentry | Window Installation"
+    status: NO MATCH in any captured system
+    target: robo_needs. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedTrade   = "Carpentry"
+    status: NO MATCH in any captured system
+    target: robo_needs. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedLoaction   = "Bathroom"
+    status: NO MATCH in any captured system
+    note:   TYPO in source: Loaction -> Location.
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedSystem   = "Windows/Doors"
+    status: NO MATCH in any captured system
+    target: robo_needs. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedSummary   = "Window in bathroom installed, flashed and leak-tested"
+    status: NO MATCH in any captured system
+    target: robo_needs. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedTriageCategory[]   = "!SAFET"
+    status: NO MATCH in any captured system
+    note:   Values like !SAFET/!HEALT/!WEATH - see eligibility-check FlagList CSV. Suggest eligibility_flags link.
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedTriageScore   = "8"
+    status: NO MATCH in any captured system
+    target: robo_needs. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedRecordId   = "recEdvqGu9WykTNfM"
+    status: NO MATCH in any captured system
+    target: robo_needs. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboNeedRecordURL   = "https://airtable.com/appBq2Z1a9dssVVbL/tbleFD4I3TbWyLjMk/rec..."
+    status: NO MATCH in any captured system
+    target: robo_needs. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].roboNeeds[].roboTask.checkState   = "false"
+    status: NO MATCH in any captured system
+    target: robo_needs. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessorDisplayName   = "Bingus Bongus"
+    status: NO MATCH in any captured system
+    target: property_assessments.assessor_display_name
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessorDisplayOrg   = "Friendly Neighborhood Fix-It Inc"
+    status: NO MATCH in any captured system
+    target: property_assessments.assessor_display_org
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessorRecordId   = "recmUZiF9VUYtWpMF"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   ARCHR Partner Programs > Organizations > [🎭Assessor] ; [P] ARCHR Eligibility > 💜Organizations Sync > [🎭Assessor]
+    target: property_assessments.assessor_record_id
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessorOrgRecordId   = "rece4YxvGuXoHDMTg"
+    status: NO MATCH in any captured system
+    target: property_assessments.assessor_org_record_id
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessmentDateUNIX   = "1580858000"
+    status: NO MATCH in any captured system
+    target: property_assessments.assessment_date_unix
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessmentRecordId   = "recm2jzI2ORQAFUKz"
+    status: NO MATCH in any captured system
+    target: property_assessments.assessment_record_id
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessmentRecordURL   = "https://airtable.com/app2xoItHa1XOk7Q0/tbl6ynDzyXAZE9K5e/rec..."
+    status: NO MATCH in any captured system
+    target: property_assessments.assessment_record_url
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessedRequestIds[]   = "recCobdkypLuNJWep"
+    status: NO MATCH in any captured system
+    target: property_assessments.assessed_request_ids
+
+anchor.projects[].applicationRepairRequests[].assessments[].assessmentTaskIds[]   = "recgY5pr7i6zRKbZj"
+    status: NO MATCH in any captured system
+    target: property_assessments.assessment_task_ids
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskLabel   = "Install Window"
+    status: NO MATCH in any captured system
+    target: work_tasks.task_label
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskRecordId   = "recIXJuf94bIZ1UID"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Task
+    target: work_tasks.task_record_id
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskRecordURL   = "https://airtable.com/appfhuefuekoCvL3J/tblwaXP3gON7bVDkD/rec..."
+    status: NO MATCH in any captured system
+    target: work_tasks.task_record_url
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].scopeOfWorkRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: work_tasks.scope_of_work_record_id
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].workflowRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: work_tasks.workflow_record_id
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].workflowStepRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: work_tasks.workflow_step_record_id
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].volunteerFriendly   = "true"
+    status: NO MATCH in any captured system
+    target: work_tasks.volunteer_friendly
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].timelineEst.countHours   = "5"
+    status: NO MATCH in any captured system
+    target: work_tasks.count_hours
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].timelineEst.countPeople   = "3"
+    status: NO MATCH in any captured system
+    target: work_tasks.count_people
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].projectRecordId   = (empty)
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Progress Tracker > [🔮Queue V2] > projectRecordId ; [P] ARCHR Progress Tracker > [☑️Project Task Completion] > projectRecordId
+    target: work_tasks.project_record_id
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].claimRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: work_tasks.claim_record_id
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskLibraryElements[].element   = "trade"
+    status: NO MATCH in any captured system
+    target: task_library_elements. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskLibraryElements[].label   = "Carpentry"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   ARCHR Partner Programs > Field_Descriptions > Label ; [P] ARCHR Eligibility > (📚) Fillout Results > [☑️] Label
+    target: task_library_elements. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskLibraryElements[].id   = "recTnoPVmLboI27zf"
+    status: IN POSTGRES, not yet in Dummy DB
+    pg:     intake_submissions.id ; household_attributes.id ; repair_requests.id ; repair_categories.id ; repair_category_details.id
+    live:   [P] ARCHR Eligibility > ✅Eligibility Report > id(⚓🎯) ; [P] ARCHR Eligibility > ⚓🎯 Sync > id(⚓🎯)
+    target: task_library_elements. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCostStatus   = "actual"
+    status: NO MATCH in any captured system
+    target: work_tasks.task_cost_status
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].costType   = "estimate"
+    status: NO MATCH in any captured system
+    note:   VOCAB DRIFT: anchor uses estimate/actual; costingObject uses robo/est/act. Pick one vocabulary (costing README: robo/est/act).
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].total   = "400"
+    status: WEAK - name matched but likely coincidental
+    dummy:  invoice_line_items.total
+    pg:     invoice_line_items.total
+    live:   [P] ARCHR Progress Tracker > CALC > total
+    note:   Plain string here vs money object {value,currency} in costingObject. Standardize money shape.
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].labor   = "200"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW; align with costingObject)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].materials   = "200"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW; align with costingObject)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].costDateUNIX   = "1587513600"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW; align with costingObject)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].roboCost   = "true"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW; align with costingObject)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].costEnteredBy   = (empty)
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW; align with costingObject)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].costEnteredByRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW; align with costingObject)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].receiptBucketRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW; align with costingObject)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskCost[].fundingSourceRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW; align with costingObject)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskNotes[].noteTakerRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: task_notes. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskNotes[].noteTags[]   = (empty)
+    status: NO MATCH in any captured system
+    target: task_notes. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskNotes[].noteText   = (empty)
+    status: NO MATCH in any captured system
+    target: task_notes. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskNotes[].noteDateUNIX   = (empty)
+    status: NO MATCH in any captured system
+    target: task_notes. (NEW TABLE)
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskPhotos[].photoType   = "before | progress | after"
+    status: NO MATCH in any captured system
+    target: task_photos. (NEW TABLE) or case_documents
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskPhotos[].photoRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: task_photos. (NEW TABLE) or case_documents
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskPhotos[].photoRecordURL   = (empty)
+    status: NO MATCH in any captured system
+    target: task_photos. (NEW TABLE) or case_documents
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskPhotos[].photographerRecordId   = (empty)
+    status: NO MATCH in any captured system
+    target: task_photos. (NEW TABLE) or case_documents
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskPhotos[].photoDateUNIX   = (empty)
+    status: NO MATCH in any captured system
+    target: task_photos. (NEW TABLE) or case_documents
+
+anchor.projects[].applicationRepairRequests[].repairTasks[].taskPhotos[].photoNotes   = (empty)
+    status: NO MATCH in any captured system
+    target: task_photos. (NEW TABLE) or case_documents
+
+================================================================================
+SECTION B: costingObject.json - FIELD INVENTORY (153 fields)
+================================================================================
+schemaVersion   = "1.0.0"
+    status: NO MATCH in any captured system
+
+costingId   = "costing_H29ALA"
+    status: NO MATCH in any captured system
+    note:   Snapshot id. Live Document Creator uses projectKEY as pivot; PG nearest cases.case_number.
+
+projectKey   = "H29ALA"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄 Document Creator] > projectKEY
+    note:   Live confirmed: [D] ARCHR Project Documents > [🪄 Document Creator] > projectKEY.
+
+projectOrgId   = "org_archr_partner_01"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Progress Tracker > [💜Orgs] > [🎯+💜] Project_Org
+
+source.system   = "project-costing"
+    status: NO MATCH in any captured system
+    target: (provenance metadata - jsonb)
+
+source.recordId   = "rec_example"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > ⚓🎯 Sync > [⚓🎯+📚] ; [P] ARCHR Progress Tracker > [◼️Project Event V2] > !!!
+    target: (provenance metadata - jsonb)
+
+source.url   = "https://example.invalid/project/H29ALA"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > Project Documents > url ; [P] ARCHR Progress Tracker > [📎Sync] > url
+    target: (provenance metadata - jsonb)
+
+contract.contractId   = "contract_H29ALA"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > ❌Application Documents > Contract
+    target: contracts. (NEW TABLE)
+
+contract.bucketRecordId   = "rec_contract_bucket"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > 👷DSW>📎Sync > 🪣Bucket ; [D] ARCHR Project Documents > 💜Orgs Sync > 🪣Bucket
+    target: contracts. (NEW TABLE)
+
+contract.clientId   = "client_example"
+    status: NO MATCH in any captured system
+    target: contracts. (NEW TABLE)
+
+contract.organizationId   = "org_archr_partner_01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  application_assignments.organization_id ; funding_sources.organization_id ; organization_metrics.organization_id
+    pg:     organization_users.organization_id ; organization_eligibility_rules.organization_id ; application_assignments.organization_id ; organization_metrics.organization_id ; user_role_assignments.organization_id
+    live:   ARCHR Partner Programs > Organizations > Organization ; [P] ARCHR Eligibility > 💜Organizations Sync > Organization
+    target: contracts. (NEW TABLE)
+
+contract.status   = "completed"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  application_assignments.status ; document_generation_jobs.status ; email_queue.status ; help_user_progress.status
+    pg:     application_assignments.status ; work_orders.status ; work_tasks.status ; material_requests.status ; case_funding.status
+    live:   [D] ARCHR Project Documents > Subcontractor Documents > Status ; [P] ARCHR Progress Tracker > [⁉️Completion Record Conflict] > Status
+    target: contracts. (NEW TABLE)
+
+contract.signedDate   = "2026-04-01"
+    status: NO MATCH in any captured system
+    target: contracts. (NEW TABLE)
+
+contract.completionCertificateDate   = "2026-07-01"
+    status: NO MATCH in any captured system
+    target: contracts. (NEW TABLE)
+
+contract.contractAmount.value   = "12500.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    note:   No contracts table in PG. All contract.* fields need NEW contracts table.
+
+contract.contractAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: contracts. (NEW TABLE)
+
+contract.documentId   = "doc_contract_H29ALA"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  document_access_log.document_id ; help_document_attachments.document_id ; help_document_reviews.document_id ; help_user_progress.document_id
+    pg:     document_access_log.document_id ; document_share_links.document_id ; help_documents.document_id ; help_document_attachments.document_id ; help_document_versions.document_id
+    live:   [D] ARCHR Project Documents > 💜Orgs Sync > Document ; [D] ARCHR Project Documents > Subcontractor Documents > Document
+    target: contracts. (NEW TABLE)
+
+costEntries[].costEntryId   = "cost_task_roof_robo_01"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].costScope   = "task"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].taskId   = "task_roof_01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  invoice_line_items.task_id ; material_requests.task_id ; task_status_history.task_id
+    pg:     task_status_history.task_id ; material_requests.task_id ; invoice_line_items.task_id ; subcontractor_quotes.task_id ; subcontractor_invoices.task_id
+    live:   [P] ARCHR Progress Tracker > [🏁✔️Checklist Items] > taskId ; [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Task
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].costType   = "robo"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].costStatus   = "superseded"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].amounts.total.value   = "9800.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].amounts.total.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].amounts.labor.value   = "2800.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].amounts.labor.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].amounts.materials.value   = "7000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].amounts.materials.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].effectiveAt   = "2026-02-10T14:00:00Z"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].derivation.method   = "assessment_model"
+    status: NO MATCH in any captured system
+    target: cost_entries.derivation_*
+
+costEntries[].derivation.basisIds[]   = "assessment_01"
+    status: NO MATCH in any captured system
+    target: cost_entries.derivation_*
+
+costEntries[].derivation.engineVersion   = "robo-cost/1.0"
+    status: NO MATCH in any captured system
+    target: cost_entries.derivation_*
+
+costEntries[].derivation.confidence   = "medium"
+    status: NO MATCH in any captured system
+    target: cost_entries.derivation_*
+
+costEntries[].enteredBy.name   = "ARCHR Costing Automation"
+    status: WEAK - name matched but likely coincidental
+    dummy:  Table 1.Name
+    live:   ARCHR Partner Programs > New Programs > Name ; ARCHR Partner Programs > Programs > Name
+    target: cost_entries.entered_by_*
+
+costEntries[].enteredBy.recordId   = "automation_costing"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > ⚓🎯 Sync > [⚓🎯+📚] ; [P] ARCHR Progress Tracker > [◼️Project Event V2] > !!!
+    target: cost_entries.entered_by_*
+
+costEntries[].enteredBy.sourceSystem   = "task-library"
+    status: NO MATCH in any captured system
+    target: cost_entries.entered_by_*
+
+costEntries[].notes   = "Initial task projection generated during assessment."
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  application_assignments.notes ; assignment_log.notes ; cases.notes ; case_documents.notes
+    pg:     application_assignments.notes ; assignment_log.notes ; user_role_assignments.notes ; cases.notes ; case_status_history.notes
+    live:   [P] ARCHR Eligibility > (📚) Fillout Results > notes ; [D] ARCHR Project Documents > 🪣Bucket > 📷Notes
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].supersedesCostEntryId   = "cost_task_roof_robo_01"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].evidenceIds[]   = "invoice_quote_01"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+costEntries[].fundingSelectionIds[]   = "funding_selection_01"
+    status: NO MATCH in any captured system
+    target: cost_entries. (NEW TABLE)
+
+fundingSelections[].fundingSelectionId   = "funding_selection_01"
+    status: NO MATCH in any captured system
+    target: case_funding.funding_selection_id
+
+fundingSelections[].fundingSourceId   = "fund_cdbg_fy27"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  case_funding.funding_source_id
+    pg:     case_funding.funding_source_id ; reimbursement_requests.funding_source_id
+    target: case_funding.funding_source_id
+
+fundingSelections[].fundGroup   = "CDBG"
+    status: NO MATCH in any captured system
+    note:   e.g. CDBG. funding_sources has no group/year columns - add fund_group, fund_year.
+
+fundingSelections[].fundYear   = "FY27"
+    status: NO MATCH in any captured system
+    target: case_funding.fund_year
+
+fundingSelections[].status   = "approved"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  application_assignments.status ; document_generation_jobs.status ; email_queue.status ; help_user_progress.status
+    pg:     application_assignments.status ; work_orders.status ; work_tasks.status ; material_requests.status ; case_funding.status
+    live:   [D] ARCHR Project Documents > Subcontractor Documents > Status ; [P] ARCHR Progress Tracker > [⁉️Completion Record Conflict] > Status
+    target: case_funding.status
+
+fundingSelections[].selectedAt   = "2026-07-03T14:00:00Z"
+    status: NO MATCH in any captured system
+    target: case_funding.selected_at
+
+fundingSelections[].selectedBy.name   = "Example Grants Reviewer"
+    status: WEAK - name matched but likely coincidental
+    dummy:  Table 1.Name
+    live:   ARCHR Partner Programs > New Programs > Name ; ARCHR Partner Programs > Programs > Name
+    target: case_funding.allocated_by (user ref)
+
+fundingSelections[].selectedBy.recordId   = "user_grants_01"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > ⚓🎯 Sync > [⚓🎯+📚] ; [P] ARCHR Progress Tracker > [◼️Project Event V2] > !!!
+    target: case_funding.allocated_by (user ref)
+
+fundingSelections[].selectedBy.sourceSystem   = "funding-sources"
+    status: NO MATCH in any captured system
+    target: case_funding.allocated_by (user ref)
+
+fundingSelections[].costEntryIds[]   = "cost_task_roof_act_03"
+    status: NO MATCH in any captured system
+    target: case_funding.cost_entry_ids
+
+fundingSelections[].expenseAmount.value   = "10750.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: case_funding.value
+
+fundingSelections[].expenseAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: case_funding.currency
+
+fundingSelections[].eligibleAmount.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: case_funding.value
+
+fundingSelections[].eligibleAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: case_funding.currency
+
+fundingSelections[].requestedAmount.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: case_funding.value
+
+fundingSelections[].requestedAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: case_funding.currency
+
+fundingSelections[].approvedAmount.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: case_funding.value
+
+fundingSelections[].approvedAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: case_funding.currency
+
+fundingSelections[].drawRequestIds[]   = "draw_01"
+    status: NO MATCH in any captured system
+    target: case_funding.draw_request_ids
+
+fundingEvidence.receipts[].receiptId   = "receipt_materials_01"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].documentId   = "doc_receipt_01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  document_access_log.document_id ; help_document_attachments.document_id ; help_document_reviews.document_id ; help_user_progress.document_id
+    pg:     document_access_log.document_id ; document_share_links.document_id ; help_documents.document_id ; help_document_attachments.document_id ; help_document_versions.document_id
+    live:   [D] ARCHR Project Documents > 💜Orgs Sync > Document ; [D] ARCHR Project Documents > Subcontractor Documents > Document
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].receiptDate   = "2026-06-10"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].vendorId   = "vendor_materials_01"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].vendorName   = "Example Building Supply"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  invoices.vendor_name
+    pg:     invoices.vendor_name
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].amount.value   = "8000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].amount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].confirmed   = "true"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].confirmedAt   = "2026-07-02T13:00:00Z"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].costEntryIds[]   = "cost_task_roof_act_03"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].taskIds[]   = "task_roof_01"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.receipts[].proofOfPaymentDocumentId   = "doc_card_statement_01"
+    status: NO MATCH in any captured system
+    target: receipts. (NEW TABLE)
+
+fundingEvidence.invoices[].invoiceId   = "invoice_quote_01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  invoice_line_items.invoice_id
+    pg:     invoice_line_items.invoice_id
+    live:   [D] ARCHR Project Documents > Subcontractor Documents > invoiceId ; [D] ARCHR Project Documents > 👷DSW>📎Sync > Invoice
+    target: invoices.invoice_id
+
+fundingEvidence.invoices[].contractId   = "contract_H29ALA"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > ❌Application Documents > Contract
+    target: invoices.contract_id
+
+fundingEvidence.invoices[].invoiceNumber   = "INV-EXAMPLE-01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  invoices.invoice_number
+    pg:     reimbursement_requests.invoice_number ; invoices.invoice_number ; subcontractor_invoices.invoice_number
+    target: invoices.invoice_number
+
+fundingEvidence.invoices[].invoiceDate   = "2026-03-20"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  invoices.invoice_date
+    pg:     reimbursement_requests.invoice_date ; invoices.invoice_date ; subcontractor_invoices.invoice_date
+    target: invoices.invoice_date
+
+fundingEvidence.invoices[].status   = "approved"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  application_assignments.status ; document_generation_jobs.status ; email_queue.status ; help_user_progress.status
+    pg:     application_assignments.status ; work_orders.status ; work_tasks.status ; material_requests.status ; case_funding.status
+    live:   [D] ARCHR Project Documents > Subcontractor Documents > Status ; [P] ARCHR Progress Tracker > [⁉️Completion Record Conflict] > Status
+    target: invoices.status
+
+fundingEvidence.invoices[].vendor.subcontractorPool   = "true"
+    status: NO MATCH in any captured system
+    target: invoices.vendor_* / subcontractor_*
+
+fundingEvidence.invoices[].vendor.subcontractorId   = "sub_roof_01"
+    status: IN POSTGRES, not yet in Dummy DB
+    pg:     subcontractor_quotes.subcontractor_id ; subcontractor_invoices.subcontractor_id ; subcontractor_communications.subcontractor_id
+    live:   [D] ARCHR Project Documents > Subcontractor Documents > Subcontractor ; [D] ARCHR Project Documents > 💟People > Subcontractor
+    target: invoices.vendor_* / subcontractor_*
+
+fundingEvidence.invoices[].vendor.subcontractorName   = "Example Roofing Partner"
+    status: NO MATCH in any captured system
+    target: invoices.vendor_* / subcontractor_*
+
+fundingEvidence.invoices[].amount.value   = "11000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: invoices.value
+
+fundingEvidence.invoices[].amount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: invoices.currency
+
+fundingEvidence.invoices[].taskIds[]   = "task_roof_01"
+    status: NO MATCH in any captured system
+    target: invoices.task_ids
+
+fundingEvidence.invoices[].costEntryIds[]   = "cost_task_roof_est_02"
+    status: NO MATCH in any captured system
+    target: invoices.cost_entry_ids
+
+fundingEvidence.invoices[].documentId   = "doc_invoice_quote_01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  document_access_log.document_id ; help_document_attachments.document_id ; help_document_reviews.document_id ; help_user_progress.document_id
+    pg:     document_access_log.document_id ; document_share_links.document_id ; help_documents.document_id ; help_document_attachments.document_id ; help_document_versions.document_id
+    live:   [D] ARCHR Project Documents > 💜Orgs Sync > Document ; [D] ARCHR Project Documents > Subcontractor Documents > Document
+    target: invoices.document_id
+
+fundingEvidence.invoices[].documentEvents[].action   = "uploaded"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  assignment_log.action ; audit_log.action
+    pg:     audit_log.action ; assignment_log.action
+    live:   [P] ARCHR Progress Tracker > [⚙️Progress Tasks] > ❇️Action ; [P] ARCHR Progress Tracker > [❌❌Project Event] > Action
+    target: document_access_log.action
+
+fundingEvidence.invoices[].documentEvents[].occurredAt   = "2026-03-20T15:00:00Z"
+    status: NO MATCH in any captured system
+    target: document_access_log.occurred_at
+
+fundingEvidence.invoices[].documentEvents[].personId   = "user_pm_01"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Eligibility > 💟Individuals Sync > Person ; [D] ARCHR Project Documents > [Doc] Events > Person
+    target: document_access_log.person_id
+
+fundingEvidence.timeSheets[].timeSheetId   = "timesheet_01"
+    status: NO MATCH in any captured system
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].personId   = "staff_01"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Eligibility > 💟Individuals Sync > Person ; [D] ARCHR Project Documents > [Doc] Events > Person
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].personName   = "Example Construction Staff"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [P] ARCHR Eligibility > ✉️Eligibility Email > personName
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].hoursWorked   = "25.00"
+    status: IN POSTGRES, not yet in Dummy DB
+    pg:     crew_volunteer_signin.hours_worked
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].personRate.value   = "110.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].personRate.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].calculatedAmount.value   = "2750.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].calculatedAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].startAt   = "2026-06-01T12:00:00Z"
+    status: NO MATCH in any captured system
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].endAt   = "2026-06-20T21:00:00Z"
+    status: NO MATCH in any captured system
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].taskIds[]   = "task_roof_01"
+    status: NO MATCH in any captured system
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].costEntryIds[]   = "cost_task_roof_act_03"
+    status: NO MATCH in any captured system
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].documentId   = "doc_timesheet_01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  document_access_log.document_id ; help_document_attachments.document_id ; help_document_reviews.document_id ; help_user_progress.document_id
+    pg:     document_access_log.document_id ; document_share_links.document_id ; help_documents.document_id ; help_document_attachments.document_id ; help_document_versions.document_id
+    live:   [D] ARCHR Project Documents > 💜Orgs Sync > Document ; [D] ARCHR Project Documents > Subcontractor Documents > Document
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+fundingEvidence.timeSheets[].status   = "approved"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  application_assignments.status ; document_generation_jobs.status ; email_queue.status ; help_user_progress.status
+    pg:     application_assignments.status ; work_orders.status ; work_tasks.status ; material_requests.status ; case_funding.status
+    live:   [D] ARCHR Project Documents > Subcontractor Documents > Status ; [P] ARCHR Progress Tracker > [⁉️Completion Record Conflict] > Status
+    target: time_sheets. (NEW TABLE; nearest existing: volunteer_hours)
+
+drawRequests[].drawRequestId   = "draw_01"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.draw_request_id
+
+drawRequests[].drawNumber   = "1"
+    status: NO MATCH in any captured system
+    note:   PG nearest: reimbursement_requests.request_id (REIMB-YYYY-NNNNN).
+
+drawRequests[].fundingSourceId   = "fund_cdbg_fy27"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  case_funding.funding_source_id
+    pg:     case_funding.funding_source_id ; reimbursement_requests.funding_source_id
+    target: reimbursement_requests.funding_source_id
+
+drawRequests[].fundingSelectionIds[]   = "funding_selection_01"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.funding_selection_ids
+
+drawRequests[].contractId   = "contract_H29ALA"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > ❌Application Documents > Contract
+    target: reimbursement_requests.contract_id
+
+drawRequests[].costEntryIds[]   = "cost_task_roof_act_03"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.cost_entry_ids
+
+drawRequests[].invoiceIds[]   = "invoice_quote_01"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.invoice_ids
+
+drawRequests[].receiptIds[]   = "receipt_materials_01"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.receipt_ids
+
+drawRequests[].timeSheetIds[]   = "timesheet_01"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.time_sheet_ids
+
+drawRequests[].scopeOfWork   = "Roof replacement and related weatherization repairs."
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.scope_of_work
+
+drawRequests[].reportingPeriod.startDate   = "2026-06-01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  funding_sources.start_date
+    pg:     funding_sources.start_date
+    live:   [P] ARCHR Progress Tracker > [⚙️Progress Tasks] > Start date
+    target: reimbursement_requests. (period_start/period_end NEW)
+
+drawRequests[].reportingPeriod.endDate   = "2026-06-30"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  funding_sources.end_date
+    pg:     funding_sources.end_date
+    live:   [P] ARCHR Progress Tracker > [⚙️Progress Tasks] > End date
+    target: reimbursement_requests. (period_start/period_end NEW)
+
+drawRequests[].contractPrice.value   = "12500.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: reimbursement_requests.value
+
+drawRequests[].contractPrice.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.currency
+
+drawRequests[].expenseTotal.value   = "10750.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: reimbursement_requests.value
+
+drawRequests[].expenseTotal.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.currency
+
+drawRequests[].requestedAmount.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: reimbursement_requests.value
+
+drawRequests[].requestedAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.currency
+
+drawRequests[].approvedAmount.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: reimbursement_requests.value
+
+drawRequests[].approvedAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.currency
+
+drawRequests[].adminFeeAmount.value   = "500.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: reimbursement_requests.value
+
+drawRequests[].adminFeeAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: reimbursement_requests.currency
+
+drawRequests[].status   = "paid"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  application_assignments.status ; document_generation_jobs.status ; email_queue.status ; help_user_progress.status
+    pg:     application_assignments.status ; work_orders.status ; work_tasks.status ; material_requests.status ; case_funding.status
+    live:   [D] ARCHR Project Documents > Subcontractor Documents > Status ; [P] ARCHR Progress Tracker > [⁉️Completion Record Conflict] > Status
+    target: reimbursement_requests.status
+
+drawRequests[].submittedAt   = "2026-07-05T14:00:00Z"
+    status: IN POSTGRES, not yet in Dummy DB
+    pg:     intake_submissions.submitted_at ; reimbursement_requests.submitted_at ; application_anchor.submitted_at
+    target: reimbursement_requests.submitted_at
+
+drawRequests[].approvedAt   = "2026-07-10T14:00:00Z"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  cases.approved_at ; invoices.approved_at ; material_requests.approved_at
+    pg:     cases.approved_at ; repair_estimates.approved_at ; material_requests.approved_at ; reimbursement_requests.approved_at ; invoices.approved_at
+    target: reimbursement_requests.approved_at
+
+drawRequests[].documentId   = "doc_draw_workbook_01"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  document_access_log.document_id ; help_document_attachments.document_id ; help_document_reviews.document_id ; help_user_progress.document_id
+    pg:     document_access_log.document_id ; document_share_links.document_id ; help_documents.document_id ; help_document_attachments.document_id ; help_document_versions.document_id
+    live:   [D] ARCHR Project Documents > 💜Orgs Sync > Document ; [D] ARCHR Project Documents > Subcontractor Documents > Document
+    target: reimbursement_requests.document_id
+
+payments[].paymentId   = "payment_01"
+    status: NO MATCH in any captured system
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].drawRequestId   = "draw_01"
+    status: NO MATCH in any captured system
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].fundingSelectionIds[]   = "funding_selection_01"
+    status: NO MATCH in any captured system
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].fundingSourceId   = "fund_cdbg_fy27"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  case_funding.funding_source_id
+    pg:     case_funding.funding_source_id ; reimbursement_requests.funding_source_id
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].recipientOrgId   = "org_archr_partner_01"
+    status: NO MATCH in any captured system
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].amount.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].amount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].paymentDate   = "2026-07-17"
+    status: NO MATCH in any captured system
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].paymentReference   = "CHECK-EXAMPLE-01"
+    status: IN POSTGRES, not yet in Dummy DB
+    pg:     reimbursement_requests.payment_reference ; subcontractor_invoices.payment_reference
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].status   = "paid"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  application_assignments.status ; document_generation_jobs.status ; email_queue.status ; help_user_progress.status
+    pg:     application_assignments.status ; work_orders.status ; work_tasks.status ; material_requests.status ; case_funding.status
+    live:   [D] ARCHR Project Documents > Subcontractor Documents > Status ; [P] ARCHR Progress Tracker > [⁉️Completion Record Conflict] > Status
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+payments[].financeSystemReference   = "finance_txn_example"
+    status: NO MATCH in any captured system
+    target: payments. (NEW TABLE) or reimbursement_requests.paid_*
+
+reportingSummary.currentProjectedCost.value   = "11000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.currentProjectedCost.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.currentAttributedActualCost.value   = "10750.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.currentAttributedActualCost.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.totalRequested.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.totalRequested.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.totalApproved.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.totalApproved.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.totalPaid.value   = "10000.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.totalPaid.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.unfundedAmount.value   = "750.00"
+    status: IN LIVE AIRTABLE, missing from Postgres/Dummy
+    live:   [D] ARCHR Project Documents > [🪄DocBuilder] List Items > Value ; [P] ARCHR Progress Tracker > Draw Request Entries > Value
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.unfundedAmount.currency   = "USD"
+    status: NO MATCH in any captured system
+    target: (derived view - no table; see bursar case_funding_summary)
+
+reportingSummary.calculatedAt   = "2026-07-17T20:00:00Z"
+    status: NO MATCH in any captured system
+    note:   Derived/computed - do not store as column; regenerate via view.
+
+createdAt   = "2026-02-10T14:00:00Z"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  badges.created_at ; cases.created_at ; case_documents.created_at ; document_generation_jobs.created_at
+    pg:     income_records.created_at ; coalition_organizations.created_at ; organization_users.created_at ; organization_eligibility_rules.created_at ; organization_metrics.created_at
+
+updatedAt   = "2026-07-17T20:00:00Z"
+    status: CONFIRMED in Dummy DB (= Postgres name)
+    dummy:  cases.updated_at ; case_documents.updated_at ; organization_metrics.updated_at ; property_assessments.updated_at
+    pg:     coalition_organizations.updated_at ; organization_eligibility_rules.updated_at ; organization_metrics.updated_at ; system_users.updated_at ; cases.updated_at
+
+================================================================================
+SECTION C: ENTITY / TABLE MAPPING SUMMARY
+================================================================================
+JSON entity                          | PostgreSQL target             | Dummy DB today | Live Airtable source
+-------------------------------------|-------------------------------|----------------|----------------------------------
+anchor.placeCode                     | place_codes (NEW)             | MISSING        | ANCHOR Records appWAmMNCsnsAgyTW (NOT captured);
+                                     |                               |                | sync copies ⚓📍Sync in 3 captured bases
+anchor.placeCode.gisInfo             | place_codes.gis_* (NEW cols)  | MISSING        | GIS query tbl appWAmMNCsnsAgyTW/tblshhfUIX509LbZy;
+                                     |                               |                | GIS_PINNUM + GIS_ADDRESS confirmed in ⚓📍Sync
+anchor.placeCode.dataSources[]       | anchor_data_sources (NEW)     | MISSING        | source bases per record (AAHH CS_NRI, Fillout, ...)
+anchor.placeCode.dataSources[].dates | project_events (NEW)          | MISSING        | Progress Tracker [❌❌Project Event] / [◼️Project Event V2]
+anchor.projects[]                    | cases                         | cases EXISTS   | Progress Tracker [🎯 Sync] (🎯Project Code)
+anchor.projects[].projectClaims[]    | application_assignments /     | application_assignments | live claim tables in org bases
+                                     | case_claims                   | EXISTS; case_claims MISSING
+applicationRepairRequests[]          | repair_requests               | EXISTS         | Fillout Results / Repair Requests bases (NOT captured)
+  .reqAssessment / .assessments[]    | property_assessments          | EXISTS         | assessments base app2xoItHa1XOk7Q0 (NOT in base registry)
+  .roboNeeds[]                       | robo_needs (NEW)              | MISSING        | Repair Requests base appBq2Z1a9dssVVbL (NOT captured)
+  .repairTasks[]                     | work_tasks                    | EXISTS         | Multi Axis Task Library appfhuefuekoCvL3J (NOT captured)
+  .taskLibraryElements[]             | task_library_elements (NEW)   | MISSING        | same Task Library base (trade/item/room/interaction)
+  .taskCost[]                        | cost_entries (NEW - unify     | MISSING        | see costing object; cost vocab drift (est/act vs robo/est/act)
+                                     |   with costingObject)         |                |
+  .taskNotes[]                       | task_notes (NEW)              | MISSING        | -
+  .taskPhotos[]                      | case_documents or task_photos | case_documents | Project Documents 🪣Bucket (captured)
+costing root (projectKey)            | cases.case_number pivot       | cases EXISTS   | Document Creator > projectKEY (captured)
+contract                             | contracts (NEW)               | MISSING        | ❌Application Documents > Contract (captured)
+costEntries[]                        | cost_entries (NEW)            | MISSING        | robo/est/act lifecycle; nearest existing: repair_estimates
+fundingSelections[]                  | case_funding                  | EXISTS         | fundGroup/fundYear need new funding_sources columns
+fundingEvidence.receipts[]           | receipts (NEW)                | MISSING        | -
+fundingEvidence.invoices[]           | invoices (+ line items)       | EXISTS         | Subcontractor Documents (captured)
+fundingEvidence.timeSheets[]         | time_sheets (NEW)             | MISSING        | nearest existing: volunteer_hours
+drawRequests[]                       | reimbursement_requests        | MISSING (PG only) | Progress Tracker > Draw Request Entries (captured)
+payments[]                           | payments (NEW) or reimb.paid_*| MISSING        | -
+reportingSummary                     | derived VIEW (like bursar.sql | n/a            | recompute, do not store
+                                     |   case_funding_summary)       |                |
+
+================================================================================
+SECTION D: CONFIRMED-LIVE FIELDS THAT NEED NEW POSTGRES COLUMNS
+================================================================================
+These names are verified in live captures but have no Postgres home yet:
+  ⚓ Full Address        (⚓📍Sync)  -> place_codes.full_address
+  ⚓Street Address       (⚓📍Sync)  -> place_codes.street_address   (today only intake_submissions.home_address)
+  ⚓Legacy Neighborhood  (⚓📍Sync)  -> place_codes.legacy_neighborhood   <-- user-flagged
+  ⚓County / ⚓State / ⚓Unit        -> place_codes.county / state / unit
+  ⚓📍PlaceCode / 📍PLACE_CODE       -> place_codes.place_code
+  GIS_ADDRESS            (⚓📍Sync)  -> place_codes.gis_address
+  GIS_PINNUM             (⚓📍Sync)  -> place_codes.gis_pinnum
+  ⚓📍bldgValue          (Fillout)   -> place_codes.bldg_value
+  projectKEY             (Document Creator) -> project pivot key on cases/costing
+  projectRecordId        (Progress Tracker) -> Airtable pointer; keep as airtable_record_id if needed
+NOT confirmed anywhere (boss-coined, confirm spelling/name with boss):
+  inputAddress (raw pre-GIS input - suggest place_codes.input_address)
+  lat / long / gmapsPlaceId (suggest place_codes.latitude/longitude/gmaps_place_id)
+  countyCode (BUNCO), owner, propCardPrintURL (GIS extras)
+
+================================================================================
+SECTION E: POSTGRES TABLES NOT YET MIRRORED IN THE DUMMY DB (capture 2026-07-14)
+================================================================================
+Core gaps (verify - Dummy DB may have been extended after the capture):
+  intake_submissions (!), coalition_organizations, organization_users, system_users, roles,
+  case_statuses, repair_estimates, case_communications, reimbursement_requests, case_claims,
+  application_anchor, eligibility_results, notifications, review_queue, edit_requests
+Also missing: document_categories/templates/share_links/storage_providers, help_* (5 tables),
+  crew_* (6), subcontractor_* (4), quests/skills/volunteer_* gamification set, project_* PM set.
+Dummy DB extras with no PG equivalent: only "Table 1" (default Airtable artifact - safe to ignore).
+
+================================================================================
+SECTION F: CONSISTENCY ISSUES TO FIX IN FUTURE MAPPING OBJECTS
+================================================================================
+  1. costType vocabulary drift: anchor taskCost uses estimate/actual; costingObject uses
+     robo/est/act. costing/README.md defines robo/est/act - use that everywhere.
+  2. Date formats: anchor mixes UNIX seconds (dateUNIX, claimDateUnix), 13-digit milliseconds
+     (lastUpdateUNIX "1773360000000"), and one 11-digit typo (dateUNIX "17821728000" for
+     6/23/2026 should be 1782172800). costingObject uses ISO 8601. Standardize on ISO 8601.
+  3. ID/Id casing: placeCodeRecordID vs placeCodeRecordId appear in the SAME file.
+  4. Typos in live-facing names: roboNeedLoaction (Location), reqAssessMeasurments (Measurements).
+  5. Money shape: anchor taskCost uses plain string total/labor/materials; costingObject uses
+     {value, currency}. Pick {value,currency} (matches costing schemas) or plain strings, not both.
+  6. Enum placeholders stored as values: claimType "project | assessment | task | trade | scope"
+     and photoType "before | progress | after" are documentation, not data - mark as enums.
+  7. *RecordURL fields are derivable from baseId/tableId/recordId - do not store as columns.
+
+================================================================================
+SECTION G: SUGGESTED NEW MAPPING OBJECTS (for the boss to author next)
+================================================================================
+Priority order, by how much they unblock this confirmation process:
+  1. placeCodeObject.json   - extract anchor.placeCode as a standalone object. It is the most-
+     referenced, least-represented entity in Postgres (needs place_codes table + GIS columns).
+  2. organizationObject.json - 💜Organizations/Directory records (claimOrgRecordId, projectOrgId,
+     assessorOrgRecordId) -> coalition_organizations. Directory base appfCMatXfknvXNkc uncaptured.
+  3. personObject.json      - 💟People/Individuals (assessor, enteredBy, noteTaker, photographer,
+     personId) -> system_users / organization_users.
+  4. projectEventObject.json - the dates[] milestones (_FIRST/_ASSESS/_COMPLETE dateCode vocab)
+     -> proposed project_events table; source: Progress Tracker event tables.
+  5. taskLibraryObject.json  - trade/item/room/interaction taxonomy + volunteerFriendly +
+     timelineEst -> proposed task_library tables; source: Multi Axis Task Library base.
+  6. contractObject.json     - one contract per projectKey -> proposed contracts table.
+  7. documentObject.json     - documentId/bucketRecordId/photoRecordId/proofOfPaymentDocumentId
+     -> case_documents + Project Documents base Bucket/DocBuilder tables.
+  8. intakeSubmissionObject.json - Fillout submission -> intake_submissions (table not yet in
+     the Dummy DB at all - highest-priority mirror gap).
+  9. eligibilityResultObject.json - flags/AMI/route results -> application_anchor +
+     eligibility_results (both exist in PG sql, neither mirrored to Dummy DB).
+ 10. fundingSourceObject.json - fundGroup/fundYear/restrictions/balances -> funding_sources.
+
+RECAPTURE RECOMMENDATIONS
+  - Re-pull Dummy DB datamap-records (current capture is 2026-07-14; ~1 month stale).
+  - Capture the 5 uncaptured live bases (ANCHOR Records first - it is the source of truth
+    for placeCode/GIS fields like inputAddress that cannot be verified offline today).
+  - Re-run ben/datamap/Consoladate pipeline so the datamap Fields registry covers all bases,
+    not just [P] ARCHR Eligibility (917 fields, 1 base, as of 2026-06-17).
+
+================================================================================
+ADDENDUM 2026-08-14: document-generation TOKEN REGISTRY (third mapping object)
+================================================================================
+Added while building the Case Documents front end (app/case-documents.php), which
+loads the token registry live. Treat elemental-integration/document-generation/
+document-tokens.json as the third mapping object alongside archr_anchor.json and
+costingObject.json: it maps {template -> tokens} and {token -> type, label, used_in}.
+
+CONFIRMED / FIXED
+  - document-tokens.json was INVALID JSON on arrival: Draw Request template had
+    "tokens_count": 35+, (bare 35+). json_decode returned null for every consumer.
+    Fixed to "35+" (string). The file now parses and drives the generate modal.
+  - Templates enumerated by the registry: Contract, CDBG-CENST, CDBG-SHPO, CDBG-ERR,
+    CDBG-IDIS, Final Notice Letter, NC Habitat Form, Draw Request Reporting Workbook.
+    Token groups: home, organization, author, grant, draw, scope, tasks
+    (repairTask array), demographics, lookups (lookup_docOrg, lookup_cdbg_scope).
+
+HYGIENE ISSUES IN TOKEN NAMES (mapping-relevant; fix in registry + templates together)
+  1. {{ytd_a}}}  - stray third brace (from archived All_Fields.csv; verify against
+     the live [Docupilot Params] table before renaming, since tokens map by name).
+  2. Whitespace-padded tokens persisted from the params export: " {{drawConstCost}} ",
+     "   {{scopeDemo}}   ", "   {{docGrantFY}}   ", " {{drawProjTotal}} " etc.
+     Templates must pad identically or the replacement misses.
+  3. Template name drift: the registry used three spellings of one template -
+     "Draw Request Reporting Workbook" (template key), "Draw Requset Reporting
+     Workbook" (typo in 11 used_in rows), and "Draw Request Workbook" (4 rows).
+     Normalized all used_in rows to the template key spelling 2026-08-14.
+     The typo persists in the archived params export and possibly live Airtable
+     views - verify against the live [Docupilot Params] table before renaming
+     anything there, since automations match by name.
+
+STATUS VOCABULARY DRIFT (plan vs applied schema)
+  - doc-generation-system-implementation-plan.md used draft/generated/signed/final.
+  - The deployed document_statuses seed (sql/document-storage.sql) uses
+    PENDING / UPLOADED / PROCESSING / VERIFIED / REJECTED / ARCHIVED / DELETED.
+  - Working convention adopted by the UI + api/documents.php: generated documents
+    file as PROCESSING with metadata {"generated": true, "template": ...}; staff
+    verification moves them to VERIFIED. If a GENERATED status is wanted as
+    first-class, add it to document_statuses and update the page mapping.
+
+ARTIFACTS NOW POINTING AT THIS REGISTRY
+  - app/case-documents.php + partials/case-documents-body.php (generate modal).
+  - app/api/documents.php generate action validates template names against it.
+  - elemental-integration/components/documents/*.json (6 specs in the component
+    library: directory tree, document card, generate/upload/verify/reject).
+
+END OF REPORT

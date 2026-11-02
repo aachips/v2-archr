@@ -1,0 +1,79 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:13.462Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblm7HvkKBc8xaAhE",
+    "name": "invoice_line_items",
+    "description": null,
+    "primaryFieldId": "fldjHR9bhgSILAxjC",
+    "fields": [
+      {
+        "id": "fldjHR9bhgSILAxjC",
+        "name": "invoice_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldG4liLyeCy37xcK",
+        "name": "task_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldSAkG9Ag04p6Ae9",
+        "name": "description",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldheGIOwtAcVGN3i",
+        "name": "quantity",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldaSF28GpM5PVbGB",
+        "name": "unit_price",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldbfk8gfEtVsAtiu",
+        "name": "total",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viw6kn8tbIwQ9nbKS",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

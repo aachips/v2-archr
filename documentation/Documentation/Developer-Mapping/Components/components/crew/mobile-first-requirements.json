@@ -1,0 +1,29 @@
+{
+  "mobile_requirements": {
+    "touch_targets": {
+      "minimum_size": "44px",
+      "recommended_size": "48px"
+    },
+    "font_sizes": {
+      "headings": "20px",
+      "body": "16px",
+      "labels": "14px",
+      "small_text": "12px"
+    },
+    "navigation": {
+      "bottom_tabs": 5,
+      "icons_with_labels": true,
+      "swipe_gestures": true
+    },
+    "offline": {
+      "cache_ttl": "24 hours",
+      "sync_on_connect": true,
+      "queue_actions": true
+    },
+    "permissions": {
+      "camera": "required",
+      "location": "optional",
+      "notifications": "required"
+    }
+  }
+}

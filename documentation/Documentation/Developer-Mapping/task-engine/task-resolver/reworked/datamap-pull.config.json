@@ -1,0 +1,13 @@
+{
+  "baseId": "apps9VjdjDOR68kpl",
+  "tables": [
+    "tbl1ezkDBeOuDebAq",
+    "tableConfigSetups",
+    "genericEngine",
+    "tbl7mjYmTYjonvw8k",
+    "https://airtable.com/apps9VjdjDOR68kpl/tblAuRVBCx2I7xh3W/viwgGPMwC8XB0R4j7",
+    "https://airtable.com/apps9VjdjDOR68kpl/tblyAyQUfVfNxBKmx/viw8rdmDqOqpx3zTF",
+    "tblEqe4un7Bq7BJyc"
+  ],
+  "outputDir": "./datamap-records"
+}

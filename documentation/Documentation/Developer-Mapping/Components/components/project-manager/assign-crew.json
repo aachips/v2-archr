@@ -1,0 +1,13 @@
+{
+  "component_name": "Assign Crew Button",
+  "component_role": "project_manager",
+  "component_id": "btn_assign_crew",
+  "component_class": ".btn.btn-assign",
+  "component_context": {
+    "projectId": "rec[caseId]",
+    "action": "CREW.ASSIGN",
+    "buttonText": "Assign Crew",
+    "webhookSlug": "[crewWebhook]",
+    "target": "/crewAssignment"
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "role": {
+    "name": "Super-Administrator",
+    "code": "SUPER_ADMIN",
+    "description": "System-level administrator responsible for the entire ARCHR platform across all organizations.",
+    "color": "#5415B1",
+    "color_deep": "#3d0f80",
+    "color_light": "#f0e6ff"
+  },
+
+  "permissions": {
+    "system": [
+      "SYSTEM_VIEW",
+      "SYSTEM_EDIT",
+      "SYSTEM_BACKUP",
+      "SYSTEM_RESTORE",
+      "SYSTEM_CONFIG"
+    ],
+    "organizations": [
+      "ORGANIZATION_VIEW_ALL",
+      "ORGANIZATION_CREATE",
+      "ORGANIZATION_EDIT",
+      "ORGANIZATION_ARCHIVE",
+      "ORGANIZATION_RESTORE"
+    ],
+    "users": [
+      "USER_VIEW_ALL",
+      "USER_CREATE",
+      "USER_EDIT",
+      "USER_DEACTIVATE",
+      "USER_IMPERSONATE",
+      "ROLE_ASSIGN"
+    ],
+    "audit": [
+      "AUDIT_VIEW_ALL",
+      "AUDIT_EXPORT",
+      "AUDIT_CONFIG"
+    ],
+    "configuration": [
+      "CONFIG_VIEW",
+      "CONFIG_EDIT",
+      "TEMPLATE_MANAGE",
+      "ELIGIBILITY_MANAGE",
+      "TASK_DEFINITION_MANAGE"
+    ],
+    "data": [
+      "DATA_VIEW_ALL",
+      "DATA_EXPORT",
+      "DATA_IMPORT",
+      "DATA_ARCHIVE"
+    ],
+    "support": [
+      "USER_IMPERSONATE",
+      "SUPPORT_TICKET_VIEW_ALL",
+      "SYSTEM_LOGS_VIEW"
+    ]
+  },
+
+  "sidebar": {
+    "sections": [
+      {
+        "section": "System",
+        "items": [
+          {
+            "id": "nav_dashboard",
+            "label": "System Dashboard",
+            "icon": "fa-gauge-high",
+            "href": "#dashboard",
+            "is_active": true
+          },
+          {
+            "id": "nav_organizations",
+            "label": "Organizations",
+            "icon": "fa-building",
+            "href": "#organizations",
+            "badge": "pending_orgs"
+          },
+          {
+            "id": "nav_users",
+            "label": "User Management",
+            "icon": "fa-users",
+            "href": "#users"
+          },
+          {
+            "id": "nav_onboarding",
+            "label": "Onboarding Queue",
+            "icon": "fa-person-walking-arrow-right",
+            "href": "#onboarding",
+            "badge": "pending_onboarding"
+          }
+        ]
+      },
+      {
+        "section": "Configuration",
+        "items": [
+          {
+            "id": "nav_eligibility",
+            "label": "Eligibility Rules",
+            "icon": "fa-balance-scale",
+            "href": "#eligibility"
+          },
+          {
+            "id": "nav_templates",
+            "label": "Document Templates",
+            "icon": "fa-file-template",
+            "href": "#templates"
+          },
+          {
+            "id": "nav_tasks",
+            "label": "Task Definitions",
+            "icon": "fa-list-check",
+            "href": "#task-definitions"
+          },
+          {
+            "id": "nav_roles",
+            "label": "Roles & Permissions",
+            "icon": "fa-shield-halved",
+            "href": "#roles"
+          }
+        ]
+      },
+      {
+        "section": "Oversight",
+        "items": [
+          {
+            "id": "nav_audit",
+            "label": "Audit Log",
+            "icon": "fa-clock-rotate-left",
+            "href": "#audit"
+          },
+          {
+            "id": "nav_reports",
+            "label": "System Reports",
+            "icon": "fa-chart-pie",
+            "href": "#reports"
+          },
+          {
+            "id": "nav_metrics",
+            "label": "Coalition Metrics",
+            "icon": "fa-chart-line",
+            "href": "#metrics"
+          }
+        ]
+      },
+      {
+        "section": "Support",
+        "items": [
+          {
+            "id": "nav_support",
+            "label": "Support Tickets",
+            "icon": "fa-life-ring",
+            "href": "#support"
+          },
+          {
+            "id": "nav_logs",
+            "label": "System Logs",
+            "icon": "fa-terminal",
+            "href": "#logs"
+          },
+          {
+            "id": "nav_backup",
+            "label": "Backup & Restore",
+            "icon": "fa-database",
+            "href": "#backup"
+          }
+        ]
+      }
+    ]
+  },
+
+  "components": {
+    "system_health": {
+      "id": "cmp_system_health",
+      "name": "System Health",
+      "description": "Overall platform health indicators",
+      "data_sources": {
+        "status": "system_status",
+        "uptime": "system_uptime",
+        "errors": "recent_errors",
+        "response_time": "api_response_time"
+      },
+      "indicators": [
+        {"label": "System Status", "field": "status", "type": "status_badge"},
+        {"label": "Uptime", "field": "uptime", "type": "percentage"},
+        {"label": "API Response", "field": "response_time", "type": "ms"},
+        {"label": "Recent Errors", "field": "errors", "type": "count"}
+      ]
+    },
+
+    "organization_overview": {
+      "id": "cmp_organization_overview",
+      "name": "Organization Overview",
+      "description": "All organizations in the coalition with key metrics",
+      "columns": [
+        {"id": "name", "label": "Organization", "type": "text"},
+        {"id": "users", "label": "Users", "type": "number"},
+        {"id": "active_cases", "label": "Active Cases", "type": "number"},
+        {"id": "status", "label": "Status", "type": "pill"},
+        {"id": "last_active", "label": "Last Active", "type": "date"},
+        {"id": "actions", "label": "Actions", "type": "actions"}
+      ],
+      "actions": [
+        {"label": "View", "target": "/super-admin/org/{id}"},
+        {"label": "Edit", "target": "/super-admin/org/{id}/edit"},
+        {"label": "Archive", "target": "/super-admin/org/{id}/archive"}
+      ],
+      "data_source": {
+        "query": "SELECT * FROM coalition_organizations ORDER BY created_at DESC"
+      }
+    },
+
+    "onboarding_queue": {
+      "id": "cmp_onboarding_queue",
+      "name": "Onboarding Queue",
+      "description": "Organizations pending setup and initial configuration",
+      "data_source": {
+        "query": "SELECT * FROM organization_onboarding WHERE status = 'pending' ORDER BY submitted_at ASC"
+      },
+      "columns": [
+        {"id": "org_name", "label": "Organization Name", "type": "text"},
+        {"id": "submitted_by", "label": "Submitted By", "type": "text"},
+        {"id": "submitted_at", "label": "Date", "type": "date"},
+        {"id": "status", "label": "Status", "type": "pill"},
+        {"id": "actions", "label": "Actions", "type": "actions"}
+      ],
+      "actions": [
+        {"label": "Approve", "target": "/super-admin/onboarding/{id}/approve"},
+        {"label": "Reject", "target": "/super-admin/onboarding/{id}/reject"},
+        {"label": "Configure", "target": "/super-admin/onboarding/{id}/setup"}
+      ]
+    },
+
+    "audit_log": {
+      "id": "cmp_audit_log",
+      "name": "Recent Audit Events",
+      "description": "System-wide changes and access events",
+      "data_source": {
+        "query": "SELECT * FROM audit_log ORDER BY performed_at DESC LIMIT 50"
+      },
+      "columns": [
+        {"id": "timestamp", "label": "Time", "type": "datetime"},
+        {"id": "user", "label": "User", "type": "text"},
+        {"id": "action", "label": "Action", "type": "text"},
+        {"id": "entity", "label": "Entity", "type": "text"},
+        {"id": "ip_address", "label": "IP", "type": "text"}
+      ]
+    },
+
+    "system_config": {
+      "id": "cmp_system_config",
+      "name": "System Configuration",
+      "description": "Current system settings and configuration",
+      "sections": [
+        {
+          "name": "General",
+          "fields": [
+            {"key": "platform_name", "label": "Platform Name", "type": "text"},
+            {"key": "support_email", "label": "Support Email", "type": "email"},
+            {"key": "timezone", "label": "Timezone", "type": "select", "options": ["US/Eastern", "US/Central", "US/Mountain", "US/Pacific"]}
+          ]
+        },
+        {
+          "name": "Eligibility",
+          "fields": [
+            {"key": "default_income_cap", "label": "Default Income Cap", "type": "number"},
+            {"key": "service_area_zipcodes", "label": "Service Area ZIP Codes", "type": "text"},
+            {"key": "max_funding_per_case", "label": "Max Funding Per Case", "type": "currency"}
+          ]
+        },
+        {
+          "name": "Storage",
+          "fields": [
+            {"key": "storage_provider", "label": "Storage Provider", "type": "select", "options": ["Dropbox", "Z-Drive", "AWS S3", "Google Cloud"]},
+            {"key": "encryption_enabled", "label": "Encryption at Rest", "type": "toggle"},
+            {"key": "backup_frequency", "label": "Backup Frequency", "type": "select", "options": ["Daily", "Weekly", "Monthly"]}
+          ]
+        }
+      ]
+    },
+
+    "quick_actions": {
+      "id": "cmp_quick_actions",
+      "name": "Super-Admin Quick Actions",
+      "description": "Common administrative tasks",
+      "actions": [
+        {"label": "Add Organization", "icon": "fa-building", "target": "/super-admin/org/new"},
+        {"label": "Create User", "icon": "fa-user-plus", "target": "/super-admin/users/new"},
+        {"label": "Run Backup", "icon": "fa-database", "target": "/super-admin/backup/run"},
+        {"label": "View Audit Log", "icon": "fa-clock-rotate-left", "target": "/super-admin/audit"},
+        {"label": "System Health Check", "icon": "fa-heart-pulse", "target": "/super-admin/health"}
+      ]
+    }
+  },
+
+  "api_endpoints": {
+    "organizations": {
+      "GET /api/super-admin/organizations": "List all organizations",
+      "POST /api/super-admin/organizations": "Create new organization",
+      "GET /api/super-admin/organizations/:id": "Get organization details",
+      "PUT /api/super-admin/organizations/:id": "Update organization",
+      "DELETE /api/super-admin/organizations/:id": "Archive organization (soft delete)",
+      "POST /api/super-admin/organizations/:id/restore": "Restore archived organization"
+    },
+    "users": {
+      "GET /api/super-admin/users": "List all system users",
+      "POST /api/super-admin/users": "Create system user",
+      "GET /api/super-admin/users/:id": "Get user details",
+      "PUT /api/super-admin/users/:id": "Update user",
+      "DELETE /api/super-admin/users/:id": "Deactivate user",
+      "POST /api/super-admin/users/:id/impersonate": "Impersonate user (support)"
+    },
+    "onboarding": {
+      "GET /api/super-admin/onboarding": "List onboarding requests",
+      "GET /api/super-admin/onboarding/:id": "Get onboarding details",
+      "POST /api/super-admin/onboarding/:id/approve": "Approve onboarding",
+      "POST /api/super-admin/onboarding/:id/reject": "Reject onboarding",
+      "POST /api/super-admin/onboarding/:id/setup": "Run automated setup"
+    },
+    "audit": {
+      "GET /api/super-admin/audit": "Get audit logs",
+      "GET /api/super-admin/audit/export": "Export audit logs",
+      "GET /api/super-admin/audit/:id": "Get audit entry details"
+    },
+    "configuration": {
+      "GET /api/super-admin/config": "Get system configuration",
+      "PUT /api/super-admin/config": "Update system configuration",
+      "GET /api/super-admin/config/:key": "Get specific config value"
+    },
+    "system": {
+      "GET /api/super-admin/health": "Get system health",
+      "POST /api/super-admin/backup": "Trigger system backup",
+      "POST /api/super-admin/backup/restore": "Restore from backup",
+      "GET /api/super-admin/logs": "Get system logs"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+// Claim Slot Button - Claim a volunteer opportunity slot
+
+{
+  "component_name": "Claim Slot Button",
+  "component_role": "volunteer",
+  "component_id": "btn_volunteer_claim",
+  "component_class": ".btn.btn-primary",
+  "component_context": {
+    "taskId": "rec[opportunityIdentifier]",
+    "target": "volunteer_assignments",
+    "target_key": "{assignment}.{volunteer_id}",
+    "action": "CLAIM.SLOT",
+    "buttonText": "Claim Slot",
+    "webhookSlug": "[claimSlotWebhook]",
+    "confirm": "Claim this volunteer slot?",
+    "successMessage": "Slot claimed! See you there!",
+    "reversible": "yes"
+  },
+  "display_text": "Claim Slot",
+  "icon": "fa-hand-point-up",
+  "action": {
+    "type": "claim",
+    "target": "/api/volunteer/opportunities/:id/claim"
+  },
+  "role_access": "volunteer"
+}

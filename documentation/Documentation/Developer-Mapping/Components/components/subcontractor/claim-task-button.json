@@ -1,0 +1,16 @@
+// Claim Task Button
+
+{
+  "component_name": "Claim Task Button",
+  "component_role": "subcontractor",
+  "component_id": "btn_claim_task",
+  "component_class": ".btn.btn-claim",
+  "component_context": {
+    "taskId": "rec[taskId]",
+    "action": "TASK.CLAIM",
+    "buttonText": "Claim Task",
+    "webhookSlug": "[taskWebhook]",
+    "confirm": "Claim this task?",
+    "successMessage": "Task claimed successfully!"
+  }
+}

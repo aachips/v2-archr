@@ -1,0 +1,23 @@
+{
+  "sidebar_item": {
+    "id": "nav_tasks_logs_events",
+    "label": "Tasks, Logs & Events",
+    "icon": "fa-list-check",
+    "badge": {
+      "unverified_count": "dynamic",
+      "color": "warning"
+    },
+    "quick_add": {
+      "enabled": true,
+      "icon": "fa-plus",
+      "action": "open_modal",
+      "modal": "quick_add_modal"
+    },
+    "sub_items": [
+      {"label": "All Tasks", "filter": "all", "badge": "approved_count"},
+      {"label": "Unverified", "filter": "unverified", "badge": "unverified_count"},
+      {"label": "My Tasks", "filter": "assigned_to_me", "badge": "my_count"},
+      {"label": "Completed", "filter": "completed", "badge": "completed_count"}
+    ]
+  }
+}

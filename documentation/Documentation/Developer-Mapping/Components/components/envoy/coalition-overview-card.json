@@ -1,0 +1,38 @@
+// Coalition Overview Card - High-level metrics for the entire coalition
+
+{
+  "component_name": "Coalition Overview Card",
+  "component_id": "cmp_envoy_coalition_overview",
+  "component_type": "card",
+  "data_sources": {
+    "metrics": "coalition_metrics where active = true"
+  },
+  "display_fields": [
+    {
+      "field": "total_cases",
+      "label": "Total Cases",
+      "type": "number"
+    },
+    {
+      "field": "active_projects",
+      "label": "Active Projects",
+      "type": "number"
+    },
+    {
+      "field": "total_funding_allocated",
+      "label": "Total Funding",
+      "type": "currency"
+    },
+    {
+      "field": "homes_completed",
+      "label": "Homes Completed",
+      "type": "number"
+    },
+    {
+      "field": "partner_organizations",
+      "label": "Partner Orgs",
+      "type": "number"
+    }
+  ],
+  "mobile_layout": "grid"
+}

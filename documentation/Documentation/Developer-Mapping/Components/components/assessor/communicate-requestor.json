@@ -1,0 +1,31 @@
+// 3.1 Communicate with Requestor - Direct communication with applicant
+
+{
+  "task_name": "Communicate with Requestor",
+  "task_id": "task_comm_requestor",
+  "task_type": "communication",
+  "channels": ["platform_message", "phone", "sms", "email"],
+  "communication_types": [
+    "Assessment Scheduling",
+    "Document Request",
+    "Status Update",
+    "Follow-up Question"
+  ],
+  "auto_log": true,
+  "template_options": [
+    {
+      "name": "Assessment Confirmation",
+      "subject": "Your Home Assessment is Scheduled",
+      "body": "Hello {first_name}, your home assessment is scheduled for {date} at {time}..."
+    },
+    {
+      "name": "Document Reminder",
+      "subject": "Documents Needed for Your Application",
+      "body": "Hello {first_name}, we still need {document_type} for your application..."
+    }
+  ],
+  "compliance": {
+    "log_required": true,
+    "cooldown_days": 1
+  }
+}

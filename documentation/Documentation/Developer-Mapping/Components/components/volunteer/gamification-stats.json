@@ -1,0 +1,55 @@
+// Gamification Stats - Shows volunteer XP, badges, and rank
+
+{
+  "component_name": "Gamification Stats Card",
+  "component_id": "cmp_volunteer_stats",
+  "component_type": "card",
+  "data_sources": {
+    "stats": "volunteer_stats where volunteer_id = current_user"
+  },
+  "display_fields": [
+    {
+      "field": "total_hours",
+      "label": "Total Hours",
+      "type": "number"
+    },
+    {
+      "field": "experience_points",
+      "label": "XP",
+      "type": "number"
+    },
+    {
+      "field": "current_rank",
+      "label": "Rank",
+      "type": "badge"
+    },
+    {
+      "field": "next_rank_progress",
+      "label": "Progress to Next Rank",
+      "type": "progress_bar"
+    },
+    {
+      "field": "badges_earned",
+      "label": "Badges",
+      "type": "badge_collection"
+    },
+    {
+      "field": "leaderboard_position",
+      "label": "Leaderboard",
+      "type": "rank"
+    }
+  ],
+  "actions": [
+    {
+      "label": "View Full Stats",
+      "action": "navigate",
+      "target": "/volunteer/stats"
+    },
+    {
+      "label": "Leaderboard",
+      "action": "navigate",
+      "target": "/volunteer/leaderboard"
+    }
+  ],
+  "mobile_layout": "stacked"
+}

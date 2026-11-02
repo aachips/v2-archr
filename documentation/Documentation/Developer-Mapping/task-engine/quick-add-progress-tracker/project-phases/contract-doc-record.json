@@ -1,0 +1,19 @@
+{
+    "docCode": "CON",
+    "docAct": "Sign",
+    "docEvent": {
+        "timestamp": "2024-12-20T14:30:00Z",
+        "case_id": "ARCHR-2024-001234",
+        "client_name": "John_Henderson",
+        "person_id": "user_jd_001",
+        "folder": "/organizations/habitat/cases/ARCHR-2024-001234/contracts/",
+        "filename": "John_Henderson_Contract_2024-12-20.pdf",
+        "file_path": "/organizations/habitat/cases/ARCHR-2024-001234/contracts/John_Henderson_Contract_2024-12-20.pdf"
+    },
+    "metadata": {
+        "generated_by": "jdavis@archr.org",
+        "template_used": "contract_template_v3.docx",
+        "signature_status": "signed",
+        "version": "1.0"
+    }
+}

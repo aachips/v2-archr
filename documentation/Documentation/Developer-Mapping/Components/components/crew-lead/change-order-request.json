@@ -1,0 +1,26 @@
+// Change Order Request - Request a change order for scope changes
+
+{
+  "component_name": "Change Order Request",
+  "component_role": "crew_lead",
+  "component_id": "btn_crewlead_change_order",
+  "component_class": ".btn.btn-warning",
+  "component_context": {
+    "taskId": "rec[jobIdentifier]",
+    "target": "change_orders",
+    "target_key": "{change_order}.{job_id}",
+    "action": "REQUEST.CHANGE_ORDER",
+    "buttonText": "Request Change Order",
+    "webhookSlug": "[changeOrderWebhook]",
+    "confirm": "Submit change order request?",
+    "successMessage": "Change order submitted!",
+    "reversible": "no"
+  },
+  "display_text": "Change Order",
+  "icon": "fa-edit",
+  "action": {
+    "type": "modal",
+    "target": "/changeOrderModal"
+  },
+  "role_access": "crew_lead"
+}

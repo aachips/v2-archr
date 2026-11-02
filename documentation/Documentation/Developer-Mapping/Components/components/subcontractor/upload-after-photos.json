@@ -1,0 +1,41 @@
+// Upload 'After Photos' - Document completed work
+
+{
+  "feature_name": "Upload After Photos",
+  "feature_id": "feat_upload_after_photos",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "accepted_tasks"
+    },
+    {
+      "name": "photos",
+      "label": "After Photos",
+      "type": "file_upload",
+      "file_types": ["jpg", "png", "heic"],
+      "max_files": 10,
+      "max_size": "25MB",
+      "required": true,
+      "multiple": true
+    },
+    {
+      "name": "notes",
+      "label": "Photo Notes",
+      "type": "textarea",
+      "placeholder": "Describe what each photo shows..."
+    }
+  ],
+  "submit": {
+    "label": "Upload Photos",
+    "action": "api",
+    "endpoint": "/api/subcontractor/photos/after",
+    "method": "POST"
+  },
+  "compliance": {
+    "encryption": "AES-256",
+    "retention": "7 years"
+  }
+}

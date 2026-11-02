@@ -1,0 +1,17 @@
+﻿tableResolver,search.searchFields.primaryField,search.tables.table,search.searchFields.deepFields,write.tables.records.fields,write.tables.table,write.table.records,write.records.record,write.record.writeFields,merge.table.rules,create.tables.table,create.table.writeFields,create.writeFields.fields
+Step 0 Update Log [🤖Event_Resolver],[],"""tableId"":""tbloJ5eN46v1Zx7AG""",[],[],,,,,,,,
+Step 1 Search [🎯 Sync],"[{""fieldId"":""fldnRScSsfp3I8Y1Y""}]","""tableId"":""tbl4HhGi7F6lKzhfB""","[{""fieldId"":""fldSSOgBR5VYABL1A""}]",[],,,,,,,,
+Step 1 Search [⚙️Progress Tasks],[{}],"""tableId"":""tblECgtClvoenWXJn""","[{""fieldId"":""fldTl4KHW1ZkZ3A35""}]",[],,,,,,,,
+Step 1 Search [💜Orgs],[{}],"""tableId"":""tble3Hu7TwYwsJyKZ""","[{""fieldId"":""fldADXXfYuycCnHiM""},{""fieldId"":""fldqsHDxgrEAmJBZH""},{""fieldId"":""fldtl7zogy0XymkIC""},{""fieldId"":""fld0DNWpCNmmsLdDq""},{""fieldId"":""fldvki6CMV82bevJO""},{""fieldId"":""fldN7RRjdkUzxRjf5""},{""fieldId"":""fldvYbLJciY7sKeO9""}]",[],,,,,,,,
+Step 1 Search [💜People],[{}],"""tableId"":""tbljSOvZOrolS2At3""","[{""fieldId"":""fldNbhakW4CtDAMPE""},{""fieldId"":""fldAAWrP6OgSFtW1P""},{""fieldId"":""flda37gZnN996g7jl""},{""fieldId"":""fldGyGzB785pu9oZ2""}]",[],,,,,,,,
+Step 2 Update Log [🤖Event_Resolver],[],"""tableId"":""tbloJ5eN46v1Zx7AG""",[],[],,,,,,,,
+Step 2 Update [◼️Project Event V2],[],"""tableId"":""tblOhnfdIlabxXOqL""",[],"[{""fieldId"":""fldf9H8hS2Qka3Pcr""
+""fieldType"":""multipleRecordLinks""},{""fieldId"":""fld7nIq32wgLERY6Y""
+""fieldType"":""multipleRecordLinks""},{""fieldId"":""fld9xEMyUPJJFjTYL""
+""fieldType"":""multipleRecordLinks""},{""fieldId"":""fldELoHodyPNYl1pz""
+""fieldType"":""multipleRecordLinks""}]",,,,,,,,
+Step 3 Search [☑️Project Task Completion],[{}],"""tableId"":""tbl1mIQg2utmj7Vqt""",[],[],,,,,,,,
+Step 4 Create [☑️Project Task Completion],[],"""tableId"":""tbl1mIQg2utmj7Vqt""",[],[{}],,,,,,,,
+Step 4 Merge [☑️Project Task Completion],[],"""tableId"":""tbl1mIQg2utmj7Vqt""",[],[],,,,,,,,
+Step x Compare [☑️Project Task Completion],[],"""tableId"":""tbl1mIQg2utmj7Vqt""",[],[],,,,,,,,
+Step x Create [⁉️Completion Record Conflict],[],"""tableId"":""tblfYyLY9k5kAomDJ""",[],[],,,,,,,,

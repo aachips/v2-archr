@@ -1,0 +1,197 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:12.739Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblmXFmZiDFBkK36o",
+    "name": "work_tasks",
+    "description": null,
+    "primaryFieldId": "fldy29At3i1hhdYVf",
+    "fields": [
+      {
+        "id": "fldy29At3i1hhdYVf",
+        "name": "work_order_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldvwBE9XIouG237J",
+        "name": "assigned_to_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "flddl6zRHZyp5XDMU",
+        "name": "task_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldHT8Mz12I9m70El",
+        "name": "description",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldixAx6Mw3tqAUVh",
+        "name": "repair_category_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldz4df5dAQLNOuTj",
+        "name": "estimate_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldC9W9KNJMDVCSLB",
+        "name": "status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldPWhvHTwfblnOx3",
+        "name": "priority",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldN5rXJqt421pui6",
+        "name": "estimated_hours",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldX6LVZp06WxIJTl",
+        "name": "actual_hours",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldYSYTF8SNz24RCn",
+        "name": "due_date",
+        "type": "date",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          }
+        }
+      },
+      {
+        "id": "fldUe4tI6e6yMqPF5",
+        "name": "completed_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldJCcINjLFIcSlN5",
+        "name": "instructions",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldD08PTMXijXCBJZ",
+        "name": "completion_notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldBj54DZbVr7GjAd",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldYg5BwQKasXD6L8",
+        "name": "updated_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldhwl5A19OHGBaDn",
+        "name": "created_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwbri6c1iTAofpMc",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

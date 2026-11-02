@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHR &middot; Bursar Dashboard (Essentials)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../../archr-logo.svg">
+    <script>(function(){try{var t=localStorage.getItem('archr-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+    <style>
+        /* =========================================================================
+           ARCHR Bursar Dashboard &mdash; Essentials Draft
+           Simplified layout based on the originally requested feature set.
+           Page canvas is a low-saturation tint of --role-bursar (#00CC00).
+           Tokens written as {tokenName} are render-time placeholders.
+           ========================================================================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --role-bursar: #00CC00;
+            --role-bursar-deep: #1d8a3a;
+            --role-bursar-tint: #eef5ee;     /* low-saturation page canvas */
+            --role-bursar-tint-2: #e2eee2;   /* slightly stronger surface alt */
+            --role-bursar-soft: #d9ead9;     /* card accent fills */
+            --bg-page: var(--role-bursar-tint);
+            --bg-surface: #ffffff;
+            --bg-surface-alt: var(--role-bursar-tint-2);
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #d4dccf; --color-border-strong: #c1cdb9;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.125rem;
+            --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+            --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.05);
+            --shadow:    0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            --border-radius: var(--radius-md);
+        }
+        [data-theme="dark"] {
+            --bg-page: #161d16;              /* low-sat dark green */
+            --bg-surface: #1f2a1f;
+            --bg-surface-alt: #28342a;
+            --color-text: #e6ecf5; --color-text-muted: #9aa7bd;
+            --color-border: #2f3c30; --color-border-strong: #45533f;
+            --role-bursar-soft: #2a3a2a;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.3);
+            --shadow:    0 6px 18px rgba(0,0,0,0.45);
+        }
+
+        body { font-family: var(--font-sans); background: var(--bg-page); color: var(--color-text); overflow: hidden; }
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height: 1.3; }
+        a { color: inherit; }
+
+        /* ----- App shell ----- */
+        .portal-app { display: grid; grid-template-columns: 260px 1fr; height: 100vh; height: 100dvh; }
+        .portal-sidebar {
+            background: var(--bg-surface); border-right: 1px solid var(--color-border);
+            display: flex; flex-direction: column; transition: transform 0.25s ease; z-index: 100;
+        }
+        .portal-sidebar-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--color-border); }
+        .portal-brand { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); text-decoration: none; color: var(--color-text); display: inline-flex; align-items: center; gap: var(--space-2); }
+        .portal-brand-mark { width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--role-bursar-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+        .portal-icon-btn { background: transparent; border: none; cursor: pointer; color: var(--color-text-muted); font-size: 1.1rem; width: 36px; height: 36px; border-radius: var(--radius-sm); }
+        .portal-icon-btn:hover { background: var(--bg-surface-alt); color: var(--role-bursar-deep); }
+        .portal-sidebar-close { display: none; }
+
+        .portal-nav { flex: 1; overflow-y: auto; padding: var(--space-3); }
+        .portal-nav ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+        .portal-nav-link {
+            display: flex; align-items: center; gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-sm); border-left: 3px solid transparent;
+            color: var(--color-text); text-decoration: none; font-size: var(--fs-sm); font-weight: 500;
+            transition: var(--transition);
+        }
+        .portal-nav-link i { width: 1.25rem; text-align: center; color: var(--color-text-muted); }
+        .portal-nav-link:hover { background: var(--bg-surface-alt); color: var(--role-bursar-deep); }
+        .portal-nav-link:hover i { color: var(--role-bursar-deep); }
+        .portal-nav-link.active {
+            background: var(--role-bursar-soft);
+            border-left-color: var(--role-bursar-deep);
+            color: var(--role-bursar-deep); font-weight: 600;
+        }
+        .portal-nav-link.active i { color: var(--role-bursar-deep); }
+        .portal-nav-section { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); padding: var(--space-4) var(--space-4) var(--space-2); font-weight: 700; }
+
+        /* ----- Top bar ----- */
+        .portal-main { display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+        .portal-topbar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-6); background: var(--bg-surface); border-bottom: 1px solid var(--color-border); }
+        .portal-topbar-left, .portal-topbar-right { display: flex; align-items: center; gap: var(--space-3); }
+        .portal-mobile-toggle { display: none; }
+        .portal-page-title { font-family: var(--font-display); font-size: var(--fs-xl); margin: 0; }
+        .role-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; background: var(--role-bursar-soft); color: var(--role-bursar-deep); border: 1px solid #b9d6b9; }
+        .theme-toggle { background: transparent; border: 1px solid var(--color-border); width: 40px; height: 40px; border-radius: var(--radius-pill); cursor: pointer; color: var(--color-text); }
+        .portal-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--role-bursar-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+
+        /* ----- Content area ----- */
+        .portal-content { flex: 1; overflow-y: auto; padding: var(--space-6); background: var(--bg-page); }
+        .portal-page { max-width: 1280px; margin: 0 auto; display: grid; gap: var(--space-5); }
+
+        /* ----- Buttons ----- */
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: var(--border-radius); font-weight: 600; text-decoration: none; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: var(--fs-sm); }
+        .btn-primary { background: var(--role-bursar-deep); color: #fff; }
+        .btn-primary:hover { background: #166b2c; transform: translateY(-1px); box-shadow: var(--shadow); }
+        .btn-secondary { background: var(--bg-surface); color: var(--role-bursar-deep); border-color: var(--role-bursar-deep); }
+        .btn-secondary:hover { background: var(--role-bursar-soft); }
+        .btn-ghost { background: transparent; color: var(--role-bursar-deep); border-color: transparent; }
+        .btn-ghost:hover { background: var(--role-bursar-soft); }
+        .btn-sm { padding: 6px 14px; font-size: var(--fs-xs); }
+
+        /* ----- Panel ----- */
+        .panel { background: var(--bg-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-5); box-shadow: var(--shadow-sm); }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); gap: var(--space-3); flex-wrap: wrap; }
+        .panel-header h3 { font-family: var(--font-display); font-size: var(--fs-lg); margin: 0; display: flex; align-items: center; gap: var(--space-2); }
+        .panel-header h3 i { color: var(--role-bursar-deep); }
+        .panel-header .panel-meta { font-size: var(--fs-xs); color: var(--color-text-muted); }
+
+        /* ----- Overview hero (lastApplication) ----- */
+        .overview-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border);
+            border-left: 6px solid var(--role-bursar-deep);
+            border-radius: var(--border-radius);
+            padding: var(--space-6);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-5);
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .overview-eyebrow { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--role-bursar-deep); font-weight: 700; margin-bottom: 6px; }
+        .overview-title { font-family: var(--font-display); font-size: var(--fs-xl); margin: 0 0 var(--space-2); }
+        .overview-rows { display: grid; gap: 4px; margin-top: var(--space-3); }
+        .overview-row { display: grid; grid-template-columns: 160px 1fr; gap: var(--space-3); font-size: var(--fs-sm); }
+        .overview-row dt { color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; font-size: var(--fs-xs); font-weight: 600; padding-top: 2px; }
+        .overview-row dd { color: var(--color-text); margin: 0; }
+        .token { background: var(--role-bursar-soft); color: var(--role-bursar-deep); padding: 1px 8px; border-radius: var(--radius-sm); font-family: var(--font-display); font-weight: 600; font-size: 0.95em; }
+        @media (max-width: 760px) { .overview-card { grid-template-columns: 1fr; } .overview-row { grid-template-columns: 1fr; } }
+
+        /* ----- Count tiles row (bursarTasks + bursarReady) ----- */
+        .count-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+        .count-tile {
+            background: var(--bg-surface); border: 1px solid var(--color-border);
+            border-radius: var(--border-radius); padding: var(--space-5);
+            display: grid; grid-template-columns: 1fr auto; gap: var(--space-4);
+            align-items: center; box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--role-bursar-deep);
+        }
+        .count-tile.count-tile-ready { border-top-color: var(--color-success); }
+        .count-tile .count-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); font-weight: 700; }
+        .count-tile .count-value { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; line-height: 1; margin: 4px 0; font-variant-numeric: tabular-nums; }
+        .count-tile .count-sub { font-size: var(--fs-sm); color: var(--color-text-muted); }
+        @media (max-width: 760px) { .count-row { grid-template-columns: 1fr; } }
+
+        /* ----- Mid grid: calendar + quick actions ----- */
+        .mid-grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-5); }
+        @media (max-width: 980px) { .mid-grid { grid-template-columns: 1fr; } }
+
+        /* Calendar */
+        .calendar-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3); }
+        .calendar-head .cal-title { font-family: var(--font-display); font-weight: 600; }
+        .calendar-nav { display: inline-flex; gap: var(--space-1); }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; background: var(--color-border); border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; }
+        .calendar-grid .cal-dow { background: var(--bg-surface-alt); padding: 6px 0; text-align: center; font-size: var(--fs-xs); font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .cal-day { background: var(--bg-surface); aspect-ratio: 1 / 1; padding: 6px; display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-xs); position: relative; }
+        .cal-day.is-outside { color: var(--color-text-muted); opacity: 0.55; }
+        .cal-day.is-today { background: var(--role-bursar-soft); }
+        .cal-day .cal-num { font-weight: 700; color: var(--color-text); }
+        .cal-day.is-today .cal-num { color: var(--role-bursar-deep); }
+        .cal-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--role-bursar-deep); margin-right: 3px; }
+        .cal-dot.is-warning { background: var(--color-warning); }
+        .cal-dot.is-danger  { background: var(--color-danger); }
+        .cal-legend { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3); font-size: var(--fs-xs); color: var(--color-text-muted); }
+        .cal-legend span { display: inline-flex; align-items: center; gap: 4px; }
+
+        /* Quick actions stack */
+        .quick-actions { display: grid; gap: var(--space-2); }
+        .quick-action {
+            display: flex; align-items: center; gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            color: var(--color-text); text-decoration: none; font-weight: 600; font-size: var(--fs-sm);
+            transition: var(--transition);
+        }
+        .quick-action i { width: 22px; text-align: center; color: var(--role-bursar-deep); }
+        .quick-action:hover { background: var(--role-bursar-soft); border-color: var(--role-bursar-deep); transform: translateX(2px); }
+
+        /* ----- Bottom list grid (previousApplications + alerts + messages) ----- */
+        .list-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+        @media (max-width: 1100px) { .list-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 760px)  { .list-grid { grid-template-columns: 1fr; } }
+
+        .list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+        .list-item {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3);
+            align-items: center;
+            padding: var(--space-3);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .list-item:hover { border-color: var(--role-bursar-deep); }
+        .list-item i.list-icon { width: 28px; height: 28px; border-radius: var(--radius-pill); background: var(--bg-surface); color: var(--role-bursar-deep); display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; border: 1px solid var(--color-border); }
+        .list-item.is-warning i.list-icon { color: var(--color-warning); }
+        .list-item.is-danger  i.list-icon { color: var(--color-danger); }
+        .list-item .li-title { font-weight: 600; font-size: var(--fs-sm); color: var(--color-text); }
+        .list-item .li-meta  { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; }
+        .list-item .li-time  { font-size: var(--fs-xs); color: var(--color-text-muted); white-space: nowrap; }
+        .list-empty { font-size: var(--fs-sm); color: var(--color-text-muted); padding: var(--space-3); text-align: center; }
+        .panel-footer { margin-top: var(--space-4); display: flex; justify-content: flex-end; }
+
+        /* ----- Responsive sidebar ----- */
+        @media (max-width: 992px) {
+            .portal-app { grid-template-columns: 1fr; }
+            .portal-sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; max-width: 85vw; transform: translateX(-100%); box-shadow: var(--shadow); }
+            .portal-sidebar.is-open { transform: translateX(0); }
+            .portal-sidebar-close { display: inline-flex; }
+            .portal-mobile-toggle { display: inline-flex; }
+        }
+        @media (max-width: 700px) {
+            .portal-content { padding: var(--space-4); }
+            .portal-topbar { padding: var(--space-3) var(--space-4); }
+            .portal-page-title { font-size: var(--fs-lg); }
+            .role-badge { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="portal-app">
+    <aside class="portal-sidebar" id="portalSidebar" aria-label="Bursar navigation">
+        <div class="portal-sidebar-header">
+            <a href="#dashboard" class="portal-brand">
+                <span class="portal-brand-mark"><i class="fas fa-sack-dollar"></i></span>
+                <span>ARCHR Bursar</span>
+            </a>
+            <button class="portal-icon-btn portal-sidebar-close" id="portalSidebarClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="portal-nav">
+            <ul>
+                <li><a href="#dashboard" class="portal-nav-link active"><i class="fas fa-gauge-high"></i> Dashboard</a></li>
+                <li><a href="/bursarProcess" class="portal-nav-link"><i class="fas fa-play"></i> Current Application</a></li>
+                <li><a href="/bursarProcessList" class="portal-nav-link"><i class="fas fa-list-check"></i> Tasks Queue</a></li>
+                <li><a href="../../documentation/task-engine/tle-poc.html" class="portal-nav-link"><i class="fas fa-pen-to-square"></i> Tasks, Logs &amp; Events</a></li>
+                <li><a href="/completedJobs" class="portal-nav-link"><i class="fas fa-circle-check"></i> Ready for Close-out</a></li>
+            </ul>
+            <p class="portal-nav-section">Finance</p>
+            <ul>
+                <li><a href="#funding" class="portal-nav-link"><i class="fas fa-hand-holding-dollar"></i> Funding Sources</a></li>
+                <li><a href="#quotes" class="portal-nav-link"><i class="fas fa-file-signature"></i> Quotes &amp; Invoices</a></li>
+                <li><a href="#reports" class="portal-nav-link"><i class="fas fa-file-export"></i> Reports</a></li>
+            </ul>
+            <p class="portal-nav-section">Communication</p>
+            <ul>
+                <li><a href="/appAlerts" class="portal-nav-link"><i class="fas fa-bell"></i> Alerts</a></li>
+                <li><a href="/messageDetails" class="portal-nav-link"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="#calendar" class="portal-nav-link"><i class="fas fa-calendar-days"></i> Calendar</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="portal-main">
+        <header class="portal-topbar">
+            <div class="portal-topbar-left">
+                <button class="portal-icon-btn portal-mobile-toggle" id="portalMobileToggle" aria-label="Open menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="portal-page-title">Bursar Dashboard</h1>
+            </div>
+            <div class="portal-topbar-right">
+                <span class="role-badge"><i class="fas fa-sack-dollar"></i> Bursar</span>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon icon-moon"></i><i class="fas fa-sun icon-sun" style="display:none"></i>
+                </button>
+                <span class="portal-avatar" aria-hidden="true">BU</span>
+            </div>
+        </header>
+
+        <div class="portal-content">
+            <div class="portal-page">
+
+                <!-- 1. Overview of last application -->
+                <section class="overview-card" aria-labelledby="overview-h">
+                    <div>
+                        <p class="overview-eyebrow">Last application opened</p>
+                        <h2 class="overview-title" id="overview-h"><span class="token">{lastApplication}</span></h2>
+                        <dl class="overview-rows">
+                            <div class="overview-row">
+                                <dt>Next step</dt>
+                                <dd><span class="token">{nextStep}</span></dd>
+                            </div>
+                            <div class="overview-row">
+                                <dt>Holding on</dt>
+                                <dd><span class="token">{holdingOn}</span></dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div>
+                        <a href="/bursarProcess" class="btn btn-primary">
+                            <i class="fas fa-play"></i> Continue
+                        </a>
+                    </div>
+                </section>
+
+                <!-- 2. Count tiles: bursarTasks + bursarReady -->
+                <section class="count-row" aria-label="Workload summary">
+                    <article class="count-tile">
+                        <div>
+                            <p class="count-label">Bursar tasks</p>
+                            <p class="count-value"><span class="token">{burserTasks}</span></p>
+                            <p class="count-sub">Applications awaiting your action</p>
+                        </div>
+                        <a href="/bursarProcessList" class="btn btn-primary">
+                            <i class="fas fa-list-check"></i> Process
+                        </a>
+                    </article>
+                    <article class="count-tile count-tile-ready">
+                        <div>
+                            <p class="count-label">Ready for close-out</p>
+                            <p class="count-value"><span class="token">{bursarReady}</span></p>
+                            <p class="count-sub">Completed jobs ready for invoicing</p>
+                        </div>
+                        <a href="/completedJobs" class="btn btn-primary">
+                            <i class="fas fa-circle-check"></i> Process
+                        </a>
+                    </article>
+                </section>
+
+                <!-- 3. Calendar + Quick actions -->
+                <section class="mid-grid">
+                    <article class="panel" aria-labelledby="cal-h">
+                        <div class="panel-header">
+                            <h3 id="cal-h"><i class="fas fa-calendar-days"></i> Bursar Calendar</h3>
+                            <span class="panel-meta">Draws, due dates, payment runs</span>
+                        </div>
+                        <div class="calendar-head">
+                            <span class="cal-title">{currentMonth} {currentYear}</span>
+                            <span class="calendar-nav">
+                                <button class="portal-icon-btn" aria-label="Previous month"><i class="fas fa-chevron-left"></i></button>
+                                <button class="portal-icon-btn" aria-label="Next month"><i class="fas fa-chevron-right"></i></button>
+                            </span>
+                        </div>
+                        <div class="calendar-grid" role="grid" aria-label="Month view">
+                            <span class="cal-dow">Sun</span><span class="cal-dow">Mon</span><span class="cal-dow">Tue</span><span class="cal-dow">Wed</span><span class="cal-dow">Thu</span><span class="cal-dow">Fri</span><span class="cal-dow">Sat</span>
+                            <!-- Week 1 -->
+                            <div class="cal-day is-outside"><span class="cal-num">29</span></div>
+                            <div class="cal-day is-outside"><span class="cal-num">30</span></div>
+                            <div class="cal-day"><span class="cal-num">1</span></div>
+                            <div class="cal-day"><span class="cal-num">2</span><span><span class="cal-dot"></span></span></div>
+                            <div class="cal-day"><span class="cal-num">3</span></div>
+                            <div class="cal-day"><span class="cal-num">4</span></div>
+                            <div class="cal-day"><span class="cal-num">5</span></div>
+                            <!-- Week 2 -->
+                            <div class="cal-day"><span class="cal-num">6</span></div>
+                            <div class="cal-day"><span class="cal-num">7</span><span><span class="cal-dot is-warning"></span></span></div>
+                            <div class="cal-day"><span class="cal-num">8</span></div>
+                            <div class="cal-day"><span class="cal-num">9</span></div>
+                            <div class="cal-day"><span class="cal-num">10</span><span><span class="cal-dot"></span><span class="cal-dot is-danger"></span></span></div>
+                            <div class="cal-day"><span class="cal-num">11</span></div>
+                            <div class="cal-day"><span class="cal-num">12</span></div>
+                            <!-- Week 3 -->
+                            <div class="cal-day"><span class="cal-num">13</span></div>
+                            <div class="cal-day"><span class="cal-num">14</span></div>
+                            <div class="cal-day is-today"><span class="cal-num">15</span><span><span class="cal-dot"></span><span class="cal-dot is-warning"></span></span></div>
+                            <div class="cal-day"><span class="cal-num">16</span></div>
+                            <div class="cal-day"><span class="cal-num">17</span><span><span class="cal-dot"></span></span></div>
+                            <div class="cal-day"><span class="cal-num">18</span></div>
+                            <div class="cal-day"><span class="cal-num">19</span></div>
+                            <!-- Week 4 -->
+                            <div class="cal-day"><span class="cal-num">20</span></div>
+                            <div class="cal-day"><span class="cal-num">21</span><span><span class="cal-dot is-danger"></span></span></div>
+                            <div class="cal-day"><span class="cal-num">22</span></div>
+                            <div class="cal-day"><span class="cal-num">23</span></div>
+                            <div class="cal-day"><span class="cal-num">24</span></div>
+                            <div class="cal-day"><span class="cal-num">25</span><span><span class="cal-dot"></span></span></div>
+                            <div class="cal-day"><span class="cal-num">26</span></div>
+                            <!-- Week 5 -->
+                            <div class="cal-day"><span class="cal-num">27</span></div>
+                            <div class="cal-day"><span class="cal-num">28</span></div>
+                            <div class="cal-day"><span class="cal-num">29</span><span><span class="cal-dot is-warning"></span></span></div>
+                            <div class="cal-day"><span class="cal-num">30</span></div>
+                            <div class="cal-day"><span class="cal-num">31</span></div>
+                            <div class="cal-day is-outside"><span class="cal-num">1</span></div>
+                            <div class="cal-day is-outside"><span class="cal-num">2</span></div>
+                        </div>
+                        <p class="cal-legend">
+                            <span><span class="cal-dot"></span> Payment / draw</span>
+                            <span><span class="cal-dot is-warning"></span> Quote due</span>
+                            <span><span class="cal-dot is-danger"></span> Overdue</span>
+                        </p>
+                    </article>
+
+                    <article class="panel" aria-labelledby="qa-h">
+                        <div class="panel-header">
+                            <h3 id="qa-h"><i class="fas fa-bolt"></i> Bursar Actions</h3>
+                        </div>
+                        <nav class="quick-actions" aria-label="Bursar quick actions">
+                            <a href="#draw-reminder" class="quick-action"><i class="fas fa-paper-plane"></i> Send Draw Reminder</a>
+                            <a href="#funding" class="quick-action"><i class="fas fa-hand-holding-dollar"></i> Finalize Funding Source</a>
+                            <a href="#quotes" class="quick-action"><i class="fas fa-file-signature"></i> Finalize Subcontractor Quote</a>
+                            <a href="#invoices" class="quick-action"><i class="fas fa-file-invoice-dollar"></i> Finalize Invoices</a>
+                            <a href="#reports" class="quick-action"><i class="fas fa-file-export"></i> Generate Report</a>
+                        </nav>
+                    </article>
+                </section>
+
+                <!-- 4. List widgets: previousApplications, alerts, messages -->
+                <section class="list-grid">
+                    <article class="panel" aria-labelledby="prev-h">
+                        <div class="panel-header">
+                            <h3 id="prev-h"><i class="fas fa-clock-rotate-left"></i> Previous Applications</h3>
+                        </div>
+                        <ul class="list">
+                            <li class="list-item">
+                                <i class="list-icon fas fa-folder"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{previousApplication}</span></div>
+                                    <div class="li-meta">Closed &middot; funding reconciled</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                            <li class="list-item">
+                                <i class="list-icon fas fa-folder"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{previousApplication}</span></div>
+                                    <div class="li-meta">Closed &middot; funding reconciled</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                            <li class="list-item">
+                                <i class="list-icon fas fa-folder"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{previousApplication}</span></div>
+                                    <div class="li-meta">Closed &middot; funding reconciled</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                        </ul>
+                        <div class="panel-footer">
+                            <a href="#previous" class="btn btn-ghost btn-sm">View all &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="panel" aria-labelledby="alerts-h">
+                        <div class="panel-header">
+                            <h3 id="alerts-h"><i class="fas fa-bell"></i> Alerts</h3>
+                        </div>
+                        <ul class="list">
+                            <li class="list-item is-danger">
+                                <i class="list-icon fas fa-triangle-exclamation"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{latestEvents}</span></div>
+                                    <div class="li-meta">Funding cap reached</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                            <li class="list-item is-warning">
+                                <i class="list-icon fas fa-clock"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{latestEvents}</span></div>
+                                    <div class="li-meta">Quote awaiting approval</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                            <li class="list-item">
+                                <i class="list-icon fas fa-circle-info"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{latestEvents}</span></div>
+                                    <div class="li-meta">Draw scheduled</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                        </ul>
+                        <div class="panel-footer">
+                            <a href="/appAlerts" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-bell"></i> Alerts
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="panel" aria-labelledby="msgs-h">
+                        <div class="panel-header">
+                            <h3 id="msgs-h"><i class="fas fa-envelope"></i> Messages</h3>
+                        </div>
+                        <ul class="list">
+                            <li class="list-item">
+                                <i class="list-icon fas fa-user"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{latestMessages}</span></div>
+                                    <div class="li-meta">From: subcontractor</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                            <li class="list-item">
+                                <i class="list-icon fas fa-user"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{latestMessages}</span></div>
+                                    <div class="li-meta">From: partner org</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                            <li class="list-item">
+                                <i class="list-icon fas fa-user"></i>
+                                <div>
+                                    <div class="li-title"><span class="token">{latestMessages}</span></div>
+                                    <div class="li-meta">From: coalition</div>
+                                </div>
+                                <span class="li-time">{ago}</span>
+                            </li>
+                        </ul>
+                        <div class="panel-footer">
+                            <a href="/messageDetails" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-envelope-open-text"></i> Message Details
+                            </a>
+                        </div>
+                    </article>
+                </section>
+
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    // Sidebar mobile toggle
+    (function(){
+        var sidebar = document.getElementById('portalSidebar');
+        var toggle  = document.getElementById('portalMobileToggle');
+        var close   = document.getElementById('portalSidebarClose');
+        if (toggle && sidebar) {
+            toggle.addEventListener('click', function(){
+                var open = sidebar.classList.toggle('is-open');
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        }
+        if (close && sidebar) close.addEventListener('click', function(){ sidebar.classList.remove('is-open'); });
+    })();
+
+    // Theme toggle (persists to localStorage)
+    (function(){
+        var btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        var moon = btn.querySelector('.icon-moon');
+        var sun  = btn.querySelector('.icon-sun');
+        function sync(){
+            var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (moon) moon.style.display = dark ? 'none' : '';
+            if (sun)  sun.style.display  = dark ? '' : 'none';
+        }
+        sync();
+        btn.addEventListener('click', function(){
+            var html = document.documentElement;
+            var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('archr-theme', next); } catch (e) {}
+            sync();
+        });
+    })();
+
+    // Nav active state (draft only)
+    document.querySelectorAll('.portal-nav-link').forEach(function(link){
+        link.addEventListener('click', function(e){
+            if (link.getAttribute('href').charAt(0) !== '#') return; // let real routes through
+            e.preventDefault();
+            document.querySelectorAll('.portal-nav-link').forEach(function(l){ l.classList.remove('active'); });
+            link.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>

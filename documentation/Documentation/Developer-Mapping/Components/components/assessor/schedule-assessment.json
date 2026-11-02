@@ -1,0 +1,44 @@
+// 3.2 Schedule Assessment - Coordinate assessment timing
+
+{
+  "task_name": "Schedule Assessment",
+  "task_id": "task_schedule_assessment",
+  "task_type": "scheduling",
+  "fields": [
+    {
+      "name": "scheduled_date",
+      "label": "Assessment Date",
+      "type": "date",
+      "min": "today"
+    },
+    {
+      "name": "scheduled_time",
+      "label": "Assessment Time",
+      "type": "time",
+      "time_format": "12h"
+    },
+    {
+      "name": "estimated_duration",
+      "label": "Estimated Duration",
+      "type": "select",
+      "options": ["1 hour", "1.5 hours", "2 hours", "2.5 hours", "3 hours"]
+    },
+    {
+      "name": "notes",
+      "label": "Special Instructions",
+      "type": "textarea",
+      "placeholder": "Gate code, parking instructions, etc."
+    },
+    {
+      "name": "send_to_client",
+      "label": "Send confirmation to client",
+      "type": "checkbox",
+      "default": true
+    }
+  ],
+  "calendar_integration": {
+    "sync_to_google": false,
+    "sync_to_outlook": false,
+    "ics_attachment": true
+  }
+}

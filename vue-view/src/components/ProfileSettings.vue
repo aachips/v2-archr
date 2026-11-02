@@ -21,13 +21,23 @@
         type="button"
         :class="['profile-tab', { active: activeTab === 'data-source' }]"
         @click="activeTab = 'data-source'"
+        v-if="$auth && $auth.roleLevel >= 3"
       >Data Source</button>
       <button
         type="button"
         :class="['profile-tab', { active: activeTab === 'columns' }]"
         @click="activeTab = 'columns'"
+        v-if="$auth && ($auth.roleLevel ?? 0) >= 2"
       >Search Columns</button>
     </div>
+
+    <!-- Gate: Search Columns is Level 2+ only -->
+    <template v-if="activeTab === 'columns' && (!$auth || ($auth.roleLevel ?? 0) < 2)">
+      <div class="access-denied">
+        <p><i class="fas fa-lock"></i> Search column configuration is available to Organization Admins and above.</p>
+        <button class="btn" @click="activeTab = 'profile'">Go to Profile</button>
+      </div>
+    </template>
 
     <div class="profile-card">
       <!-- Profile Tab -->
@@ -82,6 +92,17 @@
           <label class="field field--check" for="indefinite">
             <input id="indefinite" v-model="sessionIndefinite" type="checkbox" />
             <span>Keep me logged in indefinitely (uses a persistent session)</span>
+          </label>
+
+          <label class="field" for="defaultPage">
+            Default Start Page
+            <select id="defaultPage" v-model="defaultPage">
+              <option value="whoami">Who Am I?</option>
+              <option value="welcome">Welcome</option>
+              <option value="marketplace">Marketplace</option>
+              <option value="search">Case Search</option>
+            </select>
+            <span class="field-hint">Which page to show when you first log in.</span>
           </label>
 
           <div class="form-actions">
@@ -158,8 +179,8 @@
         </form>
       </template>
 
-      <!-- Data Source Tab -->
-      <template v-if="activeTab === 'data-source'">
+      <!-- Data Source Tab — SuperAdmin only -->
+      <template v-if="activeTab === 'data-source' && $auth && $auth.roleLevel >= 3">
         <h1>Data Source</h1>
         <p class="columns-intro">
           Choose which database the application reads case data from.
@@ -277,6 +298,7 @@ export default {
       email: '',
       phone: '',
       sessionIndefinite: false,
+      defaultPage: 'whoami',
       loaded: false,
       saving: false,
       successMsg: '',
@@ -320,6 +342,7 @@ export default {
         this.email = user.email || '';
         this.phone = user.phone || '';
         this.sessionIndefinite = !!user.session_indefinite;
+        this.defaultPage = localStorage.getItem('archr-default-page') || 'whoami';
         this.loaded = true;
       } catch (err) {
         this.errorMsg = err.message;
@@ -344,6 +367,9 @@ export default {
           this.$auth.user.full_name = user.full_name;
           this.$auth.user.email = user.email;
         }
+
+        // Persist default page locally
+        try { localStorage.setItem('archr-default-page', this.defaultPage); } catch (_) { /* ignore storage errors */ }
 
         this.successMsg = 'Profile settings saved.';
       } catch (err) {
@@ -558,6 +584,28 @@ export default {
   background: #f3f4f6;
   color: #6b7280;
   cursor: not-allowed;
+}
+
+.field select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.15s;
+}
+
+.field select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.field-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.15rem;
 }
 
 .field--check {

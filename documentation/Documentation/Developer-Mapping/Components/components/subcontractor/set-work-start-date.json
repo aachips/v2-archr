@@ -1,0 +1,34 @@
+// Set Work Start Date - Set when work will begin
+
+{
+  "feature_name": "Set Work Start Date",
+  "feature_id": "feat_set_start_date",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "accepted_tasks"
+    },
+    {
+      "name": "work_start_date",
+      "label": "Work Start Date",
+      "type": "date",
+      "min": "today",
+      "required": true
+    },
+    {
+      "name": "notes",
+      "label": "Notes",
+      "type": "textarea",
+      "placeholder": "Any client coordination needed?"
+    }
+  ],
+  "submit": {
+    "label": "Set Start Date",
+    "action": "api",
+    "endpoint": "/api/subcontractor/work/start",
+    "method": "PUT"
+  }
+}

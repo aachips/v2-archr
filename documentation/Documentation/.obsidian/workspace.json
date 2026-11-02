@@ -1,0 +1,238 @@
+{
+  "main": {
+    "id": "0f2d4269e858a568",
+    "type": "split",
+    "children": [
+      {
+        "id": "bdd671a9a2d66fe2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4975113ef18c79aa",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "41d8984c2e8aff63",
+    "type": "split",
+    "children": [
+      {
+        "id": "54295228f7f23fda",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e02b7dc7f4f9990b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "55ffad9976263eaf",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "48983919e303edc5",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 457.5
+  },
+  "right": {
+    "id": "0f8aa375f4b224bc",
+    "type": "split",
+    "children": [
+      {
+        "id": "88eff96443638fb3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "047789a0f21ea022",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "app configuration.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "0687b2d1a0825471",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "app configuration.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "e89832635a294002",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "ed003b539605b0fb",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "f3ba0b55f165548d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "app configuration.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "drawio:Launch draw.io editor": false
+    }
+  },
+  "active": "e02b7dc7f4f9990b",
+  "lastOpenFiles": [
+    "archr/ben/Subcontractor_Bid_Form_Spanish.pdf",
+    "archr/ben/Subcontractor_Bid_Form_Spanish.docx",
+    "archr/ben/Subcontractor Bid Form_English.pdf",
+    "archr/ben/Subcontractor Bid Form_English.docx",
+    "archr/ben/w9s/Whitney Construction.pdf",
+    "archr/ben/w9s/Trace and Co signed contract 06.11.14.pdf",
+    "archr/ben/w9s/TPS Contract.pdf",
+    "archr/ben/w9s/TK Electric Contract.pdf",
+    "archr/ben/w9s/Taylor Drywall subcontractor contract.pdf",
+    "archr/ben/w9s/Taproot Consulting.pdf",
+    "archr/ben/w9s/Superior Walls Systems Contract.pdf",
+    "archr/ben/w9s/G&M Painting Contract.jpg",
+    "archr/ben/Consoladate/datamap-process-guide.md",
+    "archr/ben/AAHH_excel_handling/node_scraper/funding_sources_tracker/README.md",
+    "archr/ben/AAHH_excel_handling/node_scraper/cs_nri/README.md",
+    "archr/ben/zDrive_to_Bucket/local-scan/README.md",
+    "archr/ben/subcontractor/w9s/G&M Painting Contract.jpg",
+    "Images/diagrams/Volunteer Work Crew Job Claim.drawio.png",
+    "Images/diagrams/Volunteer Intake Process.drawio.png",
+    "Standard Operating Procedures/solocator/Screenshot 2025-04-24 at 3.53.30 PM.jpeg.png",
+    "Standard Operating Procedures/solocator/Screenshot 2025-04-24 at 3.53.28 PM.jpeg.png",
+    "Standard Operating Procedures/solocator/Screenshot 2025-04-24 at 2.59.20 PM.jpeg.png",
+    "Standard Operating Procedures/solocator/Screenshot 2025-04-24 at 2.57.20 PM.jpeg.png",
+    "Standard Operating Procedures/solocator/notesedit.png",
+    "Standard Operating Procedures/solocator/nonotes.png",
+    "archr/ben/softrCapture/settingsFetchMethodGuess.md",
+    "Developer-Mapping/Database Structure + Naming/DATABASE_SWITCHING_GUIDE.md",
+    "Developer-Mapping/Database Structure + Naming/DATABASE_README.md",
+    "Developer-Mapping/Database Structure + Naming/DATABASE_INTEGRATION_SUMMARY.md",
+    "secrets/worklogs/LOGIN_SYSTEM_README 1.md",
+    "secrets/worklogs/CHANGES_SUMMARY.md",
+    "Documentation/log-in/CHANGES_SUMMARY.md",
+    "Your Dashboard/DASHBOARD_REFACTORING_SUMMARY.md",
+    "Developer-Mapping/DEVELOPER_GUIDE.md",
+    "secrets/worklogs/LOGIN_SYSTEM_README.md",
+    "Welcome/Documentation Index.md",
+    "Your Dashboard/README_DASHBOARD.md",
+    "Developer-Mapping/TESTING_CHECKLIST.md",
+    "Intake Submissions/submission-application-case-project.md",
+    "secrets/worklogs/8-14 doc generator upload commit.md",
+    "archr/vue_fs/docs/architecture.md",
+    "Developer-Mapping/api-endpoints/api-endpoints.md",
+    "Cool Resources/themutualproject.md",
+    "secrets/notes.md",
+    "Standard Operating Procedures/ARCHR Core Terminology and Operational Logic.md",
+    "secrets/worklogs/search-bugs.md",
+    "archr/ben/ben_desktop/obsidian/ARCHR/Untitled.canvas"
+  ]
+}

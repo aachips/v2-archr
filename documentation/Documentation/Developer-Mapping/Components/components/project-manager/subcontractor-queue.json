@@ -1,0 +1,46 @@
+// Subcontractor Queue - List of subcontractors available for assignment
+
+{
+  "component_name": "Subcontractor Queue",
+  "component_id": "cmp_pm_subcontractor_queue",
+  "component_type": "list",
+  "data_sources": {
+    "subcontractors": "subcontractors where status = 'available' AND verified = true"
+  },
+  "list_item_fields": [
+    {
+      "field": "company_name",
+      "label": "Company",
+      "type": "text"
+    },
+    {
+      "field": "specialties",
+      "label": "Specialties",
+      "type": "tags"
+    },
+    {
+      "field": "rating",
+      "label": "Rating",
+      "type": "stars"
+    },
+    {
+      "field": "availability",
+      "label": "Available",
+      "type": "date"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "Assign to Project",
+      "action": "modal",
+      "target": "/assignSubcontractor"
+    },
+    {
+      "label": "View Profile",
+      "action": "navigate",
+      "target": "/subcontractor/{subcontractor_id}"
+    }
+  ],
+  "sort_order": "rating DESC, availability ASC",
+  "mobile_layout": "cards"
+}

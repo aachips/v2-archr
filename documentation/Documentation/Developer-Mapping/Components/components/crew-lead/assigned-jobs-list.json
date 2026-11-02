@@ -1,0 +1,51 @@
+// Assigned Jobs List - All jobs assigned to this crew lead
+
+{
+  "component_name": "Assigned Jobs List",
+  "component_id": "cmp_crewlead_jobs",
+  "component_type": "list",
+  "data_sources": {
+    "jobs": "jobs where crew_lead_id = current_user AND status IN ('active', 'in_progress', 'scheduled')"
+  },
+  "list_item_fields": [
+    {
+      "field": "job_code",
+      "label": "Job Code",
+      "type": "placecode"
+    },
+    {
+      "field": "address",
+      "label": "Address",
+      "type": "text"
+    },
+    {
+      "field": "status",
+      "label": "Status",
+      "type": "badge",
+      "color_mapping": {
+        "active": "green",
+        "in_progress": "blue",
+        "scheduled": "amber"
+      }
+    },
+    {
+      "field": "scheduled_date",
+      "label": "Scheduled",
+      "type": "date"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "View Job",
+      "action": "navigate",
+      "target": "/job/{job_id}"
+    },
+    {
+      "label": "Set as Current",
+      "action": "confirm",
+      "target": "/api/crewlead/jobs/:id"
+    }
+  ],
+  "sort_order": "scheduled_date ASC",
+  "mobile_layout": "cards"
+}

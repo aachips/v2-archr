@@ -1,0 +1,18 @@
+{
+  "repairTask": [
+    {
+      "taskName": "Roof Replacement",
+      "taskArea": "Roof",
+      "taskDetails": "Full roof tear-off and replacement",
+      "taskSub": "Roofing Co.",
+      "taskBudget": 15000.00
+    },
+    {
+      "taskName": "Window Replacement",
+      "taskArea": "Living Room",
+      "taskDetails": "Replace 3 double-hung windows",
+      "taskSub": "Window Co.",
+      "taskBudget": 4500.00
+    }
+  ]
+}

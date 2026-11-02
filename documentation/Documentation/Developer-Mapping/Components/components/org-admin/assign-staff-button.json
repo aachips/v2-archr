@@ -1,0 +1,26 @@
+// Assign Staff Button - Assign application to a staff member
+
+{
+  "component_name": "Assign Staff Button",
+  "component_role": "org_admin",
+  "component_id": "btn_orgadmin_assign_staff",
+  "component_class": ".btn.btn-primary",
+  "component_context": {
+    "taskId": "rec[applicationIdentifier]",
+    "target": "applications",
+    "target_key": "{application}.{assigned_staff_id}",
+    "action": "ASSIGN.STAFF",
+    "buttonText": "Assign Staff",
+    "webhookSlug": "[assignStaffWebhook]",
+    "confirm": "Assign this application to selected staff?",
+    "successMessage": "Staff assigned successfully!",
+    "reversible": "yes"
+  },
+  "display_text": "Assign Staff",
+  "icon": "fa-user-plus",
+  "action": {
+    "type": "modal",
+    "target": "/assignStaffModal"
+  },
+  "role_access": "org_admin"
+}

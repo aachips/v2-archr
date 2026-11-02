@@ -1,0 +1,58 @@
+// Audit Logs List - System audit trail
+
+{
+  "component_name": "Audit Logs List",
+  "component_id": "cmp_admin_audit_logs",
+  "component_type": "table",
+  "data_sources": {
+    "logs": "audit_logs ORDER BY timestamp DESC"
+  },
+  "columns": [
+    {
+      "field": "timestamp",
+      "label": "Time",
+      "type": "datetime"
+    },
+    {
+      "field": "user_name",
+      "label": "User",
+      "type": "text"
+    },
+    {
+      "field": "action",
+      "label": "Action",
+      "type": "text"
+    },
+    {
+      "field": "entity_type",
+      "label": "Entity",
+      "type": "badge"
+    },
+    {
+      "field": "ip_address",
+      "label": "IP Address",
+      "type": "text"
+    },
+    {
+      "field": "status",
+      "label": "Status",
+      "type": "badge",
+      "color_mapping": {
+        "success": "green",
+        "failure": "red",
+        "warning": "amber"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "label": "View Details",
+      "action": "modal",
+      "target": "/logDetailsModal"
+    }
+  ],
+  "sort_order": "timestamp DESC",
+  "pagination": true,
+  "page_size": 50,
+  "mobile_layout": "cards"
+}

@@ -1,0 +1,46 @@
+// Escalations List - Shows active escalations requiring PM attention
+
+{
+  "component_name": "Escalations List",
+  "component_id": "cmp_pm_escalations",
+  "component_type": "list",
+  "data_sources": {
+    "escalations": "escalations where assigned_to_id = current_user AND status = 'active'"
+  },
+  "list_item_fields": [
+    {
+      "field": "project_code",
+      "label": "Project",
+      "type": "text"
+    },
+    {
+      "field": "escalation_type",
+      "label": "Type",
+      "type": "badge"
+    },
+    {
+      "field": "description",
+      "label": "Issue",
+      "type": "text"
+    },
+    {
+      "field": "priority",
+      "label": "Priority",
+      "type": "badge",
+      "color_mapping": {
+        "high": "red",
+        "medium": "amber",
+        "low": "green"
+      }
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "Resolve",
+      "action": "modal",
+      "target": "/resolveEscalation"
+    }
+  ],
+  "sort_order": "priority DESC, created_at ASC",
+  "mobile_layout": "cards"
+}

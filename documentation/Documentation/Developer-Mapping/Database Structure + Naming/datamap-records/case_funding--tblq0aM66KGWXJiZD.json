@@ -1,0 +1,96 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:13.247Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblq0aM66KGWXJiZD",
+    "name": "case_funding",
+    "description": null,
+    "primaryFieldId": "fldA35VRPwOonp5Nv",
+    "fields": [
+      {
+        "id": "fldA35VRPwOonp5Nv",
+        "name": "case_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fld66RV4Jprys7UN1",
+        "name": "funding_source_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldV8hz8nEvDl6EUO",
+        "name": "allocated_amount",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldr4oIH4ggWgLzXh",
+        "name": "spent_amount",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldmH8lwVgcHU8V4e",
+        "name": "allocated_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldjEbCKJfPsMQQJ5",
+        "name": "allocated_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldZsvC3IryfcAYy2",
+        "name": "notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      }
+    ],
+    "views": [
+      {
+        "id": "viwSYNOLVz7dq9dz5",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

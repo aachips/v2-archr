@@ -1,0 +1,171 @@
+/******************************************************
+ * Airtable formulas for (📚) Fillout Results
+ *
+ * 1. Replace the subJSON builder formula.
+ * 2. Add a formula field named "subJSON issues".
+ * 3. Replace the subJSONready formula.
+ ******************************************************/
+
+/* ---------- 1. subJSON ---------- */
+
+'{\n' &
+'"subKEY":"' & {id(rawSub)} & '",\n' &
+'"subRecordId":"' & RECORD_ID() & '",\n' &
+'"subPhase1":' & IF({📍subLocation}, {📍subLocation}, 'null') & ',\n' &
+'"subPhase2":' & IF({subIncome}, {subIncome}, 'null') & ',\n' &
+'"subPhase3":' &
+IF(
+  {🏠subOwnership},
+  REGEX_REPLACE(
+    {🏠subOwnership},
+    '"typeHome"\\s*:\\s*([^",}\\r\\n]+)',
+    '"typeHome":"$1"'
+  ),
+  'null'
+) & ',\n' &
+'"subPhase4":' & IF({👤subDemo}, {👤subDemo}, 'null') & '\n' &
+'}'
+
+/* ---------- 2. subJSON issues ---------- */
+
+IF(
+  LEN({subJSON} & "") = 0,
+  "❌ BLOCKER: subJSON is blank",
+
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "^\\s*\\{[\\s\\S]*\\}\\s*$")),
+    "❌ BLOCKER: payload must begin with { and end with }\n",
+    ""
+  ) &
+  IF(
+    REGEX_MATCH({subJSON} & "", "\"[^\"]+\"\\s*:\\s*(,|})"),
+    "❌ BLOCKER: a JSON property has no value, such as subPhase2: ,\n",
+    ""
+  ) &
+  IF(
+    AND(
+      REGEX_MATCH({subJSON} & "", "\"typeHome\"\\s*:"),
+      NOT(
+        REGEX_MATCH(
+          {subJSON} & "",
+          "\"typeHome\"\\s*:\\s*(\"[^\"]*\"|null)"
+        )
+      )
+    ),
+    "❌ BLOCKER: typeHome must be enclosed in double quotes\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"subKEY\"\\s*:\\s*\"rec[A-Za-z0-9]{14}\"")),
+    "❌ BLOCKER: subKEY is missing or is not an Airtable record ID\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"subRecordId\"\\s*:\\s*\"rec[A-Za-z0-9]{14}\"")),
+    "❌ BLOCKER: subRecordId is missing or is not an Airtable record ID\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"subPhase1\"\\s*:\\s*(\\{|null)")),
+    "❌ BLOCKER: subPhase1 must be an object or null\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"subPhase2\"\\s*:\\s*(\\[|\\{|null)")),
+    "❌ BLOCKER: subPhase2 must be an array, object, or null\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"subPhase3\"\\s*:\\s*(\\{|null)")),
+    "❌ BLOCKER: subPhase3 must be an object or null\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"subPhase4\"\\s*:\\s*(\\{|\\[|\"|null)")),
+    "❌ BLOCKER: subPhase4 must be an object, array, string, or null\n",
+    ""
+  ) &
+
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"serviceArea\"\\s*:\\s*\\{")),
+    "⚠ MISSING DATA: serviceArea\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"state\"\\s*:\\s*\"[^\"]+\"")),
+    "⚠ MISSING DATA: state\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"county\"\\s*:\\s*\"[^\"]+\"")),
+    "⚠ MISSING DATA: county\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"city\"\\s*:\\s*\"[^\"]+\"")),
+    "⚠ MISSING DATA: city\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"neighborhood\"\\s*:\\s*\"[^\"]+\"")),
+    "⚠ MISSING DATA: neighborhood\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"incomeCheck\"\\s*:\\s*\\{")),
+    "⚠ MISSING DATA: incomeCheck\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"calc\"\\s*:\\s*\"[^\"]+\"")),
+    "⚠ MISSING DATA: income calculation type\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"percent\"\\s*:\\s*\"?-?[0-9]+(\\.[0-9]+)?\"?")),
+    "⚠ MISSING DATA: income percent\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"ownershipCheck\"\\s*:\\s*\\{")),
+    "⚠ MISSING DATA: ownershipCheck\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"typeHome\"\\s*:\\s*\"[^\"]+\"")),
+    "⚠ MISSING DATA: home type\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"bldgValue\"\\s*:\\s*\"?-?[0-9]+(\\.[0-9]+)?\"?")),
+    "⚠ MISSING DATA: building value\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"primaryRes\"\\s*:\\s*\"?(true|false)\"?")),
+    "⚠ MISSING DATA: primary residence response\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"ownHome\"\\s*:\\s*\"?(true|false)\"?")),
+    "⚠ MISSING DATA: home ownership response\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"ownLot\"\\s*:\\s*\"?(true|false)\"?")),
+    "⚠ MISSING DATA: lot ownership response\n",
+    ""
+  ) &
+  IF(
+    NOT(REGEX_MATCH({subJSON} & "", "\"minTime\"\\s*:\\s*\"?-?[0-9]+(\\.[0-9]+)?\"?")),
+    "⚠ MISSING DATA: ownership duration\n",
+    ""
+  )
+)
+
+/* ---------- 3. subJSONready ---------- */
+
+AND(
+  LEN({subJSON} & "") > 0,
+  NOT(REGEX_MATCH({subJSON issues} & "", "❌ BLOCKER:"))
+)

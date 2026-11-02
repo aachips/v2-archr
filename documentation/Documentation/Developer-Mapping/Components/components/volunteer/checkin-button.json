@@ -1,0 +1,26 @@
+// Check In Button - Check in to volunteer shift
+
+{
+  "component_name": "Check In Button",
+  "component_role": "volunteer",
+  "component_id": "btn_volunteer_checkin",
+  "component_class": ".btn.btn-success",
+  "component_context": {
+    "taskId": "rec[assignmentIdentifier]",
+    "target": "volunteer_attendance",
+    "target_key": "{attendance}.{checkin_time}",
+    "action": "CHECKIN.SHIFT",
+    "buttonText": "Check In",
+    "webhookSlug": "[checkinWebhook]",
+    "confirm": "Check in to this shift?",
+    "successMessage": "Checked in! Have a great shift!",
+    "reversible": "no"
+  },
+  "display_text": "Check In",
+  "icon": "fa-clock",
+  "action": {
+    "type": "submit",
+    "target": "/api/volunteer/checkin"
+  },
+  "role_access": "volunteer"
+}

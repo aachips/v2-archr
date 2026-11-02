@@ -1,0 +1,17 @@
+{
+  "schema": "archr.airtableDatamapSnapshotManifest.v1",
+  "exportedAt": "2026-07-14T13:13:48.871Z",
+  "baseId": "apps9VjdjDOR68kpl",
+  "tableCount": 1,
+  "totalRecordCount": 69,
+  "tables": [
+    {
+      "tableId": "tblifunKProHiQuon",
+      "tableName": "fieldNameLookupCreator",
+      "viewId": "viwtwkrURsEAQloP8",
+      "viewName": "Grid view",
+      "recordCount": 69,
+      "file": "fieldNameLookupCreator--tblifunKProHiQuon--viwtwkrURsEAQloP8.json"
+    }
+  ]
+}

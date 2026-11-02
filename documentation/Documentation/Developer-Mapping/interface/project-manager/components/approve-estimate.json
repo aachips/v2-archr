@@ -1,0 +1,19 @@
+// 3: Approve Estimate - Review and approve assessment estimates
+
+{
+  "feature": "Approve Estimate",
+  "component_id": "btn_approve_estimate",
+  "action": "form",
+  "target": "/estimateApproval",
+  "fields": [
+    {"name": "assessment_id", "type": "hidden"},
+    {"name": "approved_amount", "type": "currency", "source": "property_assessments.total_estimate"},
+    {"name": "approval_notes", "type": "textarea"},
+    {"name": "requires_change_order", "type": "boolean"}
+  ],
+  "business_rules": {
+    "max_cap": 50000,
+    "warning_if_above_cap": true,
+    "requires_bursar_approval": true
+  }
+}

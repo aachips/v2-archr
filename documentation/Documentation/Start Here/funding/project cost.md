@@ -1,0 +1,34 @@
+---
+document_name: The Money Trail — Funding Flow & Project Costs
+document_type: Financial Reference
+version: 1.0
+last_updated: 2026-08-01
+author: ARCHR Development Team
+audience: All Platform Users, Bursars, Admins
+complexity_level: Intermediate
+estimated_reading_minutes: 3
+tags: [funding, finance, grants, project-cost]
+---
+
+getting money - way before anyone submits an application
+grants, fund development, applies for funding - timeline completely totally random, inconsistent from one to next.
+Get approved by funder: CISCO, Land of Sky, Dogwood Trust, City Funds, VOAD - Volunteer organizations assisting disaster
+Habitat accountants and finance team - move received funds to ARCHR account
+THEN
+some things happen
+Projects are completed by partner organizations
+partner organizations submits draw request
+who handles? *an office worker* compiles receipts, invoices, timesheets, and fills out draw request workbook
+Habitat grants team reviews completed draw request workbook. 
+If is all good -> Habitat finance cuts check
+If is all bad -> lots of bullshit, goes back for review/tweaks
+
+INTERNALLY
+
+Jenny & Cassidy determine how to layer funding sources to pay for projects
+
+Multiple buckets of money analogy
+bucket 1 : need red hair to qualify
+bucket b: need to be 6 foot tall or morer to qualify
+square bucket: must live in a blue house to qualify
+default to most restrictive - bad thing

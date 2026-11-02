@@ -1,0 +1,100 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:14.686Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblqTuFOIj85x6WfE",
+    "name": "help_document_reviews",
+    "description": null,
+    "primaryFieldId": "fldIzvFwehcso74qG",
+    "fields": [
+      {
+        "id": "fldIzvFwehcso74qG",
+        "name": "document_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldJ0ylIX7fhDiZu0",
+        "name": "reviewer_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldCzUzvP51CaJeH7",
+        "name": "review_status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldbbdS6N1kLQZOk5",
+        "name": "comments",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "flddNp6S5FDEo569Z",
+        "name": "requested_changes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldkfsVsWAK8OhmDx",
+        "name": "assigned_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldR7p8iDstcIlLZY",
+        "name": "completed_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwV8TFLMuWdbCsTd",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

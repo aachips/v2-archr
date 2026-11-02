@@ -1,0 +1,40 @@
+// Application Status Card - Shows current application status
+
+{
+  "component_name": "Application Status Card",
+  "component_id": "cmp_requestor_app_status",
+  "component_type": "card",
+  "data_sources": {
+    "application": "applications where requestor_id = current_user ORDER BY submitted_date DESC LIMIT 1"
+  },
+  "display_fields": [
+    {
+      "field": "case_number",
+      "label": "Case Number",
+      "type": "text"
+    },
+    {
+      "field": "status",
+      "label": "Status",
+      "type": "badge",
+      "color_mapping": {
+        "submitted": "blue",
+        "in_review": "amber",
+        "approved": "green",
+        "in_progress": "purple",
+        "completed": "green"
+      }
+    },
+    {
+      "field": "submitted_date",
+      "label": "Submitted",
+      "type": "date"
+    },
+    {
+      "field": "organization_name",
+      "label": "Assigned To",
+      "type": "text"
+    }
+  ],
+  "mobile_layout": "stacked"
+}

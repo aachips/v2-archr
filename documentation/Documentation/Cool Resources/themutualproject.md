@@ -1,0 +1,3 @@
+https://themutualproject.com/
+
+Can  you take each of the dashboard views, and separate the features into the respective menu items? The goal of this is to give the dashboard it's API endpoints, so that the side menu options work. For most of the roles, the default home screen when you open up the dashboard will have a welcome message, alerts of upcoming jobs, a case search, and a 'quick task' text box where you can write in tasks, events, and logs to go into the task rabbit queue. When you are logged in, and go to the site, the default page that comes up is the dashboard.

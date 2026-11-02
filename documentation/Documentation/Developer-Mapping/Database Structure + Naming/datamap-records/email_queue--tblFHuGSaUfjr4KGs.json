@@ -1,0 +1,185 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:14.245Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblFHuGSaUfjr4KGs",
+    "name": "email_queue",
+    "description": null,
+    "primaryFieldId": "fldyKX66RhGvjt2mO",
+    "fields": [
+      {
+        "id": "fldyKX66RhGvjt2mO",
+        "name": "recipient_email",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldSbvOPjuuZwfU4j",
+        "name": "recipient_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld3kHR1FAHBEqPqk",
+        "name": "subject",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldFqe2AGbVoovEHq",
+        "name": "body",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldtfzCj02HsdKBXg",
+        "name": "body_html",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldCVghTOVb8gCMZ0",
+        "name": "notification_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldo2TnKQXs3UNS4V",
+        "name": "related_entity_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldAG0KLGceZnT65Y",
+        "name": "related_entity_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldL7J5LnDtPmuQYU",
+        "name": "status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld9P3pTKtU7rlkxD",
+        "name": "attempts",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldxTyTW7OOSQH1yq",
+        "name": "last_attempt_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldvHufmmY8pqkQ1M",
+        "name": "error_message",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld1apd75suCqEh6b",
+        "name": "priority",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldDMrVPlE9l6y7Ql",
+        "name": "send_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fldJ8nA9Q3P4lITeA",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      },
+      {
+        "id": "fld69nxCG50LwzU0b",
+        "name": "sent_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwPyGt7xcKLSUUkE",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

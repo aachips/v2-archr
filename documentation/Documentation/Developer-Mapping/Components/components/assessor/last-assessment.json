@@ -1,0 +1,25 @@
+{
+  "component_name": "Last Assessment Overview",
+  "component_id": "cmp_last_assessment",
+  "component_type": "card",
+  "data_sources": {
+    "address": "intake_submissions.home_address",
+    "next_step": "progress_tracker.latest_action",
+    "holding_on": "progress_tracker.blocker",
+    "status": "cases.status"
+  },
+  "actions": [
+    {
+      "label": "Edit",
+      "action": "navigate",
+      "target": "/assessmentBuilder/{caseId}"
+    },
+    {
+      "label": "Continue",
+      "action": "navigate",
+      "target": "/assessmentBuilder/{caseId}?resume=true"
+    }
+  ],
+  "refresh_rate": "real-time",
+  "mobile_layout": "stacked"
+}

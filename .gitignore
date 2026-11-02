@@ -5,6 +5,7 @@
 *.env
 .env
 .env.*
+vue-view/.env
 app/PAT.txt
 app/.env
 app/api/.env

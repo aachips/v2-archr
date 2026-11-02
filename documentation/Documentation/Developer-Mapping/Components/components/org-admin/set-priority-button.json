@@ -1,0 +1,26 @@
+// Set Priority Button - Set application priority/triage level
+
+{
+  "component_name": "Set Priority Button",
+  "component_role": "org_admin",
+  "component_id": "btn_orgadmin_set_priority",
+  "component_class": ".btn.btn-warning",
+  "component_context": {
+    "taskId": "rec[applicationIdentifier]",
+    "target": "applications",
+    "target_key": "{application}.{priority}",
+    "action": "SET.PRIORITY",
+    "buttonText": "Set Priority",
+    "webhookSlug": "[setPriorityWebhook]",
+    "confirm": "Update priority for this application?",
+    "successMessage": "Priority updated!",
+    "reversible": "yes"
+  },
+  "display_text": "Set Priority",
+  "icon": "fa-flag",
+  "action": {
+    "type": "modal",
+    "target": "/setPriorityModal"
+  },
+  "role_access": "org_admin"
+}

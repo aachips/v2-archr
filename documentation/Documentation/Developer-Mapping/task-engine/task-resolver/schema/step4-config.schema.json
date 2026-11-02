@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eventResolver.step4Config.v1",
+  "title": "Resolver Step 4 Completion Action Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["step4"],
+  "properties": {
+    "step4": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "mode",
+        "completionSearchSource",
+        "createTableId",
+        "createRecord",
+        "writeCreatedRecordTo"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["createIfNoMatch", "executeDecision"]
+        },
+        "completionSearchSource": {
+          "type": "string"
+        },
+        "conflictDecisionSource": {
+          "type": "string"
+        },
+        "createTableId": {
+          "type": "string",
+          "pattern": "^tbl[A-Za-z0-9]+$"
+        },
+        "createIfNoMatch": {
+          "type": "boolean"
+        },
+        "createRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fields"],
+          "properties": {
+            "fields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/fieldWrite"
+              }
+            }
+          }
+        },
+        "writeCreatedRecordTo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/writeDestination"
+          }
+        },
+        "decisionHandlers": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "fieldWrite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fieldId", "fieldType", "mode"],
+      "oneOf": [
+        {
+          "required": ["source"]
+        },
+        {
+          "required": ["value"]
+        }
+      ],
+      "properties": {
+        "fieldId": {
+          "type": "string",
+          "pattern": "^fld[A-Za-z0-9]+$"
+        },
+        "fieldType": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "value": true,
+        "mode": {
+          "type": "string"
+        }
+      }
+    },
+    "writeDestination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tableId", "recordId", "fields"],
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "pattern": "^tbl[A-Za-z0-9]+$"
+        },
+        "recordId": {
+          "type": "string",
+          "pattern": "^rec[A-Za-z0-9]+$"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/fieldWrite"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHR &middot; Crew Member Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../../archr-logo.svg">
+    <script>(function(){try{var t=localStorage.getItem('archr-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+    <style>
+        /* =========================================================================
+           ARCHR Design System &mdash; Crew Member Dashboard (POC)
+           Companion to crew-lead.html. Feature surface trimmed to the Crew Member
+           rights in interface/crew-lead/core-features-comparison.md: own task
+           updates, limited photo upload, view-only volunteers, self-only hours &
+           sign-in, safety-talk acknowledge (not verify), incident report only if
+           involved. No completion sign-off, change orders, sub management,
+           workflow phase, alerts, labor confirmation, volunteer blocking, or
+           budget. Accent uses the Crew Member role color #FF9900 from the
+           branding guide.
+           ========================================================================= */
+
+        :root {
+            --role-cm: #FF9900;
+            --role-cm-deep: #B26B00;
+            --role-cm-light: #fbe8d0;
+            --role-cm-canvas: #fff8ee;
+        }
+        [data-theme="dark"] {
+            --role-cm-canvas: #2a2010;
+            --role-cm-light: #4a3a1a;
+        }
+
+        body { background: var(--role-cm-canvas); }
+        .portal-content { background: var(--role-cm-canvas); }
+
+        .portal-nav-link.active {
+            border-left-color: var(--role-cm-deep);
+            color: var(--role-cm-deep);
+            background: rgba(178, 107, 0, 0.10);
+        }
+        .portal-nav-link.active i,
+        .portal-nav-link:hover i { color: var(--role-cm-deep); }
+
+        .role-badge.cm-badge {
+            background: var(--role-cm-light);
+            color: var(--role-cm-deep);
+            border: 1px solid #f4d8a6;
+        }
+        .role-badge.cm-badge i { color: var(--role-cm-deep); }
+        .dash-section-title i { color: var(--role-cm-deep); }
+
+        /* ----- Hero ----- */
+        .dash-hero {
+            background: linear-gradient(135deg, var(--role-cm-deep), #6b4400);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6) var(--space-8);
+            margin-bottom: var(--space-6);
+            display: grid;
+            grid-template-columns: 2fr auto;
+            gap: var(--space-5);
+            align-items: center;
+        }
+        .dash-hero h2 { font-family: var(--font-display); font-size: var(--fs-xl); margin-bottom: var(--space-2); }
+        .dash-hero p { opacity: 0.92; font-size: var(--fs-sm); }
+        .dash-hero-meta { text-align: right; }
+        .dash-hero-meta .hero-count { display: block; font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 700; font-variant-numeric: tabular-nums; }
+        .dash-hero-meta .hero-count-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.85; }
+        @media (max-width: 700px) { .dash-hero { grid-template-columns: 1fr; } .dash-hero-meta { text-align: left; } }
+
+        /* ----- Battle-mode action bar (4 things a Crew Member does most) ----- */
+        .battle-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        .battle-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: var(--space-2);
+            min-height: 88px;
+            padding: var(--space-4);
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-top: 4px solid var(--role-cm-deep);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: var(--fs-sm);
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .battle-btn i { font-size: 1.5rem; color: var(--role-cm-deep); }
+        .battle-btn:hover { background: var(--role-cm-deep); color: #fff; transform: translateY(-2px); }
+        .battle-btn:hover i { color: #fff; }
+        @media (max-width: 560px) { .battle-bar { grid-template-columns: repeat(2, 1fr); } }
+
+
+        /* ----- KPI cards ----- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+        .kpi {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-5);
+            box-shadow: var(--shadow-sm);
+            display: flex; flex-direction: column; gap: var(--space-1);
+            border-top: 4px solid var(--color-border-strong);
+        }
+        .kpi-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; }
+        .kpi-value { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 700; color: var(--color-text); line-height: 1.1; font-variant-numeric: tabular-nums; }
+        .kpi-sub   { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-1); }
+        .kpi.kpi-tasks   { border-top-color: var(--role-cm-deep); }
+        .kpi.kpi-hours   { border-top-color: var(--color-secondary); }
+        .kpi.kpi-jobs    { border-top-color: var(--color-warning); }
+        .kpi.kpi-photos  { border-top-color: var(--color-success); }
+        .kpi-foot { margin-top: var(--space-3); }
+        .kpi-foot a { font-size: var(--fs-xs); font-weight: 600; color: var(--role-cm-deep); text-decoration: none; }
+
+        /* ----- Pills ----- */
+        .pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 600; background: var(--bg-surface-alt); color: var(--color-text); border: 1px solid var(--color-border); }
+        .pill-orange { background: var(--role-cm-light); color: var(--role-cm-deep); border-color: #f4d8a6; }
+        .pill-green  { background: #d9f2d9; color: #1d8a3a; border-color: #b9e0bd; }
+        .pill-amber  { background: #fdf3df; color: #8a5a0e; border-color: #f4dfa9; }
+        .pill-red    { background: #fbe7e3; color: #8a2818; border-color: #f0c6bd; }
+        .pill-grey   { background: var(--bg-surface-alt); color: var(--color-text-muted); border-color: var(--color-border); }
+        .pill-info   { background: #e1ecfb; color: #21528a; border-color: #c6d8f0; }
+
+        /* ----- Current job panel (read-only meta; Crew Member updates own tasks) ----- */
+        .current-job {
+            background: var(--bg-surface);
+            border: 1px solid var(--color-border-strong);
+            border-left: 4px solid var(--role-cm-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-6);
+        }
+        .current-job-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
+        .current-job-head .case-id { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); color: var(--role-cm-deep); }
+        .current-job-head .case-scope { color: var(--color-text-muted); font-size: var(--fs-sm); }
+        .current-job-meta { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: var(--space-4); }
+        .lead-card {
+            display: inline-flex; align-items: center; gap: var(--space-2);
+            padding: 6px 12px; border-radius: var(--radius-pill);
+            background: var(--bg-surface-alt); border: 1px solid var(--color-border-strong);
+            font-size: var(--fs-sm); font-weight: 600; color: var(--color-text);
+        }
+        .lead-card .lead-avatar {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: var(--role-cm-light); color: var(--role-cm-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700;
+        }
+        .meter { display: inline-block; width: 140px; height: 8px; background: var(--bg-surface-alt); border-radius: var(--radius-pill); overflow: hidden; vertical-align: middle; }
+        .meter-fill { display: block; height: 100%; background: var(--role-cm-deep); }
+
+        /* ----- Task rows (per task-row-otg.md: big check + photo + note) ----- */
+        .task-row-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .task-row {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3);
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-border-strong);
+        }
+        .task-row.is-mine    { border-left-color: var(--role-cm-deep); }
+        .task-row.is-done    { border-left-color: var(--color-success); opacity: 0.85; }
+        .task-row.is-others  { opacity: 0.65; }
+        .task-check {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--bg-surface); border: 2px solid var(--color-border-strong);
+            color: var(--color-text-muted);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; cursor: pointer; font-family: inherit; transition: var(--transition);
+        }
+        .task-check:hover { border-color: var(--role-cm-deep); color: var(--role-cm-deep); }
+        .task-row.is-done .task-check {
+            background: var(--color-success); border-color: var(--color-success); color: #fff;
+        }
+        .task-row .task-title { font-weight: 600; color: var(--color-text); font-size: var(--fs-sm); }
+        .task-row .task-meta  { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; display: flex; gap: var(--space-3); flex-wrap: wrap; }
+        .task-row .task-actions { display: flex; gap: var(--space-2); }
+        .icon-btn {
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            background: var(--bg-surface); border: 1px solid var(--color-border-strong);
+            color: var(--role-cm-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1rem; cursor: pointer; font-family: inherit; transition: var(--transition);
+        }
+        .icon-btn:hover { background: var(--role-cm-deep); color: #fff; border-color: var(--role-cm-deep); }
+        .icon-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* ----- Two-column grid (jobs/hours/messages) ----- */
+        .two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-5); margin-bottom: var(--space-6); }
+        @media (max-width: 1000px) { .two-col { grid-template-columns: 1fr; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .kpi-grid { grid-template-columns: 1fr; } }
+
+        /* ----- Today's jobs list (warehouse view rows; CM sees their assignment + lead name) ----- */
+        .job-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .job-item {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-cm-deep);
+        }
+        .job-item.is-current { border-left-color: var(--color-success); }
+        .job-item.is-upnext  { border-left-color: var(--color-warning); }
+        .job-item .job-icon {
+            width: 40px; height: 40px; border-radius: var(--radius-md);
+            background: var(--role-cm-light); color: var(--role-cm-deep);
+            display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+        .job-item .job-case { font-family: var(--font-display); font-weight: 700; color: var(--role-cm-deep); font-size: var(--fs-sm); }
+        .job-item .job-scope { font-size: var(--fs-sm); color: var(--color-text); margin-top: 2px; }
+        .job-item .job-meta { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; display: flex; gap: var(--space-3); flex-wrap: wrap; }
+        .job-item .job-cta { font-size: var(--fs-xs); font-weight: 700; color: var(--role-cm-deep); text-decoration: none; white-space: nowrap; }
+
+        /* ----- Hours tracker (self-only per comparison table) ----- */
+        .hours-panel { text-align: center; }
+        .hours-display {
+            font-family: var(--font-display); font-size: 2.75rem; font-weight: 700;
+            color: var(--role-cm-deep); font-variant-numeric: tabular-nums;
+            line-height: 1; margin: var(--space-3) 0;
+        }
+        .hours-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; }
+        .clock-btn {
+            width: 100%; min-height: 56px;
+            background: var(--role-cm-deep); color: #fff;
+            border: 2px solid var(--role-cm-deep);
+            border-radius: var(--radius-md);
+            font-family: inherit; font-size: var(--fs-base); font-weight: 700;
+            cursor: pointer; transition: var(--transition);
+            display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+            margin-top: var(--space-3);
+        }
+        .clock-btn:hover { background: #6b4400; border-color: #6b4400; }
+        .clock-btn.is-clocked-in { background: var(--color-danger); border-color: var(--color-danger); }
+        .clock-btn.is-clocked-in:hover { background: #8a2818; border-color: #8a2818; }
+        .hours-meta { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-3); }
+
+
+        /* ----- Safety-talk acknowledgement (self only, per comparison table) ----- */
+        .safety-ack {
+            display: flex; align-items: center; gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-left: 4px solid var(--color-warning);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-3);
+        }
+        .safety-ack.is-acked { border-left-color: var(--color-success); background: #eaf6ee; }
+        [data-theme="dark"] .safety-ack.is-acked { background: #1d3a26; }
+        .safety-ack-text { font-size: var(--fs-sm); color: var(--color-text); }
+        .safety-ack-text strong { display: block; color: var(--color-text); font-size: var(--fs-base); margin-bottom: 2px; }
+        .safety-ack-btn {
+            margin-left: auto; min-height: 44px; padding: 10px 18px;
+            background: var(--color-warning); color: #fff;
+            border: 1px solid var(--color-warning);
+            border-radius: var(--radius-md);
+            font-family: inherit; font-weight: 700; font-size: var(--fs-sm);
+            cursor: pointer; white-space: nowrap;
+        }
+        .safety-ack-btn:hover { filter: brightness(0.92); }
+        .safety-ack.is-acked .safety-ack-btn { background: var(--color-success); border-color: var(--color-success); cursor: default; }
+
+        /* ----- Volunteer roster (read-only on Crew Member; comparison table says "View only") ----- */
+        .vol-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .vol-item {
+            display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md);
+        }
+        .vol-item .vol-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--role-cm-light); color: var(--role-cm-deep);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: var(--fs-sm);
+        }
+        .vol-item .vol-name { font-weight: 600; color: var(--color-text); font-size: var(--fs-sm); }
+        .vol-item .vol-meta { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; }
+
+        /* ----- Messages list ----- */
+        .msg-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+        .msg-item {
+            padding: var(--space-3) var(--space-4); background: var(--bg-surface-alt);
+            border: 1px solid var(--color-border-strong); border-radius: var(--radius-md);
+            border-left: 4px solid var(--role-cm-deep);
+        }
+        .msg-item.is-system { border-left-color: var(--color-secondary); }
+        .msg-item .msg-from { font-weight: 700; color: var(--color-text); font-size: var(--fs-sm); }
+        .msg-item .msg-body { font-size: var(--fs-sm); color: var(--color-text); margin-top: 2px; }
+        .msg-item .msg-meta { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-2); display: flex; justify-content: space-between; gap: var(--space-2); }
+
+        /* ----- Tomorrow quick cards ----- */
+        .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+        @media (max-width: 900px) { .quick-grid { grid-template-columns: repeat(2, 1fr); } }
+        .quick-card {
+            background: var(--bg-surface); border: 1px solid var(--color-border-strong);
+            border-radius: var(--radius-md); padding: var(--space-4);
+            text-decoration: none; color: var(--color-text);
+            display: flex; flex-direction: column; gap: 4px;
+            transition: var(--transition);
+        }
+        .quick-card:hover { border-color: var(--role-cm-deep); transform: translateY(-2px); }
+        .quick-card .quick-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; }
+        .quick-card .quick-value { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; color: var(--role-cm-deep); }
+        .quick-card .quick-sub { font-size: var(--fs-xs); color: var(--color-text-muted); }
+
+        /* ----- Role notice ----- */
+        .role-notice {
+            background: var(--role-cm-light); border: 1px solid #f4d8a6; color: var(--role-cm-deep);
+            padding: 12px 18px; border-radius: var(--radius-md);
+            margin-top: var(--space-5); font-size: var(--fs-sm);
+            display: flex; align-items: flex-start; gap: 10px;
+        }
+        .role-notice i { color: var(--role-cm-deep); margin-top: 3px; }
+        [data-theme="dark"] .role-notice { background: #4a3a1a; border-color: #6a5022; color: #fbe8d0; }
+        [data-theme="dark"] .role-notice i { color: #fbe8d0; }
+
+        .section-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4); flex-wrap: wrap; }
+        .see-all-link { font-size: var(--fs-sm); font-weight: 600; color: var(--role-cm-deep); text-decoration: none; }
+
+        /* ----- Mobile bottom nav (per crew-member/bottom-nav.md) ----- */
+        .bottom-nav {
+            display: none;
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
+            background: var(--bg-surface); border-top: 1px solid var(--color-border-strong);
+            grid-template-columns: repeat(4, 1fr);
+            padding: 6px 4px env(safe-area-inset-bottom, 6px);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+        }
+        .bottom-nav .nav-item {
+            position: relative;
+            background: none; border: none; cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 2px; padding: 8px 4px; min-height: 56px;
+            font-family: inherit; font-size: var(--fs-xs); font-weight: 600;
+            color: var(--color-text-muted);
+        }
+        .bottom-nav .nav-item i { font-size: 1.15rem; }
+        .bottom-nav .nav-item.active { color: var(--role-cm-deep); }
+        .bottom-nav .nav-item .badge {
+            position: absolute; top: 4px; right: calc(50% - 18px);
+            background: var(--color-danger); color: #fff;
+            font-size: 10px; font-weight: 700;
+            border-radius: var(--radius-pill); padding: 1px 6px;
+            min-width: 16px; text-align: center;
+        }
+        @media (max-width: 700px) {
+            .bottom-nav { display: grid; }
+            .portal-content { padding-bottom: 80px; }
+        }
+
+        /* ----- Mobile-only landing: collapses to welcome + battle-bar + bottom-nav. ----- */
+        .mobile-hint {
+            display: none;
+            background: var(--role-cm-light); border: 1px solid #f4d8a6; color: var(--role-cm-deep);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4); font-size: var(--fs-sm);
+            margin-top: var(--space-4);
+            align-items: center; gap: var(--space-2);
+        }
+        @media (max-width: 700px) {
+            .portal-page > *:not(.mobile-show) { display: none !important; }
+            .mobile-hint { display: flex; }
+            .portal-content { padding: var(--space-4) var(--space-3) 80px; }
+            .portal-topbar { padding: var(--space-3) var(--space-4); gap: var(--space-2); }
+            .portal-page-title { font-size: var(--fs-md); }
+            .role-badge.cm-badge .role-badge-text { display: none; }
+            .dash-hero { padding: var(--space-5); }
+            .dash-hero h2 { font-size: var(--fs-lg); }
+        }
+        @media (max-width: 480px) {
+            .portal-topbar-right .role-badge.cm-badge { display: none; }
+            .battle-bar { gap: var(--space-2); }
+        }
+    </style>
+
+    <style>
+        /* ---- Base/fallback styles. Mirrors crew-lead.html so this file renders
+           standalone when css/style.css is not linked. ---- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --bg-page: #f5f7fb; --bg-surface: #ffffff; --bg-surface-alt: #f3f5fa;
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #e2e8f0; --color-border-strong: #cfd6e4;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem; --fs-md: 1.125rem; --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.06); --shadow: 0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            --border-radius: var(--radius-md);
+        }
+        [data-theme="dark"] {
+            --bg-page: #0f1622; --bg-surface: #182231; --bg-surface-alt: #202b3d;
+            --color-text: #e6ecf5; --color-text-muted: #9aa7bd;
+            --color-border: #2a3447; --color-border-strong: #3a455c;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        body { font-family: var(--font-sans); color: var(--color-text); }
+        .portal-app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+        .portal-sidebar { background: var(--bg-surface); border-right: 1px solid var(--color-border); }
+        .portal-sidebar-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--color-border); }
+        .portal-brand { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); text-decoration: none; color: var(--color-text); display: inline-flex; align-items: center; gap: var(--space-2); }
+        .portal-sidebar-close { background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-muted); }
+        .portal-nav { padding: var(--space-4); }
+        .portal-nav ul { list-style: none; display: grid; gap: 2px; }
+        .portal-nav-link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); text-decoration: none; color: var(--color-text); border-left: 3px solid transparent; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; transition: var(--transition); }
+        .portal-nav-link:hover { background: var(--bg-surface-alt); }
+        .portal-nav-link i { width: 18px; color: var(--color-text-muted); }
+        .portal-nav-group-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); font-weight: 700; padding: var(--space-4) var(--space-4) var(--space-2); margin-top: var(--space-2); }
+        .portal-main { display: flex; flex-direction: column; }
+        .portal-topbar { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-6); background: var(--bg-surface); border-bottom: 1px solid var(--color-border); gap: var(--space-4); }
+        .portal-topbar-left, .portal-topbar-right { display: flex; align-items: center; gap: var(--space-4); }
+        .portal-page-title { font-family: var(--font-display); font-size: var(--fs-xl); margin: 0; }
+        .portal-content { padding: var(--space-6); overflow-y: auto; }
+        .portal-page { max-width: 1400px; margin: 0 auto; }
+        .portal-mobile-toggle { display: none; background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text); }
+        .theme-toggle { background: transparent; border: 1px solid var(--color-border); border-radius: var(--radius-pill); width: 40px; height: 40px; cursor: pointer; color: var(--color-text); }
+        .portal-avatar { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--role-cm-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+        .role-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: var(--border-radius); font-weight: 600; text-decoration: none; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: var(--fs-sm); }
+        .btn-sm { padding: 6px 14px; font-size: var(--fs-xs); }
+        .panel { background: var(--bg-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-5); box-shadow: var(--shadow-sm); }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); }
+        .panel-header h3 { font-family: var(--font-display); font-size: var(--fs-lg); margin: 0; display: flex; align-items: center; gap: var(--space-2); }
+        .dash-section { margin-bottom: var(--space-6); }
+        .dash-section-title { font-family: var(--font-display); font-size: var(--fs-lg); margin: 0 0 var(--space-4); display: flex; align-items: center; gap: var(--space-2); }
+        @media (max-width: 992px) {
+            .portal-app { grid-template-columns: 1fr; }
+            .portal-sidebar { position: fixed; top: 0; left: 0; width: 260px; transform: translateX(-100%); transition: transform 0.2s; z-index: 1000; height: 100vh; overflow-y: auto; box-shadow: var(--shadow); }
+            .portal-sidebar.is-open { transform: translateX(0); }
+            .portal-mobile-toggle { display: inline-flex; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="portal-app">
+    <aside class="portal-sidebar" id="portalSidebar" aria-label="Portal navigation">
+        <div class="portal-sidebar-header">
+            <a href="../../index.html" class="portal-brand">
+                <img src="../../archr-logo.svg" alt="" class="portal-brand-mark" style="height:24px;">
+                <span>ARCHR Crew Member</span>
+            </a>
+            <button type="button" class="portal-sidebar-close" id="portalSidebarClose" aria-label="Close menu">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <nav class="portal-nav">
+            <ul>
+                <li><a href="#dashboard" class="portal-nav-link active"><i class="fas fa-gauge-high"></i><span>Today</span></a></li>
+                <li><a href="#currentJob" class="portal-nav-link"><i class="fas fa-helmet-safety"></i><span>Current Job</span></a></li>
+                <li><a href="#tomorrow" class="portal-nav-link"><i class="fas fa-calendar-day"></i><span>Tomorrow</span></a></li>
+            </ul>
+
+            <div class="portal-nav-group-label">On the Job</div>
+            <ul>
+                <li><a href="#tasks" class="portal-nav-link"><i class="fas fa-list-check"></i><span>My Tasks</span></a></li>
+                <li><a href="#photos" class="portal-nav-link"><i class="fas fa-camera"></i><span>Upload Photo</span></a></li>
+                <li><a href="#dailyLog" class="portal-nav-link"><i class="fas fa-pen-to-square"></i><span>Daily Log</span></a></li>
+                <li><a href="#hours" class="portal-nav-link"><i class="fas fa-clock"></i><span>Clock In / Out</span></a></li>
+            </ul>
+
+            <div class="portal-nav-group-label">People</div>
+            <ul>
+                <li><a href="#volunteers" class="portal-nav-link"><i class="fas fa-hands-helping"></i><span>Volunteers</span> <span class="pill pill-grey" style="margin-left:auto; font-size:9px;">View</span></a></li>
+            </ul>
+
+            <div class="portal-nav-group-label">Help &amp; Safety</div>
+            <ul>
+                <li><a href="#safetyTalk" class="portal-nav-link"><i class="fas fa-shield-halved"></i><span>Safety Talk</span></a></li>
+                <li><a href="#incident" class="portal-nav-link"><i class="fas fa-triangle-exclamation"></i><span>Incident Report</span></a></li>
+                <li><a href="#handbook" class="portal-nav-link"><i class="fas fa-book"></i><span>Handbook</span></a></li>
+                <li><a href="#emergency" class="portal-nav-link"><i class="fas fa-phone"></i><span>Emergency</span></a></li>
+            </ul>
+
+            <div class="portal-nav-group-label">Communications</div>
+            <ul>
+                <li><a href="#messages" class="portal-nav-link"><i class="fas fa-envelope"></i><span>Messages</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="portal-main">
+        <header class="portal-topbar">
+            <div class="portal-topbar-left">
+                <button type="button" class="portal-mobile-toggle" id="portalMobileToggle" aria-label="Open menu" aria-controls="portalSidebar" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+                <h1 class="portal-page-title">Crew Member Dashboard</h1>
+            </div>
+            <div class="portal-topbar-right">
+                <span class="role-badge cm-badge"><i class="fas fa-helmet-safety"></i> <span class="role-badge-text">Field Operations &middot; Crew Member</span></span>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><i class="fas fa-circle-half-stroke"></i></button>
+                <span class="portal-avatar" aria-hidden="true">AH</span>
+            </div>
+        </header>
+
+        <div class="portal-content">
+            <section class="portal-page active" id="dashboardPage" data-page-title="Crew Member Dashboard">
+
+                <!-- Hero: welcome + today's conditions (otg-project.md header) -->
+                <div class="dash-hero mobile-show">
+                    <div>
+                        <h2>Welcome back, Alex</h2>
+                        <p>Tue, Dec 19 &middot; Partly Cloudy 48&deg;F &middot; Assigned to <strong>42-CHERRY</strong> &middot; Lead: <strong>Mike</strong></p>
+                    </div>
+                    <div class="dash-hero-meta">
+                        <span class="hero-count-label">My Tasks</span>
+                        <span class="hero-count">3</span>
+                    </div>
+                </div>
+
+                <!-- Battle-mode action bar: the 4 things a Crew Member does most on-site.
+                     Mark Task Done, Take Photo, Clock In/Out, Acknowledge Safety. -->
+                <section class="battle-bar mobile-show" aria-label="Quick on-site actions">
+                    <a href="#tasks" class="battle-btn"><i class="fas fa-circle-check"></i> Mark Done</a>
+                    <a href="#photos" class="battle-btn"><i class="fas fa-camera"></i> Take Photo</a>
+                    <a href="#hours" class="battle-btn"><i class="fas fa-clock"></i> Clock In</a>
+                    <a href="#safetyTalk" class="battle-btn"><i class="fas fa-shield-halved"></i> Safety</a>
+                </section>
+
+                <!-- Mobile-only hint: points to the hamburger drawer + bottom nav -->
+                <p class="mobile-hint mobile-show" role="note">
+                    <i class="fas fa-circle-info" aria-hidden="true"></i>
+                    <span>Tap <i class="fas fa-bars" aria-hidden="true"></i> for incident reports, daily log, handbook &amp; more.</span>
+                </p>
+
+                <!-- KPI strip: self-only metrics per the comparison table. -->
+                <section class="dash-section" aria-labelledby="kpi-h">
+                    <h3 class="dash-section-title" id="kpi-h"><i class="fas fa-chart-pie"></i> My Day</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi kpi-tasks">
+                            <span class="kpi-label">My Tasks</span>
+                            <span class="kpi-value">3</span>
+                            <span class="kpi-sub">1 done &middot; 1 in progress &middot; 1 pending</span>
+                            <span class="kpi-foot"><a href="#tasks">Open list &rarr;</a></span>
+                        </div>
+                        <div class="kpi kpi-hours">
+                            <span class="kpi-label">Hours Today</span>
+                            <span class="kpi-value">2:18</span>
+                            <span class="kpi-sub">clocked in at 7:42 AM</span>
+                            <span class="kpi-foot"><a href="#hours">Clock out &rarr;</a></span>
+                        </div>
+                        <div class="kpi kpi-jobs">
+                            <span class="kpi-label">Active Job</span>
+                            <span class="kpi-value">1</span>
+                            <span class="kpi-sub">42-CHERRY &middot; Roof repair</span>
+                            <span class="kpi-foot"><a href="#currentJob">Open job &rarr;</a></span>
+                        </div>
+                        <div class="kpi kpi-photos">
+                            <span class="kpi-label">Photos Uploaded</span>
+                            <span class="kpi-value">4</span>
+                            <span class="kpi-sub">of my work today</span>
+                            <span class="kpi-foot"><a href="#photos">Add more &rarr;</a></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Current Job: read-only meta + only OWN tasks are tap-completable.
+                     Per comparison table: Crew Member can update their own tasks,
+                     upload limited photos. No phase change, no completion sign-off. -->
+                <section class="dash-section" id="currentJob" aria-labelledby="cur-h">
+                    <div class="section-header-row">
+                        <h3 class="dash-section-title" id="cur-h" style="margin:0;"><i class="fas fa-helmet-safety"></i> Current Job</h3>
+                        <a href="#tasks" class="see-all-link">All my tasks &rarr;</a>
+                    </div>
+                    <article class="current-job">
+                        <div class="current-job-head">
+                            <div>
+                                <span class="case-id">42-CHERRY</span>
+                                <span class="case-scope">&middot; Roof Repair &middot; 42 Cherry St</span>
+                            </div>
+                            <span class="lead-card"><span class="lead-avatar">M</span> Lead: Mike &middot; <a href="tel:8285550123" style="color:inherit;">(828) 555-0123</a></span>
+                        </div>
+                        <div class="current-job-meta">
+                            <span><i class="fas fa-cloud-sun"></i> Outdoor &middot; 48&deg;F</span>
+                            <span><i class="fas fa-clock"></i> 4h est. remaining</span>
+                            <span class="progress-cell" style="display:inline-flex; align-items:center; gap:8px;">
+                                <span class="meter" aria-hidden="true"><span class="meter-fill" style="width:65%;"></span></span>
+                                <strong style="color:var(--color-text);">65%</strong>
+                                <span>&middot; job overall</span>
+                            </span>
+                        </div>
+
+                        <ul class="task-row-list" aria-label="Tasks on 42-CHERRY (yours highlighted)">
+                            <li class="task-row is-mine is-done" data-task="shingles-remove" data-mine="1">
+                                <button type="button" class="task-check" aria-label="Toggle task complete" aria-pressed="true"><i class="fas fa-check"></i></button>
+                                <div>
+                                    <div class="task-title">Remove damaged shingles <span class="pill pill-orange" style="margin-left:6px;">Mine</span></div>
+                                    <div class="task-meta">
+                                        <span><i class="fas fa-clock"></i> 2 hrs</span>
+                                        <span><i class="fas fa-circle-check"></i> Completed 9:32 AM</span>
+                                    </div>
+                                </div>
+                                <div class="task-actions">
+                                    <button type="button" class="icon-btn" data-task="shingles-remove" data-action="photo" aria-label="Upload photo of my work"><i class="fas fa-camera"></i></button>
+                                    <button type="button" class="icon-btn" data-task="shingles-remove" data-action="note" aria-label="Add note"><i class="fas fa-pen"></i></button>
+                                </div>
+                            </li>
+                            <li class="task-row is-mine" data-task="underlayment" data-mine="1">
+                                <button type="button" class="task-check" aria-label="Mark task complete" aria-pressed="false"><i class="far fa-circle"></i></button>
+                                <div>
+                                    <div class="task-title">Install underlayment <span class="pill pill-orange" style="margin-left:6px;">Mine</span></div>
+                                    <div class="task-meta">
+                                        <span><i class="fas fa-clock"></i> 1.5 hrs</span>
+                                        <span><i class="fas fa-hammer"></i> In progress</span>
+                                    </div>
+                                </div>
+                                <div class="task-actions">
+                                    <button type="button" class="icon-btn" data-task="underlayment" data-action="photo" aria-label="Upload photo"><i class="fas fa-camera"></i></button>
+                                    <button type="button" class="icon-btn" data-task="underlayment" data-action="note" aria-label="Add note"><i class="fas fa-pen"></i></button>
+                                </div>
+                            </li>
+                            <li class="task-row is-others" data-task="shingles-install" data-mine="0">
+                                <button type="button" class="task-check" aria-label="Not assigned to you" disabled><i class="far fa-circle"></i></button>
+                                <div>
+                                    <div class="task-title">Install new shingles <span class="pill pill-grey" style="margin-left:6px;">Lead: Mike</span></div>
+                                    <div class="task-meta">
+                                        <span><i class="fas fa-clock"></i> 3 hrs</span>
+                                        <span><i class="fas fa-hourglass-half"></i> Pending</span>
+                                    </div>
+                                </div>
+                                <div class="task-actions">
+                                    <button type="button" class="icon-btn" disabled aria-label="Photo upload limited to your tasks"><i class="fas fa-camera"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!-- Safety-talk acknowledgement (self only; the Lead verifies others) -->
+                        <div class="safety-ack" id="safetyTalk" data-acked="false">
+                            <i class="fas fa-shield-halved" style="font-size:1.5rem; color:var(--color-warning);" aria-hidden="true"></i>
+                            <div class="safety-ack-text">
+                                <strong>Daily safety talk &mdash; 42-CHERRY</strong>
+                                Topic: Ladder safety &amp; fall prevention. Mike led at 7:50 AM.
+                            </div>
+                            <button type="button" class="safety-ack-btn" data-action="ack-safety">I attended</button>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Today's jobs + Hours / Sign-In (two-col). Hours panel is self-only. -->
+                <section class="dash-section two-col">
+                    <article class="panel" aria-labelledby="today-h">
+                        <div class="panel-header">
+                            <h3 id="today-h"><i class="fas fa-clipboard-list"></i> Today&rsquo;s Jobs</h3>
+                            <a href="#tomorrow" class="see-all-link">See tomorrow &rarr;</a>
+                        </div>
+                        <ul class="job-list">
+                            <li class="job-item is-current">
+                                <span class="job-icon" aria-hidden="true"><i class="fas fa-house-chimney"></i></span>
+                                <div>
+                                    <span class="job-case">42-CHERRY</span> <span class="pill pill-green">Current</span>
+                                    <div class="job-scope">Roof repair &middot; Lead: Mike</div>
+                                    <div class="job-meta">
+                                        <span><i class="fas fa-clock"></i> 4 hrs left</span>
+                                        <span><i class="fas fa-location-dot"></i> on site</span>
+                                        <span><i class="fas fa-cloud-sun"></i> Outdoor</span>
+                                    </div>
+                                </div>
+                                <a href="#currentJob" class="job-cta">Open <i class="fas fa-arrow-right"></i></a>
+                            </li>
+                            <li class="job-item is-upnext">
+                                <span class="job-icon" aria-hidden="true"><i class="fas fa-house-chimney"></i></span>
+                                <div>
+                                    <span class="job-case">15-MERRILL</span> <span class="pill pill-amber">Up next</span>
+                                    <div class="job-scope">Plumbing assist &middot; Lead: Mike</div>
+                                    <div class="job-meta">
+                                        <span><i class="fas fa-clock"></i> 1 hr est.</span>
+                                        <span><i class="fas fa-route"></i> 4.1 mi</span>
+                                        <span><i class="fas fa-house"></i> Indoor</span>
+                                    </div>
+                                </div>
+                                <a href="#tomorrow" class="job-cta">View <i class="fas fa-arrow-right"></i></a>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="panel hours-panel" id="hours" aria-labelledby="hours-h">
+                        <div class="panel-header" style="justify-content:center;">
+                            <h3 id="hours-h"><i class="fas fa-clock"></i> My Hours</h3>
+                        </div>
+                        <span class="hours-label">Clocked in today</span>
+                        <div class="hours-display" id="hoursDisplay">2:18</div>
+                        <span class="hours-label" id="clockStatus">In since 7:42 AM &middot; 42-CHERRY</span>
+                        <button type="button" class="clock-btn is-clocked-in" id="clockBtn" data-clocked="true">
+                            <i class="fas fa-stop-circle"></i> <span id="clockBtnLabel">Clock Out</span>
+                        </button>
+                        <p class="hours-meta">Self-reported hours sync to your timesheet for PM review.</p>
+                    </article>
+                </section>
+
+                <!-- Messages + Volunteers (read-only roster). -->
+                <section class="dash-section two-col">
+                    <article class="panel" id="messages" aria-labelledby="msg-h">
+                        <div class="panel-header">
+                            <h3 id="msg-h"><i class="fas fa-envelope"></i> Messages <span class="pill pill-red" style="margin-left:6px;">1 new</span></h3>
+                            <a href="#messages" class="see-all-link">All messages &rarr;</a>
+                        </div>
+                        <ul class="msg-list">
+                            <li class="msg-item">
+                                <div class="msg-from">Mike &middot; <span style="color:var(--color-text-muted); font-weight:500;">Crew Lead</span></div>
+                                <div class="msg-body">"Once underlayment is down, grab a photo before we cover it. Thanks, Alex."</div>
+                                <div class="msg-meta"><span>10:02 AM</span><a href="#messages" class="see-all-link">Reply</a></div>
+                            </li>
+                            <li class="msg-item is-system">
+                                <div class="msg-from">ARCHR System</div>
+                                <div class="msg-body">Reminder &mdash; clock out before leaving the site so your hours post correctly.</div>
+                                <div class="msg-meta"><span>8:30 AM</span><a href="#hours" class="see-all-link">Open</a></div>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="panel" id="volunteers" aria-labelledby="vol-h">
+                        <div class="panel-header">
+                            <h3 id="vol-h"><i class="fas fa-hands-helping"></i> Volunteers Today <span class="pill pill-grey" style="margin-left:6px;">View only</span></h3>
+                            <a href="#volunteers" class="see-all-link">Full roster &rarr;</a>
+                        </div>
+                        <ul class="vol-list" aria-label="Volunteers on 42-CHERRY (read-only)">
+                            <li class="vol-item">
+                                <span class="vol-avatar" aria-hidden="true">BP</span>
+                                <div>
+                                    <div class="vol-name">Bri Park</div>
+                                    <div class="vol-meta">In since 7:55 AM &middot; helping with shingles</div>
+                                </div>
+                                <span class="pill pill-green"><i class="fas fa-circle-check"></i> Safety done</span>
+                            </li>
+                            <li class="vol-item">
+                                <span class="vol-avatar" aria-hidden="true">CL</span>
+                                <div>
+                                    <div class="vol-name">Casey Lin</div>
+                                    <div class="vol-meta">Just arrived &middot; awaiting check-in</div>
+                                </div>
+                                <span class="pill pill-amber"><i class="fas fa-hourglass-half"></i> Pending</span>
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+
+                <!-- Tomorrow quick cards (no volunteer management, no sub view) -->
+                <section class="dash-section" id="tomorrow" aria-labelledby="tom-h">
+                    <div class="section-header-row">
+                        <h3 class="dash-section-title" id="tom-h" style="margin:0;"><i class="fas fa-calendar-day"></i> Tomorrow</h3>
+                        <a href="#tomorrow" class="see-all-link">Full schedule &rarr;</a>
+                    </div>
+                    <div class="quick-grid">
+                        <a href="#tomorrow" class="quick-card">
+                            <span class="quick-label">My Jobs</span>
+                            <span class="quick-value">2</span>
+                            <span class="quick-sub">First: 8:00 AM at 21-MAPLE</span>
+                        </a>
+                        <a href="#tomorrow" class="quick-card">
+                            <span class="quick-label">Lead</span>
+                            <span class="quick-value">Mike</span>
+                            <span class="quick-sub">same crew as today</span>
+                        </a>
+                        <a href="#tomorrow" class="quick-card">
+                            <span class="quick-label">Weather</span>
+                            <span class="quick-value">52&deg;</span>
+                            <span class="quick-sub">Sunny &middot; outdoor work OK</span>
+                        </a>
+                    </div>
+                </section>
+
+                <p class="role-notice">
+                    <i class="fas fa-circle-info"></i>
+                    <span>
+                        <strong>POC dashboard:</strong>
+                        Feature surface trimmed to the Crew Member rights in
+                        <code>interface/crew-lead/core-features-comparison.md</code>:
+                        own task updates, limited photo upload, view-only volunteers, self-only
+                        hours &amp; sign-in, safety-talk <em>acknowledge</em> (not verify),
+                        incident report only if involved. No completion sign-off, change orders,
+                        subcontractor management, workflow phase changes, alerts, or budget.
+                        Mobile blueprints: <code>interface/crew-member/otg-project.md</code>,
+                        <code>task-row-otg.md</code>, <code>job-card-warehouse-view.md</code>,
+                        <code>bottom-nav.md</code>. Below 700&thinsp;px the page collapses to
+                        welcome + battle-bar + bottom nav.
+                    </span>
+                </p>
+            </section>
+        </div>
+
+        <!-- Mobile bottom nav (crew-member/bottom-nav.md) -->
+        <nav class="bottom-nav" aria-label="Primary mobile navigation">
+            <button type="button" class="nav-item active" data-tab="dashboard">
+                <i class="fas fa-house" aria-hidden="true"></i><span>Today</span>
+            </button>
+            <button type="button" class="nav-item" data-tab="tasks">
+                <i class="fas fa-list-check" aria-hidden="true"></i><span>Tasks</span>
+                <span class="badge" aria-label="2 open">2</span>
+            </button>
+            <button type="button" class="nav-item" data-tab="photos">
+                <i class="fas fa-camera" aria-hidden="true"></i><span>Photos</span>
+            </button>
+            <button type="button" class="nav-item" data-tab="messages">
+                <i class="fas fa-envelope" aria-hidden="true"></i><span>Messages</span>
+                <span class="badge" aria-label="1 unread">1</span>
+            </button>
+        </nav>
+    </div>
+</div>
+
+<script>
+    // Sidebar mobile toggle
+    (function(){
+        var sidebar = document.getElementById('portalSidebar');
+        var toggle = document.getElementById('portalMobileToggle');
+        var close = document.getElementById('portalSidebarClose');
+        if (toggle && sidebar) {
+            toggle.addEventListener('click', function(){
+                var open = sidebar.classList.toggle('is-open');
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        }
+        if (close && sidebar) close.addEventListener('click', function(){ sidebar.classList.remove('is-open'); });
+    })();
+
+    // Theme toggle (persists to localStorage)
+    (function(){
+        var btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        btn.addEventListener('click', function(){
+            var html = document.documentElement;
+            var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('archr-theme', next); } catch (e) {}
+        });
+    })();
+
+    // Sidebar nav active state + auto-close drawer on mobile after tap
+    document.querySelectorAll('.portal-nav-link').forEach(function(link){
+        link.addEventListener('click', function(){
+            document.querySelectorAll('.portal-nav-link').forEach(function(l){ l.classList.remove('active'); });
+            link.classList.add('active');
+            if (window.matchMedia('(max-width: 992px)').matches) {
+                var sb = document.getElementById('portalSidebar');
+                var tg = document.getElementById('portalMobileToggle');
+                if (sb) sb.classList.remove('is-open');
+                if (tg) tg.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+    // Bottom nav active state (POC: visual only)
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(function(item){
+        item.addEventListener('click', function(){
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(function(n){ n.classList.remove('active'); });
+            item.classList.add('active');
+            console.log('[crew-member-poc] bottom-nav:', item.getAttribute('data-tab'));
+        });
+    });
+
+    // Stub action handler for the draft (chips, see-all links, battle-bar, quick cards)
+    document.querySelectorAll('.battle-btn, .see-all-link, .job-cta, .quick-card').forEach(function(btn){
+        btn.addEventListener('click', function(e){
+            e.preventDefault();
+            console.log('[crew-member-poc] navigate:', btn.getAttribute('href'));
+        });
+    });
+
+    // Task check toggling &mdash; only enabled on tasks assigned to me. Optimistic UI.
+    document.querySelectorAll('.task-row .task-check').forEach(function(box){
+        box.addEventListener('click', function(){
+            var row = box.closest('.task-row');
+            if (!row || box.disabled) return;
+            var done = row.classList.toggle('is-done');
+            box.setAttribute('aria-pressed', done ? 'true' : 'false');
+            box.innerHTML = done ? '<i class="fas fa-check"></i>' : '<i class="far fa-circle"></i>';
+            console.log('[crew-member-poc] task:', row.getAttribute('data-task'), done ? 'done' : 'reopened');
+        });
+    });
+
+    // Per-task icon actions (photo / note) &mdash; respects disabled state for other crew's tasks
+    document.querySelectorAll('.task-row .icon-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            if (btn.disabled) return;
+            console.log('[crew-member-poc] task action:', btn.getAttribute('data-task'), btn.getAttribute('data-action'));
+        });
+    });
+
+    // Safety-talk acknowledgement (self-attest only; lead verifies attendance separately)
+    (function(){
+        var panel = document.querySelector('.safety-ack');
+        var btn = panel && panel.querySelector('.safety-ack-btn');
+        if (!btn) return;
+        btn.addEventListener('click', function(){
+            if (panel.dataset.acked === 'true') return;
+            panel.dataset.acked = 'true';
+            panel.classList.add('is-acked');
+            btn.innerHTML = '<i class="fas fa-check"></i> Acknowledged';
+            console.log('[crew-member-poc] safety-talk: acknowledged by self');
+        });
+    })();
+
+    // Clock In / Clock Out (self-only timesheet entry)
+    (function(){
+        var btn = document.getElementById('clockBtn');
+        var label = document.getElementById('clockBtnLabel');
+        var status = document.getElementById('clockStatus');
+        if (!btn) return;
+        btn.addEventListener('click', function(){
+            var clockedIn = btn.dataset.clocked === 'true';
+            if (clockedIn) {
+                btn.dataset.clocked = 'false';
+                btn.classList.remove('is-clocked-in');
+                btn.innerHTML = '<i class="fas fa-play-circle"></i> <span id="clockBtnLabel">Clock In</span>';
+                if (status) status.textContent = 'Clocked out \u00b7 tap to start a new shift';
+                console.log('[crew-member-poc] clock: out');
+            } else {
+                btn.dataset.clocked = 'true';
+                btn.classList.add('is-clocked-in');
+                btn.innerHTML = '<i class="fas fa-stop-circle"></i> <span id="clockBtnLabel">Clock Out</span>';
+                if (status) status.textContent = 'In since just now \u00b7 42-CHERRY';
+                console.log('[crew-member-poc] clock: in');
+            }
+        });
+    })();
+</script>
+</body>
+</html>
+

@@ -1,0 +1,62 @@
+// Applications List - All applications for this organization
+
+{
+  "component_name": "Applications List",
+  "component_id": "cmp_orgadmin_applications",
+  "component_type": "list",
+  "data_sources": {
+    "applications": "applications where organization_id = current_org ORDER BY submitted_date DESC"
+  },
+  "list_item_fields": [
+    {
+      "field": "case_number",
+      "label": "Case #",
+      "type": "text"
+    },
+    {
+      "field": "applicant_name",
+      "label": "Applicant",
+      "type": "text"
+    },
+    {
+      "field": "status",
+      "label": "Status",
+      "type": "badge",
+      "color_mapping": {
+        "submitted": "blue",
+        "in_review": "amber",
+        "approved": "green",
+        "rejected": "red"
+      }
+    },
+    {
+      "field": "assigned_staff",
+      "label": "Assigned To",
+      "type": "text"
+    },
+    {
+      "field": "priority",
+      "label": "Priority",
+      "type": "badge"
+    },
+    {
+      "field": "next_step",
+      "label": "Next Step",
+      "type": "text"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "View",
+      "action": "navigate",
+      "target": "/application/{application_id}"
+    },
+    {
+      "label": "Assign Staff",
+      "action": "modal",
+      "target": "/assignStaffModal"
+    }
+  ],
+  "sort_order": "priority DESC, submitted_date DESC",
+  "mobile_layout": "cards"
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:10.942Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tbln5CHvyPqa6GSqH",
+    "name": "income_records",
+    "description": null,
+    "primaryFieldId": "fldn5WavrDzmFG4gc",
+    "fields": [
+      {
+        "id": "fldn5WavrDzmFG4gc",
+        "name": "submission_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldDAYkxKyed9IsOg",
+        "name": "whose_income",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld39ObMzGGPLeuAA",
+        "name": "income_source",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld1ww5hBuUBWR28C",
+        "name": "frequency",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "flddHcoxHIpCSEnSg",
+        "name": "amount",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldX51lJZg2VISm0l",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwG3gbIXE0mPd3Tc",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

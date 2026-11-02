@@ -1,0 +1,54 @@
+// Task 4.1: Evaluate subcontractor applications
+
+{
+  "task_name": "Review New Subcontractor",
+  "task_id": "task_review_subcontractor",
+  "task_type": "review",
+  "fields": [
+    {
+      "name": "company_name",
+      "label": "Company Name",
+      "type": "text"
+    },
+    {
+      "name": "trade_specialty",
+      "label": "Trade Specialty",
+      "type": "select",
+      "options": [
+        "Electrical", "Plumbing", "HVAC", "Roofing", 
+        "Carpentry", "Foundation", "Mold Remediation", "General"
+      ]
+    },
+    {
+      "name": "license_number",
+      "label": "License Number",
+      "type": "text"
+    },
+    {
+      "name": "insurance_certificate",
+      "label": "Insurance Certificate",
+      "type": "file",
+      "file_type": "pdf"
+    },
+    {
+      "name": "references",
+      "label": "References",
+      "type": "textarea"
+    },
+    {
+      "name": "review_notes",
+      "label": "Review Notes",
+      "type": "textarea"
+    },
+    {
+      "name": "recommendation",
+      "label": "Recommendation",
+      "type": "select",
+      "options": ["approve", "needs_review", "reject"]
+    }
+  ],
+  "compliance": {
+    "privacy_level": "medium",
+    "document_retention": "3 years"
+  }
+}

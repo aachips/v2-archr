@@ -1,0 +1,37 @@
+// 4.3 Schedule Subcontractor Quote - Coordinate subcontractor site visits
+
+
+{
+  "task_name": "Schedule Subcontractor Quote",
+  "task_id": "task_schedule_sub_quote",
+  "task_type": "scheduling",
+  "fields": [
+    {
+      "name": "subcontractor_id",
+      "label": "Subcontractor",
+      "type": "select",
+      "data_source": "subcontractors"
+    },
+    {
+      "name": "scheduled_date",
+      "label": "Quote Date",
+      "type": "date"
+    },
+    {
+      "name": "scheduled_time",
+      "label": "Quote Time",
+      "type": "time"
+    },
+    {
+      "name": "notify_client",
+      "label": "Notify client of visit",
+      "type": "checkbox",
+      "default": true
+    },
+    {
+      "name": "special_instructions",
+      "label": "Special Instructions",
+      "type": "textarea"
+    }
+  ]
+}

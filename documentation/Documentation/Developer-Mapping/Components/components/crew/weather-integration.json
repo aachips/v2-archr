@@ -1,0 +1,17 @@
+{
+  "weather_integration": {
+    "provider": "OpenWeatherMap or WeatherAPI.com",
+    "features": [
+      {"name": "current_weather", "display": "🌤️ 48°F"},
+      {"name": "indoor_outdoor_icon", "mapping": {
+        "Clear": "🌤️ Outdoor",
+        "Clouds": "☁️ Outdoor", 
+        "Rain": "🌧️ Indoor",
+        "Snow": "❄️ Indoor",
+        "Extreme": "⚠️ Indoor"
+      }},
+      {"name": "forecast_tomorrow", "display": "☀️ 52°F"}
+    ],
+    "notes": "Use free tier for initial development. Cache responses for 30 minutes."
+  }
+}

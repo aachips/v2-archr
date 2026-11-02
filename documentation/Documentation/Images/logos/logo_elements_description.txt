@@ -1,0 +1,4 @@
+Logo Font: Bahnschrift light semi-condensed 
+	letter spacing 6.75
+	size 16pt
+	(inscape textbox 'width' 87)

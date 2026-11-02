@@ -1,0 +1,36 @@
+// Document Card - one row in the case directory.
+// Shows the storage-standard filename, DocCode label, workflow status
+// (document_statuses: PENDING/UPLOADED/PROCESSING/VERIFIED/REJECTED/ARCHIVED),
+// origin (generated on the spot vs uploaded), version, and the actions valid
+// for that status. Status -> actions mapping follows the DocCode act0..actFin
+// sequence in document-generation/document-classification-doc-types.md.
+
+{
+  "component_name": "Document Card",
+  "component_role": "documents",
+  "component_id": "card_case_document",
+  "component_type": "card",
+  "component_context": {
+    "target": "documents.file",
+    "target_key": "{document}.{document_id}",
+    "action": "DOCS.OPEN",
+    "webhookSlug": "[documentsWebhook]",
+    "status_states": ["MISSING", "PENDING", "UPLOADED", "PROCESSING", "VERIFIED", "REJECTED", "ARCHIVED"],
+    "origins": ["generated", "uploaded", "external-sync"],
+    "version_chain": "parent_document_id links versions (case_documents)"
+  },
+  "data_sources": {
+    "file_name": "ARCHR-2026-000042_INC_PAYSTUB_20260801.pdf",
+    "doc_code": "INC_PAYSTUB",
+    "status": "UPLOADED (pending verification)",
+    "origin": "uploaded by requestor",
+    "version": "v1",
+    "uploaded": "2026-08-01",
+    "size": "410 KB"
+  },
+  "actions": [
+    { "label": "Review",  "action": "DOCS.OPEN",        "style": "secondary" },
+    { "label": "Verify",  "action": "DOCACT.VERIFY",    "style": "accent" },
+    { "label": "Reject",  "action": "DOCACT.REJECT",    "style": "danger", "requires_reason": true }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "photo_workflow": {
+    "primary_app": "Solocator (third-party)",
+    "integration_method": "Share extension or open URL scheme",
+    "alternative": "Built-in camera capture",
+    "photo_requirements": {
+      "minimum_resolution": "1920x1080",
+      "geotagging": "optional",
+      "manual_notes": "required for detailed site photos"
+    },
+    "upload_after": "Auto-upload when connected to Wi-Fi"
+  }
+}

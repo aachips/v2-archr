@@ -1,0 +1,56 @@
+// Pending Contracts List - Contracts awaiting envoy approval
+
+{
+  "component_name": "Pending Contracts List",
+  "component_id": "cmp_envoy_pending_contracts",
+  "component_type": "list",
+  "data_sources": {
+    "contracts": "contracts where status = 'pending_envoy_approval' ORDER BY submitted_date ASC"
+  },
+  "list_item_fields": [
+    {
+      "field": "contract_number",
+      "label": "Contract #",
+      "type": "text"
+    },
+    {
+      "field": "organization_name",
+      "label": "Organization",
+      "type": "text"
+    },
+    {
+      "field": "contract_type",
+      "label": "Type",
+      "type": "badge"
+    },
+    {
+      "field": "amount",
+      "label": "Amount",
+      "type": "currency"
+    },
+    {
+      "field": "submitted_date",
+      "label": "Submitted",
+      "type": "date"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "Review",
+      "action": "navigate",
+      "target": "/contract/{contract_id}"
+    },
+    {
+      "label": "Approve",
+      "action": "modal",
+      "target": "/eSignContractModal"
+    },
+    {
+      "label": "Reject",
+      "action": "modal",
+      "target": "/rejectContractModal"
+    }
+  ],
+  "sort_order": "submitted_date ASC",
+  "mobile_layout": "cards"
+}

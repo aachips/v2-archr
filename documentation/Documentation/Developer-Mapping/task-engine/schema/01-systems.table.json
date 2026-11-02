@@ -1,0 +1,42 @@
+{
+  "systemKey": "task-resolver",
+  "systemKey.fieldType": "singleLineText",
+  "systemName": "Task Resolver",
+  "systemName.fieldType": "singleLineText",
+  "systemVersion": "1.0.0",
+  "systemVersion.fieldType": "singleLineText",
+  "controllerSchema": "engine.system.v1",
+  "controllerSchema.fieldType": "singleLineText",
+  "description": "Configuration-driven event and task resolution system.",
+  "description.fieldType": "multilineText",
+  "owner": "ARCHR",
+  "owner.fieldType": "singleLineText",
+  "status": "Active",
+  "status.fieldType": "singleSelect",
+  "status.fieldOptions": {
+    "choices": [
+      { "name": "Draft" },
+      { "name": "Active" },
+      { "name": "Paused" },
+      { "name": "Retired" }
+    ]
+  },
+  "runtimeMode": "controller",
+  "runtimeMode.fieldType": "singleLineText",
+  "defaultSourceBaseId": "appXXXXXXXXXXXXXX",
+  "defaultSourceBaseId.fieldType": "singleLineText",
+  "inputSchemaKey": "projectEvent.v2",
+  "inputSchemaKey.fieldType": "singleLineText",
+  "outputSchemaKey": "eventResolver.context.v1",
+  "outputSchemaKey.fieldType": "singleLineText",
+  "settingsJSON": "{}",
+  "settingsJSON.fieldType": "multilineText",
+  "active": true,
+  "active.fieldType": "checkbox",
+  "notes": "",
+  "notes.fieldType": "multilineText",
+  "createdAt": "2026-07-29T00:00:00.000Z",
+  "createdAt.fieldType": "dateTime",
+  "updatedAt": "2026-07-29T00:00:00.000Z",
+  "updatedAt.fieldType": "dateTime"
+}

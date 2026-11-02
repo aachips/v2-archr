@@ -1,0 +1,34 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:10.308Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tbl5LqbVerGa1wD7z",
+    "name": "household_attributes",
+    "description": null,
+    "primaryFieldId": "fldsxHzlF9yCbhp8o",
+    "fields": [
+      {
+        "id": "fldsxHzlF9yCbhp8o",
+        "name": "attribute_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      }
+    ],
+    "views": [
+      {
+        "id": "viwUpj2xgXSp4sxeq",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

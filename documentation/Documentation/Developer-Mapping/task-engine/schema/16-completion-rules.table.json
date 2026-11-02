@@ -1,0 +1,58 @@
+{
+  "completionRuleKey": "phaseTaskId|_EVENT_CODE_|project",
+  "completionRuleKey.fieldType": "singleLineText",
+  "systemKey": "progress-task-v2",
+  "systemKey.fieldType": "singleLineText",
+  "phaseTaskId": "phaseTaskId",
+  "phaseTaskId.fieldType": "singleLineText",
+  "eventLookupCode": "_EVENT_CODE_",
+  "eventLookupCode.fieldType": "singleLineText",
+  "matchMode": "exact",
+  "matchMode.fieldType": "singleSelect",
+  "matchMode.fieldOptions": {
+    "choices": [
+      { "name": "exact" },
+      { "name": "any" },
+      { "name": "all" },
+      { "name": "pattern" }
+    ]
+  },
+  "completionScope": "project",
+  "completionScope.fieldType": "singleLineText",
+  "completionSource": "source",
+  "completionSource.fieldType": "singleSelect",
+  "completionSource.fieldOptions": {
+    "choices": [
+      { "name": "source" },
+      { "name": "session" },
+      { "name": "manual" },
+      { "name": "autocomplete" },
+      { "name": "document" }
+    ]
+  },
+  "requiresEvidence": true,
+  "requiresEvidence.fieldType": "checkbox",
+  "evidenceType": "event",
+  "evidenceType.fieldType": "singleLineText",
+  "docRequirementGroup": "",
+  "docRequirementGroup.fieldType": "singleLineText",
+  "docCode": "",
+  "docCode.fieldType": "singleLineText",
+  "docAct": "",
+  "docAct.fieldType": "singleLineText",
+  "conditionJSON": "{\"completionEvidence\":true}",
+  "conditionJSON.fieldType": "multilineText",
+  "autocompleteRuleJSON": "{}",
+  "autocompleteRuleJSON.fieldType": "multilineText",
+  "resultJSON": "{}",
+  "resultJSON.fieldType": "multilineText",
+  "priority": 100,
+  "priority.fieldType": "number",
+  "priority.fieldOptions": {
+    "precision": 0
+  },
+  "active": true,
+  "active.fieldType": "checkbox",
+  "notes": "",
+  "notes.fieldType": "multilineText"
+}

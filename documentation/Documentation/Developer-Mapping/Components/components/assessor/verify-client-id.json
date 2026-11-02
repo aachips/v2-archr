@@ -1,0 +1,60 @@
+// 2.3 Collect Photo ID - Verify client's identity
+
+
+{
+  "task_name": "Collect Photo ID",
+  "task_id": "task_collect_id",
+  "task_type": "document_collection",
+  "document_code": "ID",
+  "document_action": "COLLECT",
+  "fields": [
+    {
+      "name": "id_type",
+      "label": "ID Type",
+      "type": "select",
+      "options": [
+        "Driver's License",
+        "State ID",
+        "Passport",
+        "Military ID",
+        "Tribal ID",
+        "Other Government ID"
+      ]
+    },
+    {
+      "name": "id_number",
+      "label": "ID Number",
+      "type": "text",
+      "mask": "masked"
+    },
+    {
+      "name": "name_on_id",
+      "label": "Name on ID",
+      "type": "text"
+    },
+    {
+      "name": "id_photo",
+      "label": "Upload Photo of ID",
+      "type": "file",
+      "file_type": "image",
+      "required": true
+    },
+    {
+      "name": "matches_client",
+      "label": "Does the ID match the client?",
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "name": "verification_status",
+      "label": "Verification Status",
+      "type": "select",
+      "options": ["verified", "needs_clarification", "rejected"]
+    }
+  ],
+  "compliance": {
+    "privacy_level": "high",
+    "document_retention": "3 years",
+    "pii_handling": "restricted"
+  }
+}

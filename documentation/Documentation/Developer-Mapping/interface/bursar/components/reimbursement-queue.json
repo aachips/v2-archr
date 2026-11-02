@@ -1,0 +1,34 @@
+{
+      "id": "cmp_reimbursement_queue",
+      "name": "Reimbursement Queue",
+      "description": "List of pending reimbursement requests needing review",
+      "data_source": {
+        "query": "SELECT * FROM reimbursement_aging WHERE status != 'paid' ORDER BY submitted_at ASC",
+        "refresh_interval": 60
+      },
+      "items": [
+        {
+          "id": "reimb_item",
+          "fields": {
+            "request_id": {"label": "Request ID", "type": "text"},
+            "organization": {"label": "Organization", "type": "text"},
+            "case_number": {"label": "Case", "type": "text"},
+            "aging_days": {"label": "Days Aging", "type": "number", "format": "{days}d"},
+            "amount": {"label": "Amount", "type": "currency"},
+            "priority": {"label": "Priority", "type": "pill", "values": {
+              "overdue": {"label": "Overdue", "color": "red"},
+              "critical": {"label": "Critical", "color": "amber"},
+              "normal": {"label": "Normal", "color": "green"}
+            }}
+          },
+          "actions": [
+            {"label": "Review", "action": "navigate", "target": "/reimbursements/{id}"}
+          ]
+        }
+      ],
+      "stats": {
+        "pending": {"label": "Pending", "count": 8},
+        "ready": {"label": "Ready for Review", "count": 4},
+        "overdue": {"label": "Overdue", "count": 2, "warning": true}
+      }
+    }

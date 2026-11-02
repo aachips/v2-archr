@@ -1,0 +1,103 @@
+{
+    "form": {
+        "name": "Quick Add Progress Task",
+        "fields": [
+            {
+                "id": "case_id",
+                "type": "dropdown",
+                "label": "Case",
+                "source": "api/cases/assigned-to-org",
+                "required": true
+            },
+            {
+                "id": "task_type",
+                "type": "dropdown",
+                "label": "Task Type",
+                "options": [
+                    {"value": "ASSESS", "label": "Complete Assessment", "condition": "displayAssess"},
+                    {"value": "SCOPE", "label": "Define Scope of Work", "condition": "displayScope"},
+                    {"value": "START", "label": "Start Work", "condition": "displayStart"},
+                    {"value": "COMPLETE", "label": "Complete Work", "condition": "displayComplete"},
+                    {"value": "PROGRESS", "label": "Update Progress", "condition": "displayStart"}
+                ],
+                "required": true
+            },
+            {
+                "id": "date",
+                "type": "date",
+                "label": "Date",
+                "default": "today",
+                "required": true
+            },
+            {
+                "id": "notes",
+                "type": "textarea",
+                "label": "Notes",
+                "conditions": ["ASSESS", "START", "COMPLETE", "PROGRESS"],
+                "required": false
+            },
+            {
+                "id": "photos",
+                "type": "file_upload",
+                "label": "Upload Photos",
+                "multiple": true,
+                "accept": ["image/jpeg", "image/png", "image/heic"],
+                "max_files": 10,
+                "conditions": ["ASSESS", "COMPLETE", "PROGRESS"],
+                "required": false
+            },
+            {
+                "id": "scope_table",
+                "type": "table",
+                "label": "Scope of Work",
+                "columns": [
+                    {"id": "task", "label": "Task", "type": "text"},
+                    {"id": "location", "label": "Location", "type": "text"},
+                    {"id": "cost", "label": "Cost", "type": "number"}
+                ],
+                "conditions": ["SCOPE"],
+                "required": false
+            },
+            {
+                "id": "contract_upload",
+                "type": "file_upload",
+                "label": "Upload Signed Contract",
+                "accept": ["application/pdf"],
+                "conditions": ["START"],
+                "required": false
+            },
+            {
+                "id": "certificate_upload",
+                "type": "file_upload",
+                "label": "Upload Certificate of Completion",
+                "accept": ["application/pdf"],
+                "conditions": ["COMPLETE"],
+                "required": true
+            },
+            {
+                "id": "after_photos",
+                "type": "file_upload",
+                "label": "Upload After Photos",
+                "multiple": true,
+                "accept": ["image/jpeg", "image/png", "image/heic"],
+                "conditions": ["COMPLETE"],
+                "required": false
+            }
+        ],
+        "webhooks": {
+            "on_submit": {
+                "url": "/api/progress/quick-add",
+                "method": "POST",
+                "headers": {"Authorization": "Bearer {token}"},
+                "include": ["case_id", "task_type", "date", "notes", "photos", "scope_table", "contract_upload", "certificate_upload", "after_photos"]
+            }
+        },
+        "conditions": {
+            "displayClaim": "case.claimed == false",
+            "displayAssess": "case.claimed == true && case.assessment_complete == false",
+            "displayScope": "case.assessment_complete == true && case.scope_complete == false",
+            "displayStart": "case.scope_complete == true && case.work_started == false",
+            "displayComplete": "case.work_started == true && case.work_complete == false"
+        }
+    }
+}

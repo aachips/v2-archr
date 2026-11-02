@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://archr.example/schemas/costing-snapshot.schema.json",
+  "title": "ARCHR Resolved Project Costing Snapshot",
+  "description": "Resolved reporting snapshot keyed by Project KEY. This is not the AAHH accounting ledger.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "costingId",
+    "projectKey",
+    "costEntries",
+    "fundingSelections",
+    "fundingEvidence",
+    "drawRequests",
+    "payments",
+    "reportingSummary",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "costingId": {
+      "$ref": "costing-common.schema.json#/$defs/identifier"
+    },
+    "projectKey": {
+      "$ref": "costing-common.schema.json#/$defs/identifier"
+    },
+    "projectOrgId": {
+      "type": "string"
+    },
+    "source": {
+      "$ref": "costing-common.schema.json#/$defs/source"
+    },
+    "contract": {
+      "$ref": "costing-common.schema.json#/$defs/contract"
+    },
+    "costEntries": {
+      "type": "array",
+      "items": {
+        "$ref": "costing-common.schema.json#/$defs/costEntry"
+      }
+    },
+    "fundingSelections": {
+      "type": "array",
+      "items": {
+        "$ref": "costing-common.schema.json#/$defs/fundingSelection"
+      }
+    },
+    "fundingEvidence": {
+      "$ref": "costing-common.schema.json#/$defs/fundingEvidence"
+    },
+    "drawRequests": {
+      "type": "array",
+      "items": {
+        "$ref": "costing-common.schema.json#/$defs/drawRequest"
+      }
+    },
+    "payments": {
+      "type": "array",
+      "items": {
+        "$ref": "costing-common.schema.json#/$defs/payment"
+      }
+    },
+    "reportingSummary": {
+      "$ref": "costing-common.schema.json#/$defs/reportingSummary"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

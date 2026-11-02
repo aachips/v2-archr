@@ -1,0 +1,25 @@
+{
+  "ability": "Upload Photos",
+  "component": {
+    "type": "modal",
+    "trigger": "📸 button or task action",
+    "title": "Upload Photos",
+    "fields": [
+      {"name": "task_id", "type": "hidden"},
+      {"name": "photo_category", "type": "select", "options": [
+        "Before", "During", "After", "Issue"
+      ]},
+      {"name": "photos", "type": "file_upload", "multiple": true, "camera": true},
+      {"name": "description", "type": "textarea", "placeholder": "Describe what these show..."}
+    ],
+    "actions": [
+      {"label": "Cancel", "action": "close"},
+      {"label": "Upload", "action": "submit"}
+    ]
+  },
+  "business_rules": {
+    "minimum_resolution": "1920x1080",
+    "auto_geotag": "if permission granted",
+    "sync_on_wifi": true
+  }
+}

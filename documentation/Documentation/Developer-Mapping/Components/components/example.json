@@ -1,0 +1,23 @@
+{
+    "component_name": "_COMPONENT_NAME_",
+    "component_id": "_COMPONENT_ID_",
+    "css_class": "_CSS_CLASS_",
+    "component_type": "BUTTON",
+    "dirRoleId": "_ROLE_ID_",
+    "buttonContent": {
+        "buttonId": "_BUTTON_ID_",
+        "taskId": "_TASK_ID_",
+        "target": "_DATA_POINT_",
+        "action": "_ACT_",
+        "type": "_ROLE_",
+        "buttonText": "_BUTTON_TEXT_",
+        "webhookSlug": "_TARGET_URL_"
+    }
+}
+
+//    "html": "<div class=\"di-btn-slot\">{JAVASCRIPT}<div class=\"di-button-mount\"></div></div>",
+//    "javascript": "<script type=\"application/json\" class=\"btn-json\">{\"dirRoleId\":\"_ROLE_ID_\",\"taskId\":\"_TASK_ID_\",\"buttonId\":\"_BUTTON_ID_\",\"buttonContent\":{\"target\":\"_DATA_POINT_\",\"action\":\"_ACT_\",\"type\":\"_ROLE_\",\"buttonText\":\"_BUTTON_TEXT_\",\"webhookSlug\":\"_TARGET_URL_\"}}</script>"
+
+
+// component_type[] = [BUTTON, LIST, LIST_ITEM, DETAILS, TABLE, ALERT, TOOL_TIP, INBOX, INBOX_MESSAGE, FORM, CONFIRM_PROMPT, METRIC_NUM, METRIC_LINE, METRIC_PIE, PROGRESS_BAR, PROGRESS_TASKS, PROJECT_TASKS, VERIFICATION_TASKS, GRID, GRID_ITEM, PROJECT_SUMMARY, DOCUMENT_DISPLAY, CALENDAR, CALENDAR_EVENT, ORGANIZATION, PARTNER_PROGRAM, PERSON, REPORT, ROLE, HEADS_UP_DISPLAY  ]
+//

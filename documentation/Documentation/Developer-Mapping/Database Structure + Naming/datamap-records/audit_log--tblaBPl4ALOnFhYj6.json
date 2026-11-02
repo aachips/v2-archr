@@ -1,0 +1,81 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:11.306Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblaBPl4ALOnFhYj6",
+    "name": "audit_log",
+    "description": null,
+    "primaryFieldId": "fldjahXE3BNs94W7B",
+    "fields": [
+      {
+        "id": "fldjahXE3BNs94W7B",
+        "name": "submission_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fld8nLY2GLDbC0aU4",
+        "name": "action",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld5CAAHoGc7jnyb8",
+        "name": "old_value",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldDe9QmsgPze8RV4",
+        "name": "new_value",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldx6RHFKZ2VQ3W2q",
+        "name": "performed_by",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldFhCZ81qk9Td0Zi",
+        "name": "performed_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwXGHZNlMMTTpwUn",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

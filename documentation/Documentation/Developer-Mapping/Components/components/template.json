@@ -1,0 +1,20 @@
+{"dirRoleId": "_ROLE_ID_",
+ "_recordIdKey_": "_REC_ID_",
+ "componentContent" : {"target":"_TARGET_",
+ "action":"_ACTION_",
+ "type":"_TYPE_",
+ "label":"_LABEL_",
+ "webhookSlug": "_BASE_ID_/_FLOW_ID_/_HOOK_ID_"} }
+
+//  <div class="di-_component_-slot">
+//      <script type="application/json" class="_component_-json">
+//          {"dirRoleId":
+//           "_ROLE_ID_",
+//           "_recordIdKey_":"_REC_ID_",
+//           "componentContent":{"target":"_TARGET_","action":"_ACTION_","type":"_TYPE_",
+//           "label":"_LABEL_",
+//           "webhookSlug":"_BASE_ID_/_FLOW_ID_/_HOOK_ID_"}}
+//      </script>
+//      <div class="di-_component_-mount">
+//      </div>
+//  </div>

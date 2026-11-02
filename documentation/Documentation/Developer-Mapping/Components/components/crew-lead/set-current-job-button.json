@@ -1,0 +1,26 @@
+// Set Current Job Button - Switch active job for crew lead
+
+{
+  "component_name": "Set Current Job Button",
+  "component_role": "crew_lead",
+  "component_id": "btn_crewlead_set_job",
+  "component_class": ".btn.btn-primary",
+  "component_context": {
+    "taskId": "rec[jobIdentifier]",
+    "target": "jobs",
+    "target_key": "{job}.{current_status}",
+    "action": "SET.CURRENT_JOB",
+    "buttonText": "Set as Current",
+    "webhookSlug": "[setCurrentJobWebhook]",
+    "confirm": "Switch to this job?",
+    "successMessage": "Current job updated!",
+    "reversible": "yes"
+  },
+  "display_text": "Set as Current",
+  "icon": "fa-bullseye",
+  "action": {
+    "type": "update",
+    "target": "/api/crewlead/jobs/:id"
+  },
+  "role_access": "crew_lead"
+}

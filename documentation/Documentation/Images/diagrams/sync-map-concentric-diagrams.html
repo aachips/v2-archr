@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ARCHR Sync Map Orbit Diagrams</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8fafc;
+      --ink: #111827;
+      --muted: #475569;
+      --line: #cbd5e1;
+      --panel: #ffffff;
+      --star: #facc15;
+      --star-line: #a16207;
+      --orbit-1: #38bdf8;
+      --orbit-2: #34d399;
+      --orbit-3: #c4b5fd;
+      --orbit-4: #f9a8d4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    header,
+    main {
+      width: min(1180px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 32px 0 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 46px);
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      max-width: 850px;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 8px;
+    }
+
+    .rule {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      min-height: 84px;
+    }
+
+    .rule strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .diagram {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 22px 0;
+      padding: 18px;
+    }
+
+    .diagram-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .stats {
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .canvas {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      min-height: 520px;
+      border: 1px solid #e2e8f0;
+      background: #fbfdff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ring {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 1.5;
+      stroke-dasharray: 8 8;
+    }
+
+    .flow {
+      fill: none;
+      stroke: #475569;
+      stroke-width: 2;
+      opacity: 0.72;
+    }
+
+    .flow.out {
+      marker-end: url(#arrow);
+    }
+
+    .flow.in {
+      marker-end: url(#arrow);
+      stroke-dasharray: 7 5;
+    }
+
+    .star {
+      fill: var(--star);
+      stroke: var(--star-line);
+      stroke-width: 4;
+    }
+
+    .planet {
+      stroke: #1f2937;
+      stroke-width: 2;
+    }
+
+    .planet.weight-1 {
+      fill: var(--orbit-4);
+    }
+
+    .planet.weight-2 {
+      fill: var(--orbit-3);
+    }
+
+    .planet.weight-3 {
+      fill: var(--orbit-2);
+    }
+
+    .planet.weight-4,
+    .planet.weight-5,
+    .planet.weight-6,
+    .planet.weight-7 {
+      fill: var(--orbit-1);
+    }
+
+    .star-label,
+    .planet-label {
+      fill: var(--ink);
+      font-weight: 700;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .star-label {
+      font-size: 19px;
+    }
+
+    .planet-label {
+      font-size: 14px;
+    }
+
+    .flow-label,
+    .weight-label {
+      fill: #334155;
+      font-size: 12px;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .table {
+      display: grid;
+      grid-template-columns: 1fr 92px 92px 92px;
+      gap: 0;
+      margin-top: 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    .table div {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .table div:nth-last-child(-n + 4) {
+      border-bottom: 0;
+    }
+
+    .table .head {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    .table .num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 760px) {
+      header,
+      main {
+        width: min(100vw - 24px, 1180px);
+      }
+
+      .rules {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram-head {
+        display: block;
+      }
+
+      .stats {
+        text-align: left;
+        margin-top: 6px;
+      }
+
+      .canvas {
+        min-height: 430px;
+      }
+
+      .table {
+        grid-template-columns: 1fr 70px 70px 78px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sync Map Orbit Diagrams</h1>
+    <p>Each diagram treats one Airtable base as the primary star. Surrounding bases are planets. More synced-table relationships makes a planet larger and pulls it closer to the star.</p>
+    <div class="rules">
+      <div class="rule"><strong>Weight</strong>Inbound sync tables plus outbound sync tables between the star and planet.</div>
+      <div class="rule"><strong>Distance</strong>Higher weights use closer orbit rings.</div>
+      <div class="rule"><strong>Size</strong>Higher weights use larger planet circles.</div>
+      <div class="rule"><strong>Direction</strong>Solid lines flow out from the star. Dashed lines flow into the star.</div>
+    </div>
+  </header>
+
+  <main id="diagrams"></main>
+
+  <script>
+    const diagrams = [
+      {
+        id: "fillout",
+        star: "Fillout Results",
+        fullName: "🟦(📗) Fillout Results",
+        note: "Intake and raw submission hub. Its strongest loops are with ANCHOR and Repair Requests.",
+        planets: [
+          { name: "ANCHOR Records", fullName: "🟦[D](v1-2) ANCHOR Records", in: 2, out: 2 },
+          { name: "Repair Requests", fullName: "🟦[D] ARCHR Repair Requests", in: 2, out: 2 },
+          { name: "Eligibility", fullName: "🟦[P] ARCHR Eligibility", in: 1, out: 2 },
+          { name: "Directory", fullName: "🟦[D] (v2) ARCHR Directory", in: 0, out: 1 },
+          { name: "Emergency", fullName: "🟦[A] (v1) ARCHR Emergency", in: 1, out: 0 },
+          { name: "Architecture Model", fullName: "🟦[X] ARCHR Architecture Model", in: 1, out: 0 },
+          { name: "Partner Programs", fullName: "🟦ARCHR Partner Programs", in: 1, out: 0 }
+        ]
+      },
+      {
+        id: "anchor",
+        star: "ANCHOR Records",
+        fullName: "🟦[D](v1-2) ANCHOR Records",
+        note: "Anchor/project/place spine. Progress Tracker and Fillout sit closest, with document and eligibility outputs next.",
+        planets: [
+          { name: "Progress Tracker", fullName: "🟦[P] ARCHR Progress Tracker", in: 2, out: 3 },
+          { name: "Fillout Results", fullName: "🟦(📗) Fillout Results", in: 2, out: 2 },
+          { name: "Project Documents", fullName: "🟦[D] ARCHR Project Documents", in: 0, out: 2 },
+          { name: "Eligibility", fullName: "🟦[P] ARCHR Eligibility", in: 0, out: 2 },
+          { name: "Emergency", fullName: "🟦[A] (v1) ARCHR Emergency", in: 1, out: 0 },
+          { name: "Funding Sources", fullName: "🟦[D] (v1) ARCHR Disaster Funding Sources", in: 1, out: 0 },
+          { name: "AAHH Home Repair", fullName: "🟦[D] (v2) AAHH Traditional Home Repair", in: 1, out: 0 },
+          { name: "Repair Requests", fullName: "🟦[D] ARCHR Repair Requests", in: 0, out: 1 },
+          { name: "DSW Updates", fullName: "🟦[D] DSW Updates Sheet", in: 1, out: 0 },
+          { name: "Partner Programs", fullName: "🟦ARCHR Partner Programs", in: 1, out: 0 }
+        ]
+      },
+      {
+        id: "progress",
+        star: "Progress Tracker",
+        fullName: "🟦[P] ARCHR Progress Tracker",
+        note: "Cross-system event and task-state hub. Directory is the closest planet; Documents and ANCHOR are the next strongest loops.",
+        planets: [
+          { name: "Directory", fullName: "🟦[D] (v2) ARCHR Directory", in: 3, out: 4 },
+          { name: "Project Documents", fullName: "🟦[D] ARCHR Project Documents", in: 3, out: 2 },
+          { name: "ANCHOR Records", fullName: "🟦[D](v1-2) ANCHOR Records", in: 3, out: 2 },
+          { name: "Repair Requests", fullName: "🟦[D] ARCHR Repair Requests", in: 0, out: 3 },
+          { name: "Emergency", fullName: "🟦[A] (v1) ARCHR Emergency", in: 2, out: 0 },
+          { name: "Architecture Model", fullName: "🟦[X] ARCHR Architecture Model", in: 2, out: 0 },
+          { name: "Reports", fullName: "🟦[D] ARCHR Reports", in: 1, out: 0 },
+          { name: "DSW Updates", fullName: "🟦[D] DSW Updates Sheet", in: 1, out: 0 },
+          { name: "Eligibility", fullName: "🟦[P] ARCHR Eligibility", in: 1, out: 0 },
+          { name: "Assessments", fullName: "🟦[R] ARCHR Assessments", in: 1, out: 0 },
+          { name: "Partner Programs", fullName: "🟦ARCHR Partner Programs", in: 1, out: 0 }
+        ]
+      },
+      {
+        id: "directory",
+        star: "Directory",
+        fullName: "🟦[D] (v2) ARCHR Directory",
+        note: "People, organization, session, and project coordination layer. Progress Tracker dominates the orbit.",
+        planets: [
+          { name: "Progress Tracker", fullName: "🟦[P] ARCHR Progress Tracker", in: 4, out: 3 },
+          { name: "Architecture Model", fullName: "🟦[X] ARCHR Architecture Model", in: 3, out: 0 },
+          { name: "Project Documents", fullName: "🟦[D] ARCHR Project Documents", in: 0, out: 2 },
+          { name: "Eligibility", fullName: "🟦[P] ARCHR Eligibility", in: 0, out: 2 },
+          { name: "Fillout Results", fullName: "🟦(📗) Fillout Results", in: 1, out: 0 },
+          { name: "Repair Requests", fullName: "🟦[D] ARCHR Repair Requests", in: 0, out: 1 },
+          { name: "Email Handler", fullName: "🟦[P] ARCHR Email Handler", in: 1, out: 0 },
+          { name: "Partner Programs", fullName: "🟦ARCHR Partner Programs", in: 0, out: 1 }
+        ]
+      },
+      {
+        id: "documents",
+        star: "Project Documents",
+        fullName: "🟦[D] ARCHR Project Documents",
+        note: "Document and document-event hub. Progress Tracker is the strongest loop; Eligibility and Partner Programs form the next tier.",
+        planets: [
+          { name: "Progress Tracker", fullName: "🟦[P] ARCHR Progress Tracker", in: 2, out: 3 },
+          { name: "Eligibility", fullName: "🟦[P] ARCHR Eligibility", in: 3, out: 0 },
+          { name: "Partner Programs", fullName: "🟦ARCHR Partner Programs", in: 1, out: 2 },
+          { name: "Applicants", fullName: "🟦[A] (v2) ARCHR Applicants", in: 2, out: 0 },
+          { name: "Directory", fullName: "🟦[D] (v2) ARCHR Directory", in: 2, out: 0 },
+          { name: "ANCHOR Records", fullName: "🟦[D](v1-2) ANCHOR Records", in: 2, out: 0 },
+          { name: "Emergency", fullName: "🟦[A] (v1) ARCHR Emergency", in: 1, out: 0 },
+          { name: "Email Handler", fullName: "🟦[P] ARCHR Email Handler", in: 1, out: 0 },
+          { name: "Subcontractor Log", fullName: "🟦[P] Subcontractor Log", in: 1, out: 0 }
+        ]
+      },
+      {
+        id: "emergency",
+        star: "Emergency",
+        fullName: "🟦[A] (v1) ARCHR Emergency",
+        note: "Legacy emergency source base. It mostly pushes outward into task, progress, Fillout, Documents, and ANCHOR systems.",
+        planets: [
+          { name: "Task Library", fullName: "🟦[D] ARCHR Multi Axis Task Library", in: 0, out: 3 },
+          { name: "Progress Tracker", fullName: "🟦[P] ARCHR Progress Tracker", in: 0, out: 2 },
+          { name: "Fillout Results", fullName: "🟦(📗) Fillout Results", in: 0, out: 1 },
+          { name: "Project Documents", fullName: "🟦[D] ARCHR Project Documents", in: 0, out: 1 },
+          { name: "ANCHOR Records", fullName: "🟦[D](v1-2) ANCHOR Records", in: 0, out: 1 }
+        ]
+      },
+      {
+        id: "repairs",
+        star: "Repair Requests",
+        fullName: "🟦[D] ARCHR Repair Requests",
+        note: "Repair workflow hub. Fillout is the strongest bidirectional loop, while Progress Tracker is a strong inbound event source.",
+        planets: [
+          { name: "Fillout Results", fullName: "🟦(📗) Fillout Results", in: 2, out: 2 },
+          { name: "Progress Tracker", fullName: "🟦[P] ARCHR Progress Tracker", in: 3, out: 0 },
+          { name: "Directory", fullName: "🟦[D] (v2) ARCHR Directory", in: 1, out: 0 },
+          { name: "ANCHOR Records", fullName: "🟦[D](v1-2) ANCHOR Records", in: 1, out: 0 },
+          { name: "Marketplace", fullName: "🟦[P] ARCHR Marketplace", in: 1, out: 0 }
+        ]
+      }
+    ];
+
+    const width = 1100;
+    const height = 680;
+    const cx = width / 2;
+    const cy = height / 2 + 12;
+    const maxRing = 286;
+    const minRing = 152;
+
+    function total(planet) {
+      return planet.in + planet.out;
+    }
+
+    function radius(weight, maxWeight) {
+      return 30 + (weight / maxWeight) * 38;
+    }
+
+    function orbit(weight, maxWeight) {
+      if (maxWeight === 1) return minRing;
+      const normalized = (maxWeight - weight) / (maxWeight - 1);
+      return minRing + normalized * (maxRing - minRing);
+    }
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function labelLines(name) {
+      if (name.length <= 18) return [name];
+      const words = name.split(" ");
+      const lines = [""];
+      words.forEach(word => {
+        const current = lines[lines.length - 1];
+        if ((current + " " + word).trim().length > 18 && current) {
+          lines.push(word);
+        } else {
+          lines[lines.length - 1] = (current + " " + word).trim();
+        }
+      });
+      return lines.slice(0, 2);
+    }
+
+    function pointOnCircle(angle, distance) {
+      return {
+        x: cx + Math.cos(angle) * distance,
+        y: cy + Math.sin(angle) * distance
+      };
+    }
+
+    function lineEndpoints(angle, planetDistance, planetRadius, starRadius) {
+      return {
+        star: pointOnCircle(angle, starRadius + 7),
+        planet: pointOnCircle(angle, planetDistance - planetRadius - 8),
+        reverseStart: pointOnCircle(angle, planetDistance - planetRadius - 8),
+        reverseEnd: pointOnCircle(angle, starRadius + 7)
+      };
+    }
+
+    function renderDiagram(diagram) {
+      const maxWeight = Math.max(...diagram.planets.map(total));
+      const starRadius = 76;
+      const sorted = [...diagram.planets].sort((a, b) => total(b) - total(a) || a.name.localeCompare(b.name));
+      const planets = sorted.map((planet, index) => {
+        const weight = total(planet);
+        const angle = -Math.PI / 2 + (index / sorted.length) * Math.PI * 2;
+        const planetDistance = orbit(weight, maxWeight);
+        const planetRadius = radius(weight, maxWeight);
+        return {
+          ...planet,
+          weight,
+          angle,
+          r: planetRadius,
+          distance: planetDistance,
+          ...pointOnCircle(angle, planetDistance)
+        };
+      });
+
+      const rings = [...new Set(planets.map(planet => Math.round(planet.distance)))].sort((a, b) => a - b);
+      const markerId = `arrow-${diagram.id}`;
+
+      const flows = planets.map(planet => {
+        const ends = lineEndpoints(planet.angle, planet.distance, planet.r, starRadius);
+        const paths = [];
+        if (planet.out > 0) {
+          paths.push(`<line class="flow out" x1="${ends.star.x}" y1="${ends.star.y}" x2="${ends.planet.x}" y2="${ends.planet.y}" marker-end="url(#${markerId})" />`);
+        }
+        if (planet.in > 0) {
+          paths.push(`<line class="flow in" x1="${ends.reverseStart.x}" y1="${ends.reverseStart.y}" x2="${ends.reverseEnd.x}" y2="${ends.reverseEnd.y}" marker-end="url(#${markerId})" />`);
+        }
+        return paths.join("");
+      }).join("");
+
+      const planetMarkup = planets.map(planet => {
+        const lines = labelLines(planet.name);
+        const textY = planet.y - (lines.length - 1) * 8;
+        const labelMarkup = lines.map((line, index) => `<text class="planet-label" x="${planet.x}" y="${textY + index * 17}">${escapeHtml(line)}</text>`).join("");
+        return `
+          <g>
+            <circle class="planet weight-${Math.min(planet.weight, 7)}" cx="${planet.x}" cy="${planet.y}" r="${planet.r}" />
+            ${labelMarkup}
+            <text class="flow-label" x="${planet.x}" y="${planet.y + planet.r + 18}">${planet.in} in / ${planet.out} out</text>
+            <text class="weight-label" x="${planet.x}" y="${planet.y + planet.r + 34}">weight ${planet.weight}</text>
+          </g>`;
+      }).join("");
+
+      const rows = sorted.map(planet => `
+        <div>${escapeHtml(planet.fullName)}</div>
+        <div class="num">${planet.in}</div>
+        <div class="num">${planet.out}</div>
+        <div class="num">${total(planet)}</div>
+      `).join("");
+
+      return `
+        <section class="diagram" id="${diagram.id}">
+          <div class="diagram-head">
+            <div>
+              <h2>${escapeHtml(diagram.fullName)}</h2>
+              <p>${escapeHtml(diagram.note)}</p>
+            </div>
+            <div class="stats">${diagram.planets.length} surrounding bases<br />max weight ${maxWeight}</div>
+          </div>
+          <div class="canvas">
+            <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Orbit diagram for ${escapeHtml(diagram.fullName)}">
+              <defs>
+                <marker id="${markerId}" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#475569"></path>
+                </marker>
+              </defs>
+              ${rings.map(ring => `<circle class="ring" cx="${cx}" cy="${cy}" r="${ring}" />`).join("")}
+              ${flows}
+              <circle class="star" cx="${cx}" cy="${cy}" r="${starRadius}" />
+              <text class="star-label" x="${cx}" y="${cy - 8}">${escapeHtml(diagram.star)}</text>
+              <text class="flow-label" x="${cx}" y="${cy + 18}">primary star</text>
+              ${planetMarkup}
+            </svg>
+          </div>
+          <div class="table" aria-label="Relationship weights for ${escapeHtml(diagram.fullName)}">
+            <div class="head">Surrounding base</div>
+            <div class="head num">In</div>
+            <div class="head num">Out</div>
+            <div class="head num">Weight</div>
+            ${rows}
+          </div>
+        </section>`;
+    }
+
+    document.getElementById("diagrams").innerHTML = diagrams.map(renderDiagram).join("");
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+
+// Assessment Calendar - Visual scheduling for upcoming assessments
+
+// Week View - Monday-Sunday grid
+// Dot Indicator - Assessments scheduled per day
+// Today Highlight - Current day emphasized
+// Count Badge - Number of assessments today
+
+{
+  "component_name": "Assessment Calendar",
+  "component_id": "cmp_calendar",
+  "component_type": "calendar",
+  "view_type": "week",
+  "data_sources": {
+    "assessments": "scheduled_events where event_type = 'assessment'"
+  },
+  "interactions": {
+    "click_day": "show assessments for that day",
+    "click_assessment": "navigate to assessment detail"
+  },
+  "mobile_layout": "scrollable"
+}

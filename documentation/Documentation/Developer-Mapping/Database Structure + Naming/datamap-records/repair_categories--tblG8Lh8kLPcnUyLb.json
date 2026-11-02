@@ -1,0 +1,41 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:10.708Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblG8Lh8kLPcnUyLb",
+    "name": "repair_categories",
+    "description": null,
+    "primaryFieldId": "fldmkKhCeBqH0Jmdb",
+    "fields": [
+      {
+        "id": "fldmkKhCeBqH0Jmdb",
+        "name": "category_code",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldfD81sJ5bHI3Gw6",
+        "name": "category_label",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      }
+    ],
+    "views": [
+      {
+        "id": "viwtw9TZJ0TmhAQHR",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

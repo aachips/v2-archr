@@ -1,0 +1,11 @@
+{
+  "component_name": "Manage Subcontractors Button",
+  "component_role": "project_manager",
+  "component_id": "btn_manage_subs",
+  "component_class": ".btn.btn-manage",
+  "component_context": {
+    "action": "SUBCONTRACTOR.MANAGE",
+    "buttonText": "Manage Subs",
+    "target": "/subcontractorManagement"
+  }
+}

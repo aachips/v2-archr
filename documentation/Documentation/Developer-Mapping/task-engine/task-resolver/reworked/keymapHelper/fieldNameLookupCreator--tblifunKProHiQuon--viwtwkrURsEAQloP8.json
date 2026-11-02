@@ -1,0 +1,5045 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:13:48.868Z",
+  "baseId": "apps9VjdjDOR68kpl",
+  "table": {
+    "id": "tblifunKProHiQuon",
+    "name": "fieldNameLookupCreator",
+    "description": null,
+    "primaryFieldId": "fldOWGxhtj0RMPseO",
+    "fields": [
+      {
+        "id": "fldOWGxhtj0RMPseO",
+        "name": "input",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldoqgsT3Nl7KUsL6",
+        "name": "left",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "LEFT({fldOWGxhtj0RMPseO},FIND(\".\", {fldOWGxhtj0RMPseO}))",
+          "referencedFieldIds": [
+            "fldOWGxhtj0RMPseO"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldOqA19w2uekjDCm",
+        "name": "right",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "RIGHT({fldOWGxhtj0RMPseO},(LEN({fldOWGxhtj0RMPseO})-LEN({fldoqgsT3Nl7KUsL6})))",
+          "referencedFieldIds": [
+            "fldOWGxhtj0RMPseO",
+            "fldoqgsT3Nl7KUsL6"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldYKHkEDUS3ciBz6",
+        "name": "Number",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 1
+        }
+      },
+      {
+        "id": "fldcmYBZJMQBOlu1Z",
+        "name": "ifthen",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "IF({fldYKHkEDUS3ciBz6}>0, {fldcvD7MBpkhrBc5h}&{fldpaMIGpQGeOfWam})",
+          "referencedFieldIds": [
+            "fldYKHkEDUS3ciBz6",
+            "fldcvD7MBpkhrBc5h",
+            "fldpaMIGpQGeOfWam"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldKue9Ihz3vIftVD",
+        "name": "Rename",
+        "type": "checkbox",
+        "description": null,
+        "options": {
+          "icon": "check",
+          "color": "greenBright"
+        }
+      },
+      {
+        "id": "fldcvD7MBpkhrBc5h",
+        "name": "if",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "'IF(FIND(\"'&{fldJJKSYhxB9uNkGT}&'\", ARRAYJOIN({includeKeys}))>0, '",
+          "referencedFieldIds": [
+            "fldJJKSYhxB9uNkGT"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldpaMIGpQGeOfWam",
+        "name": "then",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "IF({fldZvQWXRE6r2CLsk}, '\\'\"'&{fldJJKSYhxB9uNkGT}&'\":{\\'& {'&{fldJJKSYhxB9uNkGT}&'}&\\'}___\\')&', \r\nIF({fld5UDbOU4OLdOb06}, '\\'\"'&{fldJJKSYhxB9uNkGT}&'\":[\\'& {'&{fldJJKSYhxB9uNkGT}&'}&\\']___\\')&', \r\n'\\'\"'&{fldJJKSYhxB9uNkGT}&'\":\"\\'& {'&{fldJJKSYhxB9uNkGT}&'}&\\'\"___\\')&'\r\n))\r\n",
+          "referencedFieldIds": [
+            "fldZvQWXRE6r2CLsk",
+            "fldJJKSYhxB9uNkGT",
+            "fld5UDbOU4OLdOb06"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fld4M2u4PFmxOb7bz",
+        "name": "quotes",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "'\"'&{fldOWGxhtj0RMPseO}&'\"'",
+          "referencedFieldIds": [
+            "fldOWGxhtj0RMPseO"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldJa4IlgZRN6m6w2",
+        "name": "curly",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "'{'&{fldOWGxhtj0RMPseO}&'}'",
+          "referencedFieldIds": [
+            "fldOWGxhtj0RMPseO"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldITQciHKABlYJuo",
+        "name": "regex",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "','&{fld4M2u4PFmxOb7bz}&', '&{fldJa4IlgZRN6m6w2}&'),'",
+          "referencedFieldIds": [
+            "fld4M2u4PFmxOb7bz",
+            "fldJa4IlgZRN6m6w2"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldIuF5zXWR7GRxNf",
+        "name": "Notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldXcOVIYswrMY3zJ",
+        "name": "Assignee",
+        "type": "singleCollaborator",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldvAT2BKMDEmq0Vy",
+        "name": "Status",
+        "type": "singleSelect",
+        "description": null,
+        "options": {
+          "choices": [
+            {
+              "id": "selQ5QUOG4yVoPeEg",
+              "name": "Todo",
+              "color": "redLight2"
+            },
+            {
+              "id": "selB9BCf8GJehxVum",
+              "name": "In progress",
+              "color": "yellowLight2"
+            },
+            {
+              "id": "sel4bCsK2j2xL0TWg",
+              "name": "Done",
+              "color": "greenLight2"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fldC4x69r4GShmhqL",
+        "name": "Attachments",
+        "type": "multipleAttachments",
+        "description": null,
+        "options": {
+          "isReversed": false
+        }
+      },
+      {
+        "id": "fldPoHvjCVJTzTYAL",
+        "name": "rolledUpOn Rollup (from eventJSONkeys)",
+        "type": "rollup",
+        "description": null,
+        "options": {
+          "isValid": false,
+          "recordLinkFieldId": "fldhsAIJInSvFPq9B",
+          "fieldIdInLinkedTable": null,
+          "referencedFieldIds": [],
+          "result": null
+        }
+      },
+      {
+        "id": "fldhsAIJInSvFPq9B",
+        "name": "keyMap",
+        "type": "multipleRecordLinks",
+        "description": null,
+        "options": {
+          "linkedTableId": "tbl7mjYmTYjonvw8k",
+          "isReversed": false,
+          "prefersSingleRecordLink": false,
+          "inverseLinkFieldId": "fldL3B42XmhIDISj0"
+        }
+      },
+      {
+        "id": "fldFlC3O6jGTUZSg5",
+        "name": "level (from eventJSONkeys)",
+        "type": "multipleLookupValues",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "recordLinkFieldId": "fldhsAIJInSvFPq9B",
+          "fieldIdInLinkedTable": "fldG1YyBs46g2SFTR",
+          "result": {
+            "type": "number",
+            "options": {
+              "precision": 0
+            }
+          }
+        }
+      },
+      {
+        "id": "fldO4NuLXqsgMuI2M",
+        "name": "json.child",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld5UDbOU4OLdOb06",
+        "name": "array",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "FIND(\"array\", ARRAYJOIN({fldrAsCY1fezk7uAE}))>0",
+          "referencedFieldIds": [
+            "fldrAsCY1fezk7uAE"
+          ],
+          "result": {
+            "type": "checkbox",
+            "options": {
+              "icon": "check",
+              "color": "greenBright"
+            }
+          }
+        }
+      },
+      {
+        "id": "fldZvQWXRE6r2CLsk",
+        "name": "object",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "FIND(\"object\", ARRAYJOIN({fldrAsCY1fezk7uAE}))>0",
+          "referencedFieldIds": [
+            "fldrAsCY1fezk7uAE"
+          ],
+          "result": {
+            "type": "checkbox",
+            "options": {
+              "icon": "check",
+              "color": "greenBright"
+            }
+          }
+        }
+      },
+      {
+        "id": "fldx4hNfEPx6Qa2aV",
+        "name": "tableConfigSetups (from keyMap)",
+        "type": "multipleLookupValues",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "recordLinkFieldId": "fldhsAIJInSvFPq9B",
+          "fieldIdInLinkedTable": "fld0swxpyn6HnqWcN",
+          "result": {
+            "type": "multipleRecordLinks",
+            "options": {
+              "isReversed": false,
+              "prefersSingleRecordLink": false
+            }
+          }
+        }
+      },
+      {
+        "id": "fldrAsCY1fezk7uAE",
+        "name": "valueType Rollup (from keyMap)",
+        "type": "rollup",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "recordLinkFieldId": "fldhsAIJInSvFPq9B",
+          "fieldIdInLinkedTable": "fldsjuPngKqAU5nB1",
+          "referencedFieldIds": [],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldemOXAFfL7HzAh1",
+        "name": "rolledUpOn_select Rollup (from keyMap)",
+        "type": "rollup",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "recordLinkFieldId": "fldhsAIJInSvFPq9B",
+          "fieldIdInLinkedTable": "fldO9ULnn8VkkMfDj",
+          "referencedFieldIds": [],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldUPnvvvvyJmKiWR",
+        "name": "json_key (from keyMap)",
+        "type": "multipleLookupValues",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "recordLinkFieldId": "fldhsAIJInSvFPq9B",
+          "fieldIdInLinkedTable": "fldJyhq9UrXiltttm",
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      },
+      {
+        "id": "fldBxKaic3TZcqLRs",
+        "name": "removeParent",
+        "type": "checkbox",
+        "description": null,
+        "options": {
+          "icon": "check",
+          "color": "greenBright"
+        }
+      },
+      {
+        "id": "fldJJKSYhxB9uNkGT",
+        "name": "createFieldName",
+        "type": "formula",
+        "description": null,
+        "options": {
+          "isValid": true,
+          "formula": "IF({fldBxKaic3TZcqLRs}, {fldOqA19w2uekjDCm}, {fldOWGxhtj0RMPseO})",
+          "referencedFieldIds": [
+            "fldBxKaic3TZcqLRs",
+            "fldOqA19w2uekjDCm",
+            "fldOWGxhtj0RMPseO"
+          ],
+          "result": {
+            "type": "singleLineText"
+          }
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwtwkrURsEAQloP8",
+        "name": "Grid view",
+        "type": "grid"
+      },
+      {
+        "id": "viwLWGRkotkmUIpk0",
+        "name": "table_config",
+        "type": "grid"
+      },
+      {
+        "id": "viwLoVseHmR9MRV91",
+        "name": "field_config",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "view",
+    "viewId": "viwtwkrURsEAQloP8",
+    "viewName": "Grid view"
+  },
+  "recordCount": 69,
+  "records": [
+    {
+      "id": "recGmpYwB6cA44HsG",
+      "createdTime": "2026-07-13T10:48:33.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"search.tables\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"search.tables\", {search.tables}),",
+        "fldJJKSYhxB9uNkGT": "search.tables",
+        "fldJa4IlgZRN6m6w2": "{search.tables}",
+        "fldOWGxhtj0RMPseO": "search.tables",
+        "fldOqA19w2uekjDCm": "tables",
+        "fldUPnvvvvyJmKiWR": [
+          "search.tables"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"search.tables\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "engine_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recZrgHp1pvlUlYt1"
+        ],
+        "fldoqgsT3Nl7KUsL6": "search.",
+        "fldpaMIGpQGeOfWam": "'\"search.tables\":['& {search.tables}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"search.tables\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"search.tables\", {search.tables}),",
+        "createFieldName": "search.tables",
+        "curly": "{search.tables}",
+        "input": "search.tables",
+        "right": "tables",
+        "json_key (from keyMap)": [
+          "search.tables"
+        ],
+        "if": "IF(FIND(\"search.tables\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "engine_config"
+        ],
+        "keyMap": [
+          "recZrgHp1pvlUlYt1"
+        ],
+        "left": "search.",
+        "then": "'\"search.tables\":['& {search.tables}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "recMYpTplu1S7GM0d",
+      "createdTime": "2026-07-13T10:48:33.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"search.results\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"search.results\", {search.results}),",
+        "fldJJKSYhxB9uNkGT": "search.results",
+        "fldJa4IlgZRN6m6w2": "{search.results}",
+        "fldOWGxhtj0RMPseO": "search.results",
+        "fldOqA19w2uekjDCm": "results",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"search.results\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recFcyukGiDbIACG8"
+        ],
+        "fldoqgsT3Nl7KUsL6": "search.",
+        "fldpaMIGpQGeOfWam": "'\"search.results\":['& {search.results}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"search.results\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"search.results\", {search.results}),",
+        "createFieldName": "search.results",
+        "curly": "{search.results}",
+        "input": "search.results",
+        "right": "results",
+        "if": "IF(FIND(\"search.results\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recFcyukGiDbIACG8"
+        ],
+        "left": "search.",
+        "then": "'\"search.results\":['& {search.results}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "recRPNeNiBkYmhWil",
+      "createdTime": "2026-07-13T10:48:33.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"terms.primaryTerm\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"terms.primaryTerm\", {terms.primaryTerm}),",
+        "fldJJKSYhxB9uNkGT": "terms.primaryTerm",
+        "fldJa4IlgZRN6m6w2": "{terms.primaryTerm}",
+        "fldOWGxhtj0RMPseO": "terms.primaryTerm",
+        "fldOqA19w2uekjDCm": "primaryTerm",
+        "fldUPnvvvvyJmKiWR": [
+          "search.terms.primaryTerm"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"terms.primaryTerm\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recxqnWn1UYso7cFr"
+        ],
+        "fldoqgsT3Nl7KUsL6": "terms.",
+        "fldpaMIGpQGeOfWam": "'\"terms.primaryTerm\":['& {terms.primaryTerm}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"terms.primaryTerm\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"terms.primaryTerm\", {terms.primaryTerm}),",
+        "createFieldName": "terms.primaryTerm",
+        "curly": "{terms.primaryTerm}",
+        "input": "terms.primaryTerm",
+        "right": "primaryTerm",
+        "json_key (from keyMap)": [
+          "search.terms.primaryTerm"
+        ],
+        "if": "IF(FIND(\"terms.primaryTerm\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recxqnWn1UYso7cFr"
+        ],
+        "left": "terms.",
+        "then": "'\"terms.primaryTerm\":['& {terms.primaryTerm}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0"
+        ]
+      }
+    },
+    {
+      "id": "recSpmR1eFEtBa2cA",
+      "createdTime": "2026-07-13T10:48:33.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"search.terms\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"search.terms\", {search.terms}),",
+        "fldJJKSYhxB9uNkGT": "search.terms",
+        "fldJa4IlgZRN6m6w2": "{search.terms}",
+        "fldOWGxhtj0RMPseO": "search.terms",
+        "fldOqA19w2uekjDCm": "terms",
+        "fldUPnvvvvyJmKiWR": [
+          "search.terms"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"search.terms\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recn8JlQqY1Ij7OLv"
+        ],
+        "fldoqgsT3Nl7KUsL6": "search.",
+        "fldpaMIGpQGeOfWam": "'\"search.terms\":['& {search.terms}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"search.terms\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"search.terms\", {search.terms}),",
+        "createFieldName": "search.terms",
+        "curly": "{search.terms}",
+        "input": "search.terms",
+        "right": "terms",
+        "json_key (from keyMap)": [
+          "search.terms"
+        ],
+        "if": "IF(FIND(\"search.terms\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recn8JlQqY1Ij7OLv"
+        ],
+        "left": "search.",
+        "then": "'\"search.terms\":['& {search.terms}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "recwg2axnUz36HAro",
+      "createdTime": "2026-07-13T10:48:33.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"terms.deepTerms\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"terms.deepTerms\", {terms.deepTerms}),",
+        "fldJJKSYhxB9uNkGT": "terms.deepTerms",
+        "fldJa4IlgZRN6m6w2": "{terms.deepTerms}",
+        "fldOWGxhtj0RMPseO": "terms.deepTerms",
+        "fldOqA19w2uekjDCm": "deepTerms",
+        "fldUPnvvvvyJmKiWR": [
+          "search.terms.deepTerms"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"terms.deepTerms\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recT99lw46KlaJRYK"
+        ],
+        "fldoqgsT3Nl7KUsL6": "terms.",
+        "fldpaMIGpQGeOfWam": "'\"terms.deepTerms\":['& {terms.deepTerms}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"terms.deepTerms\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"terms.deepTerms\", {terms.deepTerms}),",
+        "createFieldName": "terms.deepTerms",
+        "curly": "{terms.deepTerms}",
+        "input": "terms.deepTerms",
+        "right": "deepTerms",
+        "json_key (from keyMap)": [
+          "search.terms.deepTerms"
+        ],
+        "if": "IF(FIND(\"terms.deepTerms\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recT99lw46KlaJRYK"
+        ],
+        "left": "terms.",
+        "then": "'\"terms.deepTerms\":['& {terms.deepTerms}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0"
+        ]
+      }
+    },
+    {
+      "id": "rec0un7hjZTNg6a16",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"references.step\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"references.step\", {references.step}),",
+        "fldJJKSYhxB9uNkGT": "references.step",
+        "fldJa4IlgZRN6m6w2": "{references.step}",
+        "fldOWGxhtj0RMPseO": "references.step",
+        "fldOqA19w2uekjDCm": "step",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"references.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rec23rbfzQNtcvXFG"
+        ],
+        "fldoqgsT3Nl7KUsL6": "references.",
+        "fldpaMIGpQGeOfWam": "'\"references.step\":{'& {references.step}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"references.step\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"references.step\", {references.step}),",
+        "createFieldName": "references.step",
+        "curly": "{references.step}",
+        "input": "references.step",
+        "right": "step",
+        "object": true,
+        "if": "IF(FIND(\"references.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "rec23rbfzQNtcvXFG"
+        ],
+        "left": "references.",
+        "then": "'\"references.step\":{'& {references.step}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rec3hvIcB3lZ1czuc",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"results.project\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"results.project\", {results.project}),",
+        "fldJJKSYhxB9uNkGT": "results.project",
+        "fldJa4IlgZRN6m6w2": "{results.project}",
+        "fldOWGxhtj0RMPseO": "results.project",
+        "fldOqA19w2uekjDCm": "project",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"results.project\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rechCzuC1Jr3IY0i7"
+        ],
+        "fldoqgsT3Nl7KUsL6": "results.",
+        "fldpaMIGpQGeOfWam": "'\"results.project\":{'& {results.project}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"results.project\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"results.project\", {results.project}),",
+        "createFieldName": "results.project",
+        "curly": "{results.project}",
+        "input": "results.project",
+        "right": "project",
+        "object": true,
+        "if": "IF(FIND(\"results.project\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "rechCzuC1Jr3IY0i7"
+        ],
+        "left": "results.",
+        "then": "'\"results.project\":{'& {results.project}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "rec45zLtNI9rOhfGB",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"schema.step\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"schema.step\", {schema.step}),",
+        "fldJJKSYhxB9uNkGT": "schema.step",
+        "fldJa4IlgZRN6m6w2": "{schema.step}",
+        "fldOWGxhtj0RMPseO": "schema.step",
+        "fldOqA19w2uekjDCm": "step",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"schema.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recwbfWKhDOKnWsXc"
+        ],
+        "fldoqgsT3Nl7KUsL6": "schema.",
+        "fldpaMIGpQGeOfWam": "'\"schema.step\":{'& {schema.step}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"schema.step\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"schema.step\", {schema.step}),",
+        "createFieldName": "schema.step",
+        "curly": "{schema.step}",
+        "input": "schema.step",
+        "right": "step",
+        "object": true,
+        "if": "IF(FIND(\"schema.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recwbfWKhDOKnWsXc"
+        ],
+        "left": "schema.",
+        "then": "'\"schema.step\":{'& {schema.step}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rec50IG6VwXzxsSpW",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"inputs.step\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"inputs.step\", {inputs.step}),",
+        "fldJJKSYhxB9uNkGT": "inputs.step",
+        "fldJa4IlgZRN6m6w2": "{inputs.step}",
+        "fldOWGxhtj0RMPseO": "inputs.step",
+        "fldOqA19w2uekjDCm": "step",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"inputs.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recSjE0BpG6cGjus3"
+        ],
+        "fldoqgsT3Nl7KUsL6": "inputs.",
+        "fldpaMIGpQGeOfWam": "'\"inputs.step\":{'& {inputs.step}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"inputs.step\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"inputs.step\", {inputs.step}),",
+        "createFieldName": "inputs.step",
+        "curly": "{inputs.step}",
+        "input": "inputs.step",
+        "right": "step",
+        "object": true,
+        "if": "IF(FIND(\"inputs.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recSjE0BpG6cGjus3"
+        ],
+        "left": "inputs.",
+        "then": "'\"inputs.step\":{'& {inputs.step}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rec5RhQXeVpo39tQT",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.debug\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.debug\", {log.debug}),",
+        "fldJJKSYhxB9uNkGT": "log.debug",
+        "fldJa4IlgZRN6m6w2": "{log.debug}",
+        "fldOWGxhtj0RMPseO": "log.debug",
+        "fldOqA19w2uekjDCm": "debug",
+        "fldUPnvvvvyJmKiWR": [
+          "log.debug"
+        ],
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.debug\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "engine_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recoeDzsQp3EtTeqz"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.debug\":{'& {log.debug}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.debug\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.debug\", {log.debug}),",
+        "createFieldName": "log.debug",
+        "curly": "{log.debug}",
+        "input": "log.debug",
+        "right": "debug",
+        "json_key (from keyMap)": [
+          "log.debug"
+        ],
+        "object": true,
+        "if": "IF(FIND(\"log.debug\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "engine_config"
+        ],
+        "keyMap": [
+          "recoeDzsQp3EtTeqz"
+        ],
+        "left": "log.",
+        "then": "'\"log.debug\":{'& {log.debug}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rec5igsekZSa5m7UU",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.schema\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.schema\", {log.schema}),",
+        "fldJJKSYhxB9uNkGT": "log.schema",
+        "fldJa4IlgZRN6m6w2": "{log.schema}",
+        "fldOWGxhtj0RMPseO": "log.schema",
+        "fldOqA19w2uekjDCm": "schema",
+        "fldUPnvvvvyJmKiWR": [
+          "log.schema"
+        ],
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.schema\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "engine_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recIva0o9qVbqHyCh"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.schema\":{'& {log.schema}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.schema\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.schema\", {log.schema}),",
+        "createFieldName": "log.schema",
+        "curly": "{log.schema}",
+        "input": "log.schema",
+        "right": "schema",
+        "json_key (from keyMap)": [
+          "log.schema"
+        ],
+        "object": true,
+        "if": "IF(FIND(\"log.schema\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "engine_config"
+        ],
+        "keyMap": [
+          "recIva0o9qVbqHyCh"
+        ],
+        "left": "log.",
+        "then": "'\"log.schema\":{'& {log.schema}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rec6u8TmKwXxCN0Xl",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"org.eventOrg\"",
+        "fldFlC3O6jGTUZSg5": [
+          5
+        ],
+        "fldITQciHKABlYJuo": ",\"org.eventOrg\", {org.eventOrg}),",
+        "fldJJKSYhxB9uNkGT": "org.eventOrg",
+        "fldJa4IlgZRN6m6w2": "{org.eventOrg}",
+        "fldOWGxhtj0RMPseO": "org.eventOrg",
+        "fldOqA19w2uekjDCm": "eventOrg",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"org.eventOrg\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rec6QCn0RDmRk65je"
+        ],
+        "fldoqgsT3Nl7KUsL6": "org.",
+        "fldpaMIGpQGeOfWam": "'\"org.eventOrg\":\"'& {org.eventOrg}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"org.eventOrg\"",
+        "level (from eventJSONkeys)": [
+          5
+        ],
+        "regex": ",\"org.eventOrg\", {org.eventOrg}),",
+        "createFieldName": "org.eventOrg",
+        "curly": "{org.eventOrg}",
+        "input": "org.eventOrg",
+        "right": "eventOrg",
+        "if": "IF(FIND(\"org.eventOrg\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "rec6QCn0RDmRk65je"
+        ],
+        "left": "org.",
+        "then": "'\"org.eventOrg\":\"'& {org.eventOrg}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "rec7txxnxc2ROjgnS",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.meta\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.meta\", {log.meta}),",
+        "fldJJKSYhxB9uNkGT": "log.meta",
+        "fldJa4IlgZRN6m6w2": "{log.meta}",
+        "fldOWGxhtj0RMPseO": "log.meta",
+        "fldOqA19w2uekjDCm": "meta",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.meta\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recyKK2QBeNWOL1vk"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.meta\":{'& {log.meta}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.meta\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.meta\", {log.meta}),",
+        "createFieldName": "log.meta",
+        "curly": "{log.meta}",
+        "input": "log.meta",
+        "right": "meta",
+        "object": true,
+        "if": "IF(FIND(\"log.meta\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recyKK2QBeNWOL1vk"
+        ],
+        "left": "log.",
+        "then": "'\"log.meta\":{'& {log.meta}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rec9XWsqotzBDYe5D",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.references\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.references\", {log.references}),",
+        "fldJJKSYhxB9uNkGT": "log.references",
+        "fldJa4IlgZRN6m6w2": "{log.references}",
+        "fldOWGxhtj0RMPseO": "log.references",
+        "fldOqA19w2uekjDCm": "references",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.references\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "reciyUMHsfDbhoD5G"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.references\":['& {log.references}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.references\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.references\", {log.references}),",
+        "createFieldName": "log.references",
+        "curly": "{log.references}",
+        "input": "log.references",
+        "right": "references",
+        "if": "IF(FIND(\"log.references\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "reciyUMHsfDbhoD5G"
+        ],
+        "left": "log.",
+        "then": "'\"log.references\":['& {log.references}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "recD1sIFUAeAiYhzd",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"org.personOrg\"",
+        "fldFlC3O6jGTUZSg5": [
+          5
+        ],
+        "fldITQciHKABlYJuo": ",\"org.personOrg\", {org.personOrg}),",
+        "fldJJKSYhxB9uNkGT": "org.personOrg",
+        "fldJa4IlgZRN6m6w2": "{org.personOrg}",
+        "fldOWGxhtj0RMPseO": "org.personOrg",
+        "fldOqA19w2uekjDCm": "personOrg",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"org.personOrg\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recfhMu1hmneA2xwn"
+        ],
+        "fldoqgsT3Nl7KUsL6": "org.",
+        "fldpaMIGpQGeOfWam": "'\"org.personOrg\":\"'& {org.personOrg}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"org.personOrg\"",
+        "level (from eventJSONkeys)": [
+          5
+        ],
+        "regex": ",\"org.personOrg\", {org.personOrg}),",
+        "createFieldName": "org.personOrg",
+        "curly": "{org.personOrg}",
+        "input": "org.personOrg",
+        "right": "personOrg",
+        "if": "IF(FIND(\"org.personOrg\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recfhMu1hmneA2xwn"
+        ],
+        "left": "org.",
+        "then": "'\"org.personOrg\":\"'& {org.personOrg}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "recH75cIGRQgiGblT",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.configs\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.configs\", {log.configs}),",
+        "fldJJKSYhxB9uNkGT": "log.configs",
+        "fldJa4IlgZRN6m6w2": "{log.configs}",
+        "fldOWGxhtj0RMPseO": "log.configs",
+        "fldOqA19w2uekjDCm": "configs",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.configs\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recU6Je3GSti0qhcz"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.configs\":['& {log.configs}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.configs\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.configs\", {log.configs}),",
+        "createFieldName": "log.configs",
+        "curly": "{log.configs}",
+        "input": "log.configs",
+        "right": "configs",
+        "if": "IF(FIND(\"log.configs\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recU6Je3GSti0qhcz"
+        ],
+        "left": "log.",
+        "then": "'\"log.configs\":['& {log.configs}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "recH8u8ExXBXPu7yb",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.eventProject\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.eventProject\", {eventJSON.eventProject}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.eventProject",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.eventProject}",
+        "fldOWGxhtj0RMPseO": "eventJSON.eventProject",
+        "fldOqA19w2uekjDCm": "eventProject",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.eventProject"
+        ],
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.eventProject\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rec1PhKMSxFtgmFt0"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.eventProject\":{'& {eventJSON.eventProject}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.eventProject\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"eventJSON.eventProject\", {eventJSON.eventProject}),",
+        "createFieldName": "eventJSON.eventProject",
+        "curly": "{eventJSON.eventProject}",
+        "input": "eventJSON.eventProject",
+        "right": "eventProject",
+        "json_key (from keyMap)": [
+          "eventJSON.eventProject"
+        ],
+        "object": true,
+        "if": "IF(FIND(\"eventJSON.eventProject\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "rec1PhKMSxFtgmFt0"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.eventProject\":{'& {eventJSON.eventProject}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "recOE1PcgGCSaZpTs",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"outputs.step\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"outputs.step\", {outputs.step}),",
+        "fldJJKSYhxB9uNkGT": "outputs.step",
+        "fldJa4IlgZRN6m6w2": "{outputs.step}",
+        "fldOWGxhtj0RMPseO": "outputs.step",
+        "fldOqA19w2uekjDCm": "step",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"outputs.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "reczhoIwOHrlzcP4W"
+        ],
+        "fldoqgsT3Nl7KUsL6": "outputs.",
+        "fldpaMIGpQGeOfWam": "'\"outputs.step\":{'& {outputs.step}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"outputs.step\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"outputs.step\", {outputs.step}),",
+        "createFieldName": "outputs.step",
+        "curly": "{outputs.step}",
+        "input": "outputs.step",
+        "right": "step",
+        "object": true,
+        "if": "IF(FIND(\"outputs.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "reczhoIwOHrlzcP4W"
+        ],
+        "left": "outputs.",
+        "then": "'\"outputs.step\":{'& {outputs.step}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "recS11TytnES2Gnau",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.eventProjectId\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.eventProjectId\", {eventJSON.eventProjectId}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.eventProjectId",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.eventProjectId}",
+        "fldOWGxhtj0RMPseO": "eventJSON.eventProjectId",
+        "fldOqA19w2uekjDCm": "eventProjectId",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.event.eventProjectId"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.eventProjectId\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recQn9TYx9w9eHHpG"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.eventProjectId\":\"'& {eventJSON.eventProjectId}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.eventProjectId\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"eventJSON.eventProjectId\", {eventJSON.eventProjectId}),",
+        "createFieldName": "eventJSON.eventProjectId",
+        "curly": "{eventJSON.eventProjectId}",
+        "input": "eventJSON.eventProjectId",
+        "right": "eventProjectId",
+        "json_key (from keyMap)": [
+          "eventJSON.event.eventProjectId"
+        ],
+        "if": "IF(FIND(\"eventJSON.eventProjectId\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recQn9TYx9w9eHHpG"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.eventProjectId\":\"'& {eventJSON.eventProjectId}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "recTuVuPXGmfF6v9y",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.inputs\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.inputs\", {log.inputs}),",
+        "fldJJKSYhxB9uNkGT": "log.inputs",
+        "fldJa4IlgZRN6m6w2": "{log.inputs}",
+        "fldOWGxhtj0RMPseO": "log.inputs",
+        "fldOqA19w2uekjDCm": "inputs",
+        "fldUPnvvvvyJmKiWR": [
+          "log.inputs"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.inputs\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "engine_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recVaEbhjdm3uroQM"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.inputs\":['& {log.inputs}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.inputs\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.inputs\", {log.inputs}),",
+        "createFieldName": "log.inputs",
+        "curly": "{log.inputs}",
+        "input": "log.inputs",
+        "right": "inputs",
+        "json_key (from keyMap)": [
+          "log.inputs"
+        ],
+        "if": "IF(FIND(\"log.inputs\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "engine_config"
+        ],
+        "keyMap": [
+          "recVaEbhjdm3uroQM"
+        ],
+        "left": "log.",
+        "then": "'\"log.inputs\":['& {log.inputs}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "recUmDkIn2WqTiKxs",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.taskName\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.taskName\", {eventJSON.taskName}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.taskName",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.taskName}",
+        "fldOWGxhtj0RMPseO": "eventJSON.taskName",
+        "fldOqA19w2uekjDCm": "taskName",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.task.taskName"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.taskName\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recoAhR3HiRf59QwA"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.taskName\":\"'& {eventJSON.taskName}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.taskName\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"eventJSON.taskName\", {eventJSON.taskName}),",
+        "createFieldName": "eventJSON.taskName",
+        "curly": "{eventJSON.taskName}",
+        "input": "eventJSON.taskName",
+        "right": "taskName",
+        "json_key (from keyMap)": [
+          "eventJSON.task.taskName"
+        ],
+        "if": "IF(FIND(\"eventJSON.taskName\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recoAhR3HiRf59QwA"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.taskName\":\"'& {eventJSON.taskName}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "recXQs8AdgT2ULwMA",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"people.person\"",
+        "fldFlC3O6jGTUZSg5": [
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"people.person\", {people.person}),",
+        "fldJJKSYhxB9uNkGT": "people.person",
+        "fldJa4IlgZRN6m6w2": "{people.person}",
+        "fldOWGxhtj0RMPseO": "people.person",
+        "fldOqA19w2uekjDCm": "person",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"people.person\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "reclxC1kGixTQaZL7"
+        ],
+        "fldoqgsT3Nl7KUsL6": "people.",
+        "fldpaMIGpQGeOfWam": "'\"people.person\":{'& {people.person}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"people.person\"",
+        "level (from eventJSONkeys)": [
+          4
+        ],
+        "regex": ",\"people.person\", {people.person}),",
+        "createFieldName": "people.person",
+        "curly": "{people.person}",
+        "input": "people.person",
+        "right": "person",
+        "object": true,
+        "if": "IF(FIND(\"people.person\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "reclxC1kGixTQaZL7"
+        ],
+        "left": "people.",
+        "then": "'\"people.person\":{'& {people.person}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "recY6QGtEXWIxSHWD",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.fromPhaseTaskId\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.fromPhaseTaskId\", {eventJSON.fromPhaseTaskId}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.fromPhaseTaskId",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.fromPhaseTaskId}",
+        "fldOWGxhtj0RMPseO": "eventJSON.fromPhaseTaskId",
+        "fldOqA19w2uekjDCm": "fromPhaseTaskId",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.autoComplete.fromPhaseTaskId"
+        ],
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.fromPhaseTaskId\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recT2eQSwD60Lo8Vm"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.fromPhaseTaskId\":{'& {eventJSON.fromPhaseTaskId}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.fromPhaseTaskId\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"eventJSON.fromPhaseTaskId\", {eventJSON.fromPhaseTaskId}),",
+        "createFieldName": "eventJSON.fromPhaseTaskId",
+        "curly": "{eventJSON.fromPhaseTaskId}",
+        "input": "eventJSON.fromPhaseTaskId",
+        "right": "fromPhaseTaskId",
+        "json_key (from keyMap)": [
+          "eventJSON.autoComplete.fromPhaseTaskId"
+        ],
+        "object": true,
+        "if": "IF(FIND(\"eventJSON.fromPhaseTaskId\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recT2eQSwD60Lo8Vm"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.fromPhaseTaskId\":{'& {eventJSON.fromPhaseTaskId}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "recbjX21lDdXpwMvT",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.recordId\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.recordId\", {eventJSON.recordId}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.recordId",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.recordId}",
+        "fldOWGxhtj0RMPseO": "eventJSON.recordId",
+        "fldOqA19w2uekjDCm": "recordId",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.event.recordId"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.recordId\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recFwHOmrlmJcj5I2"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.recordId\":\"'& {eventJSON.recordId}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.recordId\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"eventJSON.recordId\", {eventJSON.recordId}),",
+        "createFieldName": "eventJSON.recordId",
+        "curly": "{eventJSON.recordId}",
+        "input": "eventJSON.recordId",
+        "right": "recordId",
+        "json_key (from keyMap)": [
+          "eventJSON.event.recordId"
+        ],
+        "if": "IF(FIND(\"eventJSON.recordId\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recFwHOmrlmJcj5I2"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.recordId\":\"'& {eventJSON.recordId}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "rechydYbdJ42Q24xt",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"merge.tables\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"merge.tables\", {merge.tables}),",
+        "fldJJKSYhxB9uNkGT": "merge.tables",
+        "fldJa4IlgZRN6m6w2": "{merge.tables}",
+        "fldOWGxhtj0RMPseO": "merge.tables",
+        "fldOqA19w2uekjDCm": "tables",
+        "fldUPnvvvvyJmKiWR": [
+          "merge.tables"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"merge.tables\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "engine_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recXXSdSCexhxMC4x"
+        ],
+        "fldoqgsT3Nl7KUsL6": "merge.",
+        "fldpaMIGpQGeOfWam": "'\"merge.tables\":['& {merge.tables}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"merge.tables\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"merge.tables\", {merge.tables}),",
+        "createFieldName": "merge.tables",
+        "curly": "{merge.tables}",
+        "input": "merge.tables",
+        "right": "tables",
+        "json_key (from keyMap)": [
+          "merge.tables"
+        ],
+        "if": "IF(FIND(\"merge.tables\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "engine_config"
+        ],
+        "keyMap": [
+          "recXXSdSCexhxMC4x"
+        ],
+        "left": "merge.",
+        "then": "'\"merge.tables\":['& {merge.tables}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "reciYukBzgUf6FWdl",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"task.recordId\"",
+        "fldFlC3O6jGTUZSg5": [
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"task.recordId\", {task.recordId}),",
+        "fldJJKSYhxB9uNkGT": "task.recordId",
+        "fldJa4IlgZRN6m6w2": "{task.recordId}",
+        "fldOWGxhtj0RMPseO": "task.recordId",
+        "fldOqA19w2uekjDCm": "recordId",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"task.recordId\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rectomomTZAFg7Amk"
+        ],
+        "fldoqgsT3Nl7KUsL6": "task.",
+        "fldpaMIGpQGeOfWam": "'\"task.recordId\":\"'& {task.recordId}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"task.recordId\"",
+        "level (from eventJSONkeys)": [
+          4
+        ],
+        "regex": ",\"task.recordId\", {task.recordId}),",
+        "createFieldName": "task.recordId",
+        "curly": "{task.recordId}",
+        "input": "task.recordId",
+        "right": "recordId",
+        "if": "IF(FIND(\"task.recordId\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "rectomomTZAFg7Amk"
+        ],
+        "left": "task.",
+        "then": "'\"task.recordId\":\"'& {task.recordId}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "recj8UmOfB3q97UaM",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.task\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.task\", {eventJSON.task}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.task",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.task}",
+        "fldOWGxhtj0RMPseO": "eventJSON.task",
+        "fldOqA19w2uekjDCm": "task",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.task"
+        ],
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.task\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recXEDl0alVcl4Kuo"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.task\":{'& {eventJSON.task}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.task\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"eventJSON.task\", {eventJSON.task}),",
+        "createFieldName": "eventJSON.task",
+        "curly": "{eventJSON.task}",
+        "input": "eventJSON.task",
+        "right": "task",
+        "json_key (from keyMap)": [
+          "eventJSON.task"
+        ],
+        "object": true,
+        "if": "IF(FIND(\"eventJSON.task\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recXEDl0alVcl4Kuo"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.task\":{'& {eventJSON.task}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "recjOzlhWCHBAXojE",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.event\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.event\", {eventJSON.event}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.event",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.event}",
+        "fldOWGxhtj0RMPseO": "eventJSON.event",
+        "fldOqA19w2uekjDCm": "event",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.event"
+        ],
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.event\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recH4AUOhowQCBWS1"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.event\":{'& {eventJSON.event}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.event\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"eventJSON.event\", {eventJSON.event}),",
+        "createFieldName": "eventJSON.event",
+        "curly": "{eventJSON.event}",
+        "input": "eventJSON.event",
+        "right": "event",
+        "json_key (from keyMap)": [
+          "eventJSON.event"
+        ],
+        "object": true,
+        "if": "IF(FIND(\"eventJSON.event\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recH4AUOhowQCBWS1"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.event\":{'& {eventJSON.event}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "reclohe5NAQBCUk5e",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.state\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.state\", {log.state}),",
+        "fldJJKSYhxB9uNkGT": "log.state",
+        "fldJa4IlgZRN6m6w2": "{log.state}",
+        "fldOWGxhtj0RMPseO": "log.state",
+        "fldOqA19w2uekjDCm": "state",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.state\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recQzwngWpjnCQwVT"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.state\":['& {log.state}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.state\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.state\", {log.state}),",
+        "createFieldName": "log.state",
+        "curly": "{log.state}",
+        "input": "log.state",
+        "right": "state",
+        "if": "IF(FIND(\"log.state\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recQzwngWpjnCQwVT"
+        ],
+        "left": "log.",
+        "then": "'\"log.state\":['& {log.state}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "reco6DtOiUHIG3Gf9",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"results.person\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"results.person\", {results.person}),",
+        "fldJJKSYhxB9uNkGT": "results.person",
+        "fldJa4IlgZRN6m6w2": "{results.person}",
+        "fldOWGxhtj0RMPseO": "results.person",
+        "fldOqA19w2uekjDCm": "person",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"results.person\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rectpLCy4cDjUSFvP"
+        ],
+        "fldoqgsT3Nl7KUsL6": "results.",
+        "fldpaMIGpQGeOfWam": "'\"results.person\":{'& {results.person}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"results.person\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"results.person\", {results.person}),",
+        "createFieldName": "results.person",
+        "curly": "{results.person}",
+        "input": "results.person",
+        "right": "person",
+        "object": true,
+        "if": "IF(FIND(\"results.person\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "rectpLCy4cDjUSFvP"
+        ],
+        "left": "results.",
+        "then": "'\"results.person\":{'& {results.person}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "recpsrUidCH7jdkGq",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.eventDate\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.eventDate\", {eventJSON.eventDate}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.eventDate",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.eventDate}",
+        "fldOWGxhtj0RMPseO": "eventJSON.eventDate",
+        "fldOqA19w2uekjDCm": "eventDate",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.event.eventDate"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.eventDate\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recuCNNKutKkBBR64"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.eventDate\":\"'& {eventJSON.eventDate}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.eventDate\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"eventJSON.eventDate\", {eventJSON.eventDate}),",
+        "createFieldName": "eventJSON.eventDate",
+        "curly": "{eventJSON.eventDate}",
+        "input": "eventJSON.eventDate",
+        "right": "eventDate",
+        "json_key (from keyMap)": [
+          "eventJSON.event.eventDate"
+        ],
+        "if": "IF(FIND(\"eventJSON.eventDate\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recuCNNKutKkBBR64"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.eventDate\":\"'& {eventJSON.eventDate}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "recrw3ARfECXnYaBn",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.conflictWorkflow\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.conflictWorkflow\", {log.conflictWorkflow}),",
+        "fldJJKSYhxB9uNkGT": "log.conflictWorkflow",
+        "fldJa4IlgZRN6m6w2": "{log.conflictWorkflow}",
+        "fldOWGxhtj0RMPseO": "log.conflictWorkflow",
+        "fldOqA19w2uekjDCm": "conflictWorkflow",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.conflictWorkflow\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recTVIyViyEXhivF3"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.conflictWorkflow\":{'& {log.conflictWorkflow}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.conflictWorkflow\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.conflictWorkflow\", {log.conflictWorkflow}),",
+        "createFieldName": "log.conflictWorkflow",
+        "curly": "{log.conflictWorkflow}",
+        "input": "log.conflictWorkflow",
+        "right": "conflictWorkflow",
+        "object": true,
+        "if": "IF(FIND(\"log.conflictWorkflow\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recTVIyViyEXhivF3"
+        ],
+        "left": "log.",
+        "then": "'\"log.conflictWorkflow\":{'& {log.conflictWorkflow}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rectzFzmURJ1A29Tc",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"results.task\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"results.task\", {results.task}),",
+        "fldJJKSYhxB9uNkGT": "results.task",
+        "fldJa4IlgZRN6m6w2": "{results.task}",
+        "fldOWGxhtj0RMPseO": "results.task",
+        "fldOqA19w2uekjDCm": "task",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"results.task\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recq17QwXl8Y2CiCi"
+        ],
+        "fldoqgsT3Nl7KUsL6": "results.",
+        "fldpaMIGpQGeOfWam": "'\"results.task\":{'& {results.task}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"results.task\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"results.task\", {results.task}),",
+        "createFieldName": "results.task",
+        "curly": "{results.task}",
+        "input": "results.task",
+        "right": "task",
+        "object": true,
+        "if": "IF(FIND(\"results.task\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recq17QwXl8Y2CiCi"
+        ],
+        "left": "results.",
+        "then": "'\"results.task\":{'& {results.task}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "recwhEfVmh4EGBDq1",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"eventJSON.autoComplete\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"eventJSON.autoComplete\", {eventJSON.autoComplete}),",
+        "fldJJKSYhxB9uNkGT": "eventJSON.autoComplete",
+        "fldJa4IlgZRN6m6w2": "{eventJSON.autoComplete}",
+        "fldOWGxhtj0RMPseO": "eventJSON.autoComplete",
+        "fldOqA19w2uekjDCm": "autoComplete",
+        "fldUPnvvvvyJmKiWR": [
+          "eventJSON.autoComplete"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"eventJSON.autoComplete\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recg9CSZxls3eFqco"
+        ],
+        "fldoqgsT3Nl7KUsL6": "eventJSON.",
+        "fldpaMIGpQGeOfWam": "'\"eventJSON.autoComplete\":['& {eventJSON.autoComplete}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"eventJSON.autoComplete\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"eventJSON.autoComplete\", {eventJSON.autoComplete}),",
+        "createFieldName": "eventJSON.autoComplete",
+        "curly": "{eventJSON.autoComplete}",
+        "input": "eventJSON.autoComplete",
+        "right": "autoComplete",
+        "json_key (from keyMap)": [
+          "eventJSON.autoComplete"
+        ],
+        "if": "IF(FIND(\"eventJSON.autoComplete\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recg9CSZxls3eFqco"
+        ],
+        "left": "eventJSON.",
+        "then": "'\"eventJSON.autoComplete\":['& {eventJSON.autoComplete}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "reczpOVa9aE54evFB",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"log.outputs\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"log.outputs\", {log.outputs}),",
+        "fldJJKSYhxB9uNkGT": "log.outputs",
+        "fldJa4IlgZRN6m6w2": "{log.outputs}",
+        "fldOWGxhtj0RMPseO": "log.outputs",
+        "fldOqA19w2uekjDCm": "outputs",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"log.outputs\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recrav78SghMGUmFH"
+        ],
+        "fldoqgsT3Nl7KUsL6": "log.",
+        "fldpaMIGpQGeOfWam": "'\"log.outputs\":['& {log.outputs}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"log.outputs\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"log.outputs\", {log.outputs}),",
+        "createFieldName": "log.outputs",
+        "curly": "{log.outputs}",
+        "input": "log.outputs",
+        "right": "outputs",
+        "if": "IF(FIND(\"log.outputs\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recrav78SghMGUmFH"
+        ],
+        "left": "log.",
+        "then": "'\"log.outputs\":['& {log.outputs}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rec43613ZM5hkH6Wg",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"compare.candidates\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"compare.candidates\", {compare.candidates}),",
+        "fldJJKSYhxB9uNkGT": "compare.candidates",
+        "fldJa4IlgZRN6m6w2": "{compare.candidates}",
+        "fldOWGxhtj0RMPseO": "compare.candidates",
+        "fldOqA19w2uekjDCm": "candidates",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"compare.candidates\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rec1VdUXzn602eANb"
+        ],
+        "fldoqgsT3Nl7KUsL6": "compare.",
+        "fldpaMIGpQGeOfWam": "'\"compare.candidates\":['& {compare.candidates}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"compare.candidates\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"compare.candidates\", {compare.candidates}),",
+        "createFieldName": "compare.candidates",
+        "curly": "{compare.candidates}",
+        "input": "compare.candidates",
+        "right": "candidates",
+        "if": "IF(FIND(\"compare.candidates\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "rec1VdUXzn602eANb"
+        ],
+        "left": "compare.",
+        "then": "'\"compare.candidates\":['& {compare.candidates}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "rec65cxI6a2TsSH5p",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"candidates.dates\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"candidates.dates\", {candidates.dates}),",
+        "fldJJKSYhxB9uNkGT": "candidates.dates",
+        "fldJa4IlgZRN6m6w2": "{candidates.dates}",
+        "fldOWGxhtj0RMPseO": "candidates.dates",
+        "fldOqA19w2uekjDCm": "dates",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"candidates.dates\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recQef1OhEhtJwYZW"
+        ],
+        "fldoqgsT3Nl7KUsL6": "candidates.",
+        "fldpaMIGpQGeOfWam": "'\"candidates.dates\":['& {candidates.dates}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recMiPQd171ofOmk0",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"candidates.dates\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"candidates.dates\", {candidates.dates}),",
+        "createFieldName": "candidates.dates",
+        "curly": "{candidates.dates}",
+        "input": "candidates.dates",
+        "right": "dates",
+        "if": "IF(FIND(\"candidates.dates\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recQef1OhEhtJwYZW"
+        ],
+        "left": "candidates.",
+        "then": "'\"candidates.dates\":['& {candidates.dates}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recMiPQd171ofOmk0",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "recFzj8cVNhrnG2tl",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"candidates.people\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"candidates.people\", {candidates.people}),",
+        "fldJJKSYhxB9uNkGT": "candidates.people",
+        "fldJa4IlgZRN6m6w2": "{candidates.people}",
+        "fldOWGxhtj0RMPseO": "candidates.people",
+        "fldOqA19w2uekjDCm": "people",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"candidates.people\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rectyIa182cRHgOTb"
+        ],
+        "fldoqgsT3Nl7KUsL6": "candidates.",
+        "fldpaMIGpQGeOfWam": "'\"candidates.people\":{'& {candidates.people}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recMiPQd171ofOmk0",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"candidates.people\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"candidates.people\", {candidates.people}),",
+        "createFieldName": "candidates.people",
+        "curly": "{candidates.people}",
+        "input": "candidates.people",
+        "right": "people",
+        "object": true,
+        "if": "IF(FIND(\"candidates.people\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "rectyIa182cRHgOTb"
+        ],
+        "left": "candidates.",
+        "then": "'\"candidates.people\":{'& {candidates.people}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recMiPQd171ofOmk0",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "recHzVMea2cEl73lJ",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"compare.eventFields\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"compare.eventFields\", {compare.eventFields}),",
+        "fldJJKSYhxB9uNkGT": "compare.eventFields",
+        "fldJa4IlgZRN6m6w2": "{compare.eventFields}",
+        "fldOWGxhtj0RMPseO": "compare.eventFields",
+        "fldOqA19w2uekjDCm": "eventFields",
+        "fldUPnvvvvyJmKiWR": [
+          "compare.event.eventFields"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"compare.eventFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recHoyM3IgmrjW9ZZ"
+        ],
+        "fldoqgsT3Nl7KUsL6": "compare.",
+        "fldpaMIGpQGeOfWam": "'\"compare.eventFields\":['& {compare.eventFields}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recMiPQd171ofOmk0",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"compare.eventFields\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"compare.eventFields\", {compare.eventFields}),",
+        "createFieldName": "compare.eventFields",
+        "curly": "{compare.eventFields}",
+        "input": "compare.eventFields",
+        "right": "eventFields",
+        "json_key (from keyMap)": [
+          "compare.event.eventFields"
+        ],
+        "if": "IF(FIND(\"compare.eventFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recHoyM3IgmrjW9ZZ"
+        ],
+        "left": "compare.",
+        "then": "'\"compare.eventFields\":['& {compare.eventFields}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recMiPQd171ofOmk0",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "recVyIddj8y4OiTWY",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"candidates.orgs\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"candidates.orgs\", {candidates.orgs}),",
+        "fldJJKSYhxB9uNkGT": "candidates.orgs",
+        "fldJa4IlgZRN6m6w2": "{candidates.orgs}",
+        "fldOWGxhtj0RMPseO": "candidates.orgs",
+        "fldOqA19w2uekjDCm": "orgs",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"candidates.orgs\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recorM1WN64Jz57Ld"
+        ],
+        "fldoqgsT3Nl7KUsL6": "candidates.",
+        "fldpaMIGpQGeOfWam": "'\"candidates.orgs\":['& {candidates.orgs}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"candidates.orgs\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"candidates.orgs\", {candidates.orgs}),",
+        "createFieldName": "candidates.orgs",
+        "curly": "{candidates.orgs}",
+        "input": "candidates.orgs",
+        "right": "orgs",
+        "if": "IF(FIND(\"candidates.orgs\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recorM1WN64Jz57Ld"
+        ],
+        "left": "candidates.",
+        "then": "'\"candidates.orgs\":['& {candidates.orgs}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "recgwFEUUbtJ0SntX",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"configs.step\"",
+        "fldFlC3O6jGTUZSg5": [
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"configs.step\", {configs.step}),",
+        "fldJJKSYhxB9uNkGT": "configs.step",
+        "fldJa4IlgZRN6m6w2": "{configs.step}",
+        "fldOWGxhtj0RMPseO": "configs.step",
+        "fldOqA19w2uekjDCm": "step",
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"configs.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "reclWTSFGIdHkJ2l8"
+        ],
+        "fldoqgsT3Nl7KUsL6": "configs.",
+        "fldpaMIGpQGeOfWam": "'\"configs.step\":{'& {configs.step}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"configs.step\"",
+        "level (from eventJSONkeys)": [
+          3
+        ],
+        "regex": ",\"configs.step\", {configs.step}),",
+        "createFieldName": "configs.step",
+        "curly": "{configs.step}",
+        "input": "configs.step",
+        "right": "step",
+        "object": true,
+        "if": "IF(FIND(\"configs.step\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "reclWTSFGIdHkJ2l8"
+        ],
+        "left": "configs.",
+        "then": "'\"configs.step\":{'& {configs.step}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "recqhMvzt5aiA2r8f",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"completion.recordId\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"completion.recordId\", {completion.recordId}),",
+        "fldJJKSYhxB9uNkGT": "completion.recordId",
+        "fldJa4IlgZRN6m6w2": "{completion.recordId}",
+        "fldOWGxhtj0RMPseO": "completion.recordId",
+        "fldOqA19w2uekjDCm": "recordId",
+        "fldUPnvvvvyJmKiWR": [
+          "completion.recordId"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"completion.recordId\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recHLo9z4WuvG9yhs"
+        ],
+        "fldoqgsT3Nl7KUsL6": "completion.",
+        "fldpaMIGpQGeOfWam": "'\"completion.recordId\":\"'& {completion.recordId}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"completion.recordId\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"completion.recordId\", {completion.recordId}),",
+        "createFieldName": "completion.recordId",
+        "curly": "{completion.recordId}",
+        "input": "completion.recordId",
+        "right": "recordId",
+        "json_key (from keyMap)": [
+          "completion.recordId"
+        ],
+        "if": "IF(FIND(\"completion.recordId\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "recHLo9z4WuvG9yhs"
+        ],
+        "left": "completion.",
+        "then": "'\"completion.recordId\":\"'& {completion.recordId}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0"
+        ]
+      }
+    },
+    {
+      "id": "rectRs2lPJ9IasQ2Y",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"candidates.org\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"candidates.org\", {candidates.org}),",
+        "fldJJKSYhxB9uNkGT": "candidates.org",
+        "fldJa4IlgZRN6m6w2": "{candidates.org}",
+        "fldOWGxhtj0RMPseO": "candidates.org",
+        "fldOqA19w2uekjDCm": "org",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"candidates.org\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recwcQp6fLEWIcN2V"
+        ],
+        "fldoqgsT3Nl7KUsL6": "candidates.",
+        "fldpaMIGpQGeOfWam": "'\"candidates.org\":['& {candidates.org}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recMiPQd171ofOmk0",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"candidates.org\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          4
+        ],
+        "regex": ",\"candidates.org\", {candidates.org}),",
+        "createFieldName": "candidates.org",
+        "curly": "{candidates.org}",
+        "input": "candidates.org",
+        "right": "org",
+        "if": "IF(FIND(\"candidates.org\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recwcQp6fLEWIcN2V"
+        ],
+        "left": "candidates.",
+        "then": "'\"candidates.org\":['& {candidates.org}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recMiPQd171ofOmk0",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "recuORTssHIG1mDYE",
+      "createdTime": "2026-07-13T12:34:15.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"compare.event\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"compare.event\", {compare.event}),",
+        "fldJJKSYhxB9uNkGT": "compare.event",
+        "fldJa4IlgZRN6m6w2": "{compare.event}",
+        "fldOWGxhtj0RMPseO": "compare.event",
+        "fldOqA19w2uekjDCm": "event",
+        "fldUPnvvvvyJmKiWR": [
+          "compare.event"
+        ],
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"compare.event\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "eventJSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rec3gRU3luLA351W1"
+        ],
+        "fldoqgsT3Nl7KUsL6": "compare.",
+        "fldpaMIGpQGeOfWam": "'\"compare.event\":{'& {compare.event}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"compare.event\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"compare.event\", {compare.event}),",
+        "createFieldName": "compare.event",
+        "curly": "{compare.event}",
+        "input": "compare.event",
+        "right": "event",
+        "json_key (from keyMap)": [
+          "compare.event"
+        ],
+        "object": true,
+        "if": "IF(FIND(\"compare.event\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "eventJSON"
+        ],
+        "keyMap": [
+          "rec3gRU3luLA351W1"
+        ],
+        "left": "compare.",
+        "then": "'\"compare.event\":{'& {compare.event}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ]
+      }
+    },
+    {
+      "id": "recFsdBSs0rEKkmYe",
+      "createdTime": "2026-07-13T13:52:04.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"write.toTable\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"write.toTable\", {write.toTable}),",
+        "fldJJKSYhxB9uNkGT": "write.toTable",
+        "fldJa4IlgZRN6m6w2": "{write.toTable}",
+        "fldOWGxhtj0RMPseO": "write.toTable",
+        "fldOqA19w2uekjDCm": "toTable",
+        "fldUPnvvvvyJmKiWR": [
+          "write.toTable"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"write.toTable\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "engine_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "reccsVJMMf32kovk5"
+        ],
+        "fldoqgsT3Nl7KUsL6": "write.",
+        "fldpaMIGpQGeOfWam": "'\"write.toTable\":['& {write.toTable}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"write.toTable\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"write.toTable\", {write.toTable}),",
+        "createFieldName": "write.toTable",
+        "curly": "{write.toTable}",
+        "input": "write.toTable",
+        "right": "toTable",
+        "json_key (from keyMap)": [
+          "write.toTable"
+        ],
+        "if": "IF(FIND(\"write.toTable\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "engine_config"
+        ],
+        "keyMap": [
+          "reccsVJMMf32kovk5"
+        ],
+        "left": "write.",
+        "then": "'\"write.toTable\":['& {write.toTable}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "recvhhniwuaG3cccF",
+      "createdTime": "2026-07-13T13:52:04.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"write.toRecord\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"write.toRecord\", {write.toRecord}),",
+        "fldJJKSYhxB9uNkGT": "write.toRecord",
+        "fldJa4IlgZRN6m6w2": "{write.toRecord}",
+        "fldOWGxhtj0RMPseO": "write.toRecord",
+        "fldOqA19w2uekjDCm": "toRecord",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"write.toRecord\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recnw8lCkUdwH4wUy"
+        ],
+        "fldoqgsT3Nl7KUsL6": "write.",
+        "fldpaMIGpQGeOfWam": "'\"write.toRecord\":['& {write.toRecord}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recMNuHYKQWCmwa07"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"write.toRecord\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          4
+        ],
+        "regex": ",\"write.toRecord\", {write.toRecord}),",
+        "createFieldName": "write.toRecord",
+        "curly": "{write.toRecord}",
+        "input": "write.toRecord",
+        "right": "toRecord",
+        "if": "IF(FIND(\"write.toRecord\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recnw8lCkUdwH4wUy"
+        ],
+        "left": "write.",
+        "then": "'\"write.toRecord\":['& {write.toRecord}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recMNuHYKQWCmwa07"
+        ]
+      }
+    },
+    {
+      "id": "rechwmMZT9EwHUhUX",
+      "createdTime": "2026-07-13T16:51:13.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"create.table\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"create.table\", {create.table}),",
+        "fldJJKSYhxB9uNkGT": "create.table",
+        "fldJa4IlgZRN6m6w2": "{create.table}",
+        "fldOWGxhtj0RMPseO": "create.table",
+        "fldOqA19w2uekjDCm": "table",
+        "fldUPnvvvvyJmKiWR": [
+          "create.tables"
+        ],
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"create.table\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "engine_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recLHnsPLMJNPwygF"
+        ],
+        "fldoqgsT3Nl7KUsL6": "create.",
+        "fldpaMIGpQGeOfWam": "'\"create.table\":['& {create.table}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"create.table\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"create.table\", {create.table}),",
+        "createFieldName": "create.table",
+        "curly": "{create.table}",
+        "input": "create.table",
+        "right": "table",
+        "json_key (from keyMap)": [
+          "create.tables"
+        ],
+        "if": "IF(FIND(\"create.table\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "engine_config"
+        ],
+        "keyMap": [
+          "recLHnsPLMJNPwygF"
+        ],
+        "left": "create.",
+        "then": "'\"create.table\":['& {create.table}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      }
+    },
+    {
+      "id": "recGkqMdxnBVoLDXE",
+      "createdTime": "2026-07-13T16:51:19.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"table.newRecords\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"table.newRecords\", {table.newRecords}),",
+        "fldJJKSYhxB9uNkGT": "table.newRecords",
+        "fldJa4IlgZRN6m6w2": "{table.newRecords}",
+        "fldOWGxhtj0RMPseO": "table.newRecords",
+        "fldOqA19w2uekjDCm": "newRecords",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"table.newRecords\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recgzs98KGSBeoBpz"
+        ],
+        "fldoqgsT3Nl7KUsL6": "table.",
+        "fldpaMIGpQGeOfWam": "'\"table.newRecords\":['& {table.newRecords}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recMmCxZ1pQPmnMvM"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"table.newRecords\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          4
+        ],
+        "regex": ",\"table.newRecords\", {table.newRecords}),",
+        "createFieldName": "table.newRecords",
+        "curly": "{table.newRecords}",
+        "input": "table.newRecords",
+        "right": "newRecords",
+        "if": "IF(FIND(\"table.newRecords\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recgzs98KGSBeoBpz"
+        ],
+        "left": "table.",
+        "then": "'\"table.newRecords\":['& {table.newRecords}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recMmCxZ1pQPmnMvM"
+        ]
+      }
+    },
+    {
+      "id": "recn4nlfGwtRHItby",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"fields.field\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          7,
+          5,
+          4,
+          6,
+          6,
+          7
+        ],
+        "fldITQciHKABlYJuo": ",\"fields.field\", {fields.field}),",
+        "fldJJKSYhxB9uNkGT": "field",
+        "fldJa4IlgZRN6m6w2": "{fields.field}",
+        "fldO4NuLXqsgMuI2M": "field",
+        "fldOWGxhtj0RMPseO": "fields.field",
+        "fldOqA19w2uekjDCm": "field",
+        "fldUPnvvvvyJmKiWR": [
+          "create.tables.toTable.newRecords.record.toFields.field",
+          "merge.tables.toTable.mergeFields.field",
+          "compare.event.eventFields.field",
+          "search.tables.table.searchFields.deepFields.field",
+          "search.tables.table.searchFields.primaryField.field",
+          "write.toTable.table.toRecord.record.toFields.field"
+        ],
+        "fldYKHkEDUS3ciBz6": 0,
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"field\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recGPLEUlWljYv2Jp",
+          "recEbGMKTYacAQnnO",
+          "rec47UKrKa4Dllfel",
+          "reci15Q9n20cW4idJ",
+          "rechPWxSCCsISp3sA",
+          "recfE6pCvPVR6Lr0y"
+        ],
+        "fldoqgsT3Nl7KUsL6": "fields.",
+        "fldpaMIGpQGeOfWam": "'\"field\":{'& {field}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recMiPQd171ofOmk0",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0",
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"fields.field\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          7,
+          5,
+          4,
+          6,
+          6,
+          7
+        ],
+        "regex": ",\"fields.field\", {fields.field}),",
+        "createFieldName": "field",
+        "curly": "{fields.field}",
+        "json.child": "field",
+        "input": "fields.field",
+        "right": "field",
+        "json_key (from keyMap)": [
+          "create.tables.toTable.newRecords.record.toFields.field",
+          "merge.tables.toTable.mergeFields.field",
+          "compare.event.eventFields.field",
+          "search.tables.table.searchFields.deepFields.field",
+          "search.tables.table.searchFields.primaryField.field",
+          "write.toTable.table.toRecord.record.toFields.field"
+        ],
+        "Number": 0,
+        "object": true,
+        "if": "IF(FIND(\"field\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recGPLEUlWljYv2Jp",
+          "recEbGMKTYacAQnnO",
+          "rec47UKrKa4Dllfel",
+          "reci15Q9n20cW4idJ",
+          "rechPWxSCCsISp3sA",
+          "recfE6pCvPVR6Lr0y"
+        ],
+        "left": "fields.",
+        "then": "'\"field\":{'& {field}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recMiPQd171ofOmk0",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0",
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "recShQFShYJxcd66O",
+      "createdTime": "2026-07-13T11:50:17.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"tables.table\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "fldITQciHKABlYJuo": ",\"tables.table\", {tables.table}),",
+        "fldJJKSYhxB9uNkGT": "table",
+        "fldJa4IlgZRN6m6w2": "{tables.table}",
+        "fldOWGxhtj0RMPseO": "tables.table",
+        "fldOqA19w2uekjDCm": "table",
+        "fldUPnvvvvyJmKiWR": [
+          "write.toTable.table",
+          "merge.tables.toTable",
+          "search.tables.table",
+          "create.tables.toTable"
+        ],
+        "fldYKHkEDUS3ciBz6": 0,
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"table\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recMNGW1GWpCammZN",
+          "recrTcboT4m11QtOp",
+          "recvVvvJL6zWq8DH8",
+          "recCM8DqkafLVH6Mj"
+        ],
+        "fldoqgsT3Nl7KUsL6": "tables.",
+        "fldpaMIGpQGeOfWam": "'\"table\":{'& {table}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recPe1V644CAnRoRd",
+          "recxKoGtvKmisqWD6",
+          "recjVjZnkJ3l3D5nk",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"tables.table\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "regex": ",\"tables.table\", {tables.table}),",
+        "createFieldName": "table",
+        "curly": "{tables.table}",
+        "input": "tables.table",
+        "right": "table",
+        "json_key (from keyMap)": [
+          "write.toTable.table",
+          "merge.tables.toTable",
+          "search.tables.table",
+          "create.tables.toTable"
+        ],
+        "Number": 0,
+        "object": true,
+        "if": "IF(FIND(\"table\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recMNGW1GWpCammZN",
+          "recrTcboT4m11QtOp",
+          "recvVvvJL6zWq8DH8",
+          "recCM8DqkafLVH6Mj"
+        ],
+        "left": "tables.",
+        "then": "'\"table\":{'& {table}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recPe1V644CAnRoRd",
+          "recxKoGtvKmisqWD6",
+          "recjVjZnkJ3l3D5nk",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      }
+    },
+    {
+      "id": "rec6iS5fEt5rv6iId",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"field.fieldId\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          8,
+          8,
+          5,
+          7,
+          7,
+          6
+        ],
+        "fldITQciHKABlYJuo": ",\"field.fieldId\", {field.fieldId}),",
+        "fldJJKSYhxB9uNkGT": "fieldId",
+        "fldJa4IlgZRN6m6w2": "{field.fieldId}",
+        "fldO4NuLXqsgMuI2M": "fieldId",
+        "fldOWGxhtj0RMPseO": "field.fieldId",
+        "fldOqA19w2uekjDCm": "fieldId",
+        "fldUPnvvvvyJmKiWR": [
+          "write.toTable.table.toRecord.record.toFields.field.fieldId",
+          "create.tables.toTable.newRecords.record.toFields.field.fieldId",
+          "compare.event.eventFields.field.fieldId",
+          "search.tables.table.searchFields.deepFields.field.fieldId",
+          "search.tables.table.searchFields.primaryField.field.fieldId",
+          "merge.tables.toTable.mergeFields.field.fieldId"
+        ],
+        "fldYKHkEDUS3ciBz6": 1,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"fieldId\", ARRAYJOIN({includeKeys}))>0, '\"fieldId\":\"'& {fieldId}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"fieldId\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "rechXZAhUQADukZ8h",
+          "recSTdzOMtcsUr0tF",
+          "recnJPdeM6fJvL3mn",
+          "recjb3101qNM8YXAk",
+          "recUyMYiHD3ZZSb9f",
+          "recBQDFCrkcm22C6u"
+        ],
+        "fldoqgsT3Nl7KUsL6": "field.",
+        "fldpaMIGpQGeOfWam": "'\"fieldId\":\"'& {fieldId}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6",
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recMiPQd171ofOmk0",
+          "recIH0IzOwITBz0uq",
+          "recmoTx7hybNuH3hP",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"field.fieldId\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          8,
+          8,
+          5,
+          7,
+          7,
+          6
+        ],
+        "regex": ",\"field.fieldId\", {field.fieldId}),",
+        "createFieldName": "fieldId",
+        "curly": "{field.fieldId}",
+        "json.child": "fieldId",
+        "input": "field.fieldId",
+        "right": "fieldId",
+        "json_key (from keyMap)": [
+          "write.toTable.table.toRecord.record.toFields.field.fieldId",
+          "create.tables.toTable.newRecords.record.toFields.field.fieldId",
+          "compare.event.eventFields.field.fieldId",
+          "search.tables.table.searchFields.deepFields.field.fieldId",
+          "search.tables.table.searchFields.primaryField.field.fieldId",
+          "merge.tables.toTable.mergeFields.field.fieldId"
+        ],
+        "Number": 1,
+        "ifthen": "IF(FIND(\"fieldId\", ARRAYJOIN({includeKeys}))>0, '\"fieldId\":\"'& {fieldId}&'\"___')&",
+        "if": "IF(FIND(\"fieldId\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "rechXZAhUQADukZ8h",
+          "recSTdzOMtcsUr0tF",
+          "recnJPdeM6fJvL3mn",
+          "recjb3101qNM8YXAk",
+          "recUyMYiHD3ZZSb9f",
+          "recBQDFCrkcm22C6u"
+        ],
+        "left": "field.",
+        "then": "'\"fieldId\":\"'& {fieldId}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6",
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recMiPQd171ofOmk0",
+          "recIH0IzOwITBz0uq",
+          "recmoTx7hybNuH3hP",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0"
+        ]
+      }
+    },
+    {
+      "id": "recitCIPgmMpGsKO1",
+      "createdTime": "2026-07-13T11:50:17.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"table.tableId\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"table.tableId\", {table.tableId}),",
+        "fldJJKSYhxB9uNkGT": "tableId",
+        "fldJa4IlgZRN6m6w2": "{table.tableId}",
+        "fldOWGxhtj0RMPseO": "table.tableId",
+        "fldOqA19w2uekjDCm": "tableId",
+        "fldUPnvvvvyJmKiWR": [
+          "merge.tables.toTable.tableId",
+          "write.toTable.table.tableId",
+          "search.tables.table.tableId",
+          "create.tables.toTable.tableId"
+        ],
+        "fldYKHkEDUS3ciBz6": 1.1,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"tableId\", ARRAYJOIN({includeKeys}))>0, '\"tableId\":\"'& {tableId}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"tableId\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recrtPetVaPQHnk1J",
+          "recIAEnrLcYGxc7ek",
+          "recvBWFQgcCOj0TAR",
+          "recnmeBpiX5hk5gKl"
+        ],
+        "fldoqgsT3Nl7KUsL6": "table.",
+        "fldpaMIGpQGeOfWam": "'\"tableId\":\"'& {tableId}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recjVjZnkJ3l3D5nk",
+          "rec20zFzKrPzkwVRb",
+          "recPe1V644CAnRoRd",
+          "recxKoGtvKmisqWD6",
+          "recMNuHYKQWCmwa07",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"table.tableId\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "regex": ",\"table.tableId\", {table.tableId}),",
+        "createFieldName": "tableId",
+        "curly": "{table.tableId}",
+        "input": "table.tableId",
+        "right": "tableId",
+        "json_key (from keyMap)": [
+          "merge.tables.toTable.tableId",
+          "write.toTable.table.tableId",
+          "search.tables.table.tableId",
+          "create.tables.toTable.tableId"
+        ],
+        "Number": 1.1,
+        "ifthen": "IF(FIND(\"tableId\", ARRAYJOIN({includeKeys}))>0, '\"tableId\":\"'& {tableId}&'\"___')&",
+        "if": "IF(FIND(\"tableId\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recrtPetVaPQHnk1J",
+          "recIAEnrLcYGxc7ek",
+          "recvBWFQgcCOj0TAR",
+          "recnmeBpiX5hk5gKl"
+        ],
+        "left": "table.",
+        "then": "'\"tableId\":\"'& {tableId}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recjVjZnkJ3l3D5nk",
+          "rec20zFzKrPzkwVRb",
+          "recPe1V644CAnRoRd",
+          "recxKoGtvKmisqWD6",
+          "recMNuHYKQWCmwa07",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      }
+    },
+    {
+      "id": "recwBCifa2jIp4Rhv",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"field.fieldType\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          8,
+          8,
+          5,
+          6,
+          7,
+          7
+        ],
+        "fldITQciHKABlYJuo": ",\"field.fieldType\", {field.fieldType}),",
+        "fldJJKSYhxB9uNkGT": "fieldType",
+        "fldJa4IlgZRN6m6w2": "{field.fieldType}",
+        "fldO4NuLXqsgMuI2M": "fieldType",
+        "fldOWGxhtj0RMPseO": "field.fieldType",
+        "fldOqA19w2uekjDCm": "fieldType",
+        "fldUPnvvvvyJmKiWR": [
+          "write.toTable.table.toRecord.record.toFields.field.fieldType",
+          "create.tables.toTable.newRecords.record.toFields.field.fieldType",
+          "compare.event.eventFields.field.fieldType",
+          "merge.tables.toTable.mergeFields.field.fieldType",
+          "search.tables.table.searchFields.primaryField.field.fieldType",
+          "search.tables.table.searchFields.deepFields.field.fieldType"
+        ],
+        "fldYKHkEDUS3ciBz6": 1.2,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"fieldType\", ARRAYJOIN({includeKeys}))>0, '\"fieldType\":\"'& {fieldType}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"fieldType\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recbeJCto9WJgsPez",
+          "recem1x1qpDNX4GBk",
+          "recOxdREygImEVQmT",
+          "recU0130ympBLRqez",
+          "rechPyztyiGIuPg9h",
+          "recXYYKko9i3qG4Qg"
+        ],
+        "fldoqgsT3Nl7KUsL6": "field.",
+        "fldpaMIGpQGeOfWam": "'\"fieldType\":\"'& {fieldType}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6",
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recMiPQd171ofOmk0",
+          "recIH0IzOwITBz0uq",
+          "rechHpowLQftwdBHg",
+          "recvgFJDnjyKPbkVD",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"field.fieldType\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          8,
+          8,
+          5,
+          6,
+          7,
+          7
+        ],
+        "regex": ",\"field.fieldType\", {field.fieldType}),",
+        "createFieldName": "fieldType",
+        "curly": "{field.fieldType}",
+        "json.child": "fieldType",
+        "input": "field.fieldType",
+        "right": "fieldType",
+        "json_key (from keyMap)": [
+          "write.toTable.table.toRecord.record.toFields.field.fieldType",
+          "create.tables.toTable.newRecords.record.toFields.field.fieldType",
+          "compare.event.eventFields.field.fieldType",
+          "merge.tables.toTable.mergeFields.field.fieldType",
+          "search.tables.table.searchFields.primaryField.field.fieldType",
+          "search.tables.table.searchFields.deepFields.field.fieldType"
+        ],
+        "Number": 1.2,
+        "ifthen": "IF(FIND(\"fieldType\", ARRAYJOIN({includeKeys}))>0, '\"fieldType\":\"'& {fieldType}&'\"___')&",
+        "if": "IF(FIND(\"fieldType\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recbeJCto9WJgsPez",
+          "recem1x1qpDNX4GBk",
+          "recOxdREygImEVQmT",
+          "recU0130ympBLRqez",
+          "rechPyztyiGIuPg9h",
+          "recXYYKko9i3qG4Qg"
+        ],
+        "left": "field.",
+        "then": "'\"fieldType\":\"'& {fieldType}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6",
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recMiPQd171ofOmk0",
+          "recIH0IzOwITBz0uq",
+          "rechHpowLQftwdBHg",
+          "recvgFJDnjyKPbkVD",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL",
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recMiPQd171ofOmk0",
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP"
+        ]
+      }
+    },
+    {
+      "id": "rec35MFf8mirFUGjX",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"field.writeMode\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          8,
+          8,
+          5
+        ],
+        "fldITQciHKABlYJuo": ",\"field.writeMode\", {field.writeMode}),",
+        "fldJJKSYhxB9uNkGT": "writeMode",
+        "fldJa4IlgZRN6m6w2": "{field.writeMode}",
+        "fldO4NuLXqsgMuI2M": "writeMode",
+        "fldOWGxhtj0RMPseO": "field.writeMode",
+        "fldOqA19w2uekjDCm": "writeMode",
+        "fldUPnvvvvyJmKiWR": [
+          "write.toTable.table.toRecord.record.toFields.field.writeMode",
+          "create.tables.toTable.newRecords.record.toFields.field.writeMode",
+          "compare.event.eventFields.field.writeMode"
+        ],
+        "fldYKHkEDUS3ciBz6": 2,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"writeMode\", ARRAYJOIN({includeKeys}))>0, '\"writeMode\":\"'& {writeMode}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"writeMode\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recB1UhaOMsGBvN5S",
+          "recI7ohcYUANyTyGx",
+          "recXDe24DvFy4JRD9"
+        ],
+        "fldoqgsT3Nl7KUsL6": "field.",
+        "fldpaMIGpQGeOfWam": "'\"writeMode\":\"'& {writeMode}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6",
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recMiPQd171ofOmk0"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"field.writeMode\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          8,
+          8,
+          5
+        ],
+        "regex": ",\"field.writeMode\", {field.writeMode}),",
+        "createFieldName": "writeMode",
+        "curly": "{field.writeMode}",
+        "json.child": "writeMode",
+        "input": "field.writeMode",
+        "right": "writeMode",
+        "json_key (from keyMap)": [
+          "write.toTable.table.toRecord.record.toFields.field.writeMode",
+          "create.tables.toTable.newRecords.record.toFields.field.writeMode",
+          "compare.event.eventFields.field.writeMode"
+        ],
+        "Number": 2,
+        "ifthen": "IF(FIND(\"writeMode\", ARRAYJOIN({includeKeys}))>0, '\"writeMode\":\"'& {writeMode}&'\"___')&",
+        "if": "IF(FIND(\"writeMode\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recB1UhaOMsGBvN5S",
+          "recI7ohcYUANyTyGx",
+          "recXDe24DvFy4JRD9"
+        ],
+        "left": "field.",
+        "then": "'\"writeMode\":\"'& {writeMode}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6",
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recMiPQd171ofOmk0"
+        ]
+      }
+    },
+    {
+      "id": "recvTLfn5jBqAKLJ5",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"field.writeSource\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          8,
+          8
+        ],
+        "fldITQciHKABlYJuo": ",\"field.writeSource\", {field.writeSource}),",
+        "fldJJKSYhxB9uNkGT": "writeSource",
+        "fldJa4IlgZRN6m6w2": "{field.writeSource}",
+        "fldO4NuLXqsgMuI2M": "writeSource",
+        "fldOWGxhtj0RMPseO": "field.writeSource",
+        "fldOqA19w2uekjDCm": "writeSource",
+        "fldUPnvvvvyJmKiWR": [
+          "create.tables.toTable.newRecords.record.toFields.field.writeSource",
+          "write.toTable.table.toRecord.record.toFields.field.writeSource"
+        ],
+        "fldYKHkEDUS3ciBz6": 2.1,
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"writeSource\", ARRAYJOIN({includeKeys}))>0, '\"writeSource\":{'& {writeSource}&'}___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"writeSource\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recCvuonanNFezBo1",
+          "rec8sG0NsJSoVV5tK"
+        ],
+        "fldoqgsT3Nl7KUsL6": "field.",
+        "fldpaMIGpQGeOfWam": "'\"writeSource\":{'& {writeSource}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"field.writeSource\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          8,
+          8
+        ],
+        "regex": ",\"field.writeSource\", {field.writeSource}),",
+        "createFieldName": "writeSource",
+        "curly": "{field.writeSource}",
+        "json.child": "writeSource",
+        "input": "field.writeSource",
+        "right": "writeSource",
+        "json_key (from keyMap)": [
+          "create.tables.toTable.newRecords.record.toFields.field.writeSource",
+          "write.toTable.table.toRecord.record.toFields.field.writeSource"
+        ],
+        "Number": 2.1,
+        "object": true,
+        "ifthen": "IF(FIND(\"writeSource\", ARRAYJOIN({includeKeys}))>0, '\"writeSource\":{'& {writeSource}&'}___')&",
+        "if": "IF(FIND(\"writeSource\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recCvuonanNFezBo1",
+          "rec8sG0NsJSoVV5tK"
+        ],
+        "left": "field.",
+        "then": "'\"writeSource\":{'& {writeSource}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "rechkuiE6NbjqU1jw",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"field.writeValue\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          8,
+          8
+        ],
+        "fldITQciHKABlYJuo": ",\"field.writeValue\", {field.writeValue}),",
+        "fldJJKSYhxB9uNkGT": "writeValue",
+        "fldJa4IlgZRN6m6w2": "{field.writeValue}",
+        "fldO4NuLXqsgMuI2M": "writeValue",
+        "fldOWGxhtj0RMPseO": "field.writeValue",
+        "fldOqA19w2uekjDCm": "writeValue",
+        "fldUPnvvvvyJmKiWR": [
+          "create.tables.toTable.newRecords.record.toFields.field.writeValue",
+          "write.toTable.table.toRecord.record.toFields.field.writeValue"
+        ],
+        "fldYKHkEDUS3ciBz6": 2.2,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"writeValue\", ARRAYJOIN({includeKeys}))>0, '\"writeValue\":\"'& {writeValue}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"writeValue\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recLI5rSXzsFqb5F6",
+          "rec7NlQqxGE3KoG1d"
+        ],
+        "fldoqgsT3Nl7KUsL6": "field.",
+        "fldpaMIGpQGeOfWam": "'\"writeValue\":\"'& {writeValue}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"field.writeValue\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          8,
+          8
+        ],
+        "regex": ",\"field.writeValue\", {field.writeValue}),",
+        "createFieldName": "writeValue",
+        "curly": "{field.writeValue}",
+        "json.child": "writeValue",
+        "input": "field.writeValue",
+        "right": "writeValue",
+        "json_key (from keyMap)": [
+          "create.tables.toTable.newRecords.record.toFields.field.writeValue",
+          "write.toTable.table.toRecord.record.toFields.field.writeValue"
+        ],
+        "Number": 2.2,
+        "ifthen": "IF(FIND(\"writeValue\", ARRAYJOIN({includeKeys}))>0, '\"writeValue\":\"'& {writeValue}&'\"___')&",
+        "if": "IF(FIND(\"writeValue\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recLI5rSXzsFqb5F6",
+          "rec7NlQqxGE3KoG1d"
+        ],
+        "left": "field.",
+        "then": "'\"writeValue\":\"'& {writeValue}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM",
+          "recPe1V644CAnRoRd",
+          "rec20KXmUQfLALrbV",
+          "recxKoGtvKmisqWD6"
+        ]
+      }
+    },
+    {
+      "id": "recxmD8djIEqE2W8b",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"field.mergeable\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          5,
+          6
+        ],
+        "fldITQciHKABlYJuo": ",\"field.mergeable\", {field.mergeable}),",
+        "fldJJKSYhxB9uNkGT": "mergeable",
+        "fldJa4IlgZRN6m6w2": "{field.mergeable}",
+        "fldO4NuLXqsgMuI2M": "mergeable",
+        "fldOWGxhtj0RMPseO": "field.mergeable",
+        "fldOqA19w2uekjDCm": "mergeable",
+        "fldUPnvvvvyJmKiWR": [
+          "compare.event.eventFields.field.mergeable",
+          "merge.tables.toTable.mergeFields.field.mergeable"
+        ],
+        "fldYKHkEDUS3ciBz6": 3,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"mergeable\", ARRAYJOIN({includeKeys}))>0, '\"mergeable\":\"'& {mergeable}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"mergeable\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recEkSNAT55opUl8C",
+          "reckukurQT1phPTHi"
+        ],
+        "fldoqgsT3Nl7KUsL6": "field.",
+        "fldpaMIGpQGeOfWam": "'\"mergeable\":\"'& {mergeable}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"field.mergeable\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          5,
+          6
+        ],
+        "regex": ",\"field.mergeable\", {field.mergeable}),",
+        "createFieldName": "mergeable",
+        "curly": "{field.mergeable}",
+        "json.child": "mergeable",
+        "input": "field.mergeable",
+        "right": "mergeable",
+        "json_key (from keyMap)": [
+          "compare.event.eventFields.field.mergeable",
+          "merge.tables.toTable.mergeFields.field.mergeable"
+        ],
+        "Number": 3,
+        "ifthen": "IF(FIND(\"mergeable\", ARRAYJOIN({includeKeys}))>0, '\"mergeable\":\"'& {mergeable}&'\"___')&",
+        "if": "IF(FIND(\"mergeable\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recEkSNAT55opUl8C",
+          "reckukurQT1phPTHi"
+        ],
+        "left": "field.",
+        "then": "'\"mergeable\":\"'& {mergeable}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "recIUz8PWF6O5dR77",
+      "createdTime": "2026-07-13T11:50:17.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"records.record\"",
+        "fldFlC3O6jGTUZSg5": [
+          5,
+          5
+        ],
+        "fldITQciHKABlYJuo": ",\"records.record\", {records.record}),",
+        "fldJJKSYhxB9uNkGT": "records.record",
+        "fldJa4IlgZRN6m6w2": "{records.record}",
+        "fldOWGxhtj0RMPseO": "records.record",
+        "fldOqA19w2uekjDCm": "record",
+        "fldYKHkEDUS3ciBz6": 3.1,
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"records.record\", ARRAYJOIN({includeKeys}))>0, '\"records.record\":{'& {records.record}&'}___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"records.record\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "output_JSON"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recYHrDSUNhqsRQhS",
+          "recuiAd7vrvP1JonU"
+        ],
+        "fldoqgsT3Nl7KUsL6": "records.",
+        "fldpaMIGpQGeOfWam": "'\"records.record\":{'& {records.record}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"records.record\"",
+        "level (from eventJSONkeys)": [
+          5,
+          5
+        ],
+        "regex": ",\"records.record\", {records.record}),",
+        "createFieldName": "records.record",
+        "curly": "{records.record}",
+        "input": "records.record",
+        "right": "record",
+        "Number": 3.1,
+        "object": true,
+        "ifthen": "IF(FIND(\"records.record\", ARRAYJOIN({includeKeys}))>0, '\"records.record\":{'& {records.record}&'}___')&",
+        "if": "IF(FIND(\"records.record\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "output_JSON"
+        ],
+        "keyMap": [
+          "recYHrDSUNhqsRQhS",
+          "recuiAd7vrvP1JonU"
+        ],
+        "left": "records.",
+        "then": "'\"records.record\":{'& {records.record}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "rec20KXmUQfLALrbV",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      }
+    },
+    {
+      "id": "reczEaVqJLLP02Ldd",
+      "createdTime": "2026-07-13T11:50:17.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"table.searchFields\"",
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"table.searchFields\", {table.searchFields}),",
+        "fldJJKSYhxB9uNkGT": "searchFields",
+        "fldJa4IlgZRN6m6w2": "{table.searchFields}",
+        "fldOWGxhtj0RMPseO": "table.searchFields",
+        "fldOqA19w2uekjDCm": "searchFields",
+        "fldUPnvvvvyJmKiWR": [
+          "search.tables.table.searchFields"
+        ],
+        "fldYKHkEDUS3ciBz6": 4,
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"searchFields\", ARRAYJOIN({includeKeys}))>0, '\"searchFields\":{'& {searchFields}&'}___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"searchFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "reciHDaq4wsfcPfTx"
+        ],
+        "fldoqgsT3Nl7KUsL6": "table.",
+        "fldpaMIGpQGeOfWam": "'\"searchFields\":{'& {searchFields}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"table.searchFields\"",
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          4
+        ],
+        "regex": ",\"table.searchFields\", {table.searchFields}),",
+        "createFieldName": "searchFields",
+        "curly": "{table.searchFields}",
+        "input": "table.searchFields",
+        "right": "searchFields",
+        "json_key (from keyMap)": [
+          "search.tables.table.searchFields"
+        ],
+        "Number": 4,
+        "object": true,
+        "ifthen": "IF(FIND(\"searchFields\", ARRAYJOIN({includeKeys}))>0, '\"searchFields\":{'& {searchFields}&'}___')&",
+        "if": "IF(FIND(\"searchFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "reciHDaq4wsfcPfTx"
+        ],
+        "left": "table.",
+        "then": "'\"searchFields\":{'& {searchFields}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "reche2rqi27iaJIg7",
+      "createdTime": "2026-07-13T10:11:26.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"searchFields.primaryField\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          5
+        ],
+        "fldITQciHKABlYJuo": ",\"searchFields.primaryField\", {searchFields.primaryField}),",
+        "fldJJKSYhxB9uNkGT": "searchFields.primaryField",
+        "fldJa4IlgZRN6m6w2": "{searchFields.primaryField}",
+        "fldOWGxhtj0RMPseO": "searchFields.primaryField",
+        "fldOqA19w2uekjDCm": "primaryField",
+        "fldUPnvvvvyJmKiWR": [
+          "search.tables.table.searchFields.primaryField"
+        ],
+        "fldYKHkEDUS3ciBz6": 4.1,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"searchFields.primaryField\", ARRAYJOIN({includeKeys}))>0, '\"searchFields.primaryField\":['& {searchFields.primaryField}&']___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"searchFields.primaryField\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recRMF1fG7lphlZ4p"
+        ],
+        "fldoqgsT3Nl7KUsL6": "searchFields.",
+        "fldpaMIGpQGeOfWam": "'\"searchFields.primaryField\":['& {searchFields.primaryField}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"searchFields.primaryField\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          5
+        ],
+        "regex": ",\"searchFields.primaryField\", {searchFields.primaryField}),",
+        "createFieldName": "searchFields.primaryField",
+        "curly": "{searchFields.primaryField}",
+        "input": "searchFields.primaryField",
+        "right": "primaryField",
+        "json_key (from keyMap)": [
+          "search.tables.table.searchFields.primaryField"
+        ],
+        "Number": 4.1,
+        "ifthen": "IF(FIND(\"searchFields.primaryField\", ARRAYJOIN({includeKeys}))>0, '\"searchFields.primaryField\":['& {searchFields.primaryField}&']___')&",
+        "if": "IF(FIND(\"searchFields.primaryField\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recRMF1fG7lphlZ4p"
+        ],
+        "left": "searchFields.",
+        "then": "'\"searchFields.primaryField\":['& {searchFields.primaryField}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "recgMSHC9b25vK2nK",
+      "createdTime": "2026-07-13T11:50:17.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"searchFields.deepFields\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          5
+        ],
+        "fldITQciHKABlYJuo": ",\"searchFields.deepFields\", {searchFields.deepFields}),",
+        "fldJJKSYhxB9uNkGT": "searchFields.deepFields",
+        "fldJa4IlgZRN6m6w2": "{searchFields.deepFields}",
+        "fldOWGxhtj0RMPseO": "searchFields.deepFields",
+        "fldOqA19w2uekjDCm": "deepFields",
+        "fldUPnvvvvyJmKiWR": [
+          "search.tables.table.searchFields.deepFields"
+        ],
+        "fldYKHkEDUS3ciBz6": 4.2,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"searchFields.deepFields\", ARRAYJOIN({includeKeys}))>0, '\"searchFields.deepFields\":['& {searchFields.deepFields}&']___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"searchFields.deepFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recsbJ6zC2LB5B3tv"
+        ],
+        "fldoqgsT3Nl7KUsL6": "searchFields.",
+        "fldpaMIGpQGeOfWam": "'\"searchFields.deepFields\":['& {searchFields.deepFields}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"searchFields.deepFields\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          5
+        ],
+        "regex": ",\"searchFields.deepFields\", {searchFields.deepFields}),",
+        "createFieldName": "searchFields.deepFields",
+        "curly": "{searchFields.deepFields}",
+        "input": "searchFields.deepFields",
+        "right": "deepFields",
+        "json_key (from keyMap)": [
+          "search.tables.table.searchFields.deepFields"
+        ],
+        "Number": 4.2,
+        "ifthen": "IF(FIND(\"searchFields.deepFields\", ARRAYJOIN({includeKeys}))>0, '\"searchFields.deepFields\":['& {searchFields.deepFields}&']___')&",
+        "if": "IF(FIND(\"searchFields.deepFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recsbJ6zC2LB5B3tv"
+        ],
+        "left": "searchFields.",
+        "then": "'\"searchFields.deepFields\":['& {searchFields.deepFields}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recIH0IzOwITBz0uq",
+          "recvgFJDnjyKPbkVD",
+          "rechHpowLQftwdBHg",
+          "recmoTx7hybNuH3hP",
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "reczT9L28MTjwXyPQ",
+      "createdTime": "2026-07-13T11:50:17.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"table.writeFields\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          6
+        ],
+        "fldITQciHKABlYJuo": ",\"table.writeFields\", {table.writeFields}),",
+        "fldJJKSYhxB9uNkGT": "writeFields",
+        "fldJa4IlgZRN6m6w2": "{table.writeFields}",
+        "fldOWGxhtj0RMPseO": "table.writeFields",
+        "fldOqA19w2uekjDCm": "writeFields",
+        "fldUPnvvvvyJmKiWR": [
+          "create.tables.toTable.newRecords.record.toFields"
+        ],
+        "fldYKHkEDUS3ciBz6": 5,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"writeFields\", ARRAYJOIN({includeKeys}))>0, '\"writeFields\":['& {writeFields}&']___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"writeFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recPrET9oeSJ5ELQL"
+        ],
+        "fldoqgsT3Nl7KUsL6": "table.",
+        "fldpaMIGpQGeOfWam": "'\"writeFields\":['& {writeFields}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recPe1V644CAnRoRd",
+          "recxKoGtvKmisqWD6",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"table.writeFields\"",
+        "array": true,
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          6
+        ],
+        "regex": ",\"table.writeFields\", {table.writeFields}),",
+        "createFieldName": "writeFields",
+        "curly": "{table.writeFields}",
+        "input": "table.writeFields",
+        "right": "writeFields",
+        "json_key (from keyMap)": [
+          "create.tables.toTable.newRecords.record.toFields"
+        ],
+        "Number": 5,
+        "ifthen": "IF(FIND(\"writeFields\", ARRAYJOIN({includeKeys}))>0, '\"writeFields\":['& {writeFields}&']___')&",
+        "if": "IF(FIND(\"writeFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recPrET9oeSJ5ELQL"
+        ],
+        "left": "table.",
+        "then": "'\"writeFields\":['& {writeFields}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recPe1V644CAnRoRd",
+          "recxKoGtvKmisqWD6",
+          "recMmCxZ1pQPmnMvM"
+        ]
+      }
+    },
+    {
+      "id": "rechy7aYN2RTTAjv3",
+      "createdTime": "2026-07-13T11:50:17.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"record.writeFields\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldFlC3O6jGTUZSg5": [
+          6
+        ],
+        "fldITQciHKABlYJuo": ",\"record.writeFields\", {record.writeFields}),",
+        "fldJJKSYhxB9uNkGT": "record.writeFields",
+        "fldJa4IlgZRN6m6w2": "{record.writeFields}",
+        "fldOWGxhtj0RMPseO": "record.writeFields",
+        "fldOqA19w2uekjDCm": "writeFields",
+        "fldUPnvvvvyJmKiWR": [
+          "write.toTable.table.toRecord.record.toFields"
+        ],
+        "fldYKHkEDUS3ciBz6": 5.1,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"record.writeFields\", ARRAYJOIN({includeKeys}))>0, '\"record.writeFields\":['& {record.writeFields}&']___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"record.writeFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recDaRI1nPop1OtbM"
+        ],
+        "fldoqgsT3Nl7KUsL6": "record.",
+        "fldpaMIGpQGeOfWam": "'\"record.writeFields\":['& {record.writeFields}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recPe1V644CAnRoRd",
+          "recxKoGtvKmisqWD6",
+          "recMNuHYKQWCmwa07"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"record.writeFields\"",
+        "array": true,
+        "level (from eventJSONkeys)": [
+          6
+        ],
+        "regex": ",\"record.writeFields\", {record.writeFields}),",
+        "createFieldName": "record.writeFields",
+        "curly": "{record.writeFields}",
+        "input": "record.writeFields",
+        "right": "writeFields",
+        "json_key (from keyMap)": [
+          "write.toTable.table.toRecord.record.toFields"
+        ],
+        "Number": 5.1,
+        "ifthen": "IF(FIND(\"record.writeFields\", ARRAYJOIN({includeKeys}))>0, '\"record.writeFields\":['& {record.writeFields}&']___')&",
+        "if": "IF(FIND(\"record.writeFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recDaRI1nPop1OtbM"
+        ],
+        "left": "record.",
+        "then": "'\"record.writeFields\":['& {record.writeFields}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recPe1V644CAnRoRd",
+          "recxKoGtvKmisqWD6",
+          "recMNuHYKQWCmwa07"
+        ]
+      }
+    },
+    {
+      "id": "rec6XRSRFrfO6G8Ll",
+      "createdTime": "2026-07-13T12:33:28.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"merge.rule\"",
+        "fldFlC3O6jGTUZSg5": [
+          5
+        ],
+        "fldITQciHKABlYJuo": ",\"merge.rule\", {merge.rule}),",
+        "fldJJKSYhxB9uNkGT": "merge.rule",
+        "fldJa4IlgZRN6m6w2": "{merge.rule}",
+        "fldOWGxhtj0RMPseO": "merge.rule",
+        "fldOqA19w2uekjDCm": "rule",
+        "fldUPnvvvvyJmKiWR": [
+          "merge.tables.toTable.mergeRules.rule"
+        ],
+        "fldYKHkEDUS3ciBz6": 6,
+        "fldZvQWXRE6r2CLsk": true,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"merge.rule\", ARRAYJOIN({includeKeys}))>0, '\"merge.rule\":{'& {merge.rule}&'}___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"merge.rule\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recaUHTuWVy6OQFrb"
+        ],
+        "fldoqgsT3Nl7KUsL6": "merge.",
+        "fldpaMIGpQGeOfWam": "'\"merge.rule\":{'& {merge.rule}&'}___')&",
+        "fldrAsCY1fezk7uAE": [
+          "object"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recjVjZnkJ3l3D5nk"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"merge.rule\"",
+        "level (from eventJSONkeys)": [
+          5
+        ],
+        "regex": ",\"merge.rule\", {merge.rule}),",
+        "createFieldName": "merge.rule",
+        "curly": "{merge.rule}",
+        "input": "merge.rule",
+        "right": "rule",
+        "json_key (from keyMap)": [
+          "merge.tables.toTable.mergeRules.rule"
+        ],
+        "Number": 6,
+        "object": true,
+        "ifthen": "IF(FIND(\"merge.rule\", ARRAYJOIN({includeKeys}))>0, '\"merge.rule\":{'& {merge.rule}&'}___')&",
+        "if": "IF(FIND(\"merge.rule\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recaUHTuWVy6OQFrb"
+        ],
+        "left": "merge.",
+        "then": "'\"merge.rule\":{'& {merge.rule}&'}___')&",
+        "valueType Rollup (from keyMap)": [
+          "object"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recjVjZnkJ3l3D5nk"
+        ]
+      }
+    },
+    {
+      "id": "recX9KdkI3o3MLDHt",
+      "createdTime": "2026-07-13T13:24:37.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"table.mergeFields\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"table.mergeFields\", {table.mergeFields}),",
+        "fldJJKSYhxB9uNkGT": "mergeFields",
+        "fldJa4IlgZRN6m6w2": "{table.mergeFields}",
+        "fldOWGxhtj0RMPseO": "table.mergeFields",
+        "fldOqA19w2uekjDCm": "mergeFields",
+        "fldUPnvvvvyJmKiWR": [
+          "merge.tables.toTable.mergeFields"
+        ],
+        "fldYKHkEDUS3ciBz6": 6.1,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"mergeFields\", ARRAYJOIN({includeKeys}))>0, '\"mergeFields\":['& {mergeFields}&']___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"mergeFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recWsM08nBSbpn1tL"
+        ],
+        "fldoqgsT3Nl7KUsL6": "table.",
+        "fldpaMIGpQGeOfWam": "'\"mergeFields\":['& {mergeFields}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recjVjZnkJ3l3D5nk",
+          "rec20zFzKrPzkwVRb"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"table.mergeFields\"",
+        "array": true,
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          4
+        ],
+        "regex": ",\"table.mergeFields\", {table.mergeFields}),",
+        "createFieldName": "mergeFields",
+        "curly": "{table.mergeFields}",
+        "input": "table.mergeFields",
+        "right": "mergeFields",
+        "json_key (from keyMap)": [
+          "merge.tables.toTable.mergeFields"
+        ],
+        "Number": 6.1,
+        "ifthen": "IF(FIND(\"mergeFields\", ARRAYJOIN({includeKeys}))>0, '\"mergeFields\":['& {mergeFields}&']___')&",
+        "if": "IF(FIND(\"mergeFields\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recWsM08nBSbpn1tL"
+        ],
+        "left": "table.",
+        "then": "'\"mergeFields\":['& {mergeFields}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recjVjZnkJ3l3D5nk",
+          "rec20zFzKrPzkwVRb"
+        ]
+      }
+    },
+    {
+      "id": "rec2qeAyObGyIWm8Q",
+      "createdTime": "2026-07-13T13:26:32.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"table.mergeRules\"",
+        "fld5UDbOU4OLdOb06": true,
+        "fldBxKaic3TZcqLRs": true,
+        "fldFlC3O6jGTUZSg5": [
+          4
+        ],
+        "fldITQciHKABlYJuo": ",\"table.mergeRules\", {table.mergeRules}),",
+        "fldJJKSYhxB9uNkGT": "mergeRules",
+        "fldJa4IlgZRN6m6w2": "{table.mergeRules}",
+        "fldOWGxhtj0RMPseO": "table.mergeRules",
+        "fldOqA19w2uekjDCm": "mergeRules",
+        "fldUPnvvvvyJmKiWR": [
+          "merge.tables.toTable.mergeRules"
+        ],
+        "fldYKHkEDUS3ciBz6": 6.2,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"mergeRules\", ARRAYJOIN({includeKeys}))>0, '\"mergeRules\":['& {mergeRules}&']___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"mergeRules\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "table_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recFT7H6ipFgj4cR6"
+        ],
+        "fldoqgsT3Nl7KUsL6": "table.",
+        "fldpaMIGpQGeOfWam": "'\"mergeRules\":['& {mergeRules}&']___')&",
+        "fldrAsCY1fezk7uAE": [
+          "array"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recjVjZnkJ3l3D5nk",
+          "rec20zFzKrPzkwVRb"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"table.mergeRules\"",
+        "array": true,
+        "removeParent": true,
+        "level (from eventJSONkeys)": [
+          4
+        ],
+        "regex": ",\"table.mergeRules\", {table.mergeRules}),",
+        "createFieldName": "mergeRules",
+        "curly": "{table.mergeRules}",
+        "input": "table.mergeRules",
+        "right": "mergeRules",
+        "json_key (from keyMap)": [
+          "merge.tables.toTable.mergeRules"
+        ],
+        "Number": 6.2,
+        "ifthen": "IF(FIND(\"mergeRules\", ARRAYJOIN({includeKeys}))>0, '\"mergeRules\":['& {mergeRules}&']___')&",
+        "if": "IF(FIND(\"mergeRules\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "table_config"
+        ],
+        "keyMap": [
+          "recFT7H6ipFgj4cR6"
+        ],
+        "left": "table.",
+        "then": "'\"mergeRules\":['& {mergeRules}&']___')&",
+        "valueType Rollup (from keyMap)": [
+          "array"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recjVjZnkJ3l3D5nk",
+          "rec20zFzKrPzkwVRb"
+        ]
+      }
+    },
+    {
+      "id": "rec2ToNRIQFPJCCUB",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"completion.completionSearchKey\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"completion.completionSearchKey\", {completion.completionSearchKey}),",
+        "fldJJKSYhxB9uNkGT": "completion.completionSearchKey",
+        "fldJa4IlgZRN6m6w2": "{completion.completionSearchKey}",
+        "fldO4NuLXqsgMuI2M": "completionSearchKey",
+        "fldOWGxhtj0RMPseO": "completion.completionSearchKey",
+        "fldOqA19w2uekjDCm": "completionSearchKey",
+        "fldUPnvvvvyJmKiWR": [
+          "completion.completionSearchKey"
+        ],
+        "fldYKHkEDUS3ciBz6": 9,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"completion.completionSearchKey\", ARRAYJOIN({includeKeys}))>0, '\"completion.completionSearchKey\":\"'& {completion.completionSearchKey}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"completion.completionSearchKey\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recBL4gm5jStF3TDn"
+        ],
+        "fldoqgsT3Nl7KUsL6": "completion.",
+        "fldpaMIGpQGeOfWam": "'\"completion.completionSearchKey\":\"'& {completion.completionSearchKey}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"completion.completionSearchKey\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"completion.completionSearchKey\", {completion.completionSearchKey}),",
+        "createFieldName": "completion.completionSearchKey",
+        "curly": "{completion.completionSearchKey}",
+        "json.child": "completionSearchKey",
+        "input": "completion.completionSearchKey",
+        "right": "completionSearchKey",
+        "json_key (from keyMap)": [
+          "completion.completionSearchKey"
+        ],
+        "Number": 9,
+        "ifthen": "IF(FIND(\"completion.completionSearchKey\", ARRAYJOIN({includeKeys}))>0, '\"completion.completionSearchKey\":\"'& {completion.completionSearchKey}&'\"___')&",
+        "if": "IF(FIND(\"completion.completionSearchKey\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recBL4gm5jStF3TDn"
+        ],
+        "left": "completion.",
+        "then": "'\"completion.completionSearchKey\":\"'& {completion.completionSearchKey}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "recTAxYSRACpXmC3Z",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"completion.completionKey\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"completion.completionKey\", {completion.completionKey}),",
+        "fldJJKSYhxB9uNkGT": "completion.completionKey",
+        "fldJa4IlgZRN6m6w2": "{completion.completionKey}",
+        "fldO4NuLXqsgMuI2M": "completionKey",
+        "fldOWGxhtj0RMPseO": "completion.completionKey",
+        "fldOqA19w2uekjDCm": "completionKey",
+        "fldUPnvvvvyJmKiWR": [
+          "completion.completionKey"
+        ],
+        "fldYKHkEDUS3ciBz6": 9,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"completion.completionKey\", ARRAYJOIN({includeKeys}))>0, '\"completion.completionKey\":\"'& {completion.completionKey}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"completion.completionKey\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recShwyH3lkiKXBCX"
+        ],
+        "fldoqgsT3Nl7KUsL6": "completion.",
+        "fldpaMIGpQGeOfWam": "'\"completion.completionKey\":\"'& {completion.completionKey}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "rec20KXmUQfLALrbV",
+          "recBBNOWYRT0W1IIL"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"completion.completionKey\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"completion.completionKey\", {completion.completionKey}),",
+        "createFieldName": "completion.completionKey",
+        "curly": "{completion.completionKey}",
+        "json.child": "completionKey",
+        "input": "completion.completionKey",
+        "right": "completionKey",
+        "json_key (from keyMap)": [
+          "completion.completionKey"
+        ],
+        "Number": 9,
+        "ifthen": "IF(FIND(\"completion.completionKey\", ARRAYJOIN({includeKeys}))>0, '\"completion.completionKey\":\"'& {completion.completionKey}&'\"___')&",
+        "if": "IF(FIND(\"completion.completionKey\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recShwyH3lkiKXBCX"
+        ],
+        "left": "completion.",
+        "then": "'\"completion.completionKey\":\"'& {completion.completionKey}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "rec20KXmUQfLALrbV",
+          "recBBNOWYRT0W1IIL"
+        ]
+      }
+    },
+    {
+      "id": "recTkEkX8seRjfHbm",
+      "createdTime": "2026-07-11T05:04:35.000Z",
+      "fieldsById": {
+        "fld4M2u4PFmxOb7bz": "\"completion.completedDate\"",
+        "fldFlC3O6jGTUZSg5": [
+          2
+        ],
+        "fldITQciHKABlYJuo": ",\"completion.completedDate\", {completion.completedDate}),",
+        "fldJJKSYhxB9uNkGT": "completion.completedDate",
+        "fldJa4IlgZRN6m6w2": "{completion.completedDate}",
+        "fldO4NuLXqsgMuI2M": "completedDate",
+        "fldOWGxhtj0RMPseO": "completion.completedDate",
+        "fldOqA19w2uekjDCm": "completedDate",
+        "fldUPnvvvvyJmKiWR": [
+          "completion.completedDate"
+        ],
+        "fldYKHkEDUS3ciBz6": 9,
+        "fldcmYBZJMQBOlu1Z": "IF(FIND(\"completion.completedDate\", ARRAYJOIN({includeKeys}))>0, '\"completion.completedDate\":\"'& {completion.completedDate}&'\"___')&",
+        "fldcvD7MBpkhrBc5h": "IF(FIND(\"completion.completedDate\", ARRAYJOIN({includeKeys}))>0, ",
+        "fldemOXAFfL7HzAh1": [
+          "field_config"
+        ],
+        "fldhsAIJInSvFPq9B": [
+          "recr2VBOSuOGNI5H8"
+        ],
+        "fldoqgsT3Nl7KUsL6": "completion.",
+        "fldpaMIGpQGeOfWam": "'\"completion.completedDate\":\"'& {completion.completedDate}&'\"___')&",
+        "fldrAsCY1fezk7uAE": [
+          "string"
+        ],
+        "fldx4hNfEPx6Qa2aV": [
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL",
+          "recMiPQd171ofOmk0"
+        ]
+      },
+      "fieldsByName": {
+        "quotes": "\"completion.completedDate\"",
+        "level (from eventJSONkeys)": [
+          2
+        ],
+        "regex": ",\"completion.completedDate\", {completion.completedDate}),",
+        "createFieldName": "completion.completedDate",
+        "curly": "{completion.completedDate}",
+        "json.child": "completedDate",
+        "input": "completion.completedDate",
+        "right": "completedDate",
+        "json_key (from keyMap)": [
+          "completion.completedDate"
+        ],
+        "Number": 9,
+        "ifthen": "IF(FIND(\"completion.completedDate\", ARRAYJOIN({includeKeys}))>0, '\"completion.completedDate\":\"'& {completion.completedDate}&'\"___')&",
+        "if": "IF(FIND(\"completion.completedDate\", ARRAYJOIN({includeKeys}))>0, ",
+        "rolledUpOn_select Rollup (from keyMap)": [
+          "field_config"
+        ],
+        "keyMap": [
+          "recr2VBOSuOGNI5H8"
+        ],
+        "left": "completion.",
+        "then": "'\"completion.completedDate\":\"'& {completion.completedDate}&'\"___')&",
+        "valueType Rollup (from keyMap)": [
+          "string"
+        ],
+        "tableConfigSetups (from keyMap)": [
+          "rec20KXmUQfLALrbV",
+          "recjVjZnkJ3l3D5nk",
+          "recBBNOWYRT0W1IIL",
+          "recMiPQd171ofOmk0"
+        ]
+      }
+    }
+  ]
+}

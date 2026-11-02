@@ -1,0 +1,13 @@
+{
+  "component_name": "Approve Estimate Button",
+  "component_role": "project_manager",
+  "component_id": "btn_approve_estimate",
+  "component_class": ".btn.btn-approve",
+  "component_context": {
+    "projectId": "rec[caseId]",
+    "action": "ESTIMATE.APPROVE",
+    "buttonText": "Approve Estimate",
+    "webhookSlug": "[estimateWebhook]",
+    "target": "/estimateApproval"
+  }
+}

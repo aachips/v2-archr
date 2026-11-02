@@ -1,0 +1,46 @@
+// Organization Events Calendar - Shows scheduled org events
+
+{
+  "component_name": "Organization Events Calendar",
+  "component_id": "cmp_orgadmin_events",
+  "component_type": "calendar",
+  "data_sources": {
+    "events": "organization_events where organization_id = current_org AND date >= today()"
+  },
+  "calendar_fields": {
+    "date_field": "date",
+    "title_field": "event_name",
+    "type_field": "event_type",
+    "description_field": "description"
+  },
+  "event_types": [
+    {
+      "type": "volunteer_day",
+      "color": "blue",
+      "icon": "fa-users"
+    },
+    {
+      "type": "assessment",
+      "color": "teal",
+      "icon": "fa-clipboard-check"
+    },
+    {
+      "type": "meeting",
+      "color": "purple",
+      "icon": "fa-handshake"
+    },
+    {
+      "type": "training",
+      "color": "orange",
+      "icon": "fa-graduation-cap"
+    }
+  ],
+  "actions": [
+    {
+      "label": "Add Event",
+      "action": "modal",
+      "target": "/createEventModal"
+    }
+  ],
+  "view_mode": "month"
+}

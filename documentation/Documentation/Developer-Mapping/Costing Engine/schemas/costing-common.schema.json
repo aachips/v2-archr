@@ -1,0 +1,855 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://archr.example/schemas/costing-common.schema.json",
+  "title": "ARCHR Costing Common Definitions",
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "nullableIdentifier": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "money": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "currency"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "pattern": "^-?\\d+(?:\\.\\d{1,2})?$"
+        },
+        "currency": {
+          "type": "string",
+          "enum": [
+            "USD"
+          ]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "system": {
+          "$ref": "#/$defs/identifier"
+        },
+        "baseId": {
+          "type": "string"
+        },
+        "tableId": {
+          "type": "string"
+        },
+        "recordId": {
+          "type": "string"
+        },
+        "workbook": {
+          "type": "string"
+        },
+        "sheet": {
+          "type": "string"
+        },
+        "row": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "recordId": {
+          "type": "string"
+        },
+        "sourceSystem": {
+          "type": "string"
+        }
+      }
+    },
+    "amountBreakdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "total": {
+          "$ref": "#/$defs/money"
+        },
+        "labor": {
+          "$ref": "#/$defs/money"
+        },
+        "materials": {
+          "$ref": "#/$defs/money"
+        },
+        "subcontractor": {
+          "$ref": "#/$defs/money"
+        },
+        "admin": {
+          "$ref": "#/$defs/money"
+        },
+        "other": {
+          "$ref": "#/$defs/money"
+        }
+      },
+      "minProperties": 1
+    },
+    "derivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "assessment_model",
+            "project_manager_estimate",
+            "contract_allocation",
+            "direct_evidence",
+            "proportional_allocation",
+            "manual",
+            "imported"
+          ]
+        },
+        "basisIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "engineVersion": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "estimated-actual",
+            "documented-actual"
+          ]
+        }
+      }
+    },
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contractId"
+      ],
+      "properties": {
+        "contractId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "bucketRecordId": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "organizationId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "signed",
+            "completed",
+            "void"
+          ]
+        },
+        "signedDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "completionCertificateDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "contractAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "documentId": {
+          "type": "string"
+        }
+      }
+    },
+    "costEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "costEntryId",
+        "costScope",
+        "costType"
+      ],
+      "properties": {
+        "costEntryId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "costScope": {
+          "type": "string",
+          "enum": [
+            "project",
+            "contract",
+            "task"
+          ]
+        },
+        "taskId": {
+          "type": "string"
+        },
+        "costType": {
+          "type": "string",
+          "enum": [
+            "robo",
+            "est",
+            "act"
+          ]
+        },
+        "costStatus": {
+          "type": "string",
+          "enum": [
+            "active",
+            "superseded",
+            "void"
+          ]
+        },
+        "amounts": {
+          "$ref": "#/$defs/amountBreakdown"
+        },
+        "effectiveAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "supersedesCostEntryId": {
+          "type": "string"
+        },
+        "evidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "fundingSelectionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "derivation": {
+          "$ref": "#/$defs/derivation"
+        },
+        "enteredBy": {
+          "$ref": "#/$defs/actor"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "costScope": {
+                "const": "task"
+              }
+            },
+            "required": [
+              "costScope"
+            ]
+          },
+          "then": {
+            "required": [
+              "taskId"
+            ]
+          }
+        }
+      ]
+    },
+    "fundingSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fundingSelectionId",
+        "fundingSourceId"
+      ],
+      "properties": {
+        "fundingSelectionId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "fundingSourceId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "fundGroup": {
+          "type": "string"
+        },
+        "fundYear": {
+          "type": "string",
+          "pattern": "^FY\\s?\\d{2,4}$"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "proposed",
+            "eligible",
+            "selected",
+            "submitted",
+            "approved",
+            "rejected",
+            "ineligible",
+            "void"
+          ]
+        },
+        "selectedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "selectedBy": {
+          "$ref": "#/$defs/actor"
+        },
+        "costEntryIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "expenseAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "eligibleAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "requestedAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "approvedAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "drawRequestIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "trackerSnapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "billDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "gapFundingAmount": {
+              "$ref": "#/$defs/money"
+            },
+            "gapBillDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "reportedRemainder": {
+              "$ref": "#/$defs/money"
+            }
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "documentEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action",
+        "occurredAt"
+      ],
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "created",
+            "uploaded",
+            "reviewed",
+            "approved",
+            "rejected",
+            "voided"
+          ]
+        },
+        "occurredAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "personId": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receiptId"
+      ],
+      "properties": {
+        "receiptId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "documentId": {
+          "type": "string"
+        },
+        "receiptDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "vendorId": {
+          "type": "string"
+        },
+        "vendorName": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/$defs/money"
+        },
+        "confirmed": {
+          "type": "boolean"
+        },
+        "confirmedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "confirmedBy": {
+          "$ref": "#/$defs/actor"
+        },
+        "costEntryIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "taskIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "proofOfPaymentDocumentId": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "invoice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "invoiceId"
+      ],
+      "properties": {
+        "invoiceId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "contractId": {
+          "type": "string"
+        },
+        "invoiceNumber": {
+          "type": "string"
+        },
+        "invoiceDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "new",
+            "submitted",
+            "approved",
+            "disputed",
+            "paid",
+            "void"
+          ]
+        },
+        "vendor": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "subcontractorPool": {
+              "type": "boolean"
+            },
+            "subcontractorId": {
+              "type": "string"
+            },
+            "subcontractorName": {
+              "type": "string"
+            }
+          }
+        },
+        "amount": {
+          "$ref": "#/$defs/money"
+        },
+        "taskIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "costEntryIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "documentId": {
+          "type": "string"
+        },
+        "proofOfPaymentDocumentId": {
+          "type": "string"
+        },
+        "documentEvents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/documentEvent"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "timeSheet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "timeSheetId"
+      ],
+      "properties": {
+        "timeSheetId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "personId": {
+          "type": "string"
+        },
+        "personName": {
+          "type": "string"
+        },
+        "hoursWorked": {
+          "type": "string",
+          "pattern": "^\\d+(?:\\.\\d{1,2})?$"
+        },
+        "personRate": {
+          "$ref": "#/$defs/money"
+        },
+        "calculatedAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "startAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "taskIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "costEntryIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "documentId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "new",
+            "submitted",
+            "approved",
+            "rejected",
+            "void"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "fundingEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "receipts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/receipt"
+          }
+        },
+        "invoices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/invoice"
+          }
+        },
+        "timeSheets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/timeSheet"
+          }
+        }
+      }
+    },
+    "reportingPeriod": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "drawRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "drawRequestId"
+      ],
+      "properties": {
+        "drawRequestId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "drawNumber": {
+          "type": "string"
+        },
+        "fundingSourceId": {
+          "type": "string"
+        },
+        "fundingSelectionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "contractId": {
+          "type": "string"
+        },
+        "costEntryIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "invoiceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "receiptIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "timeSheetIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "scopeOfWork": {
+          "type": "string"
+        },
+        "reportingPeriod": {
+          "$ref": "#/$defs/reportingPeriod"
+        },
+        "contractPrice": {
+          "$ref": "#/$defs/money"
+        },
+        "expenseTotal": {
+          "$ref": "#/$defs/money"
+        },
+        "requestedAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "approvedAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "adminFeeAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "ready",
+            "submitted",
+            "review",
+            "approved",
+            "rejected",
+            "paid",
+            "void"
+          ]
+        },
+        "billDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "submittedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approvedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "rejectedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "rejectionReason": {
+          "type": "string"
+        },
+        "documentId": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "paymentId",
+        "drawRequestId",
+        "fundingSourceId"
+      ],
+      "properties": {
+        "paymentId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "drawRequestId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "fundingSelectionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "fundingSourceId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "recipientOrgId": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/$defs/money"
+        },
+        "paymentDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "paymentReference": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "issued",
+            "paid",
+            "void",
+            "refunded"
+          ]
+        },
+        "financeSystemReference": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "reportingSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentProjectedCost": {
+          "$ref": "#/$defs/money"
+        },
+        "currentAttributedActualCost": {
+          "$ref": "#/$defs/money"
+        },
+        "totalRequested": {
+          "$ref": "#/$defs/money"
+        },
+        "totalApproved": {
+          "$ref": "#/$defs/money"
+        },
+        "totalPaid": {
+          "$ref": "#/$defs/money"
+        },
+        "unfundedAmount": {
+          "$ref": "#/$defs/money"
+        },
+        "calculatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

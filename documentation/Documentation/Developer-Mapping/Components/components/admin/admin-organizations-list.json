@@ -1,0 +1,61 @@
+// Organizations List - All partner organizations
+
+{
+  "component_name": "Organizations List",
+  "component_id": "cmp_admin_organizations",
+  "component_type": "table",
+  "data_sources": {
+    "organizations": "organizations ORDER BY created_at DESC"
+  },
+  "columns": [
+    {
+      "field": "organization_name",
+      "label": "Organization",
+      "type": "text"
+    },
+    {
+      "field": "type",
+      "label": "Type",
+      "type": "badge"
+    },
+    {
+      "field": "status",
+      "label": "Status",
+      "type": "badge",
+      "color_mapping": {
+        "active": "green",
+        "inactive": "gray",
+        "pending": "amber"
+      }
+    },
+    {
+      "field": "total_users",
+      "label": "Users",
+      "type": "number"
+    },
+    {
+      "field": "total_cases",
+      "label": "Cases",
+      "type": "number"
+    },
+    {
+      "field": "created_date",
+      "label": "Created",
+      "type": "date"
+    }
+  ],
+  "actions": [
+    {
+      "label": "Edit",
+      "action": "modal",
+      "target": "/editOrgModal"
+    },
+    {
+      "label": "View Details",
+      "action": "navigate",
+      "target": "/organization/{org_id}"
+    }
+  ],
+  "sort_order": "organization_name ASC",
+  "mobile_layout": "cards"
+}

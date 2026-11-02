@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Partner Platform · UX Task Rubric</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #eef3f0;
+      font-family: system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif;
+      padding: 2rem 1rem;
+      color: #1e2f2a;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* header card */
+    .header-card {
+      background: #1e3a2f;
+      color: white;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+    .header-card h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+    .header-card p {
+      opacity: 0.85;
+      font-size: 0.95rem;
+    }
+    .badge {
+      display: inline-block;
+      background: #417c5c;
+      border-radius: 40px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.7rem;
+      margin-top: 0.8rem;
+    }
+
+    /* rubric table wrapper */
+    .table-wrapper {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+      overflow-x: auto;
+      margin-bottom: 2rem;
+      border: 1px solid #e2ece4;
+    }
+
+    .rubric-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      min-width: 1000px;
+    }
+
+    .rubric-table th {
+      background: #f1f7f2;
+      padding: 1rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+      color: #1e4a2f;
+      border-bottom: 2px solid #cddfd2;
+      font-size: 0.85rem;
+    }
+
+    .rubric-table td {
+      padding: 0.9rem 0.9rem;
+      border-bottom: 1px solid #e2eae2;
+      vertical-align: top;
+      background-color: white;
+    }
+
+    .task-cell {
+      font-weight: 500;
+      color: #1a3a2a;
+    }
+
+    .badge-cat {
+      background: #eef0e6;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #2c5a40;
+      white-space: nowrap;
+    }
+
+    .metric-input {
+      width: 100%;
+      padding: 0.4rem 0.5rem;
+      border: 1px solid #cbdcd0;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      background: #fefefb;
+      transition: 0.1s;
+    }
+    .metric-input:focus {
+      outline: none;
+      border-color: #2f6b47;
+      background: #ffffff;
+    }
+
+    select.metric-input {
+      cursor: pointer;
+    }
+
+    .rating {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .rating-btn {
+      background: #f0f3ef;
+      border: 1px solid #d0dec8;
+      border-radius: 30px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+    .rating-btn.selected {
+      background: #2f6b47;
+      border-color: #2f6b47;
+      color: white;
+    }
+
+    textarea.metric-input {
+      resize: vertical;
+      min-height: 50px;
+      font-family: inherit;
+    }
+
+    .notes-icon {
+      font-size: 0.7rem;
+      color: #8aa79a;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+    }
+    .btn {
+      background: #f2f6f0;
+      border: 1px solid #c2d4c4;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+    .btn-primary {
+      background: #2f6b47;
+      border-color: #2f6b47;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #235a3b;
+    }
+    .btn:hover {
+      background: #e2ece2;
+    }
+
+    .footer-note {
+      background: #fafcf9;
+      border-radius: 20px;
+      padding: 1rem 1.5rem;
+      font-size: 0.8rem;
+      color: #476854;
+      text-align: center;
+      border: 1px solid #dfe9e0;
+    }
+    @media (max-width: 700px) {
+      .header-card h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header-card">
+    <h1>🧩 Partner experience · task rubric</h1>
+    <p>Baseline assessment for Softr partner portal (before/after rebuild). Track friction, steps, and user sentiment.</p>
+    <div class="badge">🗂️ Use columns: steps · time (sec) · dead ends · workarounds · emotion</div>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="rubric-table" id="rubricTable">
+      <thead>
+        <tr>
+          <th>#</th><th>Task category</th><th style="min-width: 200px;">Task description</th>
+          <th>Steps (count)</th><th>⏱️ Time (sec)</th><th>🚫 Dead ends?</th>
+          <th>⚙️ Workarounds</th><th>😤 Emotion (1–5)</th><th>📝 Notes / observations</th>
+        </tr>
+      </thead>
+      <tbody id="rubricBody">
+        <!-- rows will be injected with JS, but fallback included -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="action-buttons" style="margin-bottom: 1rem;">
+    <button class="btn" id="exportCsvBtn">📎 Export to CSV</button>
+    <button class="btn btn-primary" id="resetBtn">⟳ Reset all fields</button>
+  </div>
+  <div class="footer-note">
+    ✨ <strong>How to use:</strong> Fill each task row with your test results. “Emotion” scale: 1=calm/easy, 3=frustrated, 5=extremely broken.<br>
+    Compare “before” (now) vs “after” the redesign. Use workarounds column to track missing flows.
+  </div>
+</div>
+
+<script>
+  // ---- task data (from the earlier framework) ----
+  const tasks = [
+    { id:1, category:"🔍 FINDING INFO", desc:"Find a specific client by name (test/dummy record)" },
+    { id:2, category:"🔍 FINDING INFO", desc:"Find a client by PlaceCode" },
+    { id:3, category:"🔍 FINDING INFO", desc:"Pull up complete history of one client (all interactions, repairs, docs)" },
+    { id:4, category:"🔍 FINDING INFO", desc:"Find all clients in a specific zip code / neighborhood" },
+    { id:5, category:"✏️ UPDATING & DOCS", desc:"Add a note to a client’s record (phone call / site visit)" },
+    { id:6, category:"✏️ UPDATING & DOCS", desc:"Upload a photo (before/during/after) to a client record" },
+    { id:7, category:"✏️ UPDATING & DOCS", desc:"Mark a repair as 'in progress' and assign to a contractor" },
+    { id:8, category:"✏️ UPDATING & DOCS", desc:"Generate a document (work order / approval letter / intake summary)" },
+    { id:9, category:"📊 TRACK & REPORT", desc:"Find all clients whose applications are pending approval" },
+    { id:10, category:"📊 TRACK & REPORT", desc:"Find all repairs completed in the last 30 days" },
+    { id:11, category:"📊 TRACK & REPORT", desc:"Find all clients referred by a specific partner organization" },
+    { id:12, category:"📊 TRACK & REPORT", desc:"Export list of clients (basic info) to CSV or PDF" },
+    { id:13, category:"🧭 NAVIGATION", desc:"Find help / about / guide page that explains the system" },
+    { id:14, category:"🧭 NAVIGATION", desc:"Log out and log back in (smoothness & persistence)" },
+    { id:15, category:"🧭 NAVIGATION", desc:"Find a way to contact support or report a problem" }
+  ];
+
+  // helper to create row with editable inputs
+  function buildRow(t) {
+    const tr = document.createElement('tr');
+
+    // id
+    const tdId = document.createElement('td');
+    tdId.innerText = t.id;
+    tr.appendChild(tdId);
+
+    // category
+    const tdCat = document.createElement('td');
+    tdCat.innerHTML = `<span class="badge-cat">${t.category}</span>`;
+    tr.appendChild(tdCat);
+
+    // task description
+    const tdDesc = document.createElement('td');
+    tdDesc.className = 'task-cell';
+    tdDesc.innerText = t.desc;
+    tr.appendChild(tdDesc);
+
+    // steps (number input)
+    const tdSteps = document.createElement('td');
+    const stepsInput = document.createElement('input');
+    stepsInput.type = 'number';
+    stepsInput.className = 'metric-input';
+    stepsInput.placeholder = 'clicks';
+    stepsInput.value = '';
+    tdSteps.appendChild(stepsInput);
+    tr.appendChild(tdSteps);
+
+    // time (sec)
+    const tdTime = document.createElement('td');
+    const timeInput = document.createElement('input');
+    timeInput.type = 'number';
+    timeInput.className = 'metric-input';
+    timeInput.placeholder = 'seconds';
+    tdTime.appendChild(timeInput);
+    tr.appendChild(tdTime);
+
+    // dead ends (yes/no/partial)
+    const tdDead = document.createElement('td');
+    const deadSelect = document.createElement('select');
+    deadSelect.className = 'metric-input';
+    deadSelect.innerHTML = `<option value="">—</option><option value="Yes">Yes</option><option value="No">No</option><option value="Partial">Partial</option>`;
+    tdDead.appendChild(deadSelect);
+    tr.appendChild(tdDead);
+
+    // workarounds (text)
+    const tdWork = document.createElement('td');
+    const workInput = document.createElement('input');
+    workInput.type = 'text';
+    workInput.className = 'metric-input';
+    workInput.placeholder = 'e.g., used google doc, manual email';
+    tdWork.appendChild(workInput);
+    tr.appendChild(tdWork);
+
+    // emotion (1-5 using buttons + hidden)
+    const tdEmo = document.createElement('td');
+    const ratingDiv = document.createElement('div');
+    ratingDiv.className = 'rating';
+    const hiddenEmo = document.createElement('input');
+    hiddenEmo.type = 'hidden';
+    hiddenEmo.name = `emo_${t.id}`;
+    hiddenEmo.value = '';
+    for (let i = 1; i <= 5; i++) {
+      const btn = document.createElement('span');
+      btn.innerText = i;
+      btn.className = 'rating-btn';
+      btn.addEventListener('click', (e) => {
+        // remove selected from siblings
+        Array.from(ratingDiv.children).forEach(ch => {
+          if (ch.tagName === 'SPAN') ch.classList.remove('selected');
+        });
+        btn.classList.add('selected');
+        hiddenEmo.value = i;
+      });
+      ratingDiv.appendChild(btn);
+    }
+    ratingDiv.appendChild(hiddenEmo);
+    tdEmo.appendChild(ratingDiv);
+    tr.appendChild(tdEmo);
+
+    // notes (textarea)
+    const tdNotes = document.createElement('td');
+    const notesArea = document.createElement('textarea');
+    notesArea.className = 'metric-input';
+    notesArea.rows = 2;
+    notesArea.placeholder = 'additional observations, broken expectations...';
+    tdNotes.appendChild(notesArea);
+    tr.appendChild(tdNotes);
+
+    return tr;
+  }
+
+  const tbody = document.getElementById('rubricBody');
+  function renderTable() {
+    tbody.innerHTML = '';
+    tasks.forEach(task => {
+      tbody.appendChild(buildRow(task));
+    });
+  }
+  renderTable();
+
+  // export to CSV
+  document.getElementById('exportCsvBtn').addEventListener('click', () => {
+    const rows = [];
+    // header
+    const headers = ['ID','Category','Task','Steps (clicks)','Time (sec)','Dead ends?','Workarounds','Emotion (1-5)','Notes'];
+    rows.push(headers.join(','));
+
+    const tableRows = document.querySelectorAll('#rubricBody tr');
+    tableRows.forEach((row, idx) => {
+      const tds = row.querySelectorAll('td');
+      if (tds.length < 9) return;
+      const id = tds[0]?.innerText || '';
+      const category = tds[1]?.innerText?.replace(/\n/g,'') || '';
+      const taskDesc = tds[2]?.innerText || '';
+      const steps = tds[3]?.querySelector('input')?.value || '';
+      const timeSec = tds[4]?.querySelector('input')?.value || '';
+      const deadEnds = tds[5]?.querySelector('select')?.value || '';
+      const workaround = tds[6]?.querySelector('input')?.value || '';
+      // emotion hidden value
+      const emoHidden = tds[7]?.querySelector('input[type="hidden"]')?.value || '';
+      const notes = tds[8]?.querySelector('textarea')?.value || '';
+
+      const rowData = [id, category, taskDesc, steps, timeSec, deadEnds, workaround, emoHidden, notes];
+      const escaped = rowData.map(cell => {
+        if (typeof cell === 'string' && (cell.includes(',') || cell.includes('"'))) {
+          return `"${cell.replace(/"/g, '""')}"`;
+        }
+        return cell;
+      }).join(',');
+      rows.push(escaped);
+    });
+
+    const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.href = url;
+    link.setAttribute('download', 'partner_task_rubric.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  });
+
+  // reset all fields
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    const allInputs = document.querySelectorAll('#rubricBody input, #rubricBody select, #rubricBody textarea');
+    allInputs.forEach(field => {
+      if (field.tagName === 'SELECT') field.selectedIndex = 0;
+      else if (field.type === 'number' || field.type === 'text') field.value = '';
+      else if (field.tagName === 'TEXTAREA') field.value = '';
+    });
+    // clear emotion selections
+    const ratingGroups = document.querySelectorAll('#rubricBody .rating');
+    ratingGroups.forEach(group => {
+      const btns = group.querySelectorAll('.rating-btn');
+      btns.forEach(btn => btn.classList.remove('selected'));
+      const hiddenInput = group.querySelector('input[type="hidden"]');
+      if (hiddenInput) hiddenInput.value = '';
+    });
+  });
+</script>
+</body>
+</html>

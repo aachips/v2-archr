@@ -1,0 +1,74 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:12.039Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblatIswGq0kVz1K7",
+    "name": "permissions",
+    "description": null,
+    "primaryFieldId": "fldflloqsvz4RaTtH",
+    "fields": [
+      {
+        "id": "fldflloqsvz4RaTtH",
+        "name": "permission_code",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld9XPUCVllMBwJo6",
+        "name": "permission_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldXwDxTlkmz9OmmH",
+        "name": "category_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldIoTtfw3eiUe02s",
+        "name": "description",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld6q2AAn0YsfWHTM",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwtqyfL0RYaAoHRO",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

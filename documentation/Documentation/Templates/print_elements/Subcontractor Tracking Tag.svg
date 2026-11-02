@@ -1,0 +1,2603 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1056"
+   height="816"
+   viewBox="0 0 279.4 215.9"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="Subcontractor Tracking Tag.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.15672349"
+     inkscape:cx="-38.283988"
+     inkscape:cy="567.87915"
+     inkscape:window-width="1536"
+     inkscape:window-height="908"
+     inkscape:window-x="1913"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g90"
+       transform="translate(-170.31541,-227.94496)">
+      <g
+         id="g53">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect12"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect13"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="3.1210948e-07"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect14"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect1"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="1.0235"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+           id="path4" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+           id="path5" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+           id="path6" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-192.57277"
+           id="text6"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan6"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476076"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-217.99046"
+           id="text7"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan7"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476078"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.4"
+           y="-246.52934"
+           id="text8"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan8"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.652943"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="4.4369183"
+           y="27.323414"
+           id="text9"><tspan
+             sodipodi:role="line"
+             id="tspan9"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="4.4369183"
+             y="27.323414">All About </tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.59213"
+           y="45.813679"
+           id="text10"><tspan
+             sodipodi:role="line"
+             id="tspan10"
+             style="stroke-width:3.62976"
+             x="141.82671"
+             y="45.813679">(828) 778-2425</tspan></text>
+      </g>
+      <g
+         id="g52"
+         transform="translate(0,0.66356098)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect15"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="50.137501"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect16"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="50.137505"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect18"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="50.137501"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect19"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="51.161003"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,51.276368 V 100.04993 L 185.55114,99.839701"
+           id="path19" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,51.276368 V 100.04993 L 210.95114,99.839701"
+           id="path20" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,51.276368 V 100.04993 L 236.35114,99.839701"
+           id="path21" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.360634"
+           y="-192.57277"
+           id="text21"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan21"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.613579"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.360634"
+           y="-217.99046"
+           id="text22"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan22"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.613579"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.537498"
+           y="-246.52934"
+           id="text23"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan23"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.790443"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="3.2453036"
+           y="76.686371"
+           id="text45"><tspan
+             sodipodi:role="line"
+             id="tspan45"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="3.2453036"
+             y="76.686371">C&amp;L (Santas)</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.48279"
+           y="95.95118"
+           id="text46"><tspan
+             sodipodi:role="line"
+             id="tspan46"
+             style="stroke-width:3.62976"
+             x="141.71738"
+             y="95.95118">(828) 280-8282</tspan></text>
+      </g>
+      <g
+         id="g51"
+         transform="translate(0,1.9239943)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect25"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect26"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect28"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect29"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="101.43832"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,100.817 V 149.59056 L 185.55114,149.38033"
+           id="path29" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,100.817 V 149.59056 L 210.95114,149.38033"
+           id="path30" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,100.817 V 149.59056 L 236.35114,149.38033"
+           id="path31" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="124.90126"
+           y="-192.57277"
+           id="text31"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan31"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.15421"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="124.90126"
+           y="-217.99046"
+           id="text32"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan32"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.15421"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="125.07812"
+           y="-246.52934"
+           id="text33"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan33"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.33106"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="125.53922"
+           id="text47"><tspan
+             sodipodi:role="line"
+             id="tspan47"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="125.53922">Ridge Roofing</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.5648"
+           y="146.22855"
+           id="text48"><tspan
+             sodipodi:role="line"
+             id="tspan48"
+             style="stroke-width:3.62976"
+             x="141.79938"
+             y="146.22855">(828) 335-7663</tspan></text>
+      </g>
+      <g
+         id="g50"
+         transform="translate(0,3.2232029)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect35"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect36"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect38"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect39"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="150.83913"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,150.9545 V 199.72806 L 185.55114,199.51783"
+           id="path39" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,150.9545 V 199.72806 L 210.95114,199.51783"
+           id="path40" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,150.9545 V 199.72806 L 236.35114,199.51783"
+           id="path41" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-192.57277"
+           id="text41"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan41"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-217.99046"
+           id="text42"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan42"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.21562"
+           y="-246.52934"
+           id="text43"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan43"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.46857"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="177.12288"
+           id="text49"><tspan
+             sodipodi:role="line"
+             id="tspan49"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="177.12288">Heartwood</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.51013"
+           y="195.62935"
+           id="text50"><tspan
+             sodipodi:role="line"
+             id="tspan50"
+             style="stroke-width:3.62976"
+             x="141.74471"
+             y="195.62935">(704) 525-3066</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g120"
+       transform="translate(-276.41685,-51.292073)">
+      <g
+         id="g179"
+         transform="translate(301.34683,50.646525)">
+        <g
+           id="g233"
+           transform="translate(165.44532,-169.66586)">
+          <g
+             id="g198"
+             transform="translate(8.7499973e-8,-50.646526)">
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect180"
+               width="25.4"
+               height="50.799999"
+               x="184.14999"
+               y="0"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect181"
+               width="25.4"
+               height="50.799999"
+               x="209.55"
+               y="3.1210948e-07"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect182"
+               width="31.730816"
+               height="50.799999"
+               x="234.95"
+               y="0"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect183"
+               width="264.55307"
+               height="48.653019"
+               x="1.0235"
+               y="1.0235"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+               id="path183" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+               id="path184" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+               id="path185" />
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="25.223133"
+               y="-192.57277"
+               id="text185"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan185"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="25.476076"
+                 y="-192.57277">Called?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="25.223133"
+               y="-217.99046"
+               id="text186"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan186"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="25.476078"
+                 y="-217.99046">Quote?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="25.4"
+               y="-246.52934"
+               id="text187"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan187"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="25.652943"
+                 y="-246.52934">Start?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="4.4369183"
+               y="27.323414"
+               id="text188"><tspan
+                 sodipodi:role="line"
+                 id="tspan188"
+                 style="text-align:start;text-anchor:start;stroke-width:7.19165"
+                 x="4.4369183"
+                 y="27.323414">Air Vent</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="141.59213"
+               y="45.813679"
+               id="text189"><tspan
+                 sodipodi:role="line"
+                 id="tspan189"
+                 style="stroke-width:3.62976"
+                 x="141.82671"
+                 y="45.813679">(___) ___-____</tspan></text>
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect189"
+               width="25.4"
+               height="50.799999"
+               x="184.14999"
+               y="0"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect190"
+               width="25.4"
+               height="50.799999"
+               x="209.55"
+               y="3.1210948e-07"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect191"
+               width="31.730816"
+               height="50.799999"
+               x="234.95"
+               y="0"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect192"
+               width="264.55307"
+               height="48.653019"
+               x="1.0235"
+               y="1.0235"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+               id="path192" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+               id="path193" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+               id="path194" />
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="25.223133"
+               y="-192.57277"
+               id="text194"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan194"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="25.476076"
+                 y="-192.57277">Called?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="25.223133"
+               y="-217.99046"
+               id="text195"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan195"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="25.476078"
+                 y="-217.99046">Quote?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="25.4"
+               y="-246.52934"
+               id="text196"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan196"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="25.652943"
+                 y="-246.52934">Start?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="4.4369183"
+               y="27.323414"
+               id="text197"><tspan
+                 sodipodi:role="line"
+                 id="tspan197"
+                 style="text-align:start;text-anchor:start;stroke-width:7.19165"
+                 x="4.4369183"
+                 y="27.323414">Air Vent</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="141.59213"
+               y="45.813679"
+               id="text198"><tspan
+                 sodipodi:role="line"
+                 id="tspan198"
+                 style="stroke-width:3.62976"
+                 x="141.82671"
+                 y="45.813679">(___) ___-____</tspan></text>
+          </g>
+          <g
+             id="g207"
+             transform="translate(8.7499973e-8,-48.722531)">
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect198"
+               width="25.4"
+               height="50.799999"
+               x="184.14999"
+               y="99.678131"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect199"
+               width="25.4"
+               height="50.799999"
+               x="209.55"
+               y="99.678131"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect200"
+               width="31.730816"
+               height="50.799999"
+               x="234.95"
+               y="99.678131"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect201"
+               width="264.55307"
+               height="48.653019"
+               x="1.0235"
+               y="101.43832"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 185.28886,100.817 V 149.59056 L 185.55114,149.38033"
+               id="path201" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 210.68886,100.817 V 149.59056 L 210.95114,149.38033"
+               id="path202" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 236.08886,100.817 V 149.59056 L 236.35114,149.38033"
+               id="path203" />
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="124.90126"
+               y="-192.57277"
+               id="text203"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan203"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="125.15421"
+                 y="-192.57277">Called?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="124.90126"
+               y="-217.99046"
+               id="text204"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan204"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="125.15421"
+                 y="-217.99046">Quote?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="125.07812"
+               y="-246.52934"
+               id="text205"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan205"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="125.33106"
+                 y="-246.52934">Start?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="2.9203176"
+               y="125.53922"
+               id="text206"><tspan
+                 sodipodi:role="line"
+                 id="tspan206"
+                 style="text-align:start;text-anchor:start;stroke-width:7.19165"
+                 x="2.9203176"
+                 y="125.53922">Neil Chandler</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="141.5648"
+               y="146.22855"
+               id="text207"><tspan
+                 sodipodi:role="line"
+                 id="tspan207"
+                 style="stroke-width:3.62976"
+                 x="141.79938"
+                 y="146.22855">(___) ___-____</tspan></text>
+          </g>
+          <g
+             id="g216"
+             transform="translate(8.7499973e-8,-48.722531)">
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect207"
+               width="25.4"
+               height="50.799999"
+               x="184.14999"
+               y="99.678131"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect208"
+               width="25.4"
+               height="50.799999"
+               x="209.55"
+               y="99.678131"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect209"
+               width="31.730816"
+               height="50.799999"
+               x="234.95"
+               y="99.678131"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               id="rect210"
+               width="264.55307"
+               height="48.653019"
+               x="1.0235"
+               y="101.43832"
+               rx="1.9999999"
+               ry="1.9999999" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 185.28886,100.817 V 149.59056 L 185.55114,149.38033"
+               id="path210" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 210.68886,100.817 V 149.59056 L 210.95114,149.38033"
+               id="path211" />
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               d="M 236.08886,100.817 V 149.59056 L 236.35114,149.38033"
+               id="path212" />
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="124.90126"
+               y="-192.57277"
+               id="text212"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan212"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="125.15421"
+                 y="-192.57277">Called?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="124.90126"
+               y="-217.99046"
+               id="text213"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan213"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="125.15421"
+                 y="-217.99046">Quote?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="125.07812"
+               y="-246.52934"
+               id="text214"
+               transform="rotate(90)"><tspan
+                 sodipodi:role="line"
+                 id="tspan214"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+                 x="125.33106"
+                 y="-246.52934">Start?</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="2.9203176"
+               y="125.53922"
+               id="text215"><tspan
+                 sodipodi:role="line"
+                 id="tspan215"
+                 style="text-align:start;text-anchor:start;stroke-width:7.19165"
+                 x="2.9203176"
+                 y="125.53922">Neil Chandler</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+               x="141.5648"
+               y="146.22855"
+               id="text216"><tspan
+                 sodipodi:role="line"
+                 id="tspan216"
+                 style="stroke-width:3.62976"
+                 x="141.79938"
+                 y="146.22855">(___) ___-____</tspan></text>
+          </g>
+          <rect
+             style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             id="rect216"
+             width="25.4"
+             height="50.799999"
+             x="184.14999"
+             y="0"
+             rx="1.9999999"
+             ry="1.9999999" />
+          <rect
+             style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             id="rect217"
+             width="25.4"
+             height="50.799999"
+             x="209.55"
+             y="3.1210948e-07"
+             rx="1.9999999"
+             ry="1.9999999" />
+          <rect
+             style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             id="rect218"
+             width="31.730816"
+             height="50.799999"
+             x="234.95"
+             y="0"
+             rx="1.9999999"
+             ry="1.9999999" />
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             id="rect219"
+             width="264.55307"
+             height="48.653019"
+             x="1.0235"
+             y="1.0235"
+             rx="1.9999999"
+             ry="1.9999999" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+             id="path219" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+             id="path220" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+             id="path221" />
+          <text
+             xml:space="preserve"
+             style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="25.223133"
+             y="-192.57277"
+             id="text221"
+             transform="rotate(90)"><tspan
+               sodipodi:role="line"
+               id="tspan221"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+               x="25.476076"
+               y="-192.57277">Called?</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="25.223133"
+             y="-217.99046"
+             id="text222"
+             transform="rotate(90)"><tspan
+               sodipodi:role="line"
+               id="tspan222"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+               x="25.476078"
+               y="-217.99046">Quote?</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="25.4"
+             y="-246.52934"
+             id="text223"
+             transform="rotate(90)"><tspan
+               sodipodi:role="line"
+               id="tspan223"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+               x="25.652943"
+               y="-246.52934">Start?</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="4.4369183"
+             y="27.323414"
+             id="text224"><tspan
+               sodipodi:role="line"
+               id="tspan224"
+               style="text-align:start;text-anchor:start;stroke-width:7.19165"
+               x="4.4369183"
+               y="27.323414">Alan Shuler</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="141.59213"
+             y="45.813679"
+             id="text225"><tspan
+               sodipodi:role="line"
+               id="tspan225"
+               style="stroke-width:3.62976"
+               x="141.82671"
+               y="45.813679">(___) ___-____</tspan></text>
+          <rect
+             style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             id="rect225"
+             width="25.4"
+             height="50.799999"
+             x="184.14999"
+             y="0"
+             rx="1.9999999"
+             ry="1.9999999" />
+          <rect
+             style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             id="rect226"
+             width="25.4"
+             height="50.799999"
+             x="209.55"
+             y="3.1210948e-07"
+             rx="1.9999999"
+             ry="1.9999999" />
+          <rect
+             style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             id="rect227"
+             width="31.730816"
+             height="50.799999"
+             x="234.95"
+             y="0"
+             rx="1.9999999"
+             ry="1.9999999" />
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             id="rect228"
+             width="264.55307"
+             height="48.653019"
+             x="1.0235"
+             y="1.0235"
+             rx="1.9999999"
+             ry="1.9999999" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+             id="path228" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+             id="path229" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+             id="path230" />
+          <text
+             xml:space="preserve"
+             style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="25.223133"
+             y="-192.57277"
+             id="text230"
+             transform="rotate(90)"><tspan
+               sodipodi:role="line"
+               id="tspan230"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+               x="25.476076"
+               y="-192.57277">Called?</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="25.223133"
+             y="-217.99046"
+             id="text231"
+             transform="rotate(90)"><tspan
+               sodipodi:role="line"
+               id="tspan231"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+               x="25.476078"
+               y="-217.99046">Quote?</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="25.4"
+             y="-246.52934"
+             id="text232"
+             transform="rotate(90)"><tspan
+               sodipodi:role="line"
+               id="tspan232"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+               x="25.652943"
+               y="-246.52934">Start?</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+             x="141.59213"
+             y="45.813679"
+             id="text233"><tspan
+               sodipodi:role="line"
+               id="tspan233"
+               style="stroke-width:3.62976"
+               x="141.82671"
+               y="45.813679">(___) ___-____</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g119"
+       transform="translate(304.65228,236.22383)">
+      <g
+         id="g89"
+         transform="translate(2.5323286,3.2232029)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect80"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect81"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect82"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect83"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="150.83913"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,150.9545 V 199.72806 L 185.55114,199.51783"
+           id="path83" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,150.9545 V 199.72806 L 210.95114,199.51783"
+           id="path84" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,150.9545 V 199.72806 L 236.35114,199.51783"
+           id="path85" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-192.57277"
+           id="text85"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan85"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-217.99046"
+           id="text86"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan86"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.21562"
+           y="-246.52934"
+           id="text87"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan87"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.46857"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="177.12288"
+           id="text88"><tspan
+             sodipodi:role="line"
+             id="tspan88"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="177.12288">___________</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.51013"
+           y="195.62935"
+           id="text89"><tspan
+             sodipodi:role="line"
+             id="tspan89"
+             style="stroke-width:3.62976"
+             x="141.74471"
+             y="195.62935">(___) ___-____</tspan></text>
+      </g>
+      <g
+         id="g100"
+         transform="translate(2.5323286,-46.579214)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect91"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect92"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect93"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect94"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="150.83913"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,150.9545 V 199.72806 L 185.55114,199.51783"
+           id="path94" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,150.9545 V 199.72806 L 210.95114,199.51783"
+           id="path95" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,150.9545 V 199.72806 L 236.35114,199.51783"
+           id="path96" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-192.57277"
+           id="text96"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan96"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-217.99046"
+           id="text97"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan97"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.21562"
+           y="-246.52934"
+           id="text98"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan98"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.46857"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="177.12288"
+           id="text99"><tspan
+             sodipodi:role="line"
+             id="tspan99"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="177.12288">___________</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.51013"
+           y="195.62935"
+           id="text100"><tspan
+             sodipodi:role="line"
+             id="tspan100"
+             style="stroke-width:3.62976"
+             x="141.74471"
+             y="195.62935">(___) ___-____</tspan></text>
+      </g>
+      <g
+         id="g109"
+         transform="translate(2.5323286,-97.22574)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect100"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect101"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect102"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect103"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="150.83913"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,150.9545 V 199.72806 L 185.55114,199.51783"
+           id="path103" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,150.9545 V 199.72806 L 210.95114,199.51783"
+           id="path104" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,150.9545 V 199.72806 L 236.35114,199.51783"
+           id="path105" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-192.57277"
+           id="text105"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan105"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-217.99046"
+           id="text106"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan106"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.21562"
+           y="-246.52934"
+           id="text107"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan107"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.46857"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="177.12288"
+           id="text108"><tspan
+             sodipodi:role="line"
+             id="tspan108"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="177.12288">___________</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.51013"
+           y="195.62935"
+           id="text109"><tspan
+             sodipodi:role="line"
+             id="tspan109"
+             style="stroke-width:3.62976"
+             x="141.74471"
+             y="195.62935">(___) ___-____</tspan></text>
+      </g>
+      <g
+         id="g118"
+         transform="translate(2.5323286,-147.02816)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect109"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect110"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect111"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="149.81563"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect112"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="150.83913"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,150.9545 V 199.72806 L 185.55114,199.51783"
+           id="path112" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,150.9545 V 199.72806 L 210.95114,199.51783"
+           id="path113" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,150.9545 V 199.72806 L 236.35114,199.51783"
+           id="path114" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-192.57277"
+           id="text114"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan114"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.03876"
+           y="-217.99046"
+           id="text115"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan115"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.2917"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="175.21562"
+           y="-246.52934"
+           id="text116"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan116"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="175.46857"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="177.12288"
+           id="text117"><tspan
+             sodipodi:role="line"
+             id="tspan117"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="177.12288">___________</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.51013"
+           y="195.62935"
+           id="text118"><tspan
+             sodipodi:role="line"
+             id="tspan118"
+             style="stroke-width:3.62976"
+             x="141.74471"
+             y="195.62935">(___) ___-____</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g40"
+       transform="translate(-634.01225,6.361834)">
+      <g
+         id="g15"
+         transform="translate(301.34683)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect2"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect3"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="3.1210948e-07"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect4"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect5"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="1.0235"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+           id="path7" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+           id="path8" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+           id="path9" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-192.57277"
+           id="text11"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan11"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476076"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-217.99046"
+           id="text12"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan12"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476078"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.4"
+           y="-246.52934"
+           id="text13"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan13"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.652943"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="4.4369183"
+           y="27.323414"
+           id="text14"><tspan
+             sodipodi:role="line"
+             id="tspan14"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="4.4369183"
+             y="27.323414">Buckingham</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.59213"
+           y="45.813679"
+           id="text15"><tspan
+             sodipodi:role="line"
+             id="tspan15"
+             style="stroke-width:3.62976"
+             x="141.82671"
+             y="45.813679">(828) 582-6326</tspan></text>
+      </g>
+      <g
+         id="g28"
+         transform="translate(301.34683,0.66356098)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect17"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="50.137501"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect20"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="50.137505"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect21"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="50.137501"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect22"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="51.161003"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,51.276368 V 100.04993 L 185.55114,99.839701"
+           id="path22" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,51.276368 V 100.04993 L 210.95114,99.839701"
+           id="path23" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,51.276368 V 100.04993 L 236.35114,99.839701"
+           id="path24" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.360634"
+           y="-192.57277"
+           id="text24"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan24"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.613579"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.360634"
+           y="-217.99046"
+           id="text25"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan25"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.613579"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.537498"
+           y="-246.52934"
+           id="text26"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan26"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.790443"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="3.2453036"
+           y="76.686371"
+           id="text27"><tspan
+             sodipodi:role="line"
+             id="tspan27"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="3.2453036"
+             y="76.686371">Bath Fitter</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.48279"
+           y="95.95118"
+           id="text28"><tspan
+             sodipodi:role="line"
+             id="tspan28"
+             style="stroke-width:3.62976"
+             x="141.71736"
+             y="95.95118">(864) 362-8767</tspan></text>
+      </g>
+      <g
+         id="g39"
+         transform="translate(301.34683,1.9239943)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect30"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect31"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect32"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect33"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="101.43832"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,100.817 V 149.59056 L 185.55114,149.38033"
+           id="path33" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,100.817 V 149.59056 L 210.95114,149.38033"
+           id="path34" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,100.817 V 149.59056 L 236.35114,149.38033"
+           id="path35" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="124.90126"
+           y="-192.57277"
+           id="text35"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan35"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.15421"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="124.90126"
+           y="-217.99046"
+           id="text36"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan36"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.15421"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="125.07812"
+           y="-246.52934"
+           id="text37"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan37"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.33106"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="125.53922"
+           id="text38"><tspan
+             sodipodi:role="line"
+             id="tspan38"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="125.53922">Balkin Roofing</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.5648"
+           y="146.22855"
+           id="text39"><tspan
+             sodipodi:role="line"
+             id="tspan39"
+             style="stroke-width:3.62976"
+             x="141.79939"
+             y="146.22855">(828) 662-3027</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g134"
+       transform="translate(-392.90386,234.01669)">
+      <g
+         id="g110"
+         transform="translate(301.34683)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect95"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect96"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="3.1210948e-07"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect97"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect98"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="1.0235"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+           id="path98" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+           id="path99" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+           id="path100" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-192.57277"
+           id="text101"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan101"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476076"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-217.99046"
+           id="text102"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan102"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476078"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.4"
+           y="-246.52934"
+           id="text103"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan103"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.652943"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="4.4369183"
+           y="27.323414"
+           id="text104"><tspan
+             sodipodi:role="line"
+             id="tspan104"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="4.4369183"
+             y="27.323414">Ground Up</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.59213"
+           y="45.813679"
+           id="text110"><tspan
+             sodipodi:role="line"
+             id="tspan110"
+             style="stroke-width:3.62976"
+             x="141.82671"
+             y="45.813679">(___) ___-____</tspan></text>
+      </g>
+      <g
+         id="g124"
+         transform="translate(301.34683,0.66356098)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect113"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="50.137501"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect114"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="50.137505"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect115"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="50.137501"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect116"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="51.161003"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,51.276368 V 100.04993 L 185.55114,99.839701"
+           id="path116" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,51.276368 V 100.04993 L 210.95114,99.839701"
+           id="path117" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,51.276368 V 100.04993 L 236.35114,99.839701"
+           id="path118" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.360634"
+           y="-192.57277"
+           id="text119"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan119"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.613579"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.360634"
+           y="-217.99046"
+           id="text120"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan120"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.613579"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="75.537498"
+           y="-246.52934"
+           id="text121"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan121"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="75.790443"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.4475px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.772925px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="3.5738587"
+           y="74.032379"
+           id="text123"><tspan
+             sodipodi:role="line"
+             id="tspan122"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="3.5738587"
+             y="74.032379">French Broad </tspan><tspan
+             sodipodi:role="line"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="3.5738587"
+             y="92.479881"
+             id="tspan123">Flooring</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.48279"
+           y="95.95118"
+           id="text124"><tspan
+             sodipodi:role="line"
+             id="tspan124"
+             style="stroke-width:3.62976"
+             x="141.71736"
+             y="95.95118">(___) ___-____</tspan></text>
+      </g>
+      <g
+         id="g133"
+         transform="translate(301.34683,1.9239943)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect124"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect125"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect126"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect127"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="101.43832"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,100.817 V 149.59056 L 185.55114,149.38033"
+           id="path127" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,100.817 V 149.59056 L 210.95114,149.38033"
+           id="path128" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,100.817 V 149.59056 L 236.35114,149.38033"
+           id="path129" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="124.90126"
+           y="-192.57277"
+           id="text129"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan129"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.15421"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="124.90126"
+           y="-217.99046"
+           id="text130"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan130"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.15421"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="125.07812"
+           y="-246.52934"
+           id="text131"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan131"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.33106"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="125.53922"
+           id="text132"><tspan
+             sodipodi:role="line"
+             id="tspan132"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="125.53922">High Shoals</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.5648"
+           y="146.22855"
+           id="text133"><tspan
+             sodipodi:role="line"
+             id="tspan133"
+             style="stroke-width:3.62976"
+             x="141.79938"
+             y="146.22855">(___) ___-____</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g262"
+       transform="translate(-290.7667,33.962915)">
+      <g
+         id="g242"
+         transform="translate(301.34683)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect233"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect234"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="3.1210948e-07"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect235"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect236"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="1.0235"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+           id="path236" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+           id="path237" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+           id="path238" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-192.57277"
+           id="text238"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan238"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476076"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-217.99046"
+           id="text239"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan239"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476078"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.4"
+           y="-246.52934"
+           id="text240"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan240"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.652943"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="4.4369183"
+           y="27.323414"
+           id="text241"><tspan
+             sodipodi:role="line"
+             id="tspan241"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="4.4369183"
+             y="27.323414">Quality Crafts</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.59213"
+           y="45.813679"
+           id="text242"><tspan
+             sodipodi:role="line"
+             id="tspan242"
+             style="stroke-width:3.62976"
+             x="141.82671"
+             y="45.813679">(___) ___-____</tspan></text>
+      </g>
+      <g
+         id="g261"
+         transform="translate(301.34683,1.9239943)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect252"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect253"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect254"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="99.678131"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect255"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="101.43832"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,100.817 V 149.59056 L 185.55114,149.38033"
+           id="path255" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,100.817 V 149.59056 L 210.95114,149.38033"
+           id="path256" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,100.817 V 149.59056 L 236.35114,149.38033"
+           id="path257" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="124.90126"
+           y="-192.57277"
+           id="text257"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan257"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.15421"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="124.90126"
+           y="-217.99046"
+           id="text258"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan258"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.15421"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="125.07812"
+           y="-246.52934"
+           id="text259"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan259"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="125.33106"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="2.9203176"
+           y="125.53922"
+           id="text260"><tspan
+             sodipodi:role="line"
+             id="tspan260"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="2.9203176"
+             y="125.53922">Balkin</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.5648"
+           y="146.22855"
+           id="text261"><tspan
+             sodipodi:role="line"
+             id="tspan261"
+             style="stroke-width:3.62976"
+             x="141.79938"
+             y="146.22855">(___) ___-____</tspan></text>
+      </g>
+      <g
+         id="g271"
+         transform="translate(301.34683,50.646525)">
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect262"
+           width="25.4"
+           height="50.799999"
+           x="184.14999"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.71001;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect263"
+           width="25.4"
+           height="50.799999"
+           x="209.55"
+           y="3.1210948e-07"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:#dddddd;fill-opacity:1;stroke:none;stroke-width:0.793575;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect264"
+           width="31.730816"
+           height="50.799999"
+           x="234.95"
+           y="0"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2.047;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           id="rect265"
+           width="264.55307"
+           height="48.653019"
+           x="1.0235"
+           y="1.0235"
+           rx="1.9999999"
+           ry="1.9999999" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 185.28886,1.1388657 V 49.912429 L 185.55114,49.702199"
+           id="path265" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 210.68886,1.1388657 V 49.912429 L 210.95114,49.702199"
+           id="path266" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2.27773;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           d="M 236.08886,1.1388657 V 49.912429 L 236.35114,49.702199"
+           id="path267" />
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-192.57277"
+           id="text267"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan267"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476076"
+             y="-192.57277">Called?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.223133"
+           y="-217.99046"
+           id="text268"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan268"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.476078"
+             y="-217.99046">Quote?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12.0741px;line-height:1;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0.505887px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="25.4"
+           y="-246.52934"
+           id="text269"
+           transform="rotate(90)"><tspan
+             sodipodi:role="line"
+             id="tspan269"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.9139"
+             x="25.652943"
+             y="-246.52934">Start?</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.1857px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:start;letter-spacing:0.929552px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.19165;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="4.4369183"
+           y="27.323414"
+           id="text270"><tspan
+             sodipodi:role="line"
+             id="tspan270"
+             style="text-align:start;text-anchor:start;stroke-width:7.19165"
+             x="4.4369183"
+             y="27.323414">Neil Chandler</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1975px;line-height:1;font-family:Bahnschrift;-inkscape-font-specification:Bahnschrift;text-align:center;letter-spacing:0.469161px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.62976;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke markers fill"
+           x="141.59213"
+           y="45.813679"
+           id="text271"><tspan
+             sodipodi:role="line"
+             id="tspan271"
+             style="stroke-width:3.62976"
+             x="141.82671"
+             y="45.813679">(___) ___-____</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+{
+  "baseId": "apps9VjdjDOR68kpl",
+  "tables": [
+    "https://airtable.com/apps9VjdjDOR68kpl/tblyAyQUfVfNxBKmx/viwRUZMc4h3nG3iP8",
+    "https://airtable.com/apps9VjdjDOR68kpl/tblED6NVA208wRBFx/viwcfBtNwZ495MbD8",
+    "https://airtable.com/apps9VjdjDOR68kpl/tblAuRVBCx2I7xh3W/viw5yvQaPX7lCdWLi",
+    "https://airtable.com/apps9VjdjDOR68kpl/tblsf7LdIjrJM0zug/viwZZFyzy7clzbaoP",
+    "https://airtable.com/apps9VjdjDOR68kpl/tblrqBunoEBZNFhUJ/viwOqqcJADbLbY0s1"
+  ],
+  "outputDir": "./datamap-check"
+}

@@ -1,0 +1,26 @@
+// Claim Job Button - Allows PM to claim an unassigned project
+
+{
+  "component_name": "Claim Job Button",
+  "component_role": "project_manager",
+  "component_id": "btn_pm_claim_job",
+  "component_class": ".btn.btn-primary",
+  "component_context": {
+    "taskId": "rec[projectIdentifier]",
+    "target": "projects",
+    "target_key": "{project}.{project_manager_id}",
+    "action": "CLAIM.PROJECT",
+    "buttonText": "Claim Project",
+    "webhookSlug": "[claimProjectWebhook]",
+    "confirm": "Claim this project?",
+    "successMessage": "Project claimed successfully!",
+    "reversible": "yes"
+  },
+  "display_text": "Claim Project",
+  "icon": "fa-hand-point-up",
+  "action": {
+    "type": "claim",
+    "target": "/api/pm/projects/claim"
+  },
+  "role_access": "project_manager"
+}

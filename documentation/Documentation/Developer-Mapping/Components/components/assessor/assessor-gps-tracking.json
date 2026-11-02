@@ -1,0 +1,30 @@
+// GPS & Location Tracking
+
+{
+  "location_tracking": {
+    "enabled": true,
+    "permission_required": true,
+    "use_cases": [
+      {
+        "use_case": "check_in",
+        "description": "Verify assessor arrived at property",
+        "accuracy": "100 meters"
+      },
+      {
+        "use_case": "check_out",
+        "description": "Log departure time",
+        "accuracy": "100 meters"
+      },
+      {
+        "use_case": "route_optimization",
+        "description": "Suggest optimal route between assessments",
+        "accuracy": "500 meters"
+      }
+    ],
+    "privacy": {
+      "data_retention": "90 days",
+      "access_restricted": true,
+      "not_visible_to_applicant": true
+    }
+  }
+}

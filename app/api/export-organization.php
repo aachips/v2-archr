@@ -16,7 +16,7 @@ function requireSuperAdmin(PDO $pdo): void {
     $stmt = $pdo->prepare("
         SELECT 1 FROM user_role_assignments ura
         JOIN roles r ON r.id = ura.role_id
-        WHERE ura.user_id = :uid AND r.role_code = 'super_admin' AND ura.is_active = true
+        WHERE ura.user_id = :uid AND LOWER(r.role_code) = 'super_admin' AND ura.is_active = true
         LIMIT 1
     ");
     $stmt->execute([':uid' => $userId]);

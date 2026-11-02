@@ -1,0 +1,33 @@
+// Funding Overview Card - KPI metrics for bursar dashboard
+
+{
+  "component_name": "Funding Overview Card",
+  "component_id": "cmp_bursar_funding_overview",
+  "component_type": "card",
+  "data_sources": {
+    "funding": "funding_overview where organization_id = current_org"
+  },
+  "display_fields": [
+    {
+      "field": "total_allocated",
+      "label": "Total Allocated",
+      "type": "currency"
+    },
+    {
+      "field": "total_spent",
+      "label": "Total Spent",
+      "type": "currency"
+    },
+    {
+      "field": "remaining_budget",
+      "label": "Remaining",
+      "type": "currency"
+    },
+    {
+      "field": "pending_invoices_count",
+      "label": "Pending Invoices",
+      "type": "number"
+    }
+  ],
+  "mobile_layout": "grid"
+}

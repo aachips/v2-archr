@@ -1,0 +1,161 @@
+{
+  "document_tokens": {
+    "home": {
+      "docHomeFullName": {"type": "string", "label": "Full Name", "used_in": ["NC Habitat Form", "Final Notice Letter", "CDBG-SHPO", "CDBG-CENST", "CDBG-ERR", "CDBG-IDIS", "Zero Income Affidavit", "Contract"]},
+      "docHomeFullAddress": {"type": "string", "label": "Full Address", "used_in": ["CDBG-CENST", "Contract"]},
+      "docHomeStreetAddress": {"type": "string", "label": "Street Address", "used_in": ["NC Habitat Form", "CDBG-SHPO", "CDBG-IDIS"]},
+      "docHomeCity": {"type": "string", "label": "City", "used_in": ["NC Habitat Form", "CDBG-SHPO", "CDBG-IDIS"]},
+      "docHomeState": {"type": "string", "label": "State", "used_in": ["NC Habitat Form", "CDBG-SHPO", "CDBG-IDIS"]},
+      "docHomeZip": {"type": "num", "label": "Zip", "used_in": ["NC Habitat Form", "CDBG-SHPO", "CDBG-IDIS"]},
+      "docHomeCounty": {"type": "string", "label": "County", "used_in": ["CDBG-SHPO", "CDBG-CENST"]},
+      "docHomeGIS_PIN": {"type": "string", "label": "GIS Pinnum", "used_in": ["CDBG-CENST", "CDBG-IDIS"]},
+      "docHomePhone": {"type": "string", "label": "Home Phone", "used_in": ["NC Habitat Form"]},
+      "docHomeEmail": {"type": "string", "label": "Email", "used_in": ["NC Habitat Form"]},
+      "docHomeHouseholdSize": {"type": "num", "label": "Household Size", "used_in": []},
+      "docHomeAcrePlus": {"type": "string", "label": "Does this Plot contain >1 Acre?", "used_in": ["CDBG-ERR"]},
+      "docHomePhotos": {"type": "obj", "label": "Photos", "used_in": ["CDBG-SHPO"]},
+      "docHomeMap": {"type": "obj", "label": "Map", "used_in": ["CDBG-SHPO"]}
+    },
+    "organization": {
+      "docOrgShort": {"type": "string", "label": "Org Abbreviation", "used_in": ["Contract"]},
+      "docOrgLong": {"type": "string", "label": "Org Full Name", "used_in": ["Final Notice Letter", "CDBG-SHPO", "CDBG-CENST", "CDBG-ERR", "CDBG-IDIS", "Draw Request Reporting Workbook", "Contract"]},
+      "docOrgStreetAddress": {"type": "string", "label": "Org Street Address", "used_in": ["CDBG-SHPO", "CDBG-ERR", "CDBG-IDIS", "Draw Request Reporting Workbook"]},
+      "docOrgCity": {"type": "string", "label": "Org City", "used_in": ["CDBG-SHPO", "CDBG-ERR", "CDBG-IDIS", "Draw Request Reporting Workbook"]},
+      "docOrgState": {"type": "string", "label": "Org State", "used_in": ["CDBG-SHPO", "CDBG-ERR", "CDBG-IDIS", "Draw Request Reporting Workbook"]},
+      "docOrgZip": {"type": "string", "label": "Org Zip Code", "used_in": ["CDBG-SHPO", "CDBG-ERR", "CDBG-IDIS", "Draw Request Reporting Workbook"]},
+      "docOrgPhone": {"type": "string", "label": "Org Primary Phone", "used_in": ["CDBG-SHPO", "CDBG-ERR", "CDBG-IDIS"]},
+      "docOrgEmail": {"type": "string", "label": "Office Email", "used_in": ["NC Habitat Form"]},
+      "docOrgFax": {"type": "string", "label": "Fax Number", "used_in": ["CDBG-ERR"]},
+      "docOrgTaxId": {"type": "string", "label": "Org EIN", "used_in": ["CDBG-IDIS"]},
+      "docOrgProgram": {"type": "string", "label": "Project's Partner Program", "used_in": ["Final Notice Letter"]}
+    },
+    "author": {
+      "docAuthor": {"type": "string", "label": "Person who created Document Name", "used_in": ["CDBG-SHPO", "CDBG-CENST", "Draw Request Reporting Workbook"]},
+      "docAuthorEmail": {"type": "string", "label": "Person who created Document Email", "used_in": ["CDBG-SHPO", "Draw Request Reporting Workbook"]},
+      "docAuthorTitle": {"type": "string", "label": "Person who created Document Job Title", "used_in": ["CDBG-SHPO", "Final Notice Letter"]},
+      "docAuthorPhone": {"type": "string", "label": "Author Phone", "used_in": ["Draw Request Reporting Workbook"]},
+      "docAuthorSignature": {"type": "obj", "label": "Person Signature", "used_in": ["CDBG-CENST", "Contract"]}
+    },
+    "grant": {
+      "grantNumber": {"type": "string", "label": "Grant ID number", "used_in": ["CDBG-SHPO"]},
+      "docGrantRequestAmount": {"type": "num", "label": "Dollar Amount requested from this Funding Source", "used_in": ["CDBG-ERR"]},
+      "docGrantCategoryYear": {"type": "string", "label": "Grant Category Year", "used_in": ["CDBG-SHPO"]},
+      "docGrantFY": {"type": "string", "label": "Funding Source Fiscal Year", "used_in": ["CDBG-ERR"]}
+    },
+    "draw": {
+      "drawProjTotal": {"type": "num", "label": "Construction + Admin Cost", "used_in": []},
+      "drawConstCost": {"type": "num", "label": "Total Construction Cost", "used_in": []},
+      "drawAdminCost": {"type": "num", "label": "Total Admin Cost (Construction Cost * 0.05)", "used_in": []},
+      "drawNumber": {"type": "num", "label": "Current Org+Funding Source Draw Number", "used_in": []},
+      "drawCount": {"type": "num", "label": "Total Org+Funding Source Draw Number", "used_in": []},
+      "drawTotal": {"type": "num", "label": "Draw Amount", "used_in": ["Draw Request Reporting Workbook"]},
+      "drawAllTotals": {"type": "num", "label": "Total Org+Funding Source Draw Amounts", "used_in": ["Draw Request Reporting Workbook"]},
+      "drawFQFY": {"type": "string", "label": "Fiscal Quarter/Year", "used_in": ["Draw Request Reporting Workbook"]}
+    },
+    "scope": {
+      "scopeTreeWork": {"type": "string", "label": "Tree Work", "used_in": []},
+      "scopeDemo": {"type": "string", "label": "Demolition", "used_in": ["CDBG-SHPO"]},
+      "scopeInteriorDoorsTrim": {"type": "string", "label": "Interior Doors Trim", "used_in": ["CDBG-SHPO"]},
+      "scopeInteriorFloors": {"type": "string", "label": "Interior Floors", "used_in": ["CDBG-SHPO"]},
+      "scopeInteriorWallsCeilings": {"type": "string", "label": "Interior Walls Ceilings", "used_in": ["CDBG-SHPO"]},
+      "scopeInteriorPaintingFinishing": {"type": "string", "label": "Interior Painting Finishing", "used_in": ["CDBG-SHPO"]},
+      "scopeRoofGuttersBoxing": {"type": "string", "label": "Roof Gutters Boxing", "used_in": ["CDBG-SHPO"]},
+      "scopeKitchenBath": {"type": "string", "label": "Kitchen Bath", "used_in": ["CDBG-SHPO"]},
+      "docScopeSummary": {"type": "string", "label": "Summary of Repairs", "used_in": ["CDBG-CENST", "CDBG-ERR"]}
+    },
+    "tasks": {
+      "repairTask": {
+        "type": "array",
+        "label": "Repair Task Line Item",
+        "used_in": ["Contract"],
+        "elements": [
+          {"key": "taskName", "type": "string", "label": "Repair Task Label"},
+          {"key": "taskArea", "type": "string", "label": "Repair Task Area"},
+          {"key": "taskDetails", "type": "string", "label": "Repair Task Details"},
+          {"key": "taskSub", "type": "string", "label": "Repair Task Subcontractor"},
+          {"key": "taskBudget", "type": "num", "label": "Repair Task Budget"}
+        ]
+      }
+    },
+    "demographics": {
+      "w": {"type": "num", "label": "White", "used_in": ["CDBG-IDIS", "Draw Request Reporting Workbook"]},
+      "baa": {"type": "num", "label": "Black/African American", "used_in": ["CDBG-IDIS", "Draw Request Reporting Workbook"]},
+      "baaw": {"type": "num", "label": "Black/African American + White", "used_in": ["CDBG-IDIS", "Draw Request Reporting Workbook"]},
+      "a": {"type": "num", "label": "Above 80% AMI", "used_in": ["CDBG-IDIS", "Draw Request Reporting Workbook"]},
+      "el": {"type": "num", "label": "Extremely Low AMI", "used_in": []},
+      "l": {"type": "num", "label": "Low AMI", "used_in": []},
+      "m": {"type": "num", "label": "Medium AMI", "used_in": []}
+    },
+    "lookups": {
+      "lookup_docOrg": {
+        "type": "lookup",
+        "label": "Organization Record",
+        "used_in": ["Final Notice Letter", "CDBG-SHPO", "CDBG-CENST", "CDBG-ERR", "CDBG-IDIS"],
+        "fields": ["docOrgShort", "docOrgLong", "docOrgStreetAddress", "docOrgCity", "docOrgState", "docOrgZip", "docOrgPhone", "docOrgProgram", "docFinalNoticeContacOrg", "docOrgFax", "docOrgEmail", "docOrgTaxId"]
+      },
+      "lookup_cdbg_scope": {
+        "type": "lookup",
+        "label": "Scope Record",
+        "used_in": [],
+        "fields": ["scopeInteriorDoorsTrim", "scopeSidingPorchesTrim", "scopeWindowsDoorsGlass", "scopeExteriorPaintingFinishing", "scopeInteriorWallsCeilings", "scopeInteriorFloors", "scopeInteriorPaintingFinishing", "scopeDemo", "scopeNewConst", "scopeLandscaping", "scopeRoofGuttersBoxing", "scopeFoundationMasonryConcrete", "scopeKitchenBath", "scopeHVACPlumbingElectricalSystems", "scopeOther", "docScopeSummary", "scopeTreeWork"]
+      }
+    }
+  },
+  "templates": {
+    "CDBG-SHPO": {
+      "tokens_count": 18,
+      "tokens": ["docAuthor", "docAuthorEmail", "docAuthorTitle", "docDate", "docHomePhotos", "docHomeMap", "docHomeState", "docHomeCounty", "docHomeCity", "docHomeStreetAddress", "docHomeZip", "docHomeFullName", "docPropCard", "docOrgLong", "docOrgStreetAddress", "docOrgCity", "docOrgState", "docOrgZip", "docOrgPhone", "grantNumber", "docGrantCategoryYear", "cdbgPhotos", "photoURL", "photoLabel", "scopeInteriorDoorsTrim", "scopeSidingPorchesTrim", "scopeWindowsDoorsGlass", "scopeExteriorPaintingFinishing", "scopeInteriorWallsCeilings", "scopeInteriorFloors", "scopeInteriorPaintingFinishing", "scopeDemo", "scopeNewConst", "scopeLandscaping", "scopeRoofGuttersBoxing", "scopeFoundationMasonryConcrete", "scopeKitchenBath", "scopeHVACPlumbingElectricalSystems", "scopeOther"]
+    },
+    "CDBG-CENST": {
+      "tokens_count": 6,
+      "tokens": ["docHomeGIS_PIN", "docAuthor", "docAuthorSignature", "docDate", "docHomeFullName", "docHomeFullAddress", "docScopeSummary", "docOrgLong"]
+    },
+    "Final Notice Letter": {
+      "tokens_count": 12,
+      "tokens": ["docDate", "docOrgLong", "docHomeFullName", "docAuthorTitle", "docMailAddress1", "docMailAddress2", "docHomeFirstName", "docOrgProgram", "docFinalNoticeContactPerson", "docFinalNoticeContacOrg", "docFinalNoticePhone", "docFinalNoticeDueDate"]
+    },
+    "Draw Request Reporting Workbook": {
+      "tokens_count": "35+",
+      "tokens": ["drawProjTotal", "drawConstCost", "drawAdminCost", "drawNumber", "drawCount", "drawTotal", "drawAllTotals", "drawFQFY", "drawProject", "drawProjHouseholdSize", "drawProjAMI", "drawScopeSummary", "drawDemoAMI", "drawDemoYTD_AMI", "drawExpense", "drawExpenseName", "drawExpenseID", "drawExpenseLumpSum", "drawExpenseDesc", "drawExpenseType", "drawExpenseInvoiceTotal", "drawExpenseAmountClaimed", "drawExpenseDocumentLink", "drawExpenseDate", "drawExpensePDF_PAGE", "drawActuals_10_24", "drawActuals_11_24", "drawActuals_12_24", "drawActuals_01_25", "drawActuals_02_25", "drawActuals_03_25", "drawActuals_04_25", "drawActuals_06_25", "drawActuals_07_25", "drawActuals_08_25", "drawActuals_09_25", "drawActuals_10_25", "drawActuals_11_25", "drawActuals_12_25", "drawActuals_01_26", "drawActuals_02_26", "drawActuals_03_26", "drawActuals_04_26", "drawActuals_05_26", "drawActuals_07_26", "drawActuals_08_26", "drawActuals_09_26", "drawActuals_10_26", "drawActuals_11_26", "drawActuals_12_26"]
+    },
+    "Contract": {
+      "tokens_count": 6,
+      "tokens": ["docAuthorSignature", "docHomeFullName", "docHomeFullAddress", "docOrgLong", "docOrgShort", "repairTask"]
+    },
+    "NC Habitat Form": {
+      "tokens_count": 8,
+      "tokens": ["docHomeFullName", "docHomeStreetAddress", "docHomeCity", "docHomeState", "docHomeZip", "docHomePhone", "docHomeEmail", "docOrgEmail"]
+    }
+  },
+  "business_rules": {
+    "eligibility_flags": {
+      "green": "Passes all checks",
+      "yellow": "Missing or undefined data",
+      "red": "Ineligible"
+    },
+    "AMI_categories": {
+      "el": "Extremely Low (≤30%)",
+      "l": "Low (31-50%)",
+      "m": "Medium (51-80%)",
+      "a": "Above 80%"
+    },
+    "repair_scope_categories": [
+      "Interior Doors Trim",
+      "Siding Porches Trim",
+      "Windows Doors Glass",
+      "Exterior Painting Finishing",
+      "Interior Walls Ceilings",
+      "Interior Floors",
+      "Interior Painting Finishing",
+      "Demo (Demolition)",
+      "New Construction",
+      "Landscaping",
+      "Roof Gutters Boxing",
+      "Foundation Masonry Concrete",
+      "Kitchen Bath",
+      "HVAC Plumbing Electrical Systems",
+      "Other",
+      "Tree Work"
+    ]
+  }
+}

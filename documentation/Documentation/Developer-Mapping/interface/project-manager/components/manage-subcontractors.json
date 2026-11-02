@@ -1,0 +1,13 @@
+// 4: Manage Subcontractors - View and coordinate subcontractors
+
+{
+  "feature": "Manage Subcontractors",
+  "component_id": "btn_manage_subs",
+  "action": "navigate",
+  "target": "/subcontractorManagement",
+  "views": [
+    {"name": "Available Subcontractors", "data_source": "subcontractor_profiles WHERE is_approved = true"},
+    {"name": "Quote Requests", "data_source": "subcontractor_quotes WHERE status = 'requested'"},
+    {"name": "Active Subcontractors", "data_source": "subcontractor_assignments WHERE status = 'active'"}
+  ]
+}

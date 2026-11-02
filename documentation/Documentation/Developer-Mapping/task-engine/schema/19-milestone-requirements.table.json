@@ -1,0 +1,46 @@
+{
+  "mappingKey": "phaseTaskId|req:select-person|direct",
+  "mappingKey.fieldType": "singleLineText",
+  "systemKey": "progress-task-v2",
+  "systemKey.fieldType": "singleLineText",
+  "phaseTaskId": "phaseTaskId",
+  "phaseTaskId.fieldType": "singleLineText",
+  "requirementKey": "req:select-person",
+  "requirementKey.fieldType": "singleLineText",
+  "parentRequirementKey": "",
+  "parentRequirementKey.fieldType": "singleLineText",
+  "relationshipType": "direct",
+  "relationshipType.fieldType": "singleSelect",
+  "relationshipType.fieldOptions": {
+    "choices": [
+      { "name": "direct" },
+      { "name": "child" }
+    ]
+  },
+  "sourceMilestoneTitle": "1. Intake: Assign Assessor",
+  "sourceMilestoneTitle.fieldType": "multilineText",
+  "sourceOfficeSubtask": "Select Person",
+  "sourceOfficeSubtask.fieldType": "singleLineText",
+  "category": "Processing",
+  "category.fieldType": "singleLineText",
+  "satisfactionMode": "all",
+  "satisfactionMode.fieldType": "singleSelect",
+  "satisfactionMode.fieldOptions": {
+    "choices": [
+      { "name": "all" },
+      { "name": "any" },
+      { "name": "optional" }
+    ]
+  },
+  "required": true,
+  "required.fieldType": "checkbox",
+  "sortOrder": 10,
+  "sortOrder.fieldType": "number",
+  "sortOrder.fieldOptions": {
+    "precision": 0
+  },
+  "active": true,
+  "active.fieldType": "checkbox",
+  "notes": "",
+  "notes.fieldType": "multilineText"
+}

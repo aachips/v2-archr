@@ -1,0 +1,35 @@
+// 3: Today's Assessments List - Chronological list of assessments scheduled today
+// Time `scheduled_events.scheduled_start` HH:MM AM/PM
+// Address `intake_submissions.home_address` Short address
+// Duration `scheduled_events.estimated_hours` ⏱️ X.X hours
+// Distance Geocoded 📍 X.X miles
+// Status `scheduled_events.status` scheduled, in-progress, completed
+// Actions - Start, Call, Directions
+
+{
+  "component_name": "Today's Assessments",
+  "component_id": "cmp_today_assessments",
+  "component_type": "list",
+  "data_sources": {
+    "assessments": "scheduled_events where date = today"
+  },
+  "list_item_actions": [
+    {
+      "label": "Start Assessment",
+      "action": "navigate",
+      "target": "/assessmentBuilder/{caseId}"
+    },
+    {
+      "label": "Call Client",
+      "action": "phone",
+      "target": "{contact_phone}"
+    },
+    {
+      "label": "Directions",
+      "action": "maps",
+      "target": "{home_address}"
+    }
+  ],
+  "sort_order": "scheduled_start ASC",
+  "mobile_layout": "cards"
+}

@@ -1,0 +1,22 @@
+{
+  "component_name": "Input Quote Button",
+  "component_description": "Input Quote - Navigate to quote submission page",
+  "component_id": "btn_input_quote",
+  "component_role": "subcontractor",
+  "component_class": ".btn.btn-secondary .btn.btn-quote",
+  "display_text": "Input Quote",
+  "icon": "fa-file-invoice-dollar",
+  "action": {
+    "type": "navigate",
+    "target": "/taskSubQuote"
+  },
+  "role_access": "subcontractor",
+  "component_context": {
+    "context": "Submit a quote for a suggested or accepted task",
+    "taskId": "rec[taskId]",
+    "action": "QUOTE.SUBMIT",
+    "buttonText": "Input Quote",
+    "webhookSlug": "[quoteWebhook]",
+    "target": "/taskSubQuote"
+  }
+}

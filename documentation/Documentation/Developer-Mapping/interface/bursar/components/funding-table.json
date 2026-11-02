@@ -1,0 +1,19 @@
+    {
+      "id": "cmp_funding_table",
+      "name": "Active Cases with Funding",
+      "description": "Table showing all active cases with their funding status",
+      "columns": [
+        {"id": "case_id", "label": "Case #", "type": "case_link", "width": "auto"},
+        {"id": "organization", "label": "Organization", "type": "text"},
+        {"id": "approved", "label": "Approved", "type": "currency", "align": "right"},
+        {"id": "incurred", "label": "Incurred", "type": "currency", "align": "right"},
+        {"id": "reimbursed", "label": "Reimbursed", "type": "currency", "align": "right"},
+        {"id": "remaining", "label": "Remaining", "type": "currency", "align": "right"},
+        {"id": "cap", "label": "Cap", "type": "meter", "threshold": 50000},
+        {"id": "status", "label": "Status", "type": "pill"}
+      ],
+      "data_source": {
+        "query": "SELECT * FROM case_funding_summary WHERE status NOT IN ('completed', 'denied')",
+        "refresh_interval": 300
+      }
+    }

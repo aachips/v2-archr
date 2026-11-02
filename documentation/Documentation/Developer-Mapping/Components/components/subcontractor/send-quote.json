@@ -1,0 +1,60 @@
+// Send Quote - Submit quote for work
+
+{
+  "feature_name": "Send Quote",
+  "feature_id": "feat_send_quote",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "accepted_tasks"
+    },
+    {
+      "name": "quote_amount",
+      "label": "Quote Amount",
+      "type": "currency",
+      "required": true
+    },
+    {
+      "name": "labor_cost",
+      "label": "Labor Cost",
+      "type": "currency"
+    },
+    {
+      "name": "materials_cost",
+      "label": "Materials Cost",
+      "type": "currency"
+    },
+    {
+      "name": "travel_cost",
+      "label": "Travel Cost",
+      "type": "currency"
+    },
+    {
+      "name": "quote_details",
+      "label": "Quote Details",
+      "type": "textarea",
+      "placeholder": "Breakdown of costs, scope of work, timeline..."
+    },
+    {
+      "name": "valid_until",
+      "label": "Valid Until",
+      "type": "date"
+    }
+  ],
+  "submit": {
+    "label": "Send Quote",
+    "action": "api",
+    "endpoint": "/api/subcontractor/quote/submit",
+    "method": "POST",
+    "success_message": "Quote submitted!",
+    "notifications": [
+      {
+        "role": "bursar",
+        "message": "New quote submitted for task {task_id}"
+      }
+    ]
+  }
+}

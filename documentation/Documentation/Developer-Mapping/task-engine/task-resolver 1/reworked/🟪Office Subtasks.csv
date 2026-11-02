@@ -1,0 +1,29 @@
+﻿Different columns for four task types? 
++ Verification
++ Scheduling
++ Processing
++ Communication
+
+Name,Child 🟪Subtask,[⚙️Progress Tasks],🟪Office Task Category (from [⚙️Progress Tasks]),⚙️System Interactions,Parent 🟪Subtask
+🪝Claim Entire 🎯Project,,Claim,Processing,🪝Claims,
+🪝Claim Specific 🛠️Repair Need(s),,Claim,Processing,🪝Claims,
+Select 💟Person,🪝Claim 🔍Assessment,1. Intake: Assign Assessor,Processing,🔍Assessments,
+🪄Generate 💸Draw Request,,5. Report: Complete ARCHR Draw Request Workbook,Processing,🪄DocBuilder,
+👍Approve 📎Contract,🪄Generate 📎Contract,3. Planning: Approve Contract,Processing,✒️DocEvents,
+❌Reject 📎Contract,🪄Generate 📎Contract,3. Planning: Reject Contract,Processing,✒️DocEvents,
+❌Reject 🚚Estimate,📅Schedule 🚚Estimate,3. Planning: Reject Subcontractor Estimate,Processing,✒️DocEvents,
+👍Approve 🚚Subcontractor Invoice,📅Schedule 🚚Subcontractor Start,4. Project: Approve Subcontractor Invoice,Processing,✒️DocEvents,
+Add 🔨Volunteer Slots,📅Schedule 🎯Project Start,2. Processing: Determine Volunteer Slots,Processing,💪Labor,
+Select 🧰Work Crew,📅Schedule 🎯Project Start,"2. Processing: Determine Labor Pool,3. Planning: Assign Work Crew","Processing,Processing",💪Labor,
+Generate 🪄Change Order,"Sign ✒️Contract,📅Schedule 🚚Subcontractor Start","4. Project: Create Scope of Work Change Order,4. Project: Create Subcontractor Change Order","Processing,Processing",🪄DocBuilder,
+Update 👤Application Status,,"0. Submission: Application Paused,0. Submission: Application Withdrawn,0. Submission: Application Ineligible","Processing,Processing,Processing",💼Cases,
+Confirm ✅Eligibility,"✔️Verify 💲Income,✔️Verify 📜Ownership",2. Processing: Confirm Eligibility,Verification,💼Cases,
+✔️Verify 🧾Receipt,,4. Project: Code Receipts,Verification,✒️DocEvents,
+✔️Verify 💪Labor Costs,,5. Report: Record Actual Labor Expenses,Verification,"💪Labor,💼Cases",
+✔️Verify 🛒Materials Costs,,5. Report: Record Actual Material Expenses,Verification,"🛒Materials,💼Cases,📎Documents",
+✔️Verify 🚚Subcontractor Costs,,5. Report: Record Actual Subcontractor Expenses,Verification,"💪Labor,📎Documents,💼Cases",
+Log 📞Communication,,"Communication Log Event,Contact Made,Contact Attempt,0. Submission: Application Ineligible,0. Submission: Application Withdrawn,0. Submission: Application Paused,1. Intake: Initial Contact","Communication,Communication,Communication,Processing,Processing,Processing,Communication",📞Communication,
+Select 🔨Volunteer Group,📅Schedule 🎯Project Start,3. Planning: Assign Volunteer Groups,Scheduling,"💪Labor,📅Schedule",
+📅Schedule 🔍Assessment,🪝Claim 🔍Assessment,1. Intake: Schedule Assessment,Scheduling,"🔍Assessments,📅Schedule",
+📅Schedule ✒️Contract Signing,🪄Generate 📎Contract,3. Planning: Schedule Contract Signing,Scheduling,"📅Schedule,✒️DocEvents",
+Edit 🎯Project 🕰️Timeline,Add 🎯Project 🕰️Timeline,4. Project: Update Project Timeline,Scheduling,📅Schedule,

@@ -1,0 +1,26 @@
+// Assign Crew Button - Assign a crew to a project
+
+{
+  "component_name": "Assign Crew Button",
+  "component_role": "project_manager",
+  "component_id": "btn_pm_assign_crew",
+  "component_class": ".btn.btn-primary",
+  "component_context": {
+    "taskId": "rec[projectIdentifier]",
+    "target": "projects",
+    "target_key": "{project}.{crew_id}",
+    "action": "ASSIGN.CREW",
+    "buttonText": "Assign Crew",
+    "webhookSlug": "[assignCrewWebhook]",
+    "confirm": "Assign crew to this project?",
+    "successMessage": "Crew assigned successfully!",
+    "reversible": "yes"
+  },
+  "display_text": "Assign Crew",
+  "icon": "fa-users",
+  "action": {
+    "type": "modal",
+    "target": "/assignCrewModal"
+  },
+  "role_access": "project_manager"
+}

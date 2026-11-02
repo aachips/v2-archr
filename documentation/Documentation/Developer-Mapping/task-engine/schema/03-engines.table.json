@@ -1,0 +1,39 @@
+{
+  "engineKey": "task-resolver:search",
+  "engineKey.fieldType": "singleLineText",
+  "systemKey": "task-resolver",
+  "systemKey.fieldType": "singleLineText",
+  "engineName": "Search",
+  "engineName.fieldType": "singleLineText",
+  "engineType": "Search",
+  "engineType.fieldType": "singleSelect",
+  "engineType.fieldOptions": {
+    "choices": [
+      { "name": "Event JSON" },
+      { "name": "Search" },
+      { "name": "Update" },
+      { "name": "Update Log" },
+      { "name": "Compare" },
+      { "name": "Merge" },
+      { "name": "Create" }
+    ]
+  },
+  "description": "Search one or more configured tables using primary and deep keys.",
+  "description.fieldType": "multilineText",
+  "inputSchemaKey": "eventResolver.context.v1",
+  "inputSchemaKey.fieldType": "singleLineText",
+  "outputSchemaKey": "eventResolver.context.v1",
+  "outputSchemaKey.fieldType": "singleLineText",
+  "eventJSONKeys": "search,search.terms,search.tables,search.results",
+  "eventJSONKeys.fieldType": "multilineText",
+  "implementationKey": "generic.search.v1",
+  "implementationKey.fieldType": "singleLineText",
+  "optionsJSON": "{}",
+  "optionsJSON.fieldType": "multilineText",
+  "version": "1.0.0",
+  "version.fieldType": "singleLineText",
+  "active": true,
+  "active.fieldType": "checkbox",
+  "notes": "",
+  "notes.fieldType": "multilineText"
+}

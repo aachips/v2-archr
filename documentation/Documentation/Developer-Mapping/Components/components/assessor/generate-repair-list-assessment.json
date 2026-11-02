@@ -1,0 +1,24 @@
+// 1.2: Create Tasks - Generate repair task list from assessment
+
+{
+  "task_name": "Create Tasks",
+  "task_id": "task_create_tasks",
+  "task_type": "planning",
+  "data_sources": {
+    "repair_areas": "selected from assess_issue",
+    "photos": "uploaded from assess_issue"
+  },
+  "output": {
+    "type": "task_list",
+    "fields": [
+      {"name": "task_description", "type": "text"},
+      {"name": "priority", "type": "select", "options": ["urgent", "high", "normal", "low"]},
+      {"name": "estimated_hours", "type": "number"},
+      {"name": "estimated_materials", "type": "text"}
+    ]
+  },
+  "template": {
+    "name": "Standard Repair Task Template",
+    "sections": ["Safety Concerns", "Structural Repairs", "Finishing", "Clean-up"]
+  }
+}

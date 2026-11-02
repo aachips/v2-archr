@@ -1,0 +1,41 @@
+{
+  "requirementStateKey": "recProject|req:select-person",
+  "requirementStateKey.fieldType": "singleLineText",
+  "systemKey": "progress-task-v2",
+  "systemKey.fieldType": "singleLineText",
+  "projectRecordId": "recProject",
+  "projectRecordId.fieldType": "singleLineText",
+  "scopeKey": "recProject",
+  "scopeKey.fieldType": "singleLineText",
+  "requirementKey": "req:select-person",
+  "requirementKey.fieldType": "singleLineText",
+  "phaseTaskIdsJSON": "[\"phaseTaskId\"]",
+  "phaseTaskIdsJSON.fieldType": "multilineText",
+  "status": "Not Started",
+  "status.fieldType": "singleSelect",
+  "status.fieldOptions": {
+    "choices": [
+      { "name": "Not Started" },
+      { "name": "In Progress" },
+      { "name": "Blocked" },
+      { "name": "Satisfied" },
+      { "name": "Waived" }
+    ]
+  },
+  "satisfied": false,
+  "satisfied.fieldType": "checkbox",
+  "satisfiedAt": "2026-07-30T00:00:00.000Z",
+  "satisfiedAt.fieldType": "dateTime",
+  "satisfiedBy": "recUserOrEvent",
+  "satisfiedBy.fieldType": "singleLineText",
+  "evidenceJSON": "[]",
+  "evidenceJSON.fieldType": "multilineText",
+  "stateJSON": "{}",
+  "stateJSON.fieldType": "multilineText",
+  "notes": "",
+  "notes.fieldType": "multilineText",
+  "createdAt": "2026-07-30T00:00:00.000Z",
+  "createdAt.fieldType": "dateTime",
+  "updatedAt": "2026-07-30T00:00:00.000Z",
+  "updatedAt.fieldType": "dateTime"
+}

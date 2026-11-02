@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eventResolver.canonicalContext.v1",
+  "title": "Resolver Canonical Context",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema",
+    "meta",
+    "inputs",
+    "outputs",
+    "debug",
+    "configs",
+    "references",
+    "state"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "eventResolver.context.v1"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "contextId",
+        "generatedAt",
+        "resolverTableId",
+        "resolverRecordId",
+        "configFields"
+      ],
+      "properties": {
+        "contextId": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "resolverTableId": {
+          "type": "string"
+        },
+        "resolverTableName": {
+          "type": "string"
+        },
+        "resolverRecordId": {
+          "type": "string"
+        },
+        "resolverRecordName": {
+          "type": "string"
+        },
+        "currentStep": {
+          "type": "string"
+        },
+        "nextStep": {
+          "type": "string"
+        },
+        "resolverMode": {
+          "type": "string"
+        },
+        "lastCompletedStep": {
+          "type": "string"
+        },
+        "configFields": {
+          "type": "object"
+        },
+        "execution": {
+          "type": "object"
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "required": [
+        "event",
+        "eventEnvelope",
+        "currentEventRecordId",
+        "currentEventRecordIds",
+        "resolverRecordId",
+        "eventNumber",
+        "eventProjectId",
+        "eventDate",
+        "completionKey",
+        "completionSearchKey"
+      ]
+    },
+    "outputs": {
+      "type": "object",
+      "required": [
+        "projectFound",
+        "taskFound",
+        "orgFound",
+        "personFound",
+        "completionFound",
+        "createdCompletion"
+      ],
+      "properties": {
+        "projectFound": {
+          "$ref": "#/$defs/recordIdArray"
+        },
+        "taskFound": {
+          "$ref": "#/$defs/recordIdArray"
+        },
+        "orgFound": {
+          "$ref": "#/$defs/recordIdArray"
+        },
+        "personFound": {
+          "$ref": "#/$defs/recordIdArray"
+        },
+        "completionFound": {
+          "$ref": "#/$defs/recordIdArray"
+        },
+        "createdCompletion": {
+          "type": "string"
+        }
+      }
+    },
+    "debug": {
+      "type": "object"
+    },
+    "configs": {
+      "type": "object",
+      "required": ["step1", "step2", "step3", "stepX", "step4"]
+    },
+    "conflictWorkflow": {
+      "type": "object"
+    },
+    "references": {
+      "type": "object",
+      "required": [
+        "tables",
+        "fields",
+        "records",
+        "sources",
+        "searchOutputs",
+        "writeNames",
+        "jsonKeys",
+        "sourceResolution"
+      ]
+    },
+    "state": {
+      "type": "object",
+      "required": ["step1", "step2", "step3", "stepX", "step4", "errors", "messages"]
+    }
+  },
+  "$defs": {
+    "recordIdArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^rec[A-Za-z0-9]+$"
+      }
+    }
+  }
+}

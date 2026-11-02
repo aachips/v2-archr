@@ -1,0 +1,45 @@
+{
+  "releaseKey": "task-resolver:1.0.0:production",
+  "releaseKey.fieldType": "singleLineText",
+  "systemKey": "task-resolver",
+  "systemKey.fieldType": "singleLineText",
+  "schemaKey": "eventResolver.engineConfig.v1",
+  "schemaKey.fieldType": "singleLineText",
+  "version": "1.0.0",
+  "version.fieldType": "singleLineText",
+  "environment": "production",
+  "environment.fieldType": "singleSelect",
+  "environment.fieldOptions": {
+    "choices": [
+      { "name": "development" },
+      { "name": "staging" },
+      { "name": "production" }
+    ]
+  },
+  "status": "Draft",
+  "status.fieldType": "singleSelect",
+  "status.fieldOptions": {
+    "choices": [
+      { "name": "Draft" },
+      { "name": "Published" },
+      { "name": "Superseded" },
+      { "name": "Rolled Back" }
+    ]
+  },
+  "generatedAt": "2026-07-29T00:00:00.000Z",
+  "generatedAt.fieldType": "dateTime",
+  "publishedAt": "2026-07-29T00:00:00.000Z",
+  "publishedAt.fieldType": "dateTime",
+  "sourceBaseId": "appXXXXXXXXXXXXXX",
+  "sourceBaseId.fieldType": "singleLineText",
+  "sourceSnapshotAt": "2026-07-29T00:00:00.000Z",
+  "sourceSnapshotAt.fieldType": "dateTime",
+  "configJSON": "{\"schema\":\"eventResolver.engineConfig.v1\",\"step\":\"step1\",\"engines\":[]}",
+  "configJSON.fieldType": "multilineText",
+  "checksum": "",
+  "checksum.fieldType": "singleLineText",
+  "releaseNotes": "",
+  "releaseNotes.fieldType": "multilineText",
+  "active": false,
+  "active.fieldType": "checkbox"
+}

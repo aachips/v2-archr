@@ -1,0 +1,19 @@
+// This button will create a new record on document events of doc code POI (Proof of Income), and doc-act(document action) equal to verify.
+// This button verifies the income of the client matches the document sent. 
+
+{
+    "component_name": "Income Verification Button",
+    "component_role": "admin",
+    "component_id": "btn_ivb",
+    "component_class": ".btn",
+    "component_context": {
+        "taskId": "rec[verifyIncome];",
+        "target": "document.poi",
+        "target_key": "{firstName.lastName.'ProofIncome'}.jpg",
+        "action": "DOCACT.VERIFY",
+        "buttonText": "Verify Income",
+        "webhookSlug": "[documentWebhook]",
+        "reversible": "yes"
+    }
+}
+

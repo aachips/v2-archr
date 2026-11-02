@@ -1,0 +1,162 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:10.138Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblquW0tYWKYyevxe",
+    "name": "Table 1",
+    "description": null,
+    "primaryFieldId": "fldaHRCbOyGPmiXTz",
+    "fields": [
+      {
+        "id": "fldaHRCbOyGPmiXTz",
+        "name": "Name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldT8NOe2CjyUICap",
+        "name": "Notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldyGmQEYrAFoFScL",
+        "name": "Assignee",
+        "type": "singleCollaborator",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldJa9ZJ9KfJv0W9l",
+        "name": "Status",
+        "type": "singleSelect",
+        "description": null,
+        "options": {
+          "choices": [
+            {
+              "id": "sel0m1QKY7oduPYTa",
+              "name": "Todo",
+              "color": "redLight2"
+            },
+            {
+              "id": "selKKs0DeP3m80Bf9",
+              "name": "In progress",
+              "color": "yellowLight2"
+            },
+            {
+              "id": "seljAoAuDOpGmLwlA",
+              "name": "Done",
+              "color": "greenLight2"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fldEDWjE9wo4mvB8g",
+        "name": "Attachments",
+        "type": "multipleAttachments",
+        "description": null,
+        "options": {
+          "isReversed": false
+        }
+      },
+      {
+        "id": "fldtftVgW20zunFhl",
+        "name": "Attachment Summary",
+        "type": "aiText",
+        "description": "An AI generated summary of the Attachments field. Upload files to Attachments to generate a summary.",
+        "options": {
+          "referencedFieldIds": [
+            "fldEDWjE9wo4mvB8g"
+          ],
+          "prompt": [
+            "You are a professional document analyst specializing in summarizing content from various file types. Your task is to extract key points and provide a concise summary of the content found in the attached files. Ensure that the summary captures the main ideas and any important details without including unnecessary information.\n\nAnalyze the content of the attached files to identify the main themes and significant details. Summarize these points clearly and concisely, ensuring that the summary is informative and relevant to the document's purpose.\n\nFormat your response as plain text, keeping it concise and to the point. If you cannot summarize the content, output \"Unable to summarize the content.\" Example: \"The document discusses the impact of climate change on polar bears, highlighting the loss of habitat and food sources.\" (Real examples should be longer and more detailed.)\n\nFiles:\n",
+            {
+              "field": {
+                "fieldId": "fldEDWjE9wo4mvB8g"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwfKAM0dxIBnHu97",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 3,
+  "records": [
+    {
+      "id": "recjF2aIO36PcW81s",
+      "createdTime": "2026-07-14T12:45:38.000Z",
+      "fieldsById": {
+        "fldtftVgW20zunFhl": {
+          "state": "error",
+          "errorType": "emptyDependency",
+          "value": null,
+          "isStale": false
+        }
+      },
+      "fieldsByName": {
+        "Attachment Summary": {
+          "state": "error",
+          "errorType": "emptyDependency",
+          "value": null,
+          "isStale": false
+        }
+      }
+    },
+    {
+      "id": "recpYyopGtMRxRZyV",
+      "createdTime": "2026-07-14T12:45:38.000Z",
+      "fieldsById": {
+        "fldtftVgW20zunFhl": {
+          "state": "error",
+          "errorType": "emptyDependency",
+          "value": null,
+          "isStale": false
+        }
+      },
+      "fieldsByName": {
+        "Attachment Summary": {
+          "state": "error",
+          "errorType": "emptyDependency",
+          "value": null,
+          "isStale": false
+        }
+      }
+    },
+    {
+      "id": "reczGjAxWdpXWkMaN",
+      "createdTime": "2026-07-14T12:45:38.000Z",
+      "fieldsById": {
+        "fldtftVgW20zunFhl": {
+          "state": "error",
+          "errorType": "emptyDependency",
+          "value": null,
+          "isStale": false
+        }
+      },
+      "fieldsByName": {
+        "Attachment Summary": {
+          "state": "error",
+          "errorType": "emptyDependency",
+          "value": null,
+          "isStale": false
+        }
+      }
+    }
+  ]
+}

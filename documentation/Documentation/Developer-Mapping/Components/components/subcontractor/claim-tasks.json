@@ -1,0 +1,40 @@
+{
+  "feature_name": "Claim Task",
+  "feature_description": "Claim Tasks - Accept available task assignment",
+  "feature_id": "feat_claim_task",
+  "component_type": "action",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task to Claim",
+      "type": "hidden",
+      "data_source": "selected_task"
+    },
+    {
+      "name": "estimated_completion",
+      "label": "Estimated Completion Date",
+      "type": "date",
+      "required": true
+    },
+    {
+      "name": "notes",
+      "label": "Notes",
+      "type": "textarea",
+      "placeholder": "Any notes about taking this task..."
+    }
+  ],
+  "submit": {
+    "label": "Claim Task",
+    "action": "api",
+    "endpoint": "/api/subcontractor/tasks/claim",
+    "method": "POST",
+    "confirm": "Claim this task? This will assign it to you.",
+    "success_message": "Task claimed successfully!",
+    "auto_refresh": true
+  },
+  "rules": {
+    "max_active_tasks": 5,
+    "requires_quote": true,
+    "approval_required": false
+  }
+}

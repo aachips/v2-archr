@@ -1,0 +1,240 @@
+{
+  "main": {
+    "id": "db6969c5dbe803c2",
+    "type": "split",
+    "children": [
+      {
+        "id": "26c83e8488fccabf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "108baecd03b4acd2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Arturo Feedback.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Arturo Feedback"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4a9fb9204bf01fcd",
+    "type": "split",
+    "children": [
+      {
+        "id": "772237dbf3872cca",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9a5c6575982a36ff",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "1494a389d9cc86c0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "5d9c50e7abe298b1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "770ee5a9fe53c517",
+    "type": "split",
+    "children": [
+      {
+        "id": "28e2f683e21f9560",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3f507f8df6caca74",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Arturo Feedback.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "073317ee14e665b7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Arturo Feedback.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "be1a7b7f1a13964c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "11d63fee5aadbf08",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "e35ded5e79bfbaf0",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Arturo Feedback.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "108baecd03b4acd2",
+  "lastOpenFiles": [
+    "portal/index.html",
+    "portal/index.html.3f95273e3430.tmp",
+    "vue-view/dist/portal.html",
+    "vue-view/dist/intake.html",
+    "vue-view/dist/favicon.ico",
+    "vue-view/dist/assets/img/archr-logo.f3e712dd.svg",
+    "vue-view/dist/assets/js/portal.ddc7a105.js",
+    "vue-view/dist/assets/js/portal.ddc7a105.js.map",
+    "vue-view/dist/assets/js/intake.4a704378.js.map",
+    "vue-view/dist/assets/js/intake.4a704378.js",
+    "vue-view/dist/assets/css/portal.ed9be85e.css",
+    "vue-view/dist/assets/js/chunk-vendors.16237560.js.map",
+    "Unified Auth Plan.md",
+    "documentation/Documentation/Developer-Mapping/Components/archive/heads-up-display-interface/super-admin.md",
+    "documentation/Developer-Mapping/mobile-app-exploration.md",
+    "documentation/Documentation/Developer-Mapping/Components/archive/headsup_display/admin.md",
+    "documentation/Documentation/Developer-Mapping/interface/subcontractor/summary-subcontractor.md",
+    "documentation/Documentation/Developer-Mapping/interface/subcontractor/tasks-lists.md",
+    "documentation/Documentation/Developer-Mapping/interface/subcontractor/subcontractor-technical-plan.md",
+    "documentation/Documentation/Developer-Mapping/interface/subcontractor/subcontractor.md",
+    "requestor.md",
+    "documentation/Documentation/Developer-Mapping/interface/requestor/requestor-portal.md",
+    "documentation/Documentation/Developer-Mapping/interface/requestor/getting-started.md",
+    "documentation/Documentation/Developer-Mapping/interface/requestor/components.md",
+    "assessor-technical-blueprint.md",
+    "Arturo Feedback.md",
+    "documentation/Documentation/Developer-Mapping/interface/volunteer/feedback.md",
+    "documentation/Documentation/Developer-Mapping/interface/volunteer/getting-started.md",
+    "documentation/Documentation/Developer-Mapping/interface/volunteer/interface-example.md",
+    "documentation/Documentation/Developer-Mapping/interface/volunteer/volunteer.md",
+    "documentation/Documentation/Developer-Mapping/interface/role-table.md",
+    "documentation/Documentation/Developer-Mapping/interface/rep-tier.md",
+    "documentation/Documentation/Developer-Mapping/interface/role based vs progress based.md",
+    "Assessor Role Summary.md",
+    "documentation/Documentation/Developer-Mapping/interface/assessor/assessor-user-persona.md",
+    "documentation/Documentation/Developer-Mapping/interface/assessor/implementation.md",
+    "documentation/Documentation/Developer-Mapping/interface/assessor/dashboard-components.md",
+    "test-accounts/superadmin-whoami.png",
+    "test-accounts/welcome-project-manager.png",
+    "test-accounts/project-manager-whoami.png",
+    "test-accounts/bursar-whoami.png",
+    "test-accounts/welcome-bursar.png",
+    "test-accounts/admin-whoami.png",
+    "test-accounts/welcome-admin.png",
+    "test-accounts/caseworker-whoami.png",
+    "test-accounts/welcome-caseworker.png"
+  ]
+}

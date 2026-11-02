@@ -1,0 +1,42 @@
+{
+  "jsonPath": "search.tables.table.searchFields.primaryField",
+  "jsonPath.fieldType": "singleLineText",
+  "systemKey": "task-resolver",
+  "systemKey.fieldType": "singleLineText",
+  "parentPath": "search.tables.table.searchFields",
+  "parentPath.fieldType": "singleLineText",
+  "lowestKey": "primaryField",
+  "lowestKey.fieldType": "singleLineText",
+  "depth": 5,
+  "depth.fieldType": "number",
+  "depth.fieldOptions": {
+    "precision": 0
+  },
+  "valueKind": "object",
+  "valueKind.fieldType": "singleSelect",
+  "valueKind.fieldOptions": {
+    "choices": [
+      { "name": "scalar" },
+      { "name": "object" },
+      { "name": "array" }
+    ]
+  },
+  "rolledUpOn": "table_config",
+  "rolledUpOn.fieldType": "singleLineText",
+  "engineKeys": "task-resolver:search",
+  "engineKeys.fieldType": "multilineText",
+  "tableConfigKeys": "task-resolver:step1:project-search",
+  "tableConfigKeys.fieldType": "multilineText",
+  "fieldConfigKeys": "task-resolver:step1:project-search:primary",
+  "fieldConfigKeys.fieldType": "multilineText",
+  "childPaths": "",
+  "childPaths.fieldType": "multilineText",
+  "renderFormula": "",
+  "renderFormula.fieldType": "multilineText",
+  "ifThenFieldName": "primaryField",
+  "ifThenFieldName.fieldType": "singleLineText",
+  "description": "Primary field object used by the generic search engine.",
+  "description.fieldType": "multilineText",
+  "active": true,
+  "active.fieldType": "checkbox"
+}

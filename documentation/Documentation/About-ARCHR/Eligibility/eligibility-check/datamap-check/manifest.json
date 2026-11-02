@@ -1,0 +1,49 @@
+{
+  "schema": "archr.airtableDatamapSnapshotManifest.v1",
+  "exportedAt": "2026-07-14T18:51:51.949Z",
+  "baseId": "apps9VjdjDOR68kpl",
+  "tableCount": 5,
+  "totalRecordCount": 1086,
+  "tables": [
+    {
+      "tableId": "tblyAyQUfVfNxBKmx",
+      "tableName": "🔷Tables",
+      "viewId": "viwRUZMc4h3nG3iP8",
+      "viewName": "elig",
+      "recordCount": 19,
+      "file": "Tables--tblyAyQUfVfNxBKmx--viwRUZMc4h3nG3iP8.json"
+    },
+    {
+      "tableId": "tblED6NVA208wRBFx",
+      "tableName": "🟪Individual Automations",
+      "viewId": "viwcfBtNwZ495MbD8",
+      "viewName": "eligibility",
+      "recordCount": 21,
+      "file": "Individual-Automations--tblED6NVA208wRBFx--viwcfBtNwZ495MbD8.json"
+    },
+    {
+      "tableId": "tblAuRVBCx2I7xh3W",
+      "tableName": "🔹Fields",
+      "viewId": "viw5yvQaPX7lCdWLi",
+      "viewName": "elig",
+      "recordCount": 917,
+      "file": "Fields--tblAuRVBCx2I7xh3W--viw5yvQaPX7lCdWLi.json"
+    },
+    {
+      "tableId": "tblsf7LdIjrJM0zug",
+      "tableName": "🔹Field | 🟪Automation Interactions",
+      "viewId": "viwZZFyzy7clzbaoP",
+      "viewName": "elig",
+      "recordCount": 71,
+      "file": "Field-Automation-Interactions--tblsf7LdIjrJM0zug--viwZZFyzy7clzbaoP.json"
+    },
+    {
+      "tableId": "tblrqBunoEBZNFhUJ",
+      "tableName": "🔶Views",
+      "viewId": "viwOqqcJADbLbY0s1",
+      "viewName": "elig",
+      "recordCount": 58,
+      "file": "Views--tblrqBunoEBZNFhUJ--viwOqqcJADbLbY0s1.json"
+    }
+  ]
+}

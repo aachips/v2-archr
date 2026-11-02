@@ -1,0 +1,25 @@
+{
+  "eventContext": "placeCode|application|case|project|task|need|communication|document|milestone|directory",
+  "eventTarget": "rec123(context recordId)",
+  "eventDate": "createdDate",
+  "eventEmittor": "processName",
+  "userId": "personId",
+  "actionKey": "contextSpecificKey",
+  "eventKey": "eventContext_eventTarget_eventEmittor_actionKey",
+  "result": {
+    "outcome": "success",
+    "createdRecords": [
+      {
+        "recordContext": "application",
+        "recordId": "rec234"
+      }
+    ],
+    "updatedRecords": [
+      {
+        "recordContext": "placeCode",
+        "recordId": "rec123"
+      }
+    ],
+    "deletedRecords": []
+  }
+}

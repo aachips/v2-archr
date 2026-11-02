@@ -236,7 +236,7 @@ EMAIL;
                   FROM system_users u
                   JOIN user_role_assignments ura ON ura.user_id = u.id AND ura.is_active = true
                   JOIN roles r ON r.id = ura.role_id
-                 WHERE r.role_code = 'super_admin'
+                 WHERE LOWER(r.role_code) = 'super_admin'
                    AND u.is_active = true
                    AND u.email IS NOT NULL AND u.email != ''
             ");

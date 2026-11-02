@@ -1,0 +1,67 @@
+// Users List - All users in the system
+
+{
+  "component_name": "Users List",
+  "component_id": "cmp_admin_users",
+  "component_type": "table",
+  "data_sources": {
+    "users": "users ORDER BY created_at DESC"
+  },
+  "columns": [
+    {
+      "field": "user_name",
+      "label": "Name",
+      "type": "text"
+    },
+    {
+      "field": "email",
+      "label": "Email",
+      "type": "email"
+    },
+    {
+      "field": "roles",
+      "label": "Roles",
+      "type": "tags"
+    },
+    {
+      "field": "organization",
+      "label": "Organization",
+      "type": "text"
+    },
+    {
+      "field": "status",
+      "label": "Status",
+      "type": "badge",
+      "color_mapping": {
+        "active": "green",
+        "inactive": "gray",
+        "suspended": "red"
+      }
+    },
+    {
+      "field": "last_login",
+      "label": "Last Login",
+      "type": "datetime"
+    }
+  ],
+  "actions": [
+    {
+      "label": "Edit",
+      "action": "modal",
+      "target": "/editUserModal"
+    },
+    {
+      "label": "Manage Roles",
+      "action": "modal",
+      "target": "/manageRolesModal"
+    },
+    {
+      "label": "Deactivate",
+      "action": "confirm",
+      "target": "/api/admin/users/:id"
+    }
+  ],
+  "sort_order": "created_at DESC",
+  "pagination": true,
+  "mobile_layout": "cards"
+}

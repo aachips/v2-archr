@@ -1,0 +1,353 @@
+{
+  "schema": "archr.airtableDatamapSnapshotManifest.v1",
+  "exportedAt": "2026-07-14T13:43:15.164Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "tableCount": 43,
+  "totalRecordCount": 3,
+  "tables": [
+    {
+      "tableId": "tblquW0tYWKYyevxe",
+      "tableName": "Table 1",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 3,
+      "file": "Table-1--tblquW0tYWKYyevxe.json"
+    },
+    {
+      "tableId": "tbl5LqbVerGa1wD7z",
+      "tableName": "household_attributes",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "household_attributes--tbl5LqbVerGa1wD7z.json"
+    },
+    {
+      "tableId": "tblko99K7nZrIWpKC",
+      "tableName": "submission_household_attributes",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "submission_household_attributes--tblko99K7nZrIWpKC.json"
+    },
+    {
+      "tableId": "tblS07J8Gw8w46keO",
+      "tableName": "repair_requests",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "repair_requests--tblS07J8Gw8w46keO.json"
+    },
+    {
+      "tableId": "tblG8Lh8kLPcnUyLb",
+      "tableName": "repair_categories",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "repair_categories--tblG8Lh8kLPcnUyLb.json"
+    },
+    {
+      "tableId": "tblJiUASEiqmhTHZL",
+      "tableName": "submission_repair_categories",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "submission_repair_categories--tblJiUASEiqmhTHZL.json"
+    },
+    {
+      "tableId": "tbln5CHvyPqa6GSqH",
+      "tableName": "income_records",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "income_records--tbln5CHvyPqa6GSqH.json"
+    },
+    {
+      "tableId": "tblnXTUWZarUf99BD",
+      "tableName": "contact_methods",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "contact_methods--tblnXTUWZarUf99BD.json"
+    },
+    {
+      "tableId": "tblXLpKiJHjWx2zHE",
+      "tableName": "submission_contact_methods",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "submission_contact_methods--tblXLpKiJHjWx2zHE.json"
+    },
+    {
+      "tableId": "tblaBPl4ALOnFhYj6",
+      "tableName": "audit_log",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "audit_log--tblaBPl4ALOnFhYj6.json"
+    },
+    {
+      "tableId": "tblD7xOQ76R2wBV6p",
+      "tableName": "criteria_types",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "criteria_types--tblD7xOQ76R2wBV6p.json"
+    },
+    {
+      "tableId": "tbl8EdWwapm1hh1Tr",
+      "tableName": "application_assignments",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "application_assignments--tbl8EdWwapm1hh1Tr.json"
+    },
+    {
+      "tableId": "tbl5fCieWVfRXova2",
+      "tableName": "assignment_log",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "assignment_log--tbl5fCieWVfRXova2.json"
+    },
+    {
+      "tableId": "tblfn9spNpuCCNQcO",
+      "tableName": "organization_metrics",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "organization_metrics--tblfn9spNpuCCNQcO.json"
+    },
+    {
+      "tableId": "tbl21HCUaW7LxmamZ",
+      "tableName": "permission_categories",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "permission_categories--tbl21HCUaW7LxmamZ.json"
+    },
+    {
+      "tableId": "tblatIswGq0kVz1K7",
+      "tableName": "permissions",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "permissions--tblatIswGq0kVz1K7.json"
+    },
+    {
+      "tableId": "tbluwbmRukgMclfmW",
+      "tableName": "role_permissions",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "role_permissions--tbluwbmRukgMclfmW.json"
+    },
+    {
+      "tableId": "tblB9hxhfpy8bMj0O",
+      "tableName": "cases",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "cases--tblB9hxhfpy8bMj0O.json"
+    },
+    {
+      "tableId": "tbl7h5D8Rp7acJfcR",
+      "tableName": "case_status_history",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "case_status_history--tbl7h5D8Rp7acJfcR.json"
+    },
+    {
+      "tableId": "tblZsbfJX5hPImrzI",
+      "tableName": "property_assessments",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "property_assessments--tblZsbfJX5hPImrzI.json"
+    },
+    {
+      "tableId": "tbl2Ke8mlEpQPjViX",
+      "tableName": "work_orders",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "work_orders--tbl2Ke8mlEpQPjViX.json"
+    },
+    {
+      "tableId": "tblmXFmZiDFBkK36o",
+      "tableName": "work_tasks",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "work_tasks--tblmXFmZiDFBkK36o.json"
+    },
+    {
+      "tableId": "tblFGI5NIp7VCIw58",
+      "tableName": "task_status_history",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "task_status_history--tblFGI5NIp7VCIw58.json"
+    },
+    {
+      "tableId": "tblAPEKmG3qID4SeM",
+      "tableName": "material_requests",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "material_requests--tblAPEKmG3qID4SeM.json"
+    },
+    {
+      "tableId": "tblzcJSziq3DIXClT",
+      "tableName": "funding_sources",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "funding_sources--tblzcJSziq3DIXClT.json"
+    },
+    {
+      "tableId": "tblq0aM66KGWXJiZD",
+      "tableName": "case_funding",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "case_funding--tblq0aM66KGWXJiZD.json"
+    },
+    {
+      "tableId": "tbloiQxxg9nmstILS",
+      "tableName": "invoices",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "invoices--tbloiQxxg9nmstILS.json"
+    },
+    {
+      "tableId": "tblm7HvkKBc8xaAhE",
+      "tableName": "invoice_line_items",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "invoice_line_items--tblm7HvkKBc8xaAhE.json"
+    },
+    {
+      "tableId": "tblyV3acxmd7EJKig",
+      "tableName": "volunteer_hours",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "volunteer_hours--tblyV3acxmd7EJKig.json"
+    },
+    {
+      "tableId": "tblr9Zl0vsPnmB4JD",
+      "tableName": "volunteer_skills",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "volunteer_skills--tblr9Zl0vsPnmB4JD.json"
+    },
+    {
+      "tableId": "tblN3bTHAds1gd519",
+      "tableName": "badges",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "badges--tblN3bTHAds1gd519.json"
+    },
+    {
+      "tableId": "tblcWWDvFGds2Bwpo",
+      "tableName": "volunteer_badges",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "volunteer_badges--tblcWWDvFGds2Bwpo.json"
+    },
+    {
+      "tableId": "tbl7EE42xWKOPQUYS",
+      "tableName": "volunteer_content",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "volunteer_content--tbl7EE42xWKOPQUYS.json"
+    },
+    {
+      "tableId": "tbl15IEWPR0Td07SR",
+      "tableName": "weekly_digests",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "weekly_digests--tbl15IEWPR0Td07SR.json"
+    },
+    {
+      "tableId": "tblFHuGSaUfjr4KGs",
+      "tableName": "email_queue",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "email_queue--tblFHuGSaUfjr4KGs.json"
+    },
+    {
+      "tableId": "tblsabmKUl69A1TAe",
+      "tableName": "help_document_attachments",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "help_document_attachments--tblsabmKUl69A1TAe.json"
+    },
+    {
+      "tableId": "tblixSljQSVD5qpCq",
+      "tableName": "help_user_progress",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "help_user_progress--tblixSljQSVD5qpCq.json"
+    },
+    {
+      "tableId": "tblp4H6Mxf8xRs3Qv",
+      "tableName": "help_search_log",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "help_search_log--tblp4H6Mxf8xRs3Qv.json"
+    },
+    {
+      "tableId": "tblqTuFOIj85x6WfE",
+      "tableName": "help_document_reviews",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "help_document_reviews--tblqTuFOIj85x6WfE.json"
+    },
+    {
+      "tableId": "tblDRzgrHF4cilNa0",
+      "tableName": "document_statuses",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "document_statuses--tblDRzgrHF4cilNa0.json"
+    },
+    {
+      "tableId": "tblwXYppxxBRCiUbY",
+      "tableName": "case_documents",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "case_documents--tblwXYppxxBRCiUbY.json"
+    },
+    {
+      "tableId": "tbl7QXVqeI6nCgcGW",
+      "tableName": "document_generation_jobs",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "document_generation_jobs--tbl7QXVqeI6nCgcGW.json"
+    },
+    {
+      "tableId": "tbleec0Pn6zNHgOpv",
+      "tableName": "document_access_log",
+      "viewId": null,
+      "viewName": null,
+      "recordCount": 0,
+      "file": "document_access_log--tbleec0Pn6zNHgOpv.json"
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+    "anchor":
+    {       
+        "placeCode": 
+        {
+            "placeCode10":"123EXAMPLE",
+            "placeCodeRecordID":"recbEW3LcgJBh1xNr",
+            "placeCodeRecordURL":"https://airtable.com/appWAmMNCsnsAgyTW/tblTrmm24ZCt9nMkr/recbEW3LcgJBh1xNr",
+            "address":
+            {
+                "inputAddress":"123 Example st, asheville",
+                "fullAddress":"123 Example Street, Asheville, NC, 28806",
+                "streetAddress":"123 Example Street",
+                "city":"Asheville", 
+                "legacyNeighborhood":"Example Estates",
+                "county":"Buncombe",
+                "state":"NC",
+                "zip":"28806",
+                "unit":"",
+                "lat":"35.6194845",
+                "long":"-82.6250345",
+                "gmapsPlaceId":"ChIJ_Z5oywfzWYgR3zo2FjpyF38f"                
+            },
+            "gisInfo": 
+            {
+                "pinnum":"0609867552345562",
+                "gisAddress":"123 EXAMPLE STREET, ASHEVILLE, NC, 28806",
+                "countyCode":"BUNCO",
+                "owner": "Jimmy Dean-Sausage",
+                "bldgValue":"235649",
+                "lastUpdateUNIX":"1773360000000",
+                "propCardPrintURL":"https://prc-buncombe.spatialest.com/#/property/965723011100000/print",
+                "gisQueryRecordID":"recDfIu3nYpL5lDph",
+                "gisQueryRecordURL":"https://airtable.com/appWAmMNCsnsAgyTW/tblshhfUIX509LbZy/recDfIu3nYpL5lDph"
+                
+             }, 
+         "dataSources":[
+            {
+                "readable":"🟦AAHH Traditional Home Repair → 🔷CS_NRI → 🔹D123EX",
+                "baseId":"appWHBZr8Mx2rSlul",
+                "tableId":"tblOmCfRljqa8NWUz",
+                "recordId":"rec5SHsez3WyPToDf",               
+                "sourceRecordURL":"https://airtable.com/appWHBZr8Mx2rSlul/tblOmCfRljqa8NWUz/rec5SHsez3WyPToDf",
+                "dates":
+                [
+                    {
+                        "isARCHR":false,
+                        "projectRecordId":"",
+                        "dateCode":"_FIRST",
+                        "sourceLabel":"Recieved From FS",
+                        "dateUNIX":"1580688000",
+                        "dateDisplay":"2/3/2020",
+                        "dateRecordId":"rec9xwz8sE7lMyx8g",
+                        "dateRecordURL":"https://airtable.com/appWAmMNCsnsAgyTW/tblybaQRHdc2fm0Jc/recZTvoSvJe901yOC"
+                    },
+                    {
+                        "isARCHR":false,                        
+                        "projectRecordId":"",
+                        "dateCode":"_ASSESS",
+                        "sourceLabel":"Site Inspection",
+                        "dateUNIX":"1583366400",
+                        "dateDisplay":"3/5/2020",
+                        "dateRecordId":"recizoVHVmBNcjPrE",
+                        "dateRecordURL":"https://airtable.com/appWAmMNCsnsAgyTW/tblybaQRHdc2fm0Jc/recGCTJdCHkbeQIFQ"
+                    },
+                    {
+                        "isARCHR":false,                        
+                        "projectRecordId":"",
+                        "dateCode":"_COMPLETE",
+                        "sourceLabel":"Acceptance",
+                        "dateUNIX":"1589932800",
+                        "dateDisplay":"5/21/2020",
+                        "dateRecordId":"recizoVHHvaswjPrJ",
+                        "dateRecordURL":"https://airtable.com/appWAmMNCsnsAgyTW/tblybaQRHdc2fm0Jc/recizoVHHvaswjPrJ"
+                    }
+                ]
+            },
+            {
+                "readable":"🟦📚Fillout Results → 🔷📚Raw Submission → 🔹f621dfa5-c53d-49be-a163-7645b19edc8e",
+                "baseId":"appdJHg317xbe3Sd4",
+                "tableId":"tblOT2m395xlhH5Bm",
+                "recordId":"recJWwyvOMkYM7MNS",               
+                "sourceRecordURL":"https://airtable.com/appdJHg317xbe3Sd4/tblOT2m395xlhH5Bm/recJWwyvOMkYM7MNS",
+                "dates":
+                [
+                    {
+                        "isARCHR":true,                        
+                        "projectRecordId":"",
+                        "dateCode":"_FIRST",
+                        "sourceLabel":"appSubmissionDate",
+                        "dateUNIX":"17821728000",
+                        "dateDisplay":"6/23/2026",
+                        "dateRecordId":"rec9xwz8sE7lagerw",
+                        "dateRecordURL":"https://airtable.com/appWAmMNCsnsAgyTW/tblybaQRHdc2fm0Jc/recZTvoSvJe901yOC"
+                    }
+                   
+                ]
+            }
+         ]
+        },
+
+        "projects":
+        [
+            {  
+                "projectCode":"X123EXAMPLE", 
+                "projectRecordId":"recC0YkDrpvgZJnYS",
+                "placeCodeRecordId":"recbEW3LcgJBh1xNr",
+                "applicationSubmissionSource":"fillout",
+                "applicationSubmissionID":"f621dfa5-c53d-49be-a163-7645b19edc8e",
+                "projectClaims":
+                [
+                    {
+                        "claimType":"project | assessment | task | trade | scope",
+                        "claimRecordId":"recxhEWMhnJMskHB7",
+                        "claimDateUnix":"1587513600", 
+                        "claimOrgRecordId":"rece4YxvGuXoHDMTg",
+                        "claimContextRecordId":[]
+                    }
+                ],
+                "applicationRepairRequests":
+                [
+                    {
+                        "reqType":"OPENENV",
+                        "reqText":"I'm missing a window in the bathroom and critters are getting in.",
+                        "reqRecordId":"recCobdkypLuNJWep",
+                        "reqRecordURL":"https://airtable.com/appdJHg317xbe3Sd4/tblaDRBG24hOkNsHT/recCobdkypLuNJWep",
+                        "reqAssessed":true,
+                        "reqAssessment":
+                        {
+                            "reqAssessed":true,                     
+                            "reqAssessDamageScale":"5",
+                            "reqAssessNotes":"That window sure is gone",
+                            "reqAssessMeasurments":"window R/O : 23\" x 46\"",
+                            "assessmentId":"recm2jzI2ORQAFUKz",
+                            "reqAssessedTaskIds": 
+                                [
+                                    "recgY5pr7i6zRKbZj"                                
+                                ]
+                        },
+                        "roboNeeds":
+                        [
+                            {
+                                "roboNeedLabel":"Carpentry | Window Installation",
+                                "roboNeedTrade":"Carpentry",
+                                "roboNeedLoaction":"Bathroom",
+                                "roboNeedSystem":"Windows/Doors",
+                                "roboNeedSummary":"Window in bathroom installed, flashed and leak-tested",
+                                "roboNeedTriageCategory":["!SAFET", "!HEALT", "!WEATH"],
+                                "roboNeedTriageScore":"8",
+                                "roboNeedRecordId":"recEdvqGu9WykTNfM",
+                                "roboNeedRecordURL":"https://airtable.com/appBq2Z1a9dssVVbL/tbleFD4I3TbWyLjMk/recEdvqGu9WykTNfM",
+                                "roboTask":
+                                {
+                                    "checkState":false,
+                                    "roboTaskIds":[]
+                                }
+                            }                            
+                        ],                    
+                        "assessments":
+                        [
+                            {                                                    
+                                "assessorDisplayName":"Bingus Bongus",
+                                "assessorDisplayOrg":"Friendly Neighborhood Fix-It Inc",
+                                "assessorRecordId":"recmUZiF9VUYtWpMF",
+                                "assessorOrgRecordId":"rece4YxvGuXoHDMTg",
+                                "assessmentDateUNIX":"1580858000",
+                                "assessmentRecordId":"recm2jzI2ORQAFUKz",
+                                "assessmentRecordURL":"https://airtable.com/app2xoItHa1XOk7Q0/tbl6ynDzyXAZE9K5e/recm2jzI2ORQAFUKz",
+                                "assessedRequestIds": ["recCobdkypLuNJWep"],
+                                "assessmentTaskIds": ["recgY5pr7i6zRKbZj"]
+                            }
+                        ],
+                        "repairTasks":
+                        [
+                            {
+                                "taskLabel":"Install Window",
+                                "taskRecordId":"recIXJuf94bIZ1UID",
+                                "taskRecordURL":"https://airtable.com/appfhuefuekoCvL3J/tblwaXP3gON7bVDkD/recxhEWMhnJMskHB7",
+                                "scopeOfWorkRecordId":"",
+                                "workflowRecordId":"",
+                                "workflowStepRecordId":"",
+                                "volunteerFriendly":true,
+                                "timelineEst":
+                                {
+                                    "countHours":"5",
+                                    "countPeople":"3"
+
+                                },
+                                "projectRecordId":"",
+                                "claimRecordId":"",
+                                "taskLibraryElements" : 
+                            [ 
+                                { 
+                                 "element":"trade",
+                                 "label":"Carpentry",
+                                 "id":"recTnoPVmLboI27zf"   
+                                },
+                                { 
+                                 "element":"item",
+                                 "label":"Window",
+                                 "id":"rec7DS9NnFi5rbnLr"   
+                                },
+                                { 
+                                 "element":"room",
+                                 "label":"Bathroom",
+                                 "id":"recIIbvWv8SN26Io5"   
+                                },
+                                { 
+                                 "element":"interaction",
+                                 "label":"Install",
+                                 "id":"recXAXCMhhMPQwVdJ"   
+                                }
+                            ], 
+                            "taskCostStatus":"actual",
+                            "taskCost":
+                            [
+                                {
+                                    "costType":"estimate",
+                                    "total":"400", 
+                                    "labor":"200",
+                                    "materials":"200",
+                                    "costDateUNIX":"1587513600",
+                                    "roboCost":true,              
+                                    "costEnteredBy":"",
+                                    "costEnteredByRecordId":"",
+                                    "receiptBucketRecordId":"",
+                                    "fundingSourceRecordId":""
+                                }, 
+                                {
+                                    "costType":"actual",
+                                    "total":"427", 
+                                    "labor":"220",
+                                    "materials":"207",
+                                    "costDateUNIX":"1588204800",   
+                                    "roboCost":false,                        
+                                    "costEnteredBy":"Bingus Blonkes",
+                                    "costEnteredByRecordId":"recmUZiF9VUYtWpMF",
+                                    "receiptBucketRecordId":"",
+                                    "fundingSourceRecordId":""
+                                }
+                            ],
+                            "taskNotes":
+                            [
+                                {
+                                    "noteTakerRecordId":"",
+                                    "noteTags":["",""],
+                                    "noteText":"",
+                                    "noteDateUNIX":""
+                                }
+
+                            ],
+                            "taskPhotos":
+                            [
+                               {
+                                "photoType": "before | progress | after",
+                                "photoTags":[],
+                                "photoRecordId": "",
+                                "photoRecordURL":"",
+                                "photographerRecordId":"",
+                                "photoDateUNIX":"",
+                                "photoNotes":""
+                                }
+                            ]
+                            }
+
+                        ]
+                    }
+
+                ]
+            }
+
+        ]
+    }
+}

@@ -1,0 +1,33 @@
+// Set Estimate Date - Set date when quote will be provided
+
+{
+  "feature_name": "Set Estimate Date",
+  "feature_id": "feat_set_estimate_date",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "accepted_tasks"
+    },
+    {
+      "name": "estimate_date",
+      "label": "Estimate Date",
+      "type": "date",
+      "required": true
+    },
+    {
+      "name": "estimate_value",
+      "label": "Estimate Amount",
+      "type": "currency",
+      "optional": true
+    }
+  ],
+  "submit": {
+    "label": "Set Estimate Date",
+    "action": "api",
+    "endpoint": "/api/subcontractor/estimate/date",
+    "method": "PUT"
+  }
+}

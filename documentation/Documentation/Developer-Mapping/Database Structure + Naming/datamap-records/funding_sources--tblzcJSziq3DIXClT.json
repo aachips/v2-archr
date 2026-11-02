@@ -1,0 +1,130 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:13.151Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblzcJSziq3DIXClT",
+    "name": "funding_sources",
+    "description": null,
+    "primaryFieldId": "fldJIyWVU7g0SK47w",
+    "fields": [
+      {
+        "id": "fldJIyWVU7g0SK47w",
+        "name": "organization_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldrLiezi3GpIUJA0",
+        "name": "source_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldYiSL2qANfyiLwz",
+        "name": "source_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldH1j88C7gq3QjCj",
+        "name": "total_amount",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldzKLqdoTpjwZhpj",
+        "name": "remaining_amount",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 2
+        }
+      },
+      {
+        "id": "fldQM0G7o8KNyBR30",
+        "name": "start_date",
+        "type": "date",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          }
+        }
+      },
+      {
+        "id": "fldJFNHpdoxw7Er9T",
+        "name": "end_date",
+        "type": "date",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          }
+        }
+      },
+      {
+        "id": "fldECfzeD5KcnZETN",
+        "name": "restrictions",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldWTRRSOfx2EPMXh",
+        "name": "contact_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldO2c4BonB6Kvb1e",
+        "name": "contact_email",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldMubaWvJe93Mzb0",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwTvK4p185nL9o3y",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

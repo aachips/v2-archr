@@ -1,0 +1,21 @@
+{
+  "input": {
+    "baseId": "",
+    "tableId": "",
+    "viewId": "",
+    "fieldIds": {
+      "recordId": "",
+      "outputName": ""
+    }
+  },
+  "template": "",
+  "params": "All_Fields.csv",
+  "docupilotConfig": "",
+  "recordMap": "",
+  "output": "generated-batch",
+  "format": "both",
+  "limit": null,
+  "strict": false,
+  "dryRun": false,
+  "stopOnError": false
+}

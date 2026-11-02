@@ -1,0 +1,25 @@
+
+{
+  "component_name": "View Task Button",
+  "component_role": "subcontractor",
+  "component_description": "View Task - Open task detail modal",
+  "component_id": "btn_view_task_sub",
+  "component_class": ".btn.btn-primary",
+  "role_access": "subcontractor",
+  "display_text": "View Task",
+  "icon": "fa-eye",
+  "action": {
+    "type": "modal",
+    "target": "/taskHammer",
+    "modal_size": "large"
+  },
+  "component_context": {
+    "context": "Open task detail view with all information",
+    "taskId": "rec[taskId]",
+    "action": "TASK.VIEW",
+    "buttonText": "View Task",
+    "webhookSlug": "[taskWebhook]",
+    "modal": "/taskHammer",
+    "modalSize": "large"
+  }
+}

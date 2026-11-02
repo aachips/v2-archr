@@ -1,0 +1,42 @@
+// 4.4 Attach Subcontractor Quotes & Invoices
+
+{
+  "task_name": "Attach Quotes & Invoices",
+  "task_id": "task_attach_docs",
+  "task_type": "document_upload",
+  "document_types": ["QUOTE", "INVOICE", "RECEIPT", "SOW"],
+  "fields": [
+    {
+      "name": "document_type",
+      "label": "Document Type",
+      "type": "select",
+      "options": ["Quote", "Invoice", "Receipt", "Statement of Work"]
+    },
+    {
+      "name": "document_file",
+      "label": "Upload Document",
+      "type": "file",
+      "file_types": ["pdf", "jpg", "png", "docx"],
+      "max_size": "25MB"
+    },
+    {
+      "name": "document_date",
+      "label": "Document Date",
+      "type": "date"
+    },
+    {
+      "name": "document_amount",
+      "label": "Amount (if applicable)",
+      "type": "currency"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "type": "text"
+    }
+  ],
+  "compliance": {
+    "encryption": "AES-256",
+    "retention": "7 years"
+  }
+}

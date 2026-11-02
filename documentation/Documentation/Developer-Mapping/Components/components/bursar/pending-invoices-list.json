@@ -1,0 +1,56 @@
+// Pending Invoices List - Shows all invoices awaiting bursar review
+
+{
+  "component_name": "Pending Invoices List",
+  "component_id": "cmp_bursar_pending_invoices",
+  "component_type": "list",
+  "data_sources": {
+    "invoices": "invoices where status = 'pending' ORDER BY submitted_date ASC"
+  },
+  "list_item_fields": [
+    {
+      "field": "invoice_number",
+      "label": "Invoice #",
+      "type": "text"
+    },
+    {
+      "field": "vendor_name",
+      "label": "Vendor",
+      "type": "text"
+    },
+    {
+      "field": "amount",
+      "label": "Amount",
+      "type": "currency"
+    },
+    {
+      "field": "project_code",
+      "label": "Project",
+      "type": "text"
+    },
+    {
+      "field": "submitted_date",
+      "label": "Submitted",
+      "type": "date"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "Review",
+      "action": "navigate",
+      "target": "/invoice/{invoice_id}"
+    },
+    {
+      "label": "Approve",
+      "action": "confirm",
+      "target": "/api/bursar/reimbursements/:id/approve"
+    },
+    {
+      "label": "Reject",
+      "action": "modal",
+      "target": "/rejectInvoiceModal"
+    }
+  ],
+  "sort_order": "submitted_date ASC",
+  "mobile_layout": "cards"
+}

@@ -1,0 +1,1 @@
+    node pull-datamap-records.js --config datamap-pull.config.json

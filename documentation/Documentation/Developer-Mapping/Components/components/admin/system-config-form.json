@@ -1,0 +1,58 @@
+// System Configuration Form - Update system settings
+
+{
+  "component_name": "System Configuration Form",
+  "component_id": "form_admin_system_config",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "system_name",
+      "label": "System Name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "maintenance_mode",
+      "label": "Maintenance Mode",
+      "type": "checkbox"
+    },
+    {
+      "name": "allow_new_registrations",
+      "label": "Allow New Registrations",
+      "type": "checkbox"
+    },
+    {
+      "name": "max_file_upload_size",
+      "label": "Max File Upload Size (MB)",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "session_timeout",
+      "label": "Session Timeout (minutes)",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "enable_email_notifications",
+      "label": "Enable Email Notifications",
+      "type": "checkbox"
+    },
+    {
+      "name": "smtp_server",
+      "label": "SMTP Server",
+      "type": "text"
+    },
+    {
+      "name": "backup_schedule",
+      "label": "Backup Schedule",
+      "type": "select",
+      "options": ["Daily", "Weekly", "Monthly"]
+    }
+  ],
+  "submit_action": {
+    "endpoint": "/api/admin/system/config",
+    "method": "PUT"
+  },
+  "role_access": "admin"
+}

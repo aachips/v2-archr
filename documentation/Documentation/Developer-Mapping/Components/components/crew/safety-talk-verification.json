@@ -1,0 +1,24 @@
+{
+  "ability": "Safety Talk Verification",
+  "component": {
+    "type": "toggle",
+    "trigger": "checkbox on project view",
+    "title": "Safety Talk Completed",
+    "description": "Confirm that today's safety talk was delivered to all volunteers and crew members.",
+    "fields": [
+      {"name": "job_id", "type": "hidden"},
+      {"name": "date", "type": "hidden", "value": "today"},
+      {"name": "topics_covered", "type": "text", "placeholder": "e.g., Ladder safety, weather risks"},
+      {"name": "volunteers_present", "type": "text", "placeholder": "Names of volunteers who attended"}
+    ],
+    "actions": [
+      {"label": "Confirm", "action": "submit"}
+    ]
+  },
+  "business_rules": {
+    "required_daily": true,
+    "must_be_confirmed_before_work": true,
+    "logs_to_progress_tracker": true,
+    "reporting_metric": true
+  }
+}

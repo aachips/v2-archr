@@ -1,0 +1,379 @@
+{
+  "role": {
+    "name": "Bursar",
+    "code": "BURSAR",
+    "description": "Manages financial tracking, payments, invoicing, and funding reconciliation for the ARCHR coalition.",
+    "color": "#00CC00",
+    "color_deep": "#1d8a3a"
+  },
+
+  "sidebar": {
+    "sections": [
+      {
+        "section": "Main",
+        "items": [
+          {
+            "id": "nav_dashboard",
+            "label": "Dashboard",
+            "icon": "fa-gauge-high",
+            "href": "#dashboard",
+            "is_active": true
+          },
+          {
+            "id": "nav_current_application",
+            "label": "Current Application",
+            "icon": "fa-play",
+            "href": "/bursarProcess"
+          },
+          {
+            "id": "nav_tasks_queue",
+            "label": "Tasks Queue",
+            "icon": "fa-list-check",
+            "href": "/bursarProcessList"
+          },
+          {
+            "id": "nav_tle",
+            "label": "Tasks, Logs & Events",
+            "icon": "fa-pen-to-square",
+            "href": "/tle"
+          },
+          {
+            "id": "nav_ready_closeout",
+            "label": "Ready for Close-out",
+            "icon": "fa-circle-check",
+            "href": "/completedJobs"
+          }
+        ]
+      },
+      {
+        "section": "Finance",
+        "items": [
+          {
+            "id": "nav_funding_sources",
+            "label": "Funding Sources",
+            "icon": "fa-hand-holding-dollar",
+            "href": "#funding"
+          },
+          {
+            "id": "nav_quotes_invoices",
+            "label": "Quotes & Invoices",
+            "icon": "fa-file-signature",
+            "href": "#quotes"
+          },
+          {
+            "id": "nav_reports",
+            "label": "Reports",
+            "icon": "fa-file-export",
+            "href": "#reports"
+          }
+        ]
+      },
+      {
+        "section": "Communication",
+        "items": [
+          {
+            "id": "nav_alerts",
+            "label": "Alerts",
+            "icon": "fa-bell",
+            "href": "/appAlerts"
+          },
+          {
+            "id": "nav_messages",
+            "label": "Messages",
+            "icon": "fa-envelope",
+            "href": "/messageDetails"
+          },
+          {
+            "id": "nav_calendar",
+            "label": "Calendar",
+            "icon": "fa-calendar-days",
+            "href": "#calendar"
+          }
+        ]
+      }
+    ]
+  },
+
+  "components": {
+    "overview_card": {
+      "id": "cmp_last_application",
+      "name": "Last Application Overview",
+      "description": "Shows the most recently opened application with next steps and blockers",
+      "data_sources": {
+        "lastApplication": {
+          "field": "case_number",
+          "source": "cases",
+          "format": "ARCHR-YYYY-XXXXXX"
+        },
+        "nextStep": {
+          "field": "next_action",
+          "source": "progress_tracker",
+          "description": "The next action required on this case"
+        },
+        "holdingOn": {
+          "field": "blocker",
+          "source": "progress_tracker",
+          "description": "What is preventing progress on this case"
+        }
+      },
+      "actions": [
+        {
+          "label": "Continue",
+          "action": "navigate",
+          "target": "/bursarProcess"
+        }
+      ]
+    },
+
+    "count_tiles": {
+      "id": "cmp_workload_summary",
+      "name": "Workload Summary Tiles",
+      "description": "Two count tiles showing tasks awaiting action and jobs ready for close-out",
+      "tiles": [
+        {
+          "id": "tile_bursar_tasks",
+          "label": "Bursar tasks",
+          "value": "{burserTasks}",
+          "sub": "Applications awaiting your action",
+          "action": {
+            "label": "Process",
+            "target": "/bursarProcessList",
+            "icon": "fa-list-check"
+          },
+          "data_source": {
+            "field": "count",
+            "query": "SELECT COUNT(*) FROM reimbursement_requests WHERE status = 'pending' OR status = 'review'"
+          }
+        },
+        {
+          "id": "tile_ready_closeout",
+          "label": "Ready for close-out",
+          "value": "{bursarReady}",
+          "sub": "Completed jobs ready for invoicing",
+          "action": {
+            "label": "Process",
+            "target": "/completedJobs",
+            "icon": "fa-circle-check"
+          },
+          "data_source": {
+            "field": "count",
+            "query": "SELECT COUNT(*) FROM cases WHERE status = 'completed' AND total_actual_cost > 0 AND NOT EXISTS (SELECT 1 FROM invoices WHERE case_id = cases.id)"
+          }
+        }
+      ]
+    },
+
+    "calendar": {
+      "id": "cmp_bursar_calendar",
+      "name": "Bursar Calendar",
+      "description": "Shows draws, due dates, and payment runs on a monthly calendar",
+      "data_sources": {
+        "currentMonth": {
+          "field": "month_name",
+          "source": "current_date"
+        },
+        "currentYear": {
+          "field": "year",
+          "source": "current_date"
+        },
+        "events": {
+          "field": "calendar_events",
+          "source": "scheduled_events",
+          "types": ["payment_draw", "quote_due", "invoice_due", "reimbursement_deadline"]
+        }
+      },
+      "legend": [
+        {"label": "Payment / draw", "color": "var(--role-bursar-deep)"},
+        {"label": "Quote due", "color": "var(--color-warning)"},
+        {"label": "Overdue", "color": "var(--color-danger)"}
+      ]
+    },
+
+    "quick_actions": {
+      "id": "cmp_quick_actions",
+      "name": "Bursar Quick Actions",
+      "description": "Common bursar tasks accessible from the dashboard",
+      "actions": [
+        {
+          "id": "action_draw_reminder",
+          "label": "Send Draw Reminder",
+          "icon": "fa-paper-plane",
+          "target": "#draw-reminder",
+          "description": "Send a reminder to partners about upcoming draws"
+        },
+        {
+          "id": "action_finalize_funding",
+          "label": "Finalize Funding Source",
+          "icon": "fa-hand-holding-dollar",
+          "target": "#funding",
+          "description": "Close out or adjust a funding source"
+        },
+        {
+          "id": "action_finalize_quote",
+          "label": "Finalize Subcontractor Quote",
+          "icon": "fa-file-signature",
+          "target": "#quotes",
+          "description": "Approve or reject a subcontractor quote"
+        },
+        {
+          "id": "action_finalize_invoice",
+          "label": "Finalize Invoices",
+          "icon": "fa-file-invoice-dollar",
+          "target": "#invoices",
+          "description": "Review and approve pending invoices"
+        },
+        {
+          "id": "action_generate_report",
+          "label": "Generate Report",
+          "icon": "fa-file-export",
+          "target": "#reports",
+          "description": "Create a financial report for funders or internal use"
+        }
+      ]
+    },
+
+,
+
+    
+
+    "funding_sources": {
+      "id": "cmp_funding_sources",
+      "name": "Funding Source Breakdown",
+      "description": "Visual breakdown of all funding sources with utilization",
+      "data_source": {
+        "query": "SELECT * FROM funding_source_summary ORDER BY remaining_amount DESC"
+      },
+      "bar_chart": {
+        "slices": [
+          {"label": "Habitat Grant 2024", "color": "#3366CC", "value": 850000, "health": "healthy"},
+          {"label": "FEMA DR-1234", "color": "#E04E39", "value": 600000, "health": "depleted"},
+          {"label": "State Grant", "color": "#2f9e69", "value": 550000, "health": "healthy"},
+          {"label": "Donations Pool", "color": "#d99518", "value": 400000, "health": "healthy"}
+        ]
+      },
+      "legend_fields": ["source_name", "amount", "health_status"]
+    },
+
+    "duplicate_alerts": {
+      "id": "cmp_duplicate_alerts",
+      "name": "Duplicate & Overlap Alerts",
+      "description": "Alerts for potential duplicate cases, overlapping funding, or double-billing",
+      "data_source": {
+        "query": "SELECT * FROM duplicate_case_alerts ORDER BY detected_at DESC"
+      },
+      "alert_types": [
+        {"id": "same_address", "icon": "fa-map-marker-alt", "label": "Same address detected"},
+        {"id": "overlapping_claim", "icon": "fa-hammer", "label": "Overlapping repair claim"},
+        {"id": "same_applicant", "icon": "fa-user-group", "label": "Same applicant, two cases"}
+      ],
+      "actions": [
+        {"label": "Investigate", "action": "navigate", "target": "/duplicates/{id}"}
+      ]
+    },
+
+    "action_row": {
+      "id": "cmp_action_row",
+      "name": "Bursar Action Row",
+      "description": "Primary action buttons for bursar workflow",
+      "actions": [
+        {"label": "Approve Invoice", "icon": "fa-circle-check", "target": "#reimbursements"},
+        {"label": "Mark Paid", "icon": "fa-money-bill-transfer", "target": "#reimbursements"},
+        {"label": "Reject with Reason", "icon": "fa-circle-xmark", "target": "#reimbursements"},
+        {"label": "Place On Hold", "icon": "fa-pause", "target": "#cases"},
+        {"label": "Override Claim Lock", "icon": "fa-unlock", "target": "#duplicates"},
+        {"label": "Allocate Funds", "icon": "fa-plus", "target": "#sources"},
+        {"label": "Export Report", "icon": "fa-file-export", "target": "#reports"}
+      ]
+    },
+
+    "kpi_cards": {
+      "id": "cmp_kpi_cards",
+      "name": "Funding KPI Cards",
+      "description": "Four key financial metrics at a glance",
+      "cards": [
+        {
+          "id": "kpi_approved",
+          "label": "Total Approved",
+          "value": "$2,400,000",
+          "sub": "Across 48 active cases",
+          "color": "approved",
+          "action": {"label": "Details", "target": "#cases"}
+        },
+        {
+          "id": "kpi_pending",
+          "label": "Pending Reimbursement",
+          "value": "$350,000",
+          "sub": "14 invoices awaiting review",
+          "color": "pending",
+          "action": {"label": "Process queue", "target": "#reimbursements"}
+        },
+        {
+          "id": "kpi_paid",
+          "label": "Reimbursed to Date",
+          "value": "$1,850,000",
+          "sub": "77% of approved funds",
+          "color": "paid",
+          "action": {"label": "Export report", "target": "#reports"}
+        },
+        {
+          "id": "kpi_hold",
+          "label": "On Hold",
+          "value": "$125,000",
+          "sub": "5 cases pending docs or approval",
+          "color": "hold",
+          "action": {"label": "Investigate", "target": "#cases"}
+        }
+      ],
+      "data_sources": {
+        "approved": {"query": "SELECT SUM(approved_amount) FROM case_funding_summary"},
+        "pending": {"query": "SELECT SUM(amount) FROM reimbursement_requests WHERE status IN ('pending', 'review')"},
+        "paid": {"query": "SELECT SUM(amount) FROM reimbursement_requests WHERE status = 'paid'"},
+        "hold": {"query": "SELECT SUM(allocated_amount) FROM case_funding WHERE status = 'on_hold'"}
+      }
+    }
+  },
+
+  
+
+  "permissions": {
+    "required": [
+      "FINANCE_VIEW",
+      "INVOICE_CREATE",
+      "INVOICE_PROCESS",
+      "BUDGET_VIEW",
+      "BUDGET_UPDATE",
+      "EXPENSE_TRACK",
+      "REPORT_VIEW",
+      "REPORT_EXPORT"
+    ],
+    "implied": ["CASE_VIEW"]
+  },
+
+  "data_tables": {
+    "case_funding_summary": {
+      "description": "View for per-case funding status",
+      "key_columns": ["case_id", "case_number", "approved_amount", "incurred_amount", "reimbursed_amount", "remaining_amount", "cap_status"]
+    },
+    "reimbursement_aging": {
+      "description": "View for reimbursement aging",
+      "key_columns": ["request_id", "case_number", "organization_name", "invoice_amount", "status", "submitted_at", "days_aging"]
+    },
+    "funding_source_summary": {
+      "description": "View for funding source utilization",
+      "key_columns": ["source_id", "source_name", "source_type", "total_amount", "remaining_amount", "utilization_percentage", "health_status"]
+    },
+    "duplicate_case_alerts": {
+      "description": "View for duplicate detection",
+      "key_columns": ["submission_id_1", "submission_id_2", "alert_type", "org_1", "org_2", "detected_at"]
+    }
+  },
+
+  "business_rules": {
+    "per_case_cap": 50000,
+    "cap_currency": "USD",
+    "reimbursement_sla_days": 30,
+    "auto_expire_days": 14,
+    "requires_approval": true,
+    "audit_all_actions": true
+  }
+}

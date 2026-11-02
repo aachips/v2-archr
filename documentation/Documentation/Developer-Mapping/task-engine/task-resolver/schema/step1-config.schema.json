@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eventResolver.step1Config.v1",
+  "title": "Resolver Step 1 Search Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["step1"],
+  "properties": {
+    "step1": {
+      "$ref": "#/$defs/searchList"
+    }
+  },
+  "$defs": {
+    "searchList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "minProperties": 1,
+        "maxProperties": 1,
+        "additionalProperties": {
+          "$ref": "#/$defs/searchConfig"
+        }
+      }
+    },
+    "searchConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "searchTableId",
+        "searchPrimaryFieldId",
+        "searchDeepFieldIds",
+        "jsonPrimaryKey",
+        "jsonDeepKeys"
+      ],
+      "properties": {
+        "searchTableId": {
+          "type": "string",
+          "pattern": "^tbl[A-Za-z0-9]+$"
+        },
+        "searchPrimaryFieldId": {
+          "type": "string",
+          "pattern": "^fld[A-Za-z0-9]+$"
+        },
+        "searchDeepFieldIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^fld[A-Za-z0-9]+$"
+          }
+        },
+        "jsonPrimaryKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "jsonDeepKeys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "outputKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outputPath": {
+          "type": "string",
+          "pattern": "^outputs\\.[A-Za-z0-9_.]+$"
+        }
+      }
+    }
+  }
+}

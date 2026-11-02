@@ -1,0 +1,42 @@
+// Reject Document Button - hard deny on an uploaded document.
+// Lives inside the Review modal (the reviewer is viewing the document when
+// deciding). Two deny levels: needs_info (soft deny - comment tells the
+// uploader what is missing; the document stays pending and can be
+// re-uploaded) and rejected (hard deny - e.g. the household does not qualify
+// on current information). Comment is required for both and is sent to the
+// uploader. Hard deny writes a [Doc] Events record (DOCACT.REJECT).
+
+{
+  "component_name": "Reject Document Button",
+  "component_role": "documents",
+  "component_id": "btn_reject_document",
+  "component_class": ".btn.btn-danger",
+  "component_type": "button",
+  "component_context": {
+    "taskId": "rec[rejectDocument]",
+    "target": "documents.review",
+    "target_key": "{document}.{document_id}",
+    "action": "DOCACT.REJECT",
+    "buttonText": "Reject",
+    "icon": "fa-xmark",
+    "webhookSlug": "[documentWebhook]",
+    "confirm": null,
+    "via": "review modal (document viewer + comment + three-way decision)",
+    "deny_levels": {
+      "needs_info": "soft deny - missing information; stays UPLOADED, uploader re-submits",
+      "rejected": "hard deny - does not qualify on current information"
+    },
+    "successMessage": "Decision recorded and uploader notified.",
+    "reversible": "yes",
+    "requires_reason": true,
+    "destructive": true,
+    "writes": "[Doc] Events record + case_documents.status -> REJECTED"
+  },
+  "display_text": "Reject",
+  "icon": "fa-xmark",
+  "action": {
+    "type": "modal",
+    "target": "/reviewDocumentModal"
+  },
+  "role_access": "admin, org-admin, assessor"
+}

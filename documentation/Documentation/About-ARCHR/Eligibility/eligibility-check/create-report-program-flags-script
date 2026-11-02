@@ -1,0 +1,212 @@
+/******************************************************
+ * Create one Eligibility Report and its Program Flags records
+ *
+ * Primary input:
+ *   organizationResultJSON = repeating group Current item > JSON data
+ *
+ * Legacy inputs:
+ *   reportRecordId         = existing parent Report record ID
+ *   programFlagResultsJSON = evaluator output with the same name
+ ******************************************************/
+
+const {
+  organizationResultJSON,
+  reportRecordId: suppliedReportRecordId,
+  programFlagResultsJSON,
+  programFlagResults,
+  flagAssignmentsJSON,
+  flagAssignments,
+} = input.config();
+
+const CONFIG = {
+  report: {
+    tableId: "tblhjd5DgkJ1m25Az",
+    fields: {
+      organization: "flde6TE5eh7SP9qhp",
+      submission: "fldF3zwdKSt5lGd7o",
+      reportJSON: "fldajU39BEficvy7s",
+      alertText: "fldZwXTDbbrybYHhW",
+    },
+  },
+  programFlags: {
+    tableId: "tblbxVXpcSjYplyM7",
+    fields: {
+      report: "fldKGOPMvaaj4ULAu",
+      flag: "fld02JrJxV0OcCGmf",
+      program: "fldZ3eNmMlDMUsz6g",
+    },
+  },
+};
+
+if (!organizationResultJSON && !suppliedReportRecordId) {
+  throw new Error("Missing input: organizationResultJSON");
+}
+
+function parseArray(value, label) {
+  if (Array.isArray(value)) return value;
+  if (value && typeof value === "object") return [value];
+
+  const text = String(value ?? "").trim();
+  if (!text) return [];
+
+  const parsed = JSON.parse(text);
+  if (!Array.isArray(parsed)) {
+    throw new Error(`${label} must contain a JSON array.`);
+  }
+  return parsed;
+}
+
+function parseObject(value, label) {
+  if (value && typeof value === "object" && !Array.isArray(value)) return value;
+
+  const text = String(value ?? "").trim();
+  if (!text) return null;
+
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch (err) {
+    throw new Error(`Could not parse ${label}: ${err.message}`);
+  }
+
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error(`${label} must contain one JSON object.`);
+  }
+
+  return parsed;
+}
+
+function groupLegacyAssignments(assignments) {
+  const byProgram = new Map();
+
+  for (const assignment of assignments) {
+    const programRecordId = assignment?.programRecordId;
+    if (!programRecordId) continue;
+
+    if (!byProgram.has(programRecordId)) {
+      byProgram.set(programRecordId, {
+        programRecordId,
+        programKEY: assignment.programKEY ?? null,
+        programName: assignment.programName ?? null,
+        flagListRecordIds: [],
+      });
+    }
+
+    byProgram.get(programRecordId).flagListRecordIds.push(
+      assignment.flagListRecordId
+    );
+  }
+
+  return [...byProgram.values()];
+}
+
+function isRecordId(value) {
+  return /^rec[A-Za-z0-9]+$/.test(String(value ?? ""));
+}
+
+const organizationResult = parseObject(
+  organizationResultJSON,
+  "organizationResultJSON"
+);
+
+if (organizationResult && !isRecordId(organizationResult.orgRecordId)) {
+  throw new Error(
+    `organizationResultJSON is missing a valid orgRecordId: ${organizationResult.orgRecordId ?? "(blank)"}`
+  );
+}
+
+if (organizationResult && !isRecordId(organizationResult.subRecordId)) {
+  throw new Error(
+    `organizationResultJSON is missing a valid subRecordId: ${organizationResult.subRecordId ?? "(blank)"}`
+  );
+}
+
+if (suppliedReportRecordId && !isRecordId(suppliedReportRecordId)) {
+  throw new Error(
+    `reportRecordId is not a valid Airtable record ID: ${suppliedReportRecordId}`
+  );
+}
+
+let results = parseArray(
+  organizationResult?.programFlagResultsJSON ||
+    organizationResult?.programFlagResults ||
+    programFlagResultsJSON ||
+    programFlagResults,
+  "programFlagResultsJSON"
+);
+
+if (!results.length) {
+  results = groupLegacyAssignments(
+    parseArray(flagAssignmentsJSON || flagAssignments, "flagAssignmentsJSON")
+  );
+}
+
+const table = base.getTable(CONFIG.programFlags.tableId);
+const fields = CONFIG.programFlags.fields;
+
+let reportRecordId = suppliedReportRecordId || null;
+let reportWasCreated = false;
+
+if (!reportRecordId) {
+  const reportTable = base.getTable(CONFIG.report.tableId);
+  const reportFields = CONFIG.report.fields;
+  const parentFields = {
+    [reportFields.organization]: [{ id: organizationResult.orgRecordId }],
+    [reportFields.submission]: [{ id: organizationResult.subRecordId }],
+    [reportFields.reportJSON]:
+      typeof organizationResult.reportJSON === "string"
+        ? organizationResult.reportJSON
+        : JSON.stringify(organizationResult, null, 2),
+    [reportFields.alertText]: organizationResult.alertText || "",
+  };
+
+  reportRecordId = await reportTable.createRecordAsync(parentFields);
+  reportWasCreated = true;
+}
+
+const seen = new Set();
+const records = [];
+const skipped = [];
+
+for (const result of results) {
+  const programRecordId = result?.programRecordId;
+
+  if (!isRecordId(programRecordId)) {
+    skipped.push({
+      programName: result?.programName ?? null,
+      reason: "Missing valid programRecordId.",
+    });
+    continue;
+  }
+
+  const dedupeKey = `${reportRecordId}:${programRecordId}`;
+  if (seen.has(dedupeKey)) continue;
+  seen.add(dedupeKey);
+
+  const flagListRecordIds = [...new Set(
+    (result.flagListRecordIds || [])
+      .filter(isRecordId)
+  )];
+
+  const recordFields = {
+    [fields.report]: [{ id: reportRecordId }],
+    [fields.flag]: flagListRecordIds.map(id => ({ id })),
+    [fields.program]: [{ id: programRecordId }],
+  };
+
+  records.push({ fields: recordFields });
+}
+
+const createdRecordIds = [];
+
+while (records.length) {
+  const batch = records.splice(0, 50);
+  createdRecordIds.push(...await table.createRecordsAsync(batch));
+}
+
+output.set("createdProgramFlagRecordIds", createdRecordIds);
+output.set("createdProgramFlagCount", createdRecordIds.length);
+output.set("skippedProgramResultsJSON", JSON.stringify(skipped));
+output.set("reportRecordId", reportRecordId);
+output.set("createdReportRecordId", reportWasCreated ? reportRecordId : "");
+output.set("reportWasCreated", reportWasCreated);

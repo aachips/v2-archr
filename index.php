@@ -24,12 +24,12 @@ function get_auth_secret(): string {
         foreach ($lines as $line) {
             $line = trim($line);
             if (strpos($line, '#') === 0) continue;
-            if (preg_match('/^AUTH_SECRET_KEY\s*=\s*(.+)$/', $line, $m)) {
+             if (preg_match('/^AUTH_SECRET_KEY\s*=\s*(.+)$/', $line, $m)) {
                 return trim($m[1]);
             }
         }
     }
-    return 'change-me-in-production';
+     return 'change-me-in-production';
 }
 
 function base64url_decode(string $data): string {

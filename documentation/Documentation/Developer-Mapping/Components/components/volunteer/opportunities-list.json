@@ -1,0 +1,56 @@
+// Available Opportunities List - Shows volunteer opportunities
+
+{
+  "component_name": "Available Opportunities List",
+  "component_id": "cmp_volunteer_opportunities",
+  "component_type": "list",
+  "data_sources": {
+    "opportunities": "volunteer_opportunities where slots_available > 0 AND date >= today() ORDER BY date ASC"
+  },
+  "list_item_fields": [
+    {
+      "field": "project_name",
+      "label": "Project",
+      "type": "text"
+    },
+    {
+      "field": "date",
+      "label": "Date",
+      "type": "date"
+    },
+    {
+      "field": "time",
+      "label": "Time",
+      "type": "time"
+    },
+    {
+      "field": "location",
+      "label": "Location",
+      "type": "text"
+    },
+    {
+      "field": "slots_available",
+      "label": "Slots Available",
+      "type": "number"
+    },
+    {
+      "field": "skill_level",
+      "label": "Skill Level",
+      "type": "badge"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "Claim Slot",
+      "action": "confirm",
+      "target": "/api/volunteer/opportunities/:id/claim"
+    },
+    {
+      "label": "Details",
+      "action": "navigate",
+      "target": "/opportunity/{opportunity_id}"
+    }
+  ],
+  "sort_order": "date ASC, time ASC",
+  "mobile_layout": "cards"
+}

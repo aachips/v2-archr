@@ -1,0 +1,26 @@
+// Upload Document Button - Upload verification documents
+
+{
+  "component_name": "Upload Document Button",
+  "component_role": "requestor",
+  "component_id": "btn_requestor_upload",
+  "component_class": ".btn.btn-primary",
+  "component_context": {
+    "taskId": "rec[applicationIdentifier]",
+    "target": "documents",
+    "target_key": "{document}.{application_id}",
+    "action": "UPLOAD.DOCUMENT",
+    "buttonText": "Upload Document",
+    "webhookSlug": "[uploadDocumentWebhook]",
+    "confirm": null,
+    "successMessage": "Document uploaded successfully!",
+    "reversible": "yes"
+  },
+  "display_text": "Upload Document",
+  "icon": "fa-upload",
+  "action": {
+    "type": "modal",
+    "target": "/uploadDocumentModal"
+  },
+  "role_access": "requestor"
+}

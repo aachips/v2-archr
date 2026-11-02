@@ -1,0 +1,1 @@
+This subdirectory /intake_code/ is where a mock rebuild of the intake form for ARCHR done in HTML, CSS, and Javascript live.

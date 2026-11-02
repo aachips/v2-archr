@@ -1,0 +1,32 @@
+/******************************************************
+ * Airtable formula field: jsonPayload
+ * Table: ✅Eligibility Report (tblhjd5DgkJ1m25Az)
+ *
+ * Produces the compact payload accepted by the current
+ * [◼️Project Event V2] rawInboundJSON parser.
+ *
+ * Field inputs:
+ *   id(⚓🎯)   = Project record ID
+ *   id(dirOrg) = Directory Organization record ID
+ *   Created    = Eligibility Report created time
+ ******************************************************/
+
+IF(
+  AND(
+    ARRAYJOIN({id(⚓🎯)}, ""),
+    ARRAYJOIN({id(dirOrg)}, "")
+  ),
+  "{" &
+    "\"projectKEY\":\"" & ARRAYJOIN({id(⚓🎯)}, "") & "\"," &
+    "\"triggerRecordId\":\"" & RECORD_ID() & "\"," &
+    "\"source\":\"✅Eligibility Report\"," &
+    "\"orgKEY\":\"" & ARRAYJOIN({id(dirOrg)}, "") & "\"," &
+    "\"subcontractorKEY\":\"\"," &
+    "\"dateCreateUnix\":\"" & DATETIME_FORMAT({Created}, "x") & "\"," &
+    "\"dateCompleteUnix\":\"" & DATETIME_FORMAT({Created}, "x") & "\"," &
+    "\"isSubcontractor\":false," &
+    "\"scopeJSON\":\"{\\\"eventLookup\\\":[\\\"✅Eligibility Report\\\"],\\\"eligibilityReportRecordId\\\":\\\"" & RECORD_ID() & "\\\"}\"," &
+    "\"taskJSON\":\"\"" &
+  "}",
+  BLANK()
+)

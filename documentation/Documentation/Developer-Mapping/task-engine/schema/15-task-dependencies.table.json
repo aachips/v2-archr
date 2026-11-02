@@ -1,0 +1,46 @@
+{
+  "dependencyKey": "sourcePhaseTaskId|triggersCompletionOf|targetPhaseTaskId",
+  "dependencyKey.fieldType": "singleLineText",
+  "systemKey": "progress-task-v2",
+  "systemKey.fieldType": "singleLineText",
+  "fromPhaseTaskId": "sourcePhaseTaskId",
+  "fromPhaseTaskId.fieldType": "singleLineText",
+  "toPhaseTaskId": "targetPhaseTaskId",
+  "toPhaseTaskId.fieldType": "singleLineText",
+  "dependencyType": "triggersCompletionOf",
+  "dependencyType.fieldType": "singleSelect",
+  "dependencyType.fieldOptions": {
+    "choices": [
+      { "name": "triggersCompletionOf" },
+      { "name": "assumeCompleteIf" },
+      { "name": "requires" },
+      { "name": "blocks" }
+    ]
+  },
+  "direction": "forward",
+  "direction.fieldType": "singleSelect",
+  "direction.fieldOptions": {
+    "choices": [
+      { "name": "forward" },
+      { "name": "reverse" }
+    ]
+  },
+  "reason": "A completed source task implies the target task is complete.",
+  "reason.fieldType": "multilineText",
+  "conditionJSON": "{}",
+  "conditionJSON.fieldType": "multilineText",
+  "priority": 100,
+  "priority.fieldType": "number",
+  "priority.fieldOptions": {
+    "precision": 0
+  },
+  "maxDepth": 5,
+  "maxDepth.fieldType": "number",
+  "maxDepth.fieldOptions": {
+    "precision": 0
+  },
+  "active": true,
+  "active.fieldType": "checkbox",
+  "notes": "",
+  "notes.fieldType": "multilineText"
+}

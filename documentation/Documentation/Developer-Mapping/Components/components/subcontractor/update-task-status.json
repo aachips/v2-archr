@@ -1,0 +1,50 @@
+// Update Task Status -- Update progress on assigned task
+
+{
+  "feature_name": "Update Task Status",
+  "feature_id": "feat_update_status",
+  "component_type": "form",
+  "fields": [
+    {
+      "name": "task_id",
+      "label": "Task",
+      "type": "select",
+      "data_source": "accepted_tasks"
+    },
+    {
+      "name": "status",
+      "label": "Status",
+      "type": "select",
+      "options": [
+        {"value": "pending", "label": "Pending"},
+        {"value": "in_progress", "label": "In Progress"},
+        {"value": "awaiting_materials", "label": "Awaiting Materials"},
+        {"value": "on_hold", "label": "On Hold"},
+        {"value": "complete", "label": "Complete"},
+        {"value": "blocked", "label": "Blocked"}
+      ],
+      "required": true
+    },
+    {
+      "name": "progress_percentage",
+      "label": "Percent Complete",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "name": "notes",
+      "label": "Status Notes",
+      "type": "textarea",
+      "placeholder": "What was accomplished? Any blockers?"
+    }
+  ],
+  "submit": {
+    "label": "Update Status",
+    "action": "api",
+    "endpoint": "/api/subcontractor/tasks/status",
+    "method": "PUT",
+    "success_message": "Task status updated!"
+  }
+}

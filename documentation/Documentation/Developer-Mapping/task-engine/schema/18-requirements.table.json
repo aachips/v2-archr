@@ -1,0 +1,57 @@
+{
+  "requirementKey": "req:select-person",
+  "requirementKey.fieldType": "singleLineText",
+  "systemKey": "progress-task-v2",
+  "systemKey.fieldType": "singleLineText",
+  "requirementName": "Select Person",
+  "requirementName.fieldType": "singleLineText",
+  "requirementType": "officeSubtask",
+  "requirementType.fieldType": "singleSelect",
+  "requirementType.fieldOptions": {
+    "choices": [
+      { "name": "officeSubtask" },
+      { "name": "document" },
+      { "name": "verification" },
+      { "name": "approval" },
+      { "name": "scheduling" },
+      { "name": "processing" }
+    ]
+  },
+  "category": "Processing",
+  "category.fieldType": "singleLineText",
+  "systemInteractionsJSON": "[\"Assessments\"]",
+  "systemInteractionsJSON.fieldType": "multilineText",
+  "sourceMilestoneTitlesJSON": "[\"1. Intake: Assign Assessor\"]",
+  "sourceMilestoneTitlesJSON.fieldType": "multilineText",
+  "hasChildRequirements": true,
+  "hasChildRequirements.fieldType": "checkbox",
+  "childOnly": false,
+  "childOnly.fieldType": "checkbox",
+  "stateModel": "singleRecord",
+  "stateModel.fieldType": "singleSelect",
+  "stateModel.fieldOptions": {
+    "choices": [
+      { "name": "singleRecord" },
+      { "name": "ledger" }
+    ]
+  },
+  "defaultStatus": "Not Started",
+  "defaultStatus.fieldType": "singleSelect",
+  "defaultStatus.fieldOptions": {
+    "choices": [
+      { "name": "Not Started" },
+      { "name": "In Progress" },
+      { "name": "Blocked" },
+      { "name": "Satisfied" },
+      { "name": "Waived" }
+    ]
+  },
+  "required": true,
+  "required.fieldType": "checkbox",
+  "active": true,
+  "active.fieldType": "checkbox",
+  "version": "2.1.0",
+  "version.fieldType": "singleLineText",
+  "notes": "",
+  "notes.fieldType": "multilineText"
+}

@@ -1,0 +1,122 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:14.347Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblsabmKUl69A1TAe",
+    "name": "help_document_attachments",
+    "description": null,
+    "primaryFieldId": "fld4n3BzflRMHJrpc",
+    "fields": [
+      {
+        "id": "fld4n3BzflRMHJrpc",
+        "name": "document_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldFP4ngEu4TH3CzH",
+        "name": "attachment_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldMYMNmBVoFL4QH5",
+        "name": "file_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldKzzKj4Zdlkq3jb",
+        "name": "file_path",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldok8tDd2MrXcvLX",
+        "name": "file_size_bytes",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "flds4eL0xr5M8ce1e",
+        "name": "mime_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldyWZ7YBGWLKQQKe",
+        "name": "alt_text",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldCD5ywKS1A8Cl0A",
+        "name": "caption",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldmB779MCWveboWq",
+        "name": "display_order",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldwhk5qCONHybbGT",
+        "name": "uploaded_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fld4aIisgtLW8AawB",
+        "name": "uploaded_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwNHoAT2SzIlXVq1",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

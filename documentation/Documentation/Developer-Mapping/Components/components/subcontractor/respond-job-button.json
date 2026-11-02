@@ -1,0 +1,14 @@
+{
+  "component_name": "Respond Button",
+  "component_description": "Respond - Navigate to marketplace/opportunities",
+  "component_id": "btn_respond",
+  "component_class": ".btn.btn-secondary",
+  "display_text": "Respond",
+  "icon": "fa-handshake",
+  "action": {
+    "type": "navigate",
+    "target": "/marketplace"
+  },
+  "role_access": "subcontractor",
+  "context": "View and respond to available task opportunities"
+}

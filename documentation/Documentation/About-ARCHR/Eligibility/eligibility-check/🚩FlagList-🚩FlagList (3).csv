@@ -1,0 +1,76 @@
+﻿Name,flag,tag,breaksTag,Break_Message,tagText,Breaks,Broken By,Count (✅+ 💛 + 🚩Report Program Flags),id(🚩flag)
+in_service_area,+,🟢 In Service Area,,,🟢 In Service Area,,"outside_service_area,missing_county,missing_city,missing_state",5517,recccjw6Pev4Tfn7H
+within_income_limit,+,🟢 Below Income MAX,,,🟢 Below Income MAX,,"over_income_limit,missing_income_value",6876,recvMonyikh8Ydpxw
+eligible_home_type,+,🟢 Eligible Home Type,,,🟢 Eligible Home Type,,"ineligible_home_type,missing_home_type",5556,recgNDA7LL1cwMREl
+within_building_value,+,🟢 Below MAX Building Value,,,🟢 Below MAX Building Value,,"over_building_value,missing_building_value",2906,recQ7pi3nRjMgBNMV
+primary_residence,+,🟢 Is Primary Residence,,,🟢 Is Primary Residence,,"not_primary_residence,missing_primary_residence",6459,recKJp9prrMvlfMBr
+owns_home,+,🟢 Applicant Owns Home,,,🟢 Applicant Owns Home,,"does_not_own_home,missing_home_ownership",5323,recIVfJ0N9ZtHW6zJ
+owns_lot,+,🟢 Applicant Owns Mobile Home Lot,,,🟢 Applicant Owns Mobile Home Lot,,"does_not_own_lot,missing_lot_ownership",386,recHaHBQrPmowHPH7
+meets_minimum_ownership_time,+,🟢 Lived in Home at least 1 Year,,,🟢 Lived in Home at least 1 Year,,"below_minimum_ownership_time,missing_ownership_time",1614,rece0Pu1Xlndo4FIO
+required_demographic_match,+,🟢 Required Demographic Group Match,,,🟢 Required Demographic Group Match,,"missing_required_demographic,missing_demographic_data",46,rec1a3f29Wdgt9Yvr
+priority_demographic_match,+,🟢 Priority Demographic Group Match,,,🟢 Priority Demographic Group Match,,missing_demographic_data,0,recGxMfXjxDfFN0ZI
+outside_service_area,-,❌ Outside Service Area,🟢 In Service Area,,❌ Outside Service Area,in_service_area,,1751,reco68lSvbxoGUfP3
+over_income_limit,-,❌ Over Income MAX,🟢 Below Income MAX,,❌ Over Income MAX,within_income_limit,,396,recYWZ0fykHHvlH38
+ineligible_home_type,-,❌ Ineligible Home Type,🟢 Eligible Home Type,,❌ Ineligible Home Type,eligible_home_type,,1719,reckVPHIUgE9jpDlo
+over_building_value,-,❌ Over MAX Building Value,🟢 Below MAX Building Value,,❌ Over MAX Building Value,within_building_value,,1944,recAUT4jmBRCtSRfM
+not_primary_residence,-,❌ Not Applicant's Primary Residence,🟢 Is Primary Residence,,❌ Not Applicant's Primary Residence,primary_residence,,8,recXR2KIuonSPGm3b
+does_not_own_home,-,❌ Applicant Does Not Own Home,🟢 Applicant Owns Home,,❌ Applicant Does Not Own Home,owns_home,,336,rec6zyfeFpjHOmq5L
+does_not_own_lot,-,❌ Applicant Does Not Own Mobile Home Lot,🟢 Applicant Owns Mobile Home Lot,,❌ Applicant Does Not Own Mobile Home Lot,owns_lot,,35,recjBI9Lxi6TGYNvN
+below_minimum_ownership_time,-,❌ Lived in home less than 1 Year,🟢 Lived in Home at least 1 Year,,❌ Lived in home less than 1 Year,meets_minimum_ownership_time,,4,rec9zpfLPlK2cfcWv
+missing_required_demographic,-,❌ Missing Required Demographic Group,🟢 Required Demographic Group Match,,❌ Missing Required Demographic Group,required_demographic_match,,19,recRgAenGilSPBYuY
+no_state_restriction,?,🟨 Program Data Missing: Service_Area_State,,,🟨 Program Data Missing: Service_Area_State,,,0,recy1Zf6pra665Hv9
+no_county_restriction,?,🟨 Program Data Missing: Service_Area_County,,,🟨 Program Data Missing: Service_Area_County,,,808,recDJyqSP1mcSbpU1
+no_city_restriction,?,🟨 Program Data Missing: Service_Area_City,,,🟨 Program Data Missing: Service_Area_City,,,7275,reculAoXZO0TgzXTU
+no_income_restriction,?,🟨 Program Data Missing: Income_Max,,,🟨 Program Data Missing: Income_Max,,,0,rec5LRKz5jAqIFPAW
+no_ownership_restrictions,?,🟨 Program Data Missing: Home_Ownership_Restrictions,,,🟨 Program Data Missing: Home_Ownership_Restrictions,,,0,recpXr0Q4orP9zts3
+no_home_type_restriction,?,🟨 Program Data Missing: Home_Type,,,🟨 Program Data Missing: Home_Type,,,0,reczuq9ezAg6kNQGE
+no_building_value_restriction,?,🟨 Program Data Missing: Home_Max_Building_Value,,,🟨 Program Data Missing: Home_Max_Building_Value,,,2425,recr7xtzRK7P3BZ9C
+no_primary_residence_restriction,?,🟨 Program Data Missing: Home_Primary_Residence_Restriction,,,🟨 Program Data Missing: Home_Primary_Residence_Restriction,,,808,recD94xwfMSLnwqRD
+no_home_ownership_restriction,?,🟨 Program Data Missing: Home_Ownership_Restriction,,,🟨 Program Data Missing: Home_Ownership_Restriction,,,1616,recS4MH95litqt9gY
+no_lot_ownership_restriction,?,🟨 Program Data Missing: MobileHomeLot_Ownership_Restriction,,,🟨 Program Data Missing: MobileHomeLot_Ownership_Restriction,,,6466,recq7iITiy0b2UNyZ
+no_minimum_ownership_time_restriction,?,🟨 Program Data Missing: Home_Ownership_Duration_Restriction,,,🟨 Program Data Missing: Home_Ownership_Duration_Restriction,,,5657,recjqv0oMhdM2I3oO
+no_demographic_restriction,?,🟨 Program Data Missing: Demographic_Groups (Prioritized or Required),,,🟨 Program Data Missing: Demographic_Groups (Prioritized or Required),,,6467,rec53GSHhvauuFmtO
+missing_state,!,⚠️ Applicant Data Missing: Address State,🟢 In Service Area,"# 🚨
+### Can't Calculate: 🟢 In Service Area
+### Reason:⚠️ Applicant Data Missing: Address State
+# 🚨",⚠️ Applicant Data Missing: Address State,in_service_area,,9,recO1mmcT6E15ngTK
+missing_county,!,⚠️ Applicant Data Missing: Address County,🟢 In Service Area,"# 🚨
+### Can't Calculate: 🟢 In Service Area
+### Reason:⚠️ Applicant Data Missing: Address County
+# 🚨",⚠️ Applicant Data Missing: Address County,in_service_area,,0,recBMFXBzSUFOLJVu
+missing_city,!,⚠️ Applicant Data Missing: Address City,🟢 In Service Area,"# 🚨
+### Can't Calculate: 🟢 In Service Area
+### Reason:⚠️ Applicant Data Missing: Address City
+# 🚨",⚠️ Applicant Data Missing: Address City,in_service_area,,0,rec3bm6mWHbKgfeZ0
+missing_income_value,!,⚠️ Applicant Data Missing: Income Amount,🟢 Below Income MAX,"# 🚨
+### Can't Calculate: 🟢 Below Income MAX
+### Reason:⚠️ Applicant Data Missing: Income Amount
+# 🚨",⚠️ Applicant Data Missing: Income Amount,within_income_limit,,3,rec2aporu8ZtSf3yj
+missing_home_type,!,⚠️ Applicant Data Missing: Home Type,🟢 Eligible Home Type,"# 🚨
+### Can't Calculate: 🟢 Eligible Home Type
+### Reason:⚠️ Applicant Data Missing: Home Type
+# 🚨",⚠️ Applicant Data Missing: Home Type,eligible_home_type,,0,recem0NlcnDFbJV0d
+missing_building_value,!,⚠️ Applicant Data Missing: Building Value,🟢 Below MAX Building Value,"# 🚨
+### Can't Calculate: 🟢 Below MAX Building Value
+### Reason:⚠️ Applicant Data Missing: Building Value
+# 🚨",⚠️ Applicant Data Missing: Building Value,within_building_value,,0,recU4fLwJrFDLzQ3R
+missing_primary_residence,!,⚠️ Applicant Data Missing: Primary Residence,🟢 Is Primary Residence,"# 🚨
+### Can't Calculate: 🟢 Is Primary Residence
+### Reason:⚠️ Applicant Data Missing: Primary Residence
+# 🚨",⚠️ Applicant Data Missing: Primary Residence,primary_residence,,0,recoysvd2astWeprQ
+missing_home_ownership,!,⚠️ Applicant Data Missing: Home Ownership,🟢 Applicant Owns Home,"# 🚨
+### Can't Calculate: 🟢 Applicant Owns Home
+### Reason:⚠️ Applicant Data Missing: Home Ownership
+# 🚨",⚠️ Applicant Data Missing: Home Ownership,owns_home,,0,rec4aAs9lFfQeDzjT
+missing_lot_ownership,!,⚠️ Applicant Data Missing: Mobile Home Lot Ownership,🟢 Applicant Owns Mobile Home Lot,"# 🚨
+### Can't Calculate: 🟢 Applicant Owns Mobile Home Lot
+### Reason:⚠️ Applicant Data Missing: Mobile Home Lot Ownership
+# 🚨",⚠️ Applicant Data Missing: Mobile Home Lot Ownership,owns_lot,,388,recF577LUSONpnMhQ
+missing_ownership_time,!,⚠️ Applicant Data Missing: Duration of Residence,🟢 Lived in Home at least 1 Year,"# 🚨
+### Can't Calculate: 🟢 Lived in Home at least 1 Year
+### Reason:⚠️ Applicant Data Missing: Duration of Residence
+# 🚨",⚠️ Applicant Data Missing: Duration of Residence,meets_minimum_ownership_time,,0,recJi0rFaQsRgu31E
+missing_demographic_data,!,⚠️ Applicant Data Missing: Demographic Group,"🟢 Required Demographic Group Match,🟢 Priority Demographic Group Match","# 🚨
+### Can't Calculate: 🟢 Required Demographic Group Match, 🟢 Priority Demographic Group Match
+### Reason:⚠️ Applicant Data Missing: Demographic Group
+# 🚨",⚠️ Applicant Data Missing: Demographic Group,"required_demographic_match,priority_demographic_match",,743,recXXWw4cZSxlurUg

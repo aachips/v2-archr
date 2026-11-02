@@ -1,0 +1,36 @@
+// Generate Document Button - opens the on-the-spot generation modal.
+// The admin/office worker picks a template (DocCode), reviews token fields
+// auto-filled from case data, supplies any live inputs, and generates.
+// Template list + token fields are read from
+// document-generation/document-tokens.json so the UI stays in sync with the
+// token registry. Payload shape matches the Docupilot create endpoint
+// (root-level tokens) described in document-generation/docupilot-generation.md.
+
+{
+  "component_name": "Generate Document Button",
+  "component_role": "documents",
+  "component_id": "btn_generate_document",
+  "component_class": ".btn.btn-primary",
+  "component_type": "button",
+  "component_context": {
+    "taskId": "rec[generateDocument]",
+    "target": "documents.generator",
+    "target_key": "{document}.{case_id}.{doc_code}",
+    "action": "DOC.GENERATE",
+    "buttonText": "Generate Document",
+    "icon": "fa-wand-magic-sparkles",
+    "webhookSlug": "[generateDocumentWebhook]",
+    "confirm": null,
+    "successMessage": "Document generated and stored in the case folder.",
+    "reversible": "yes",
+    "token_source": "elemental-integration/document-generation/document-tokens.json",
+    "payload": "root-level {token: value} object, not nested under data"
+  },
+  "display_text": "Generate Document",
+  "icon": "fa-wand-magic-sparkles",
+  "action": {
+    "type": "modal",
+    "target": "/generateDocumentModal"
+  },
+  "role_access": "admin, org-admin, project-manager"
+}

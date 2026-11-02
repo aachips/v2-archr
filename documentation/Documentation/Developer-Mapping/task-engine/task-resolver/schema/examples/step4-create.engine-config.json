@@ -1,0 +1,282 @@
+{
+  "schema": "eventResolver.engineConfig.v1",
+  "step": "step4",
+  "source": {
+    "baseId": "apps9VjdjDOR68kpl",
+    "snapshotExportedAt": "2026-07-14T13:14:00.749Z"
+  },
+  "engines": [
+    {
+      "engine": "Create",
+      "engineId": "rec9OF5vZFTSiCg78",
+      "options": {
+        "mode": "executeDecision",
+        "completionSearchSource": "outputs.completionFound",
+        "decisionSource": "conflictWorkflow.ruleEvaluation.decision",
+        "decisionHandlers": {
+          "createNew": ["completionRecord"],
+          "reuseExisting": [],
+          "mergeIntoExisting": [],
+          "createNewAndConflict": ["completionRecord", "conflictRecord"],
+          "manualReview": []
+        }
+      },
+      "tables": [
+        {
+          "setupId": "rec20KXmUQfLALrbV",
+          "label": "Step 4 Create [Project Task Completion]",
+          "role": "completionRecord",
+          "table": {
+            "tableId": "tbl1mIQg2utmj7Vqt",
+            "writeFields": [
+              {
+                "field": {
+                  "fieldId": "fldvrN5KrY6rFsgRc",
+                  "fieldType": "singleLineText",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "inputs.completionKey",
+                    "transform": "identity",
+                    "required": true,
+                    "defaultJSON": "",
+                    "onMissing": "error"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldU5d3NTJYCQJAK0",
+                  "fieldType": "singleLineText",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "inputs.completionSearchKey",
+                    "transform": "identity",
+                    "required": true,
+                    "defaultJSON": "",
+                    "onMissing": "error"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fld5PZvVc1sOfHBv2",
+                  "fieldType": "singleLineText",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "inputs.eventProjectId",
+                    "transform": "identity",
+                    "required": true,
+                    "defaultJSON": "",
+                    "onMissing": "error"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldlB5WykyfFXUoK1",
+                  "fieldType": "multipleRecordLinks",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "outputs.projectFound",
+                    "transform": "uniqueRecordIds",
+                    "required": true,
+                    "defaultJSON": [],
+                    "onMissing": "error"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldyNekr5x0sUllmO",
+                  "fieldType": "multipleRecordLinks",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "outputs.taskFound",
+                    "transform": "uniqueRecordIds",
+                    "required": true,
+                    "defaultJSON": [],
+                    "onMissing": "error"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldtX1EJ3ez1tVIBl",
+                  "fieldType": "date",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "inputs.eventDate",
+                    "transform": "ISODate",
+                    "required": true,
+                    "defaultJSON": null,
+                    "onMissing": "error"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldT3U8DIaHuEoP2a",
+                  "fieldType": "multipleRecordLinks",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "inputs.currentEventRecordId",
+                    "transform": "toRecordIdArray",
+                    "required": true,
+                    "defaultJSON": [],
+                    "onMissing": "error"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fld8CIhhTNhUFsmhn",
+                  "fieldType": "singleSelect",
+                  "writeMode": "replace",
+                  "writeValue": "Active"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "setupId": "recMmCxZ1pQPmnMvM",
+          "label": "Step 4 Create [Completion Record Conflict]",
+          "role": "conflictRecord",
+          "table": {
+            "tableId": "tblfYyLY9k5kAomDJ",
+            "writeFields": [
+              {
+                "field": {
+                  "fieldId": "fldBcWQlGTSYTh0CS",
+                  "fieldType": "multipleRecordLinks",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "conflictWorkflow.comparison.existingCompletionId",
+                    "transform": "toRecordIdArray",
+                    "required": true,
+                    "defaultJSON": [],
+                    "onMissing": "manualReview"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldDi0exDVgCoC1UD",
+                  "fieldType": "singleLineText",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "inputs.completionKey",
+                    "transform": "identity",
+                    "required": false,
+                    "defaultJSON": "Completion record conflict",
+                    "onMissing": "useDefault"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fld2bzmZhOQJshYfH",
+                  "fieldType": "multilineText",
+                  "writeMode": "replace",
+                  "writeValue": "Created automatically by Event Resolver"
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldAbOi8QWJucJNbO",
+                  "fieldType": "singleSelect",
+                  "writeMode": "replace",
+                  "writeValue": "Todo"
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fld9GX6ngCwkmVXq9",
+                  "fieldType": "multipleRecordLinks",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "conflictWorkflow.comparison.triggerEventId",
+                    "transform": "toRecordIdArray",
+                    "required": true,
+                    "defaultJSON": [],
+                    "onMissing": "manualReview"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldUCNmfrmEwZ3lH0",
+                  "fieldType": "multipleRecordLinks",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "conflictWorkflow.comparison.conflictingEventId",
+                    "transform": "toRecordIdArray",
+                    "required": true,
+                    "defaultJSON": [],
+                    "onMissing": "manualReview"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldf2YNKjf98QeVsG",
+                  "fieldType": "multipleRecordLinks",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "outputs.createdCompletion",
+                    "transform": "toRecordIdArray",
+                    "required": true,
+                    "defaultJSON": [],
+                    "onMissing": "manualReview"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldgsFO3PE0bg5liT",
+                  "fieldType": "singleSelect",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "conflictWorkflow.ruleEvaluation.decision",
+                    "transform": "identity",
+                    "required": true,
+                    "defaultJSON": "manualReview",
+                    "onMissing": "useDefault"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "fldujvVSXUZqNQcss",
+                  "fieldType": "multilineText",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "conflictWorkflow.ruleEvaluation.reasonCodes",
+                    "transform": "JSON.stringify",
+                    "required": false,
+                    "defaultJSON": [],
+                    "onMissing": "useDefault"
+                  }
+                }
+              },
+              {
+                "field": {
+                  "fieldId": "flda5Y0JlsqDcZiNJ",
+                  "fieldType": "multilineText",
+                  "writeMode": "replace",
+                  "writeSource": {
+                    "path": "conflictWorkflow.comparison",
+                    "transform": "JSON.stringify",
+                    "required": false,
+                    "defaultJSON": {},
+                    "onMissing": "useDefault"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram name="Page-1" id="AHbTrV_ugLZ-OtwkYiI_">
+    <mxGraphModel dx="2100" dy="1470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-70" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="40" y="80" width="750" height="930" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-20" value="&lt;h2 style=&quot;margin-top: 0px;&quot;&gt;Org Specific Dashboard&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-70">
+          <mxGeometry y="562.8947368421052" width="750" height="367.10526315789474" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-21" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-70">
+          <mxGeometry x="25.423728813559322" y="611.8421052631578" width="699.1525423728813" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-22" value="Jobs in Progress" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-21">
+          <mxGeometry x="181.77966101694915" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-23" value="Total Jobs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-21">
+          <mxGeometry width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-24" value="Jobs Completed" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-21">
+          <mxGeometry x="364.8305084745763" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-25" value="Jobs Suggested" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-21">
+          <mxGeometry x="546.6101694915254" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-26" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-70">
+          <mxGeometry x="25.423728813559322" y="819.8684210526316" width="699.1525423728813" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-27" value="All Jobs Income Breakdown" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-26">
+          <mxGeometry x="181.77966101694915" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-28" value="Avg. Job Cost" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-26">
+          <mxGeometry width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-29" value="All Jobs County Breakdown" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-26">
+          <mxGeometry x="364.8305084745763" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-30" value="Highest &amp;amp; Lowest Job Costs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-26">
+          <mxGeometry x="546.6101694915254" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-31" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-70">
+          <mxGeometry x="25.423728813559322" y="715.8552631578947" width="699.1525423728813" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-32" value="Assessments Completed Total" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-31">
+          <mxGeometry x="181.77966101694915" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-33" value="Assesssments Assigned Total" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-31">
+          <mxGeometry width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-34" value="Assessments Total Pending" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-31">
+          <mxGeometry x="364.8305084745763" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-35" value="Highest &amp;amp; Lowest Job Costs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-31">
+          <mxGeometry x="546.6101694915254" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-56" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-70">
+          <mxGeometry y="281.4473684210526" width="750" height="269.2105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-7" value="&lt;h2 style=&quot;margin-top: 0px;&quot;&gt;Dashboard All Time&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-56">
+          <mxGeometry width="750" height="269.2105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-8" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-56">
+          <mxGeometry x="25.423728813559322" y="61.18421052631579" width="699.1525423728813" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-1" value="Jobs in Progress" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-8">
+          <mxGeometry x="181.77966101694915" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-2" value="Total Jobs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-8">
+          <mxGeometry width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-4" value="Jobs Completed" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-8">
+          <mxGeometry x="364.8305084745763" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-5" value="Job Withdrawn/&lt;br&gt;Rejected/Ineligible" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-8">
+          <mxGeometry x="546.6101694915254" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-15" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-56">
+          <mxGeometry x="25.423728813559322" y="159.07894736842104" width="699.1525423728813" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-16" value="All Jobs &lt;br&gt;Income Breakdown" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-15">
+          <mxGeometry x="181.77966101694915" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-17" value="Avg. Job Cost" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-15">
+          <mxGeometry width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-18" value="All Jobs County Breakdown" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-15">
+          <mxGeometry x="364.8305084745763" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-19" value="Highest &amp;amp; Lowest &lt;br&gt;Job Costs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-15">
+          <mxGeometry x="546.6101694915254" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-69" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-70">
+          <mxGeometry width="750" height="269.2105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-45" value="&lt;h2 style=&quot;margin-top: 0px;&quot;&gt;Dashboard Past Week&lt;/h2&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-69">
+          <mxGeometry width="750" height="269.2105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-46" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-69">
+          <mxGeometry x="25.423728813559322" y="61.18421052631579" width="699.1525423728813" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-47" value="Assessments Assigned" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-46">
+          <mxGeometry x="181.77966101694915" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-48" value="Total Applicantions" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-46">
+          <mxGeometry width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-49" value="Assessments Completed" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-46">
+          <mxGeometry x="364.8305084745763" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-50" value="Avg. Triage Score" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-46">
+          <mxGeometry x="546.6101694915254" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-51" value="" style="group" vertex="1" connectable="0" parent="Guna-WGOAqzZlKVIx7kh-69">
+          <mxGeometry x="25.423728813559322" y="159.07894736842104" width="699.1525423728813" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-52" value="Income Breakdown" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-51">
+          <mxGeometry x="181.77966101694915" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-53" value="Total # of individuals (from Household Size)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-51">
+          <mxGeometry width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-54" value="County Breakdown" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-51">
+          <mxGeometry x="364.8305084745763" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+        <mxCell id="Guna-WGOAqzZlKVIx7kh-55" value="Issue Type Pie" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="Guna-WGOAqzZlKVIx7kh-51">
+          <mxGeometry x="546.6101694915254" width="152.54237288135593" height="73.42105263157895" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

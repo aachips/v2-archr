@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Portal &ndash; ARCHR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="archr-logo.svg">
+    <script>(function(){try{var t=localStorage.getItem('archr-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body class="has-portal">
+    <div class="portal-app">
+        <aside class="portal-sidebar" id="portalSidebar" aria-label="Portal navigation">
+            <div class="portal-sidebar-header">
+                <a href="index.html" class="portal-brand">
+                    <img src="archr-logo.svg" alt="ARCHR" class="portal-brand-mark">
+                    <span class="portal-brand-text">ARCHR Portal</span>
+                </a>
+                <button type="button" class="portal-icon-btn portal-sidebar-close" id="portalSidebarClose" aria-label="Close menu">
+                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <nav class="portal-nav">
+                <ul>
+                    <li><a href="#dashboard" class="portal-nav-link active" data-portal-page="dashboard"><i class="fas fa-gauge-high"></i><span>Dashboard</span></a></li>
+                    <li><a href="#cases" class="portal-nav-link" data-portal-page="cases"><i class="fas fa-house-chimney-medical"></i><span>Cases</span></a></li>
+                    <li><a href="#search" class="portal-nav-link" data-portal-page="search"><i class="fas fa-magnifying-glass"></i><span>Search Applications</span></a></li>
+                    <li><a href="#metrics" class="portal-nav-link" data-portal-page="metrics"><i class="fas fa-chart-line"></i><span>Metric Tracking</span></a></li>
+                    <li><a href="#assessments" class="portal-nav-link" data-portal-page="assessments"><i class="fas fa-clipboard-list"></i><span>Assessments</span></a></li>
+                    <li><a href="#workorders" class="portal-nav-link" data-portal-page="workorders"><i class="fas fa-list-check"></i><span>Work Orders</span></a></li>
+                    <li><a href="#finance" class="portal-nav-link" data-portal-page="finance"><i class="fas fa-dollar-sign"></i><span>Finance</span></a></li>
+                    <li><a href="#documents" class="portal-nav-link" data-portal-page="documents"><i class="fas fa-folder-open"></i><span>Documents</span></a></li>
+                    <li><a href="#help" class="portal-nav-link" data-portal-page="help"><i class="fas fa-circle-question"></i><span>Help</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="portal-sidebar-footer">
+                <a href="index.html" class="portal-nav-link"><i class="fas fa-arrow-left"></i><span>Back to public site</span></a>
+            </div>
+        </aside>
+
+        <div class="portal-main">
+            <header class="portal-topbar">
+                <div class="portal-topbar-left">
+                    <button type="button" class="portal-icon-btn portal-mobile-toggle" id="portalMobileToggle" aria-label="Open menu" aria-controls="portalSidebar" aria-expanded="false">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <h1 class="portal-page-title" id="portalPageTitle">Dashboard</h1>
+                </div>
+                <div class="portal-topbar-right">
+                    <span class="org-badge"><i class="fas fa-building"></i> AHFH</span>
+                    <button type="button" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+                        <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+                        <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+                    </button>
+                    <div class="portal-user-menu">
+                        <button type="button" class="portal-avatar" id="portalAvatar" aria-haspopup="true" aria-expanded="false">JD</button>
+                        <div class="portal-user-dropdown" id="portalUserDropdown" hidden>
+                            <div class="portal-user-info">
+                                <strong>Jamie Davis</strong>
+                                <small>jamie@ashevillehabitat.org</small>
+                            </div>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
+                                <li><a href="#"><i class="fas fa-building"></i> Organization</a></li>
+                                <li role="separator"></li>
+                                <li><a href="#" class="danger"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="portal-content">
+                <!-- Dashboard (landing) -->
+                <section id="portal-page-dashboard" class="portal-page active" data-page-title="Dashboard">
+                    <p class="login-banner" role="status">
+                        <i class="fas fa-lock"></i>
+                        <span>You are viewing a private partner dashboard. Metrics shown reflect only your organization's activity.</span>
+                    </p>
+
+                    <section class="dash-hero" aria-labelledby="portal-welcome">
+                        <div>
+                            <h2 id="portal-welcome">Welcome back, Asheville Habitat for Humanity</h2>
+                            <p>Quick view of your organization's open work, assessments, and recent activity within the ARCHR coalition.</p>
+                            <p class="updated"><i class="far fa-clock"></i> Last updated: today, 9:14 AM</p>
+                        </div>
+                        <div class="dash-hero-meta">
+                            <span class="org-badge"><i class="fas fa-building"></i> Org: AHFH</span>
+                            <label for="org-switch" style="position:absolute;left:-9999px;">Switch organization</label>
+                            <select id="org-switch" class="btn btn-secondary" style="padding:10px 16px;">
+                                <option>Asheville Habitat for Humanity</option>
+                                <option>Mountain Housing Opportunities</option>
+                                <option>Community Action Opportunities</option>
+                                <option>Community Ownership Poder Emma</option>
+                            </select>
+                        </div>
+                    </section>
+
+                    <section class="dash-section active" aria-label="At-a-glance metrics">
+                        <h3 class="dash-section-title"><i class="fas fa-briefcase"></i> At a Glance</h3>
+                        <div class="kpi-grid">
+                            <div class="kpi"><span class="kpi-label">Total Jobs</span><span class="kpi-value">312</span><span class="kpi-sub">Lifetime, this org</span></div>
+                            <div class="kpi kpi-amber"><span class="kpi-label">In Progress</span><span class="kpi-value">28</span><span class="kpi-sub"><span class="pill pill-amber">9 awaiting funds</span></span></div>
+                            <div class="kpi kpi-green"><span class="kpi-label">Completed</span><span class="kpi-value">241</span><span class="kpi-sub">77% of all jobs</span></div>
+                            <div class="kpi kpi-blue"><span class="kpi-label">Suggested to You</span><span class="kpi-value">14</span><span class="kpi-sub">Pending your acceptance</span></div>
+                        </div>
+                    </section>
+
+                    <div class="callout">
+                        <h3><i class="fas fa-chart-line"></i> See the full picture</h3>
+                        <p>For assessment trends, cost ranges, and demographic breakdowns across all your jobs, head to Metric Tracking.</p>
+                        <a href="#metrics" class="btn btn-primary" data-portal-page="metrics"><i class="fas fa-chart-line"></i> View Metric Tracking</a>
+                    </div>
+                </section>
+
+                <!-- Metric Tracking -->
+                <section id="portal-page-metrics" class="portal-page" data-page-title="Metric Tracking" hidden>
+                    <section class="dash-hero" aria-labelledby="metrics-title">
+                        <div>
+                            <h2 id="metrics-title">Your Organization's Metrics</h2>
+                            <p>Operational snapshot of jobs, assessments, and outcomes for Asheville Habitat for Humanity.</p>
+                            <p class="updated"><i class="far fa-clock"></i> Last updated: today, 9:14 AM</p>
+                        </div>
+                        <div class="dash-hero-meta">
+                            <span class="org-badge"><i class="fas fa-building"></i> Org: AHFH</span>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Download Report</a>
+                        </div>
+                    </section>
+
+                    <section class="dash-section active" aria-label="Org-specific metrics">
+                        <h3 class="dash-section-title"><i class="fas fa-briefcase"></i> Jobs Pipeline</h3>
+                        <div class="kpi-grid">
+                            <div class="kpi"><span class="kpi-label">Total Jobs</span><span class="kpi-value">312</span><span class="kpi-sub">Lifetime, this org</span></div>
+                            <div class="kpi kpi-amber"><span class="kpi-label">In Progress</span><span class="kpi-value">28</span><span class="kpi-sub"><span class="pill pill-amber">9 awaiting funds</span></span></div>
+                            <div class="kpi kpi-green"><span class="kpi-label">Completed</span><span class="kpi-value">241</span><span class="kpi-sub">77% of all jobs</span></div>
+                            <div class="kpi kpi-blue"><span class="kpi-label">Suggested to You</span><span class="kpi-value">14</span><span class="kpi-sub">Pending your acceptance</span></div>
+                        </div>
+
+                        <h3 class="dash-section-title"><i class="fas fa-clipboard-check"></i> Assessments</h3>
+                        <div class="kpi-grid">
+                            <div class="kpi kpi-blue"><span class="kpi-label">Assigned (Total)</span><span class="kpi-value">312</span><span class="kpi-sub">Lifetime</span></div>
+                            <div class="kpi kpi-green"><span class="kpi-label">Completed (Total)</span><span class="kpi-value">247</span><span class="kpi-sub">79% completion</span></div>
+                            <div class="kpi kpi-amber"><span class="kpi-label">Pending</span><span class="kpi-value">65</span><span class="kpi-sub"><span class="pill pill-red">7 overdue</span></span></div>
+                        </div>
+
+                        <div class="chart-grid cols-2">
+                            <article class="chart-card">
+                                <header><h4><i class="fas fa-chart-bar"></i> Assessment Status</h4><span class="muted">Lifetime totals</span></header>
+                                <div class="chart-canvas-wrap"><canvas id="orgAssessmentsChart"></canvas></div>
+                            </article>
+                            <article class="chart-card">
+                                <header><h4><i class="fas fa-coins"></i> Job Cost Range</h4><span class="muted">Your completed jobs</span></header>
+                                <div class="cost-extremes">
+                                    <div class="extreme high"><div class="label">Highest Job Cost</div><div class="amount">$24,300</div><div class="meta">Foundation stabilization &middot; Buncombe Co.</div></div>
+                                    <div class="extreme low"><div class="label">Lowest Job Cost</div><div class="amount">$410</div><div class="meta">Smoke detector install &middot; Yancey Co.</div></div>
+                                </div>
+                                <p class="chart-card-note">
+                                    <strong>Average job cost:</strong> $5,890
+                                </p>
+                            </article>
+                        </div>
+
+                        <h3 class="dash-section-title"><i class="fas fa-chart-pie"></i> Demographics &ndash; All Your Jobs</h3>
+                        <div class="chart-grid cols-2">
+                            <article class="chart-card">
+                                <header><h4><i class="fas fa-dollar-sign"></i> Income Breakdown</h4><span class="muted">% of AMI</span></header>
+                                <div class="chart-canvas-wrap"><canvas id="orgIncomeChart"></canvas></div>
+                            </article>
+                            <article class="chart-card">
+                                <header><h4><i class="fas fa-map-marker-alt"></i> County Breakdown</h4><span class="muted">Service distribution</span></header>
+                                <div class="chart-canvas-wrap"><canvas id="orgCountyChart"></canvas></div>
+                            </article>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- Cases (prototype: integrates all six schema systems for one case) -->
+                <section id="portal-page-cases" class="portal-page" data-page-title="Cases" hidden>
+                    <!-- List view: shown when hash is #cases (no sub-path). -->
+                    <div class="case-list-view" data-case-view="list">
+                        <header class="case-list-header">
+                            <div>
+                                <h2>Active Cases</h2>
+                                <p class="case-list-sub">Cases are identified by <strong>Placecode</strong> &mdash; house number plus the first ten characters of the street name &mdash; so client identity stays private until staff open the case detail.</p>
+                            </div>
+                            <span class="org-badge"><i class="fas fa-shield-halved"></i> Privacy-first list view</span>
+                        </header>
+                        <div class="case-list-table-wrap">
+                            <table class="case-list-table" aria-label="Cases visible to your organization">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Placecode</th>
+                                        <th scope="col">Phase</th>
+                                        <th scope="col">County</th>
+                                        <th scope="col">Helene</th>
+                                        <th scope="col">Urgent</th>
+                                        <th scope="col">Submitted</th>
+                                        <th scope="col"><span class="visually-hidden">Open</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody data-case-list-body>
+                                    <tr><td colspan="7" class="case-list-loading">Loading cases&hellip;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Detail view: shown when hash is #cases/<placecode>. -->
+                    <div class="case-detail-view" data-case-view="detail" hidden>
+                        <a href="#cases" class="case-back-link" data-portal-page="cases"><i class="fas fa-arrow-left"></i> All cases</a>
+
+                        <!-- Sticky section nav: jumps to each of the six systems below. -->
+                        <nav class="case-section-nav" aria-label="Jump to section">
+                            <ul>
+                                <li><a href="#sec-overview"   data-case-jump="sec-overview">Overview</a></li>
+                                <li><a href="#sec-intake"     data-case-jump="sec-intake">Application</a></li>
+                                <li><a href="#sec-match"      data-case-jump="sec-match">Coalition Match</a></li>
+                                <li><a href="#sec-team"       data-case-jump="sec-team">Case Team</a></li>
+                                <li><a href="#sec-documents"  data-case-jump="sec-documents">Documents</a></li>
+                                <li><a href="#sec-finance"    data-case-jump="sec-finance">Finance</a></li>
+                                <li><a href="#sec-help"       data-case-jump="sec-help">Help &amp; SOPs</a></li>
+                            </ul>
+                        </nav>
+
+                        <div class="case-detail-body">
+                            <section class="case-section" id="sec-overview" data-case-section="overview" aria-labelledby="sec-overview-h">
+                                <h2 class="case-section-title" id="sec-overview-h"><i class="fas fa-house-chimney-medical"></i> <span data-case-bind="placecode_heading">&hellip;</span></h2>
+                                <div data-case-bind="overview"></div>
+                            </section>
+
+                            <section class="case-section" id="sec-intake" data-case-section="intake" aria-labelledby="sec-intake-h">
+                                <h2 class="case-section-title" id="sec-intake-h"><i class="fas fa-file-pen"></i> Application <span class="case-section-source">from intake</span></h2>
+                                <div data-case-bind="intake"></div>
+                            </section>
+
+                            <section class="case-section" id="sec-match" data-case-section="match" aria-labelledby="sec-match-h">
+                                <h2 class="case-section-title" id="sec-match-h"><i class="fas fa-handshake"></i> Coalition Match <span class="case-section-source">from partner-organizations</span></h2>
+                                <div data-case-bind="match"></div>
+                            </section>
+
+                            <section class="case-section" id="sec-team" data-case-section="team" aria-labelledby="sec-team-h">
+                                <h2 class="case-section-title" id="sec-team-h"><i class="fas fa-people-group"></i> Case Team &amp; Status <span class="case-section-source">from role-based-access</span></h2>
+                                <div data-case-bind="team"></div>
+                            </section>
+
+                            <section class="case-section" id="sec-documents" data-case-section="documents" aria-labelledby="sec-documents-h">
+                                <h2 class="case-section-title" id="sec-documents-h"><i class="fas fa-folder-open"></i> Documents &amp; Photos <span class="case-section-source">from document-storage</span></h2>
+                                <div data-case-bind="documents"></div>
+                            </section>
+
+                            <section class="case-section" id="sec-finance" data-case-section="finance" aria-labelledby="sec-finance-h">
+                                <h2 class="case-section-title" id="sec-finance-h"><i class="fas fa-coins"></i> Finance <span class="case-section-source">from role-based-access &middot; surfaces in metric-tracking</span></h2>
+                                <div data-case-bind="finance"></div>
+                            </section>
+
+                            <section class="case-section" id="sec-help" data-case-section="help" aria-labelledby="sec-help-h">
+                                <h2 class="case-section-title" id="sec-help-h"><i class="fas fa-circle-question"></i> Help for This Step <span class="case-section-source">from documentation-sops</span></h2>
+                                <div data-case-bind="help"></div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- "Case not in this prototype" placeholder. -->
+                    <div class="case-missing-view" data-case-view="missing" hidden>
+                        <div class="portal-coming-soon">
+                            <i class="fas fa-folder-tree"></i>
+                            <h2>Case detail coming soon</h2>
+                            <p>This case is in the list, but only <strong>247-RIVERSIDE</strong> is fully built out in the prototype. Open that one to see how the six systems integrate.</p>
+                            <p><a href="#cases/247-RIVERSIDE" class="btn btn-primary" data-portal-page="cases"><i class="fas fa-arrow-right"></i> Open 247-RIVERSIDE</a></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stub pages -->
+                <section id="portal-page-search" class="portal-page" data-page-title="Search Applications" hidden>
+                    <div class="portal-coming-soon">
+                        <i class="fas fa-magnifying-glass"></i>
+                        <h2>Search Applications</h2>
+                        <p>Cross-organization case search, status filters, and quick-review actions will live here.</p>
+                    </div>
+                </section>
+
+                <section id="portal-page-assessments" class="portal-page" data-page-title="Assessments" hidden>
+                    <div class="portal-coming-soon">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Assessments</h2>
+                        <p>Schedule, complete, and review on-site assessments assigned to your team.</p>
+                    </div>
+                </section>
+
+                <section id="portal-page-workorders" class="portal-page" data-page-title="Work Orders" hidden>
+                    <div class="portal-coming-soon">
+                        <i class="fas fa-list-check"></i>
+                        <h2>Work Orders</h2>
+                        <p>Track active and completed work orders, assign crews, and monitor progress.</p>
+                    </div>
+                </section>
+
+                <section id="portal-page-finance" class="portal-page" data-page-title="Finance" hidden>
+                    <div class="portal-coming-soon">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h2>Finance</h2>
+                        <p>Job costing, funding source tracking, and reimbursement workflows.</p>
+                    </div>
+                </section>
+
+                <section id="portal-page-documents" class="portal-page" data-page-title="Documents" hidden>
+                    <div class="portal-coming-soon">
+                        <i class="fas fa-folder-open"></i>
+                        <h2>Documents</h2>
+                        <p>Centralized library for intake forms, scopes of work, photos, and signed agreements.</p>
+                    </div>
+                </section>
+
+                <section id="portal-page-help" class="portal-page" data-page-title="Help" hidden>
+                    <div class="portal-coming-soon">
+                        <i class="fas fa-circle-question"></i>
+                        <h2>Help</h2>
+                        <p>Documentation, contact information for the ARCHR coordinator, and onboarding guides.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/partner-portal.js"></script>
+    <script src="js/case-detail.js"></script>
+</body>
+</html>

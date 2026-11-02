@@ -1,0 +1,38 @@
+// 3: Messages Widget - Show recent unread messages
+
+{
+  "component_name": "Unread Messages",
+  "component_id": "cmp_unread_messages",
+  "component_type": "list",
+  "data_sources": {
+    "messages": "communications where to_user_id = current_user AND is_read = false"
+  },
+  "list_item_fields": [
+    {
+      "field": "sender_name",
+      "label": "From",
+      "type": "text"
+    },
+    {
+      "field": "preview",
+      "label": "Message",
+      "type": "truncated_text",
+      "max_length": 60
+    },
+    {
+      "field": "sent_at",
+      "label": "Time",
+      "type": "relative_time"
+    }
+  ],
+  "list_item_actions": [
+    {
+      "label": "Read",
+      "action": "navigate",
+      "target": "/messages"
+    }
+  ],
+  "limit": 5,
+  "refresh_rate": "60 seconds",
+  "empty_state": "No unread messages"
+}

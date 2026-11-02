@@ -1,0 +1,905 @@
+Table Name,Column Name,Data Type,Constraints/Notes
+intake_submissions,id,SERIAL,PRIMARY KEY
+intake_submissions,submission_uuid,UUID,DEFAULT gen_random_uuid() UNIQUE
+intake_submissions,submitted_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+intake_submissions,language,VARCHAR(3),DEFAULT 'eng'
+intake_submissions,is_referral,BOOLEAN,
+intake_submissions,referrer_name,VARCHAR(255),
+intake_submissions,referrer_organization,VARCHAR(255),
+intake_submissions,referrer_email,VARCHAR(255),
+intake_submissions,referrer_notes,TEXT,
+intake_submissions,consent_agreed,BOOLEAN,
+intake_submissions,applicant_first_name,VARCHAR(100),
+intake_submissions,applicant_last_name,VARCHAR(100),
+intake_submissions,applicant_dob,DATE,
+intake_submissions,applicant_dob_unknown,BOOLEAN,DEFAULT FALSE
+intake_submissions,preferred_phone,BOOLEAN,DEFAULT FALSE
+intake_submissions,preferred_text,BOOLEAN,DEFAULT FALSE
+intake_submissions,preferred_email,BOOLEAN,DEFAULT FALSE
+intake_submissions,preferred_other,BOOLEAN,DEFAULT FALSE
+intake_submissions,home_phone,VARCHAR(20),
+intake_submissions,cell_phone,VARCHAR(20),
+intake_submissions,contact_email,VARCHAR(255),
+intake_submissions,other_contact_method_description,VARCHAR(500),
+intake_submissions,contact_notes,TEXT,
+intake_submissions,home_address,VARCHAR(500),
+intake_submissions,home_city,VARCHAR(100),
+intake_submissions,home_state,VARCHAR(50),
+intake_submissions,home_zip,VARCHAR(20),
+intake_submissions,is_primary_residence,BOOLEAN,
+intake_submissions,receives_different_mail,BOOLEAN,
+intake_submissions,mail_address,VARCHAR(500),
+intake_submissions,mail_city,VARCHAR(100),
+intake_submissions,mail_state,VARCHAR(50),
+intake_submissions,mail_zip,VARCHAR(20),
+intake_submissions,home_type,VARCHAR(50),"traditional, modular, mobile, other"
+intake_submissions,year_built,INTEGER,
+intake_submissions,move_in_date,DATE,
+intake_submissions,owns_home,BOOLEAN,
+intake_submissions,owns_lot,BOOLEAN,only for mobile homes
+intake_submissions,insurance_provider,VARCHAR(255),
+intake_submissions,lived_one_year,BOOLEAN,
+intake_submissions,household_size,INTEGER,
+intake_submissions,household_adults,INTEGER,
+intake_submissions,additional_repair_details,TEXT,
+intake_submissions,urgent_unable_to_stay,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_no_hvac,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_no_potable_water,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_no_bathroom,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_no_kitchen,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_open_to_elements,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_no_entry,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_accessibility,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_other_issue,BOOLEAN,DEFAULT FALSE
+intake_submissions,urgent_eviction_risk,BOOLEAN,DEFAULT FALSE
+intake_submissions,helene_related,BOOLEAN,
+intake_submissions,fema_claim_filed,BOOLEAN,
+intake_submissions,fema_outcome,VARCHAR(20),"denied, settled, other"
+intake_submissions,fema_settlement_amount,"DECIMAL(12,2)",
+intake_submissions,fema_remaining_exists,BOOLEAN,
+intake_submissions,fema_remaining_amount,"DECIMAL(12,2)",
+intake_submissions,insurance_claim_filed,BOOLEAN,
+intake_submissions,insurance_outcome,VARCHAR(20),"denied, settled, other"
+intake_submissions,insurance_settlement_amount,"DECIMAL(12,2)",
+intake_submissions,insurance_remaining_exists,BOOLEAN,
+intake_submissions,insurance_remaining_amount,"DECIMAL(12,2)",
+intake_submissions,has_income,BOOLEAN,
+intake_submissions,income_method,VARCHAR(10),"gross, calculator"
+intake_submissions,gross_annual_income,"DECIMAL(12,2)",
+intake_submissions,income_docs_method,VARCHAR(20),"upload_now, email_link, in_person"
+intake_submissions,zero_income_first_name,VARCHAR(100),
+intake_submissions,zero_income_last_name,VARCHAR(100),
+intake_submissions,zero_income_address,VARCHAR(500),
+intake_submissions,zero_income_agreed,BOOLEAN,
+intake_submissions,applicant_signature,TEXT,PNG data URL
+intake_submissions,zero_income_signature,TEXT,PNG data URL
+intake_submissions,submission_status,VARCHAR(20),"DEFAULT 'pending'; pending, reviewed, approved, denied"
+intake_submissions,assigned_organization,VARCHAR(100),
+intake_submissions,reviewed_by,VARCHAR(100),
+intake_submissions,reviewed_at,TIMESTAMP,
+intake_submissions,eligibility_checked_at,TIMESTAMP,
+intake_submissions,is_test,BOOLEAN,DEFAULT FALSE
+intake_submissions,requestor_user_id,INTEGER,FK to system_users (added by requestor-account-link.sql)
+household_attributes,id,SERIAL,PRIMARY KEY
+household_attributes,attribute_name,VARCHAR(50),UNIQUE NOT NULL
+submission_household_attributes,submission_id,INTEGER,"FK to intake_submissions(id) ON DELETE CASCADE; junction table; PK composite (submission_id, attribute_id)"
+submission_household_attributes,attribute_id,INTEGER,"FK to household_attributes(id); junction table; PK composite (submission_id, attribute_id)"
+repair_requests,id,SERIAL,PRIMARY KEY
+repair_requests,submission_id,INTEGER,FK to intake_submissions(id) ON DELETE CASCADE
+repair_requests,repair_need,TEXT,NOT NULL
+repair_requests,priority,INTEGER,1 = highest priority
+repair_requests,sort_order,INTEGER,order in which it was added
+repair_categories,id,SERIAL,PRIMARY KEY
+repair_categories,category_code,VARCHAR(50),UNIQUE NOT NULL
+repair_categories,category_label,VARCHAR(100),NOT NULL
+submission_repair_categories,submission_id,INTEGER,"FK to intake_submissions(id) ON DELETE CASCADE; junction table; PK composite (submission_id, category_id)"
+submission_repair_categories,category_id,INTEGER,"FK to repair_categories(id); junction table; PK composite (submission_id, category_id)"
+repair_category_details,id,SERIAL,PRIMARY KEY
+repair_category_details,submission_id,INTEGER,FK to intake_submissions(id) ON DELETE CASCADE
+repair_category_details,category_id,INTEGER,FK to repair_categories(id)
+repair_category_details,details_text,TEXT,
+repair_category_details,heating_woodstove,BOOLEAN,DEFAULT FALSE
+repair_category_details,heating_gas_propane,BOOLEAN,DEFAULT FALSE
+repair_category_details,heating_electric,BOOLEAN,DEFAULT FALSE
+repair_category_details,heating_kerosene,BOOLEAN,DEFAULT FALSE
+repair_category_details,water_source,VARCHAR(20),"municipal, well"
+repair_category_details,UNIQUE(submission_id,category_id),UNIQUE constraint
+income_records,id,SERIAL,PRIMARY KEY
+income_records,submission_id,INTEGER,FK to intake_submissions(id) ON DELETE CASCADE
+income_records,whose_income,VARCHAR(10),"mine, other"
+income_records,income_source,VARCHAR(30),"work, self_employment, social_security, disability, retirement, other"
+income_records,frequency,VARCHAR(15),"weekly, biweekly, monthly, annually, other"
+income_records,amount,"DECIMAL(12,2)",
+income_records,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+contact_methods,id,SERIAL,PRIMARY KEY
+contact_methods,method_code,VARCHAR(10),UNIQUE NOT NULL
+submission_contact_methods,submission_id,INTEGER,"FK to intake_submissions(id) ON DELETE CASCADE; junction table; PK composite (submission_id, method_id)"
+submission_contact_methods,method_id,INTEGER,"FK to contact_methods(id); junction table; PK composite (submission_id, method_id)"
+audit_log,id,SERIAL,PRIMARY KEY
+audit_log,submission_id,INTEGER,FK to intake_submissions(id) ON DELETE CASCADE
+audit_log,action,VARCHAR(50),"created, updated, reviewed, status_changed, assigned"
+audit_log,old_value,TEXT,
+audit_log,new_value,TEXT,
+audit_log,performed_by,VARCHAR(100),
+audit_log,performed_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+coalition_organizations,id,SERIAL,PRIMARY KEY
+coalition_organizations,organization_code,VARCHAR(20),UNIQUE NOT NULL
+coalition_organizations,organization_name,VARCHAR(200),NOT NULL
+coalition_organizations,description,TEXT,
+coalition_organizations,website_url,VARCHAR(255),
+coalition_organizations,contact_email,VARCHAR(255),
+coalition_organizations,contact_phone,VARCHAR(20),
+coalition_organizations,logo_url,VARCHAR(255),
+coalition_organizations,is_active,BOOLEAN,DEFAULT TRUE
+coalition_organizations,max_active_applications,INTEGER,DEFAULT 50
+coalition_organizations,auto_claim_enabled,BOOLEAN,DEFAULT FALSE
+coalition_organizations,notification_email,VARCHAR(255),
+coalition_organizations,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+coalition_organizations,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+coalition_organizations,created_by,VARCHAR(100),
+coalition_organizations,updated_by,VARCHAR(100),
+organization_users,id,SERIAL,PRIMARY KEY
+organization_users,organization_id,INTEGER,FK to coalition_organizations(id) ON DELETE CASCADE
+organization_users,email,VARCHAR(255),NOT NULL
+organization_users,full_name,VARCHAR(200),
+organization_users,role,VARCHAR(50),"DEFAULT 'viewer'; admin, reviewer, viewer"
+organization_users,is_active,BOOLEAN,DEFAULT TRUE
+organization_users,last_login,TIMESTAMP,
+organization_users,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+organization_users,UNIQUE(organization_id,email),UNIQUE(organization_id,email)
+criteria_types,id,SERIAL,PRIMARY KEY
+criteria_types,type_code,VARCHAR(50),UNIQUE NOT NULL
+criteria_types,type_name,VARCHAR(100),NOT NULL
+criteria_types,input_type,VARCHAR(20),"NOT NULL; text, number, select, multiselect, boolean, range"
+criteria_types,description,TEXT,
+organization_eligibility_rules,id,SERIAL,PRIMARY KEY
+organization_eligibility_rules,organization_id,INTEGER,FK to coalition_organizations(id) ON DELETE CASCADE
+organization_eligibility_rules,criteria_type_id,INTEGER,FK to criteria_types(id)
+organization_eligibility_rules,rule_operator,VARCHAR(10),DEFAULT 'equals'
+organization_eligibility_rules,rule_value,TEXT,NOT NULL
+organization_eligibility_rules,priority,INTEGER,DEFAULT 0
+organization_eligibility_rules,is_active,BOOLEAN,DEFAULT TRUE
+organization_eligibility_rules,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+organization_eligibility_rules,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+application_assignments,id,SERIAL,PRIMARY KEY
+application_assignments,submission_id,INTEGER,FK to intake_submissions(id) ON DELETE CASCADE
+application_assignments,organization_id,INTEGER,FK to coalition_organizations(id)
+application_assignments,status,VARCHAR(20),"DEFAULT 'pending'; pending, claimed, rejected, completed, expired"
+application_assignments,match_score,INTEGER,0-100 match percentage
+application_assignments,claimed_by,INTEGER,FK to organization_users(id)
+application_assignments,claimed_at,TIMESTAMP,
+application_assignments,rejected_by,INTEGER,FK to organization_users(id)
+application_assignments,rejected_at,TIMESTAMP,
+application_assignments,rejection_reason,TEXT,
+application_assignments,assigned_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+application_assignments,expires_at,TIMESTAMP,
+application_assignments,notes,TEXT,
+application_assignments,UNIQUE(submission_id,organization_id),UNIQUE(submission_id,organization_id)
+assignment_log,id,SERIAL,PRIMARY KEY
+assignment_log,assignment_id,INTEGER,FK to application_assignments(id) ON DELETE CASCADE
+assignment_log,action,VARCHAR(50),"assigned, claimed, rejected, reassigned, expired, completed"
+assignment_log,old_value,TEXT,
+assignment_log,new_value,TEXT,
+assignment_log,performed_by,INTEGER,FK to organization_users(id)
+assignment_log,performed_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+assignment_log,notes,TEXT,
+organization_metrics,id,SERIAL,PRIMARY KEY
+organization_metrics,organization_id,INTEGER,FK to coalition_organizations(id) ON DELETE CASCADE
+organization_metrics,metric_date,DATE,NOT NULL
+organization_metrics,applications_assigned,INTEGER,DEFAULT 0
+organization_metrics,applications_claimed,INTEGER,DEFAULT 0
+organization_metrics,applications_rejected,INTEGER,DEFAULT 0
+organization_metrics,applications_completed,INTEGER,DEFAULT 0
+organization_metrics,applications_expired,INTEGER,DEFAULT 0
+organization_metrics,avg_time_to_claim_hours,"DECIMAL(10,2)",
+organization_metrics,avg_time_to_complete_days,"DECIMAL(10,2)",
+organization_metrics,avg_match_score,"DECIMAL(5,2)",
+organization_metrics,rejection_rate,"DECIMAL(5,2)",
+organization_metrics,completion_rate,"DECIMAL(5,2)",
+organization_metrics,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+organization_metrics,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+organization_metrics,UNIQUE(organization_id,metric_date),UNIQUE(organization_id,metric_date)
+roles,id,SERIAL,PRIMARY KEY
+roles,role_code,VARCHAR(50),UNIQUE NOT NULL
+roles,role_name,VARCHAR(100),NOT NULL
+roles,role_level,INTEGER,NOT NULL; 0-10 hierarchy
+roles,description,TEXT,
+roles,is_system_role,BOOLEAN,DEFAULT FALSE
+roles,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+permission_categories,id,SERIAL,PRIMARY KEY
+permission_categories,category_code,VARCHAR(50),UNIQUE NOT NULL
+permission_categories,category_name,VARCHAR(100),NOT NULL
+permission_categories,description,TEXT,
+permissions,id,SERIAL,PRIMARY KEY
+permissions,permission_code,VARCHAR(100),UNIQUE NOT NULL
+permissions,permission_name,VARCHAR(200),NOT NULL
+permissions,category_id,INTEGER,FK to permission_categories(id)
+permissions,description,TEXT,
+permissions,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+role_permissions,id,SERIAL,PRIMARY KEY
+role_permissions,role_id,INTEGER,FK to roles(id) ON DELETE CASCADE
+role_permissions,permission_id,INTEGER,FK to permissions(id) ON DELETE CASCADE
+role_permissions,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+role_permissions,UNIQUE(role_id,permission_id),UNIQUE(role_id,permission_id)
+system_users,id,SERIAL,PRIMARY KEY
+system_users,username,VARCHAR(100),UNIQUE NOT NULL
+system_users,email,VARCHAR(255),UNIQUE NOT NULL
+system_users,full_name,VARCHAR(200),NOT NULL
+system_users,first_name,VARCHAR(100),NOT NULL
+system_users,last_name,VARCHAR(100),NOT NULL
+system_users,phone,VARCHAR(20),
+system_users,avatar_url,VARCHAR(500),
+system_users,is_active,BOOLEAN,DEFAULT TRUE
+system_users,last_login,TIMESTAMP,
+system_users,last_ip,INET,
+system_users,password_hash,VARCHAR(255),
+system_users,reset_token,VARCHAR(255),
+system_users,reset_token_expires,TIMESTAMP,
+system_users,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+system_users,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+system_users,created_by,INTEGER,FK to system_users(id) self-referencing
+system_users,updated_by,INTEGER,FK to system_users(id) self-referencing
+user_role_assignments,id,SERIAL,PRIMARY KEY
+user_role_assignments,user_id,INTEGER,FK to system_users(id) ON DELETE CASCADE
+user_role_assignments,organization_id,INTEGER,FK to coalition_organizations(id) ON DELETE CASCADE
+user_role_assignments,role_id,INTEGER,FK to roles(id)
+user_role_assignments,assigned_by,INTEGER,FK to system_users(id)
+user_role_assignments,assigned_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+user_role_assignments,expires_at,TIMESTAMP,for temporary assignments
+user_role_assignments,is_active,BOOLEAN,DEFAULT TRUE
+user_role_assignments,notes,TEXT,
+user_role_assignments,UNIQUE(user_id,organization_id,role_id),UNIQUE(user_id,organization_id,role_id)
+case_statuses,id,SERIAL,PRIMARY KEY
+case_statuses,status_code,VARCHAR(50),UNIQUE NOT NULL
+case_statuses,status_name,VARCHAR(100),NOT NULL
+case_statuses,status_sequence,INTEGER,NOT NULL; workflow order
+case_statuses,is_terminal,BOOLEAN,DEFAULT FALSE
+case_statuses,allowed_roles_for_transition,TEXT[],
+case_statuses,description,TEXT,
+cases,id,SERIAL,PRIMARY KEY
+cases,submission_id,INTEGER,FK to intake_submissions(id) ON DELETE CASCADE
+cases,case_number,VARCHAR(50),UNIQUE NOT NULL
+cases,status_id,INTEGER,FK to case_statuses(id)
+cases,assigned_caseworker_id,INTEGER,FK to system_users(id)
+cases,assigned_project_manager_id,INTEGER,FK to system_users(id)
+cases,assigned_assessor_id,INTEGER,FK to system_users(id)
+cases,intake_completed_at,TIMESTAMP,
+cases,assessment_scheduled_at,TIMESTAMP,
+cases,assessment_completed_at,TIMESTAMP,
+cases,approved_at,TIMESTAMP,
+cases,work_started_at,TIMESTAMP,
+cases,work_completed_at,TIMESTAMP,
+cases,total_budget,"DECIMAL(12,2)",
+cases,total_actual_cost,"DECIMAL(12,2)",
+cases,notes,TEXT,
+cases,internal_notes,TEXT,Staff-only notes
+cases,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+cases,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+cases,created_by,INTEGER,FK to system_users(id)
+cases,updated_by,INTEGER,FK to system_users(id)
+case_status_history,id,SERIAL,PRIMARY KEY
+case_status_history,case_id,INTEGER,FK to cases(id) ON DELETE CASCADE
+case_status_history,from_status_id,INTEGER,FK to case_statuses(id)
+case_status_history,to_status_id,INTEGER,FK to case_statuses(id)
+case_status_history,changed_by,INTEGER,FK to system_users(id)
+case_status_history,notes,TEXT,
+case_status_history,changed_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+property_assessments,id,SERIAL,PRIMARY KEY
+property_assessments,case_id,INTEGER,FK to cases(id) ON DELETE CASCADE
+property_assessments,assessor_id,INTEGER,FK to system_users(id)
+property_assessments,assessment_date,DATE,NOT NULL
+property_assessments,property_condition,TEXT,
+property_assessments,structural_issues,TEXT,
+property_assessments,electrical_issues,TEXT,
+property_assessments,plumbing_issues,TEXT,
+property_assessments,hvac_issues,TEXT,
+property_assessments,roofing_issues,TEXT,
+property_assessments,accessibility_needs,TEXT,
+property_assessments,safety_hazards,TEXT,
+property_assessments,photos,JSONB,Array of photo URLs
+property_assessments,square_footage,"DECIMAL(10,2)",
+property_assessments,num_bedrooms,INTEGER,
+property_assessments,num_bathrooms,INTEGER,
+property_assessments,recommended_repairs,TEXT,
+property_assessments,priority_repairs,TEXT,
+property_assessments,estimated_hours,"DECIMAL(10,2)",
+property_assessments,estimated_material_cost,"DECIMAL(12,2)",
+property_assessments,estimated_labor_cost,"DECIMAL(12,2)",
+property_assessments,total_estimate,"DECIMAL(12,2)",
+property_assessments,assessment_notes,TEXT,
+property_assessments,assigned_at,TIMESTAMP,
+property_assessments,assessment_completed_at,TIMESTAMP,
+property_assessments,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+property_assessments,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+repair_estimates,id,SERIAL,PRIMARY KEY
+repair_estimates,assessment_id,INTEGER,FK to property_assessments(id) ON DELETE CASCADE
+repair_estimates,repair_category_id,INTEGER,FK to repair_categories(id)
+repair_estimates,description,TEXT,NOT NULL
+repair_estimates,quantity,"DECIMAL(10,2)",
+repair_estimates,unit_cost,"DECIMAL(10,2)",
+repair_estimates,material_cost,"DECIMAL(12,2)",
+repair_estimates,labor_hours,"DECIMAL(10,2)",
+repair_estimates,labor_rate,"DECIMAL(10,2)",
+repair_estimates,labor_cost,"DECIMAL(12,2)",
+repair_estimates,total_cost,"DECIMAL(12,2)",
+repair_estimates,is_approved,BOOLEAN,DEFAULT FALSE
+repair_estimates,approved_by,INTEGER,FK to system_users(id)
+repair_estimates,approved_at,TIMESTAMP,
+repair_estimates,notes,TEXT,
+work_orders,id,SERIAL,PRIMARY KEY
+work_orders,case_id,INTEGER,FK to cases(id) ON DELETE CASCADE
+work_orders,work_order_number,VARCHAR(50),UNIQUE NOT NULL
+work_orders,project_manager_id,INTEGER,FK to system_users(id)
+work_orders,crew_lead_id,INTEGER,FK to system_users(id)
+work_orders,scheduled_start_date,DATE,
+work_orders,scheduled_end_date,DATE,
+work_orders,actual_start_date,DATE,
+work_orders,actual_end_date,DATE,
+work_orders,status,VARCHAR(50),DEFAULT 'assigned'
+work_orders,notes,TEXT,
+work_orders,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+work_orders,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+work_tasks,id,SERIAL,PRIMARY KEY
+work_tasks,work_order_id,INTEGER,FK to work_orders(id) ON DELETE CASCADE
+work_tasks,assigned_to_id,INTEGER,FK to system_users(id)
+work_tasks,task_type,VARCHAR(50),"repair, inspection, material_delivery, etc."
+work_tasks,description,TEXT,
+work_tasks,repair_category_id,INTEGER,FK to repair_categories(id)
+work_tasks,estimate_id,INTEGER,FK to repair_estimates(id)
+work_tasks,status,VARCHAR(50),DEFAULT 'assigned'
+work_tasks,priority,INTEGER,DEFAULT 1 (highest)
+work_tasks,estimated_hours,"DECIMAL(10,2)",
+work_tasks,actual_hours,"DECIMAL(10,2)",
+work_tasks,due_date,DATE,
+work_tasks,completed_at,TIMESTAMP,
+work_tasks,instructions,TEXT,
+work_tasks,completion_notes,TEXT,
+work_tasks,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+work_tasks,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+work_tasks,created_by,INTEGER,FK to system_users(id)
+task_status_history,id,SERIAL,PRIMARY KEY
+task_status_history,task_id,INTEGER,FK to work_tasks(id) ON DELETE CASCADE
+task_status_history,from_status,VARCHAR(50),
+task_status_history,to_status,VARCHAR(50),
+task_status_history,changed_by,INTEGER,FK to system_users(id)
+task_status_history,notes,TEXT,
+task_status_history,changed_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+material_requests,id,SERIAL,PRIMARY KEY
+material_requests,task_id,INTEGER,FK to work_tasks(id) ON DELETE CASCADE
+material_requests,requested_by,INTEGER,FK to system_users(id)
+material_requests,material_name,VARCHAR(200),
+material_requests,quantity,"DECIMAL(10,2)",
+material_requests,unit,VARCHAR(20),
+material_requests,estimated_cost,"DECIMAL(12,2)",
+material_requests,supplier,VARCHAR(200),
+material_requests,status,VARCHAR(50),"DEFAULT 'pending'; pending, approved, ordered, received"
+material_requests,approved_by,INTEGER,FK to system_users(id)
+material_requests,approved_at,TIMESTAMP,
+material_requests,order_date,DATE,
+material_requests,received_date,DATE,
+material_requests,notes,TEXT,
+material_requests,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+funding_sources,id,SERIAL,PRIMARY KEY
+funding_sources,organization_id,INTEGER,FK to coalition_organizations(id) ON DELETE CASCADE
+funding_sources,source_name,VARCHAR(200),NOT NULL
+funding_sources,source_type,VARCHAR(50),"grant, donation, government, partner, other"
+funding_sources,total_amount,"DECIMAL(12,2)",
+funding_sources,remaining_amount,"DECIMAL(12,2)",
+funding_sources,start_date,DATE,
+funding_sources,end_date,DATE,
+funding_sources,restrictions,TEXT,
+funding_sources,contact_name,VARCHAR(200),
+funding_sources,contact_email,VARCHAR(255),
+funding_sources,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+case_funding,id,SERIAL,PRIMARY KEY
+case_funding,case_id,INTEGER,FK to cases(id) ON DELETE CASCADE; junction
+case_funding,funding_source_id,INTEGER,FK to funding_sources(id); junction
+case_funding,allocated_amount,"DECIMAL(12,2)",
+case_funding,spent_amount,"DECIMAL(12,2)",DEFAULT 0
+case_funding,allocated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+case_funding,allocated_by,INTEGER,FK to system_users(id)
+case_funding,notes,TEXT,
+case_funding,approved_date,DATE,added by project-level-finance.sql
+case_funding,expiration_date,DATE,added by project-level-finance.sql
+case_funding,status,VARCHAR(50),"pending, approved, expired, depleted"
+invoices,id,SERIAL,PRIMARY KEY
+invoices,case_id,INTEGER,FK to cases(id) ON DELETE CASCADE
+invoices,invoice_number,VARCHAR(50),UNIQUE NOT NULL
+invoices,vendor_name,VARCHAR(200),
+invoices,vendor_type,VARCHAR(50),"subcontractor, supplier, etc."
+invoices,invoice_date,DATE,
+invoices,due_date,DATE,
+invoices,paid_date,DATE,
+invoices,subtotal,"DECIMAL(12,2)",
+invoices,tax,"DECIMAL(12,2)",
+invoices,total_amount,"DECIMAL(12,2)",
+invoices,status,VARCHAR(50),"DEFAULT 'pending'; pending, approved, paid, rejected"
+invoices,approved_by,INTEGER,FK to system_users(id)
+invoices,approved_at,TIMESTAMP,
+invoices,paid_by,INTEGER,FK to system_users(id)
+invoices,notes,TEXT,
+invoices,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+invoice_line_items,id,SERIAL,PRIMARY KEY
+invoice_line_items,invoice_id,INTEGER,FK to invoices(id) ON DELETE CASCADE
+invoice_line_items,task_id,INTEGER,FK to work_tasks(id)
+invoice_line_items,description,TEXT,
+invoice_line_items,quantity,"DECIMAL(10,2)",
+invoice_line_items,unit_price,"DECIMAL(12,2)",
+invoice_line_items,total,"DECIMAL(12,2)",
+case_communications,id,SERIAL,PRIMARY KEY
+case_communications,case_id,INTEGER,FK to cases(id) ON DELETE CASCADE
+case_communications,from_user_id,INTEGER,FK to system_users(id)
+case_communications,to_user_id,INTEGER,FK to system_users(id)
+case_communications,to_applicant,BOOLEAN,DEFAULT FALSE
+case_communications,communication_type,VARCHAR(50),"email, phone, sms, in_person, portal_message"
+case_communications,subject,VARCHAR(500),
+case_communications,body,TEXT,
+case_communications,attachments,JSONB,Array of attachment URLs
+case_communications,sent_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+case_communications,is_read,BOOLEAN,DEFAULT FALSE
+case_communications,read_at,TIMESTAMP,
+case_communications,notes,TEXT,
+volunteer_hours,id,SERIAL,PRIMARY KEY
+volunteer_hours,user_id,INTEGER,FK to system_users(id)
+volunteer_hours,work_order_id,INTEGER,FK to work_orders(id)
+volunteer_hours,date,DATE,NOT NULL
+volunteer_hours,hours,"DECIMAL(5,2)",
+volunteer_hours,task_description,TEXT,
+volunteer_hours,verified_by,INTEGER,FK to system_users(id)
+volunteer_hours,verified_at,TIMESTAMP,
+volunteer_hours,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+application_anchor,id,SERIAL,PRIMARY KEY
+application_anchor,submission_id,INTEGER,FK to intake_submissions(id) UNIQUE
+application_anchor,anchor_id,VARCHAR(50),UNIQUE NOT NULL
+application_anchor,case_number,VARCHAR(50),
+application_anchor,submitted_at,TIMESTAMP,NOT NULL
+application_anchor,submitted_from_ip,INET,
+application_anchor,is_eligible,BOOLEAN,
+application_anchor,disqualification_reasons,TEXT[],
+application_anchor,eligibility_score,INTEGER,0-100
+application_anchor,current_status,VARCHAR(50),"eligible, ineligible, assigned, in_progress, completed"
+application_anchor,assigned_organization_id,INTEGER,
+application_anchor,assigned_at,TIMESTAMP,
+application_anchor,income_bucket,VARCHAR(50),
+application_anchor,county_bucket,VARCHAR(50),
+application_anchor,repair_type_bucket,VARCHAR(50),
+application_anchor,helene_related,BOOLEAN,
+application_anchor,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+application_anchor,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+volunteer_profiles,id,SERIAL,PRIMARY KEY
+volunteer_profiles,user_id,INTEGER,FK to system_users(id) UNIQUE
+volunteer_profiles,level,INTEGER,DEFAULT 1
+volunteer_profiles,xp,INTEGER,DEFAULT 0
+volunteer_profiles,xp_to_next_level,INTEGER,DEFAULT 100
+volunteer_profiles,reputation_score,INTEGER,DEFAULT 0
+volunteer_profiles,reputation_tier,INTEGER,DEFAULT 0
+volunteer_profiles,total_quests_completed,INTEGER,DEFAULT 0
+volunteer_profiles,total_hours_logged,"DECIMAL(10,2)",DEFAULT 0
+volunteer_profiles,consecutive_weeks_active,INTEGER,DEFAULT 0
+volunteer_profiles,last_active_at,TIMESTAMP,
+volunteer_profiles,push_notifications_enabled,BOOLEAN,DEFAULT TRUE
+volunteer_profiles,email_digest_enabled,BOOLEAN,DEFAULT TRUE
+volunteer_profiles,weekly_quest_limit,INTEGER,DEFAULT 5
+volunteer_profiles,avatar_choice,VARCHAR(50),DEFAULT 'default'
+volunteer_profiles,title_equipped,VARCHAR(100),
+volunteer_profiles,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+volunteer_profiles,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+quests,id,UUID,PRIMARY KEY DEFAULT gen_random_uuid()
+quests,quest_number,VARCHAR(20),UNIQUE
+quests,title,VARCHAR(200),NOT NULL
+quests,description,TEXT,
+quests,quest_type,VARCHAR(50),NOT NULL
+quests,difficulty,INTEGER,CHECK (difficulty BETWEEN 1 AND 5)
+quests,xp_reward,INTEGER,DEFAULT 10
+quests,reputation_reward,INTEGER,DEFAULT 5
+quests,coin_reward,INTEGER,DEFAULT 0
+quests,required_level,INTEGER,DEFAULT 1
+quests,required_skills,TEXT[],
+quests,required_certifications,TEXT[],
+quests,max_volunteers,INTEGER,DEFAULT 1
+quests,current_volunteers,INTEGER,DEFAULT 0
+quests,location_address,TEXT,
+quests,location_lat,"DECIMAL(10,8)",
+quests,location_lng,"DECIMAL(11,8)",
+quests,radius_miles,INTEGER,DEFAULT 25
+quests,estimated_hours,"DECIMAL(5,2)",
+quests,flexible_timing,BOOLEAN,DEFAULT TRUE
+quests,scheduled_start,TIMESTAMP,
+quests,scheduled_end,TIMESTAMP,
+quests,parent_quest_id,UUID,FK to quests(id) self-referencing
+quests,case_id,INTEGER,FK to cases(id)
+quests,work_task_id,INTEGER,FK to work_tasks(id)
+quests,quest_giver_id,INTEGER,FK to system_users(id)
+quests,instructions,TEXT,
+quests,safety_notes,TEXT,
+quests,materials_needed,TEXT[],
+quests,status,VARCHAR(20),"DEFAULT 'available'; available, in_progress, completed, cancelled, expired"
+quests,expires_at,TIMESTAMP,
+quests,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+quests,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+quest_assignments,id,SERIAL,PRIMARY KEY
+quest_assignments,quest_id,UUID,FK to quests(id) ON DELETE CASCADE
+quest_assignments,volunteer_id,INTEGER,FK to system_users(id)
+quest_assignments,status,VARCHAR(20),"DEFAULT 'assigned'; assigned, in_progress, completed, abandoned, expired"
+quest_assignments,assigned_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+quest_assignments,started_at,TIMESTAMP,
+quest_assignments,completed_at,TIMESTAMP,
+quest_assignments,cancelled_at,TIMESTAMP,
+quest_assignments,hours_logged,"DECIMAL(5,2)",
+quest_assignments,hours_verified,BOOLEAN,DEFAULT FALSE
+quest_assignments,verified_by,INTEGER,FK to system_users(id)
+quest_assignments,verified_at,TIMESTAMP,
+quest_assignments,before_photo_urls,TEXT[],
+quest_assignments,during_photo_urls,TEXT[],
+quest_assignments,after_photo_urls,TEXT[],
+quest_assignments,volunteer_notes,TEXT,
+quest_assignments,xp_awarded,INTEGER,
+quest_assignments,reputation_awarded,INTEGER,
+quest_assignments,rewards_claimed,BOOLEAN,DEFAULT FALSE
+quest_assignments,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+quest_assignments,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+quest_assignments,UNIQUE(quest_id,volunteer_id),UNIQUE(quest_id,volunteer_id)
+skills,id,SERIAL,PRIMARY KEY
+skills,skill_code,VARCHAR(50),UNIQUE NOT NULL
+skills,skill_name,VARCHAR(100),NOT NULL
+skills,category,VARCHAR(50),"construction, cleanup, admin, social"
+skills,description,TEXT,
+skills,requires_training,BOOLEAN,DEFAULT FALSE
+skills,training_resource_url,VARCHAR(500),
+skills,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+volunteer_skills,id,SERIAL,PRIMARY KEY; junction table
+volunteer_skills,volunteer_id,INTEGER,FK to system_users(id) ON DELETE CASCADE; junction
+volunteer_skills,skill_id,INTEGER,FK to skills(id) ON DELETE CASCADE; junction
+volunteer_skills,proficiency_level,INTEGER,DEFAULT 1; CHECK (proficiency_level BETWEEN 1 AND 5)
+volunteer_skills,endorsed_by,INTEGER,FK to system_users(id)
+volunteer_skills,endorsed_at,TIMESTAMP,
+volunteer_skills,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+volunteer_skills,UNIQUE(volunteer_id,skill_id),UNIQUE(volunteer_id,skill_id)
+badges,id,SERIAL,PRIMARY KEY
+badges,badge_code,VARCHAR(50),UNIQUE NOT NULL
+badges,badge_name,VARCHAR(100),NOT NULL
+badges,description,TEXT,
+badges,icon_url,VARCHAR(500),
+badges,criteria_type,VARCHAR(50),
+badges,criteria_value,INTEGER,
+badges,xp_bonus,INTEGER,DEFAULT 0
+badges,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+volunteer_badges,id,SERIAL,PRIMARY KEY; junction table
+volunteer_badges,volunteer_id,INTEGER,FK to system_users(id) ON DELETE CASCADE; junction
+volunteer_badges,badge_id,INTEGER,FK to badges(id) ON DELETE CASCADE; junction
+volunteer_badges,awarded_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+volunteer_badges,awarded_by,INTEGER,FK to system_users(id)
+volunteer_badges,UNIQUE(volunteer_id,badge_id),UNIQUE(volunteer_id,badge_id)
+volunteer_content,id,SERIAL,PRIMARY KEY
+volunteer_content,content_id,VARCHAR(50),UNIQUE NOT NULL
+volunteer_content,title,VARCHAR(300),NOT NULL
+volunteer_content,content,TEXT,
+volunteer_content,content_html,TEXT,
+volunteer_content,yaml_frontmatter,JSONB,DEFAULT '{}'
+volunteer_content,content_type,VARCHAR(50),NOT NULL
+volunteer_content,tags,TEXT[],
+volunteer_content,author_id,INTEGER,FK to system_users(id)
+volunteer_content,author_name,VARCHAR(100),
+volunteer_content,reviewed_by,INTEGER,FK to system_users(id)
+volunteer_content,reviewed_at,TIMESTAMP,
+volunteer_content,view_count,INTEGER,DEFAULT 0
+volunteer_content,like_count,INTEGER,DEFAULT 0
+volunteer_content,comment_count,INTEGER,DEFAULT 0
+volunteer_content,read_xp_reward,INTEGER,DEFAULT 10
+volunteer_content,status,VARCHAR(20),"DEFAULT 'draft'; draft, published, archived"
+volunteer_content,published_at,TIMESTAMP,
+volunteer_content,pinned_until,TIMESTAMP,
+volunteer_content,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+volunteer_content,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+content_reads,id,SERIAL,PRIMARY KEY; junction table
+content_reads,content_id,INTEGER,FK to volunteer_content(id) ON DELETE CASCADE; junction
+content_reads,volunteer_id,INTEGER,FK to system_users(id) ON DELETE CASCADE; junction
+content_reads,read_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+content_reads,xp_awarded,BOOLEAN,DEFAULT FALSE
+content_reads,UNIQUE(content_id,volunteer_id),UNIQUE(content_id,volunteer_id)
+weekly_digests,id,SERIAL,PRIMARY KEY
+weekly_digests,digest_week,DATE,NOT NULL
+weekly_digests,title,VARCHAR(200),
+weekly_digests,summary,TEXT,
+weekly_digests,featured_content_ids,INTEGER[],
+weekly_digests,sent_at,TIMESTAMP,
+weekly_digests,created_by,INTEGER,FK to system_users(id)
+weekly_digests,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+weekly_digests,UNIQUE(digest_week),UNIQUE(digest_week)
+beneficiary_feedback,id,SERIAL,PRIMARY KEY
+beneficiary_feedback,quest_id,UUID,FK to quests(id)
+beneficiary_feedback,volunteer_id,INTEGER,FK to system_users(id)
+beneficiary_feedback,beneficiary_id,INTEGER,FK to intake_submissions(id)
+beneficiary_feedback,quality_rating,INTEGER,CHECK (quality_rating BETWEEN 1 AND 5)
+beneficiary_feedback,kindness_rating,INTEGER,CHECK (kindness_rating BETWEEN 1 AND 5)
+beneficiary_feedback,would_recommend,BOOLEAN,
+beneficiary_feedback,comments,TEXT,
+beneficiary_feedback,thank_you_note,TEXT,
+beneficiary_feedback,photo_urls,TEXT[],
+beneficiary_feedback,reputation_delta,INTEGER,
+beneficiary_feedback,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+notifications,id,SERIAL,PRIMARY KEY
+notifications,user_id,INTEGER,FK to system_users(id)
+notifications,notification_type,VARCHAR(50),NOT NULL
+notifications,title,VARCHAR(255),NOT NULL
+notifications,body,TEXT,
+notifications,entity_type,VARCHAR(50),"submission, case, work_order"
+notifications,entity_id,INTEGER,
+notifications,is_read,BOOLEAN,DEFAULT FALSE
+notifications,read_at,TIMESTAMP,
+notifications,is_archived,BOOLEAN,DEFAULT FALSE
+notifications,priority,VARCHAR(20),"DEFAULT 'normal'; urgent, high, normal, low"
+notifications,email_sent,BOOLEAN,DEFAULT FALSE
+notifications,sms_sent,BOOLEAN,DEFAULT FALSE
+notifications,in_app_delivered,BOOLEAN,DEFAULT TRUE
+notifications,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+email_queue,id,SERIAL,PRIMARY KEY
+email_queue,recipient_email,VARCHAR(255),
+email_queue,recipient_name,VARCHAR(200),
+email_queue,subject,VARCHAR(500),
+email_queue,body,TEXT,
+email_queue,body_html,TEXT,
+email_queue,notification_type,VARCHAR(50),
+email_queue,related_entity_type,VARCHAR(50),
+email_queue,related_entity_id,INTEGER,
+email_queue,status,VARCHAR(20),"DEFAULT 'pending'; pending, sent, failed"
+email_queue,attempts,INTEGER,DEFAULT 0
+email_queue,last_attempt_at,TIMESTAMP,
+email_queue,error_message,TEXT,
+email_queue,priority,INTEGER,DEFAULT 5
+email_queue,send_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+email_queue,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+email_queue,sent_at,TIMESTAMP,
+edit_requests,id,SERIAL,PRIMARY KEY
+edit_requests,case_id,INTEGER,FK to cases(id)
+edit_requests,requested_by,INTEGER,FK to system_users(id)
+edit_requests,field_name,VARCHAR(100),
+edit_requests,old_value,TEXT,
+edit_requests,new_value,TEXT,
+edit_requests,reason,TEXT,
+edit_requests,status,VARCHAR(50),"DEFAULT 'pending'; pending, approved, denied"
+edit_requests,reviewed_by,INTEGER,FK to system_users(id)
+edit_requests,reviewed_at,TIMESTAMP,
+edit_requests,approved_at,TIMESTAMP,
+edit_requests,change_incorporated,BOOLEAN,DEFAULT FALSE
+edit_requests,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_categories,id,SERIAL,PRIMARY KEY
+help_categories,category_code,VARCHAR(50),UNIQUE NOT NULL
+help_categories,category_name,VARCHAR(100),NOT NULL
+help_categories,parent_category_id,INTEGER,FK to help_categories(id) self-referencing
+help_categories,display_order,INTEGER,DEFAULT 0
+help_categories,icon_class,VARCHAR(100),
+help_categories,is_active,BOOLEAN,DEFAULT TRUE
+help_categories,description,TEXT,
+help_categories,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_document_types,id,SERIAL,PRIMARY KEY
+help_document_types,type_code,VARCHAR(50),UNIQUE NOT NULL
+help_document_types,type_name,VARCHAR(100),NOT NULL
+help_document_types,icon_class,VARCHAR(100),
+help_document_types,is_interactive,BOOLEAN,DEFAULT FALSE
+help_document_types,requires_authentication,BOOLEAN,DEFAULT TRUE
+help_document_types,description,TEXT,
+help_documents,id,SERIAL,PRIMARY KEY
+help_documents,document_id,VARCHAR(50),UNIQUE NOT NULL
+help_documents,doc_type_id,INTEGER,FK to help_document_types(id)
+help_documents,category_id,INTEGER,FK to help_categories(id)
+help_documents,title,VARCHAR(500),NOT NULL
+help_documents,subtitle,VARCHAR(500),
+help_documents,version,VARCHAR(20),DEFAULT '1.0'
+help_documents,content,TEXT,
+help_documents,content_format,VARCHAR(20),DEFAULT 'markdown'
+help_documents,file_path,VARCHAR(1000),
+help_documents,language,VARCHAR(5),DEFAULT 'en'
+help_documents,original_document_id,INTEGER,FK to help_documents(id) self-referencing
+help_documents,author,VARCHAR(200),
+help_documents,author_email,VARCHAR(255),
+help_documents,owner_role_id,INTEGER,FK to roles(id)
+help_documents,reviewer_id,INTEGER,FK to system_users(id)
+help_documents,reviewer_notes,TEXT,
+help_documents,summary,TEXT,
+help_documents,keywords,TEXT[],
+help_documents,prerequisites,TEXT[],
+help_documents,estimated_read_time,INTEGER,minutes
+help_documents,view_count,INTEGER,DEFAULT 0
+help_documents,helpful_count,INTEGER,DEFAULT 0
+help_documents,status,VARCHAR(20),"DEFAULT 'draft'; CHECK IN (draft, review, published, archived, deprecated)"
+help_documents,published_at,TIMESTAMP,
+help_documents,deprecated_at,TIMESTAMP,
+help_documents,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_documents,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_document_attachments,id,SERIAL,PRIMARY KEY
+help_document_attachments,document_id,INTEGER,FK to help_documents(id) ON DELETE CASCADE
+help_document_attachments,attachment_type,VARCHAR(50),"screenshot, diagram, video, audio, dataset"
+help_document_attachments,file_name,VARCHAR(255),NOT NULL
+help_document_attachments,file_path,VARCHAR(1000),NOT NULL
+help_document_attachments,file_size_bytes,BIGINT,
+help_document_attachments,mime_type,VARCHAR(100),
+help_document_attachments,alt_text,VARCHAR(500),
+help_document_attachments,caption,TEXT,
+help_document_attachments,display_order,INTEGER,DEFAULT 0
+help_document_attachments,uploaded_by,INTEGER,FK to system_users(id)
+help_document_attachments,uploaded_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_document_versions,id,SERIAL,PRIMARY KEY
+help_document_versions,document_id,INTEGER,FK to help_documents(id) ON DELETE CASCADE
+help_document_versions,version_number,VARCHAR(20),NOT NULL
+help_document_versions,title,VARCHAR(500),
+help_document_versions,content,TEXT,
+help_document_versions,change_notes,TEXT,
+help_document_versions,created_by,INTEGER,FK to system_users(id)
+help_document_versions,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_document_versions,is_current,BOOLEAN,DEFAULT FALSE
+help_document_feedback,id,SERIAL,PRIMARY KEY
+help_document_feedback,document_id,INTEGER,FK to help_documents(id) ON DELETE CASCADE
+help_document_feedback,user_id,INTEGER,FK to system_users(id)
+help_document_feedback,is_helpful,BOOLEAN,
+help_document_feedback,rating,INTEGER,CHECK (rating >= 1 AND rating <= 5)
+help_document_feedback,comment,TEXT,
+help_document_feedback,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_user_progress,id,SERIAL,PRIMARY KEY
+help_user_progress,user_id,INTEGER,FK to system_users(id) ON DELETE CASCADE
+help_user_progress,document_id,INTEGER,FK to help_documents(id) ON DELETE CASCADE
+help_user_progress,status,VARCHAR(20),"DEFAULT 'not_started'; not_started, in_progress, completed"
+help_user_progress,started_at,TIMESTAMP,
+help_user_progress,completed_at,TIMESTAMP,
+help_user_progress,last_position,INTEGER,
+help_user_progress,notes,TEXT,
+help_user_progress,UNIQUE(user_id,document_id),UNIQUE(user_id,document_id)
+help_search_log,id,SERIAL,PRIMARY KEY
+help_search_log,search_term,VARCHAR(500),
+help_search_log,user_id,INTEGER,FK to system_users(id)
+help_search_log,result_count,INTEGER,
+help_search_log,clicked_document_id,INTEGER,FK to help_documents(id)
+help_search_log,search_type,VARCHAR(20),"quick, advanced, facet"
+help_search_log,ip_address,INET,
+help_search_log,user_agent,TEXT,
+help_search_log,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_document_reviews,id,SERIAL,PRIMARY KEY
+help_document_reviews,document_id,INTEGER,FK to help_documents(id) ON DELETE CASCADE
+help_document_reviews,reviewer_id,INTEGER,FK to system_users(id)
+help_document_reviews,review_status,VARCHAR(20),"pending, approved, changes_requested, rejected"
+help_document_reviews,comments,TEXT,
+help_document_reviews,requested_changes,TEXT,
+help_document_reviews,assigned_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+help_document_reviews,completed_at,TIMESTAMP,
+document_categories,id,SERIAL,PRIMARY KEY
+document_categories,category_code,VARCHAR(50),UNIQUE NOT NULL
+document_categories,category_name,VARCHAR(100),NOT NULL
+document_categories,parent_category_id,INTEGER,FK to document_categories(id) self-referencing
+document_categories,storage_path_template,TEXT,
+document_categories,requires_encryption,BOOLEAN,DEFAULT TRUE
+document_categories,retention_months,INTEGER,
+document_categories,description,TEXT,
+document_statuses,id,SERIAL,PRIMARY KEY
+document_statuses,status_code,VARCHAR(50),UNIQUE NOT NULL
+document_statuses,status_name,VARCHAR(100),NOT NULL
+case_documents,id,SERIAL,PRIMARY KEY
+case_documents,case_id,INTEGER,FK to cases(id) ON DELETE CASCADE
+case_documents,category_id,INTEGER,FK to document_categories(id)
+case_documents,status_id,INTEGER,FK to document_statuses(id) DEFAULT 1
+case_documents,file_name,VARCHAR(255),NOT NULL
+case_documents,file_size_bytes,BIGINT,
+case_documents,file_hash,VARCHAR(64),SHA-256
+case_documents,mime_type,VARCHAR(100),
+case_documents,storage_path,VARCHAR(1000),NOT NULL
+case_documents,storage_provider,VARCHAR(50),DEFAULT 'dropbox'
+case_documents,storage_bucket,VARCHAR(255),
+case_documents,storage_region,VARCHAR(100),
+case_documents,version_number,INTEGER,DEFAULT 1
+case_documents,parent_document_id,INTEGER,FK to case_documents(id) self-referencing
+case_documents,metadata,JSONB,DEFAULT '{}'
+case_documents,extracted_text,TEXT,
+case_documents,thumbnail_path,VARCHAR(1000),
+case_documents,uploaded_by,INTEGER,FK to system_users(id)
+case_documents,uploaded_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+case_documents,verified_by,INTEGER,FK to system_users(id)
+case_documents,verified_at,TIMESTAMP,
+case_documents,expires_at,TIMESTAMP,
+case_documents,deleted_at,TIMESTAMP,
+case_documents,access_roles,TEXT[],
+case_documents,notes,TEXT,
+case_documents,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+case_documents,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+document_templates,id,SERIAL,PRIMARY KEY
+document_templates,template_code,VARCHAR(50),UNIQUE NOT NULL
+document_templates,template_name,VARCHAR(200),NOT NULL
+document_templates,category_id,INTEGER,FK to document_categories(id)
+document_templates,template_file_path,VARCHAR(1000),
+document_templates,template_type,VARCHAR(50),"contract, certificate, application, change_order"
+document_templates,output_format,VARCHAR(20),DEFAULT 'pdf'
+document_templates,requires_signature,BOOLEAN,DEFAULT FALSE
+document_templates,signature_fields,JSONB,
+document_templates,version,INTEGER,DEFAULT 1
+document_templates,is_active,BOOLEAN,DEFAULT TRUE
+document_templates,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+document_templates,updated_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+document_generation_jobs,id,SERIAL,PRIMARY KEY
+document_generation_jobs,case_id,INTEGER,FK to cases(id)
+document_generation_jobs,template_id,INTEGER,FK to document_templates(id)
+document_generation_jobs,status,VARCHAR(20),DEFAULT 'pending'
+document_generation_jobs,data_source,JSONB,NOT NULL
+document_generation_jobs,output_document_id,INTEGER,FK to case_documents(id)
+document_generation_jobs,error_message,TEXT,
+document_generation_jobs,priority,INTEGER,DEFAULT 5
+document_generation_jobs,created_by,INTEGER,FK to system_users(id)
+document_generation_jobs,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+document_generation_jobs,completed_at,TIMESTAMP,
+document_generation_jobs,expires_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP + INTERVAL '7 days'
+document_access_log,id,SERIAL,PRIMARY KEY
+document_access_log,document_id,INTEGER,FK to case_documents(id) ON DELETE CASCADE
+document_access_log,accessed_by,INTEGER,FK to system_users(id)
+document_access_log,access_type,VARCHAR(20),"view, download, print, share"
+document_access_log,ip_address,INET,
+document_access_log,user_agent,TEXT,
+document_access_log,accessed_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+document_share_links,id,SERIAL,PRIMARY KEY
+document_share_links,document_id,INTEGER,FK to case_documents(id) ON DELETE CASCADE
+document_share_links,share_token,UUID,DEFAULT gen_random_uuid() UNIQUE
+document_share_links,shared_by,INTEGER,FK to system_users(id)
+document_share_links,recipient_email,VARCHAR(255),
+document_share_links,expires_at,TIMESTAMP,
+document_share_links,max_accesses,INTEGER,
+document_share_links,access_count,INTEGER,DEFAULT 0
+document_share_links,requires_auth,BOOLEAN,DEFAULT FALSE
+document_share_links,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+storage_providers,id,SERIAL,PRIMARY KEY
+storage_providers,provider_name,VARCHAR(50),UNIQUE NOT NULL
+storage_providers,is_default,BOOLEAN,DEFAULT FALSE
+storage_providers,configuration,JSONB,NOT NULL
+storage_providers,base_url,VARCHAR(500),
+storage_providers,max_file_size_bytes,BIGINT,DEFAULT 104857600
+storage_providers,allowed_mime_types,TEXT[],
+storage_providers,is_active,BOOLEAN,DEFAULT TRUE
+storage_providers,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+reimbursement_requests,id,SERIAL,PRIMARY KEY
+reimbursement_requests,case_id,INTEGER,FK to cases(id)
+reimbursement_requests,organization_id,INTEGER,FK to coalition_organizations(id)
+reimbursement_requests,amount,"DECIMAL(12,2)",NOT NULL
+reimbursement_requests,submitted_date,DATE,NOT NULL
+reimbursement_requests,approved_date,DATE,
+reimbursement_requests,paid_date,DATE,
+reimbursement_requests,status,VARCHAR(50),"submitted, approved, paid, denied"
+reimbursement_requests,denial_reason,TEXT,
+reimbursement_requests,funding_source_id,INTEGER,FK to funding_sources(id)
+case_claims,case_id,INTEGER,PRIMARY KEY; FK to cases(id)
+case_claims,claimed_by_org_id,INTEGER,FK to coalition_organizations(id)
+case_claims,claimed_at,TIMESTAMP,
+case_claims,expires_at,TIMESTAMP,
+case_claims,is_locked,BOOLEAN,DEFAULT TRUE
+review_queue,id,SERIAL,PRIMARY KEY
+review_queue,submission_id,INTEGER,FK to intake_submissions(id) UNIQUE
+review_queue,fifo_order,BIGINT,DEFAULT nextval('fifo_sequence')
+review_queue,status,VARCHAR(50),DEFAULT 'PENDING_REVIEW'
+review_queue,assigned_to_id,INTEGER,FK to system_users(id)
+review_queue,assigned_at,TIMESTAMP,
+review_queue,organization_id,INTEGER,FK to coalition_organizations(id)
+review_queue,queued_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+review_queue,reviewed_at,TIMESTAMP,
+review_queue,completed_at,TIMESTAMP,
+review_queue,priority_score,INTEGER,DEFAULT 0
+review_queue,notes,TEXT,
+guest_access_tokens,id,SERIAL,PRIMARY KEY
+guest_access_tokens,submission_id,INTEGER,FK to intake_submissions(id) UNIQUE
+guest_access_tokens,token,UUID,UNIQUE DEFAULT gen_random_uuid()
+guest_access_tokens,expires_at,TIMESTAMP,
+guest_access_tokens,last_accessed,TIMESTAMP,
+guest_access_tokens,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+eligibility_results,id,SERIAL,PRIMARY KEY
+eligibility_results,submission_id,INTEGER,FK to intake_submissions(id) ON DELETE CASCADE; junction
+eligibility_results,organization_id,INTEGER,FK to coalition_organizations(id) ON DELETE CASCADE; junction
+eligibility_results,match_score,INTEGER,
+eligibility_results,is_eligible,BOOLEAN,
+eligibility_results,checked_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+eligibility_results,UNIQUE(submission_id,organization_id),UNIQUE(submission_id,organization_id)
+volunteer_feedback,id,SERIAL,PRIMARY KEY
+volunteer_feedback,quest_id,UUID,FK to quests(id)
+volunteer_feedback,volunteer_id,INTEGER,FK to system_users(id)
+volunteer_feedback,beneficiary_id,INTEGER,FK to intake_submissions(id)
+volunteer_feedback,quality_rating,INTEGER,CHECK (quality_rating BETWEEN 1 AND 5)
+volunteer_feedback,timeliness_rating,INTEGER,CHECK (timeliness_rating BETWEEN 1 AND 5)
+volunteer_feedback,professionalism_rating,INTEGER,CHECK (professionalism_rating BETWEEN 1 AND 5)
+volunteer_feedback,comments,TEXT,
+volunteer_feedback,would_recommend,BOOLEAN,
+volunteer_feedback,photo_urls,TEXT[],
+volunteer_feedback,created_at,TIMESTAMP,DEFAULT CURRENT_TIMESTAMP
+volunteer_feedback,reputation_delta,INTEGER,
+volunteer_feedback,UNIQUE(quest_id,volunteer_id,beneficiary_id),UNIQUE(quest_id,volunteer_id,beneficiary_id)

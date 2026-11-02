@@ -1,0 +1,97 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:13.797Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblN3bTHAds1gd519",
+    "name": "badges",
+    "description": null,
+    "primaryFieldId": "fldQ8yptt735rMqjI",
+    "fields": [
+      {
+        "id": "fldQ8yptt735rMqjI",
+        "name": "badge_code",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldXn8vxI7IUMYIwm",
+        "name": "badge_name",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fld1BWHkfscmeqpNm",
+        "name": "description",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldw1jaMQhQxmJJHc",
+        "name": "icon_url",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldPioNgQZnUaffDq",
+        "name": "criteria_type",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldfNSHRELhxNq00t",
+        "name": "criteria_value",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldXQkS22dfubAs6H",
+        "name": "xp_bonus",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldUrtZrpOlxBwo96",
+        "name": "created_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwqwQExVTAyIasPJ",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

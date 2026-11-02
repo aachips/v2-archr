@@ -1,0 +1,14 @@
+{
+  "component_name": "Messages Button",
+  "component_description": "Messages - Navigate to full message inbox",
+  "component_id": "btn_messages",
+  "component_class": ".btn.btn-secondary",
+  "display_text": "Messages",
+  "icon": "fa-envelope",
+  "action": {
+    "type": "navigate",
+    "target": "/messages"
+  },
+  "role_access": "subcontractor",
+  "context": "Open full message inbox with all communications"
+}

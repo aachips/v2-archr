@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metric Tracking System · Algorithm Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #f4f7f2;
+            color: #1e2f2a;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .doc-header {
+            background: #1e3a2f;
+            color: white;
+            border-radius: 28px;
+            padding: 2rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-header p {
+            opacity: 0.85;
+            max-width: 800px;
+        }
+
+        .confidence-badge {
+            display: inline-block;
+            background: #2f6b47;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        /* Section styling */
+        .section {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e0eae2;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e4a2f;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #cfe3d4;
+        }
+
+        .section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2a5e40;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .metric-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .metric-card {
+            border-left: 4px solid #5f9e6e;
+            background: #fefefc;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .metric-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1c482e;
+            font-family: monospace;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-desc {
+            font-size: 0.85rem;
+            color: #3d5c4b;
+            margin-bottom: 0.6rem;
+        }
+
+        .formula-box {
+            background: #f0f5ed;
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.6rem 0;
+            border: 1px solid #dce5d6;
+            overflow-x: auto;
+        }
+
+        .logic-note {
+            background: #fef7e0;
+            padding: 0.6rem 1rem;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            color: #7a6300;
+            margin-top: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e4ede4;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #2a5a3b;
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 1px solid #dbe6de;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #5b7e6a;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 700px) {
+            .section {
+                padding: 1.2rem;
+            }
+            .doc-header {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="doc-header">
+        <h1>📐 ARCHR Metric Tracking System</h1>
+        <p>Transparent, reproducible algorithms for nonprofit metrics — with confidence tiers, not perfection.</p>
+        <div class="confidence-badge">🎯 Level 1 confidence (68%) → Level 2 (95%) → Level 3 (98%)</div>
+    </div>
+
+    <!-- INTRO: approach -->
+    <div class="section">
+        <h2>📌 Core Philosophy</h2>
+        <p>Instead of extracting imperfect numbers from a broken system, we <strong>reverse-engineer</strong> the metrics we need — working backward from the ideal, then approximating with current data. This documentation walks through every dashboard metric in plain English, showing the formula, assumptions, and confidence level.</p>
+        <p>✅ <strong>Level 1 (68% confidence)</strong> = rough estimate, good for internal trends<br>
+        ✅ <strong>Level 2 (95% confidence)</strong> = high accuracy, ready for donor reports<br>
+        ✅ <strong>Level 3 (98% confidence)</strong> = auditable, requires perfect data hygiene</p>
+        <p><span class="badge">🔁 Always label metrics with confidence & last updated date</span></p>
+    </div>
+
+    <!-- ========== SECTION 1: PAST WEEK METRICS ========= -->
+    <div class="section">
+        <h2>📆 1. Past Week Metrics (dashboard & weekly review)</h2>
+        <div class="metric-grid">
+            
+            <div class="metric-card">
+                <div class="metric-name">1️⃣ Total Applications</div>
+                <div class="metric-desc">Number of intake applications submitted in the last 7 complete days (excluding today).</div>
+                <div class="formula-box">COUNT(submitted_at) WHERE submitted_at BETWEEN (CURRENT_DATE - 7 days) AND (CURRENT_DATE - 1 day)</div>
+                <div class="logic-note">📐 Confidence Level 2. Uses complete days to avoid partial-week noise. Excludes test submissions.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">2️⃣ Assessments Assigned</div>
+                <div class="metric-desc">Property assessments created or assigned to an assessor in the past week.</div>
+                <div class="formula-box">COUNT(property_assessments) WHERE assigned_at OR created_at in past 7 days</div>
+                <div class="logic-note">🔧 If `assigned_at` is NULL, fallback to `created_at` (proxy for assignment).</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">3️⃣ Assessments Completed</div>
+                <div class="metric-desc">Assessments marked complete in the past 7 days (throughput, not when they were assigned).</div>
+                <div class="formula-box">COUNT(property_assessments) WHERE assessment_completed_at BETWEEN past_week_range</div>
+                <div class="logic-note">📈 Key for measuring team productivity, regardless of when assessment was started.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">4️⃣ Average Triage Score</div>
+                <div class="metric-desc">Weighted urgency score (0–100) for assessments completed last week. Higher = more critical.</div>
+                <div class="formula-box"><strong>Formula:</strong> (Urgent conditions × 12.5) + (estimate size percentile × 30) + (Helene-related × 30), capped at 100</div>
+                <div class="logic-note">🧠 Triage = 40% urgency (7 conditions), 30% repair estimate size, 30% disaster priority. Capped at 100.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">5️⃣ Total Individuals Served (household size sum)</div>
+                <div class="metric-desc">Sum of household sizes from applications submitted in the past week.</div>
+                <div class="formula-box">SUM(household_size) FROM intake_submissions IN past_week_range</div>
+                <div class="logic-note">👥 Used for grant reporting & measuring total human impact, not just households.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">6️⃣ Income Breakdown (past week)</div>
+                <div class="metric-desc">Applications categorized by annual income bracket ($0, $1–15k, $15k–30k, $30k–50k, $50k–75k, $75k+).</div>
+                <div class="formula-box">CASE based on has_income + gross_annual_income + income_records (annualized)</div>
+                <div class="logic-note">💰 Zero-income affidavit = $0 bracket. Uses calculator method if gross_income missing.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">7️⃣ County Breakdown</div>
+                <div class="metric-desc">Geographic distribution of applications (Buncombe, Madison, Henderson, etc.)</div>
+                <div class="formula-box">Infer county from home_city, home_zip, or explicit home_county field.</div>
+                <div class="logic-note">🗺️ Future improvement: add explicit county picker in intake form.</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-name">8️⃣ Issue Type Pie</div>
+                <div class="metric-desc">Primary repair category selected per application (unable_to_stay, no_hvac, no_kitchen, etc.)</div>
+                <div class="formula-box">DISTINCT ON (submission_id) ORDER BY submission_repair_categories.id</div>
+                <div class="logic-note">🥧 Uses first-selected category as primary. Helps with contractor/resource planning.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SECTION 2: ALL TIME METRICS ========= -->
+    <div class="section">
+        <h2>📈 2. All‑Time Metrics (since inception)</h2>
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-name">9️⃣ Total Jobs</div>
+                <div class="metric-desc">Total work orders ever created (all statuses).</div>
+                <div class="formula-box">COUNT(work_orders)</div>
+                <div class="logic-note">📦 Each job = one work_order record. May contain multiple tasks.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">🔟 Jobs in Progress</div>
+                <div class="metric-desc">Work orders with status: in_progress, assigned, planned.</div>
+                <div class="formula-box">COUNT(work_orders WHERE status IN ('in_progress','assigned','planned'))</div>
+                <div class="logic-note">🏗️ Current active workload, excludes completed/cancelled.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">1️⃣1️⃣ Jobs Completed</div>
+                <div class="metric-desc">Successfully finished work orders (final inspection & sign-off).</div>
+                <div class="formula-box">COUNT(work_orders WHERE status = 'completed')</div>
+                <div class="logic-note">✅ Primary success metric for the program.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">1️⃣2️⃣ Jobs Withdrawn/Rejected/Ineligible</div>
+                <div class="metric-desc">Negative outcomes: withdrawn by applicant, rejected by org, or ineligible.</div>
+                <div class="formula-box">UNION of intake_submissions WHERE submission_status IN ('withdrawn','denied') + cancelled work_orders</div>
+                <div class="logic-note">⚠️ Tracks pipeline leakage; helps improve intake screening.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">1️⃣3️⃣ Average Job Cost</div>
+                <div class="metric-desc">Mean cost of completed jobs (actual expenses, not estimates).</div>
+                <div class="formula-box">AVG(cases.total_actual_cost) WHERE work_orders.status = 'completed' AND cost > 0</div>
+                <div class="logic-note">💰 Also returns median, min, max for robust budgeting.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">1️⃣4️⃣ All Jobs Income Breakdown</div>
+                <div class="metric-desc">Income distribution of applicants whose jobs were completed (all time).</div>
+                <div class="formula-box">Same logic as past‑week income breakdown, but filtered by completed work orders.</div>
+                <div class="logic-note">📊 Mission alignment: shows % of low‑moderate income households served.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">1️⃣5️⃣ All Jobs County Breakdown</div>
+                <div class="metric-desc">Geographic distribution of completed work (where the repair happened).</div>
+                <div class="formula-box">Same county inference as past week, limited to completed jobs.</div>
+                <div class="logic-note">📍 May differ from application county if applicants move or are served by partner orgs.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">1️⃣6️⃣ Highest & Lowest Job Cost</div>
+                <div class="metric-desc">Extreme values for completed jobs (to detect outliers/complex projects).</div>
+                <div class="formula-box">MAX(total_actual_cost) and MIN(total_actual_cost) for completed jobs, cost > 0</div>
+                <div class="logic-note">🏆 Useful for case studies and identifying large-project capacity.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SECTION 3: ORG SPECIFIC METRICS ========= -->
+    <div class="section">
+        <h2>🤝 3. Organization‑Specific Metrics (per partner org)</h2>
+        <p>Each coalition organization gets a filtered view of the same core metrics, based on <code>application_assignments</code> and case ownership.</p>
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-name">1️⃣7️⃣ Total Jobs (org)</div>
+                <div class="metric-desc">All work orders linked to cases assigned to that org.</div>
+                <div class="formula-box">COUNT(work_orders) JOIN application_assignments WHERE organization_id = target</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">1️⃣8️⃣ Jobs in Progress (org)</div>
+                <div class="metric-desc">Active jobs for the organization.</div>
+                <div class="formula-box">Same as #10, filtered by organization.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">1️⃣9️⃣ Jobs Completed (org)</div>
+                <div class="metric-desc">Completed jobs for the organization.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">2️⃣0️⃣ Jobs Suggested</div>
+                <div class="metric-desc">Pending assignments not yet claimed or rejected (expiration‑aware).</div>
+                <div class="formula-box">COUNT(application_assignments WHERE status='pending' AND expires_at > NOW())</div>
+                <div class="logic-note">⏳ Measures organizational responsiveness.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">2️⃣1️⃣–2️⃣3️⃣ Assessments Assigned / Completed / Pending</div>
+                <div class="metric-desc">Assessment workload for the org’s assigned cases.</div>
+                <div class="formula-box">COUNT(property_assessments) with same completion logic as metrics #2–3, filtered by org.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">2️⃣4️⃣–2️⃣6️⃣ Highest, Lowest, Average Job Cost (org)</div>
+                <div class="metric-desc">Cost extremes and average for completed jobs, per organization.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-name">2️⃣7️⃣–2️⃣8️⃣ Income & County Breakdown (org)</div>
+                <div class="metric-desc">Demographic and geographic distribution of the org's completed jobs.</div>
+            </div>
+        </div>
+        <div class="logic-note">📌 All org‑specific metrics use the same source tables (<code>cases</code>, <code>work_orders</code>, <code>property_assessments</code>) but filter by <code>application_assignments.organization_id</code>.</div>
+    </div>
+
+    <!-- CONFIDENCE TIERS IN PRACTICE -->
+    <div class="section">
+        <h2>🎯 Confidence Tiers – How We Label Data</h2>
+        <p>Instead of waiting for perfect data, we label metrics by accuracy level. This lets us publish dashboards now while improving data quality over time.</p>
+        <div class="metric-card">
+            <div class="metric-name">🟡 Level 1 (68% confidence) – “Rough Estimate”</div>
+            <div class="metric-desc">Derived from incomplete or inferred data. Good for internal trends, not for external reporting.</div>
+            <div class="formula-box">Example: county breakdown using zip code inference before explicit county field exists.</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-name">🟢 Level 2 (95% confidence) – “High Accuracy”</div>
+            <div class="metric-desc">Based on complete, validated data sources. Ready for donor reports and dashboards.</div>
+            <div class="formula-box">Example: total applications, assessments completed, job counts.</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-name">🔵 Level 3 (98% confidence) – “Audit‑Ready”</div>
+            <div class="metric-desc">Requires perfect data hygiene, reconciliation, and third‑party verification.</div>
+            <div class="formula-box">Example: total funding disbursed by fiscal year, after external audit.</div>
+        </div>
+        <div class="logic-note">📢 <strong>Transparency rule:</strong> Every metric on a dashboard must show its confidence level and the date it was last refreshed.</div>
+    </div>
+
+    <!-- NEXT STEPS / HOW TO USE -->
+    <div class="section">
+        <h2>⚙️ Implementation Roadmap</h2>
+        <p>Instead of reverse‑engineering the existing Airtable mess, we:</p>
+        <ul style="margin: 0.8rem 0 0 1.5rem; color: #2b4b3a;">
+            <li>✅ <strong>Metric first</strong> – define what we need to know</li>
+            <li>✅ <strong>Algorithm second</strong> – write formula in plain English + SQL</li>
+            <li>✅ <strong>Data source third</strong> – locate closest existing field, add confidence note</li>
+            <li>✅ <strong>Automate fourth</strong> – build scheduled queries & dashboards (Softr / PowerBI / custom)</li>
+        </ul>
+        <div class="logic-note" style="margin-top:1rem;">
+            📂 The full SQL file (<code>metric-tracking.sql</code>) contains prepared statements for every metric above, including helper views (<code>completed_assessments_with_triage</code>) and a master function <code>get_all_dashboard_metrics()</code>.
+        </div>
+    </div>
+
+    <footer>
+        ARCHR Metric System · built from the SQL specification · last updated June 2026<br>
+        “Approximate truth today is better than perfect accuracy next year.”
+    </footer>
+</div>
+</body>
+</html>

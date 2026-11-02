@@ -1,0 +1,14 @@
+// 5: Report - Generate project reports
+
+{
+  "feature": "Report",
+  "component_id": "btn_report",
+  "action": "navigate",
+  "target": "/projectReports",
+  "report_types": [
+    {"name": "Project Status Report", "format": "pdf"},
+    {"name": "Budget vs. Actual", "format": "csv"},
+    {"name": "Timeline Summary", "format": "pdf"},
+    {"name": "Team Performance", "format": "pdf"}
+  ]
+}

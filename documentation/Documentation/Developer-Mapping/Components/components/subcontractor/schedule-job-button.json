@@ -1,0 +1,23 @@
+{
+  "component_name": "Schedule Button",
+  "component_role": "subcontractor",
+  "component_description": "Schedule - Navigate to scheduling dashboard",
+  "component_id": "btn_schedule_sub",
+  "component_class": ".btn.btn-secondary .btn-btn-schedule",
+  "display_text": "Schedule",
+  "icon": "fa-calendar-plus",
+  "action": {
+    "type": "navigate",
+    "target": "/scheduleSub"
+    },
+  "role_access": "subcontractor",
+  "component_context": {
+    "context": "Set estimate date, work start date, work finish date",
+    "taskId": "rec[taskId]",
+    "action": "SCHEDULE.SET",
+    "buttonText": "Schedule",
+    "webhookSlug": "[scheduleWebhook]",
+    "target": "/scheduleSub",
+    "scheduleTypes": ["estimate", "work_start", "work_finish"]
+  }
+}

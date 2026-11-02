@@ -1,0 +1,83 @@
+{
+  "schema": "archr.airtableDatamapTableSnapshot.v1",
+  "exportedAt": "2026-07-14T13:43:12.923Z",
+  "baseId": "appiMfIEzULJtmi5v",
+  "table": {
+    "id": "tblFGI5NIp7VCIw58",
+    "name": "task_status_history",
+    "description": null,
+    "primaryFieldId": "fldNR12UDCvbzB3l8",
+    "fields": [
+      {
+        "id": "fldNR12UDCvbzB3l8",
+        "name": "task_id",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldaqWLWjOAGHoHBG",
+        "name": "from_status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldCktP1GIbPpFqgt",
+        "name": "to_status",
+        "type": "singleLineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldJGkYuwjX71WWUT",
+        "name": "changed_by",
+        "type": "number",
+        "description": null,
+        "options": {
+          "precision": 0
+        }
+      },
+      {
+        "id": "fldm2E9zDMReiI0HC",
+        "name": "notes",
+        "type": "multilineText",
+        "description": null,
+        "options": null
+      },
+      {
+        "id": "fldeppVtoUl2TpEN0",
+        "name": "changed_at",
+        "type": "dateTime",
+        "description": null,
+        "options": {
+          "dateFormat": {
+            "name": "iso",
+            "format": "YYYY-MM-DD"
+          },
+          "timeFormat": {
+            "name": "24hour",
+            "format": "HH:mm"
+          },
+          "timeZone": "utc"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viwCfyLlarqgv2Ceg",
+        "name": "Grid view",
+        "type": "grid"
+      }
+    ]
+  },
+  "filter": {
+    "type": "allRecords",
+    "viewId": null,
+    "viewName": null
+  },
+  "recordCount": 0,
+  "records": []
+}

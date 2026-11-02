@@ -1,0 +1,23 @@
+{
+  "component_name": "Previous Assessments",
+  "component_id": "cmp_previous_assessments",
+  "component_type": "list",
+  "data_sources": {
+    "assessments": "property_assessments where status in ('completed', 'draft')"
+  },
+  "list_item_actions": [
+    {
+      "label": "View",
+      "action": "navigate",
+      "target": "/assessmentViewer/{assessmentId}"
+    },
+    {
+      "label": "Edit",
+      "action": "navigate",
+      "target": "/assessmentBuilder/{assessmentId}?edit=true"
+    }
+  ],
+  "sort_order": "assessment_date DESC",
+  "limit": 10,
+  "mobile_layout": "cards"
+}

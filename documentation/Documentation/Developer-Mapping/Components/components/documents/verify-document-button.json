@@ -1,0 +1,38 @@
+// Verify Document Button - accepts an uploaded document as evidence.
+// The reviewer never verifies from a list row: the button opens the Review
+// modal, which streams the actual document first, then offers Verify /
+// Request more info (soft deny) / Reject (hard deny) with a comment.
+// Verify writes a [Doc] Events record (DOCACT.VERIFY), moves the document to
+// VERIFIED, and can satisfy a progress task mapped "Complete When Present".
+
+{
+  "component_name": "Verify Document Button",
+  "component_role": "documents",
+  "component_id": "btn_verify_document",
+  "component_class": ".btn.btn-accent",
+  "component_type": "button",
+  "component_context": {
+    "taskId": "rec[verifyDocument]",
+    "target": "documents.review",
+    "target_key": "{document}.{document_id}",
+    "action": "DOCACT.VERIFY",
+    "buttonText": "Verify",
+    "icon": "fa-shield-halved",
+    "webhookSlug": "[documentWebhook]",
+    "confirm": null,
+    "via": "review modal (document viewer + comment + three-way decision)",
+    "decisions": ["verified", "needs_info", "rejected"],
+    "comment_required_unless": "verified",
+    "successMessage": "Document verified.",
+    "reversible": "yes",
+    "writes": "[Doc] Events record + case_documents.status -> VERIFIED",
+    "progress_bridge": "may complete a [Progress Task] mapped Complete When Present"
+  },
+  "display_text": "Verify",
+  "icon": "fa-shield-halved",
+  "action": {
+    "type": "modal",
+    "target": "/reviewDocumentModal"
+  },
+  "role_access": "admin, org-admin, assessor"
+}

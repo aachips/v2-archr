@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHR &middot; Case Documents</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../../img/archr-logo.svg">
+    <script>(function(){try{var t=localStorage.getItem('archr-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+    <style>
+        /* =========================================================================
+           ARCHR Case Documents POC
+           Administrative document directory for a single case. Mirrors the
+           folder structure in document-storage.md and the naming convention in
+           doc-generation-system-implementation-plan.md. Document statuses come
+           from document_statuses (sql/document-storage.sql). Generate modal is
+           token-driven from document-generation/document-tokens.json.
+           Role accent: admin purple (#5415B1).
+           ========================================================================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --color-primary: #E04E39; --color-primary-dark: #C23A26;
+            --color-secondary: #2A5C82;
+            --color-success: #2f9e69; --color-warning: #d99518; --color-danger: #c23a26;
+            --bg-page: #f5f7fb; --bg-surface: #ffffff; --bg-surface-alt: #f3f5fa;
+            --color-text: #1e293b; --color-text-muted: #5b6b85;
+            --color-border: #e2e8f0; --color-border-strong: #cfd6e4;
+            --font-sans: 'Open Sans', system-ui, sans-serif;
+            --font-display: 'Poppins', system-ui, sans-serif;
+            --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-md: 1.125rem; --fs-lg: 1.25rem; --fs-xl: 1.5rem; --fs-2xl: 2rem;
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius-sm: 0.3rem; --radius-md: 0.6rem; --radius-lg: 1rem; --radius-pill: 999px;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.06); --shadow: 0 6px 18px rgba(0,0,0,0.08);
+            --transition: all 0.18s ease;
+            /* Admin accent (matches portal.css .role-admin) */
+            --role-accent: #5415B1; --role-accent-deep: #3d0d83; --role-accent-light: #eadefb;
+        }
+        [data-theme="dark"] {
+            --bg-page: #0f1622; --bg-surface: #182231; --bg-surface-alt: #202b3d;
+            --color-text: #e6ecf5; --color-text-muted: #9aa7bd;
+            --color-border: #2a3447; --color-border-strong: #3a455c;
+            --role-accent-light: #281640;
+        }
+        body { font-family: var(--font-sans); color: var(--color-text); background: var(--bg-page); line-height: 1.5; }
+
+        /* ---- Portal shell (sidebar + topbar, condensed from portal.css) ---- */
+        .portal-app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+        .portal-sidebar { background: var(--bg-surface); border-right: 1px solid var(--color-border); padding: var(--space-4) 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+        .portal-sidebar-header { padding: 0 var(--space-5) var(--space-4); border-bottom: 1px solid var(--color-border); }
+        .portal-brand { display: flex; align-items: center; gap: var(--space-2); text-decoration: none; color: var(--color-text); font-family: var(--font-display); font-weight: 700; }
+        .portal-brand img { height: 24px; }
+        .portal-nav ul { list-style: none; }
+        .portal-nav-group-label { padding: var(--space-4) var(--space-5) var(--space-1); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); font-weight: 600; }
+        .portal-nav-link { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-5); color: var(--color-text); text-decoration: none; font-size: var(--fs-sm); border-left: 3px solid transparent; }
+        .portal-nav-link:hover { background: var(--bg-surface-alt); }
+        .portal-nav-link.active { border-left-color: var(--role-accent-deep); color: var(--role-accent-deep); background: var(--role-accent-light); font-weight: 600; }
+        .portal-nav-link i { width: 18px; text-align: center; color: var(--color-text-muted); }
+        .portal-nav-link.active i, .portal-nav-link:hover i { color: var(--role-accent-deep); }
+        .portal-main { display: flex; flex-direction: column; min-width: 0; }
+        .portal-topbar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-6); background: var(--bg-surface); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 20; }
+        .topbar-search { display: flex; align-items: center; gap: var(--space-2); background: var(--bg-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: 6px 14px; min-width: 320px; color: var(--color-text-muted); }
+        .topbar-search input { border: 0; background: transparent; outline: none; font: inherit; color: var(--color-text); width: 100%; }
+        .portal-topbar-right { display: flex; align-items: center; gap: var(--space-3); }
+        .role-badge { padding: 6px 14px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 700; background: var(--role-accent-light); color: var(--role-accent-deep); border: 1px solid color-mix(in srgb, var(--role-accent-deep) 30%, transparent); display: inline-flex; align-items: center; gap: 6px; }
+        .theme-toggle { background: transparent; border: 1px solid var(--color-border); border-radius: var(--radius-pill); width: 40px; height: 40px; cursor: pointer; color: var(--color-text); }
+        .portal-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--role-accent-deep); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: var(--fs-xs); }
+        .portal-content { padding: var(--space-6); max-width: 1280px; width: 100%; margin: 0 auto; }
+
+
+        /* ---- Shared primitives (same names as portal.css) ---- */
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: var(--radius-md); font-weight: 600; text-decoration: none; cursor: pointer; transition: var(--transition); border: 2px solid transparent; font-family: inherit; font-size: var(--fs-sm); background: transparent; color: var(--color-text); }
+        .btn-primary { background: var(--color-primary); color: #fff; }
+        .btn-primary:hover { background: var(--color-primary-dark); }
+        .btn-secondary { background: var(--bg-surface); color: var(--color-secondary); border-color: var(--color-secondary); }
+        .btn-secondary:hover { background: var(--color-secondary); color: #fff; }
+        .btn-accent { background: var(--role-accent-deep); color: #fff; }
+        .btn-accent:hover { background: var(--role-accent); }
+        .btn-danger { background: var(--color-danger); color: #fff; }
+        .btn-sm { padding: 6px 14px; font-size: var(--fs-xs); }
+        .pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: 600; background: var(--bg-surface-alt); color: var(--color-text); border: 1px solid var(--color-border); white-space: nowrap; }
+        .pill-accent { background: var(--role-accent-light); color: var(--role-accent-deep); border-color: color-mix(in srgb, var(--role-accent-deep) 30%, transparent); }
+        .pill-amber { background: #fdf3df; color: #8a5a0e; border-color: #f4dfa9; }
+        .pill-green { background: #d9f2d9; color: #1d8a3a; border-color: #b9e0bd; }
+        .pill-red { background: #fbe7e3; color: #8a2818; border-color: #f0c6bd; }
+        .pill-blue { background: #dde9f4; color: #1e456e; border-color: #a8c3de; }
+
+        /* ---- Case hero + KPIs ---- */
+        .dash-hero { background: linear-gradient(135deg, var(--role-accent-deep), color-mix(in srgb, var(--role-accent-deep) 60%, #000)); color: #fff; border-radius: var(--radius-lg); padding: var(--space-6) var(--space-8); margin-bottom: var(--space-6); display: grid; grid-template-columns: 2fr auto; gap: var(--space-5); align-items: center; }
+        .dash-hero h2 { font-family: var(--font-display); font-size: var(--fs-xl); margin-bottom: var(--space-2); }
+        .dash-hero p { opacity: 0.92; font-size: var(--fs-sm); }
+        .dash-hero .hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: flex-end; }
+        .dash-hero .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.4); }
+        .dash-hero .btn-secondary:hover { background: rgba(255,255,255,0.22); }
+        .case-meta { display: flex; gap: var(--space-5); flex-wrap: wrap; margin-top: var(--space-3); font-size: var(--fs-sm); }
+        .case-meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6); }
+        .kpi { background: var(--bg-surface); border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-1); border-top: 4px solid var(--role-accent-deep); }
+        .kpi.kpi-warn { border-top-color: var(--color-warning); }
+        .kpi.kpi-ok { border-top-color: var(--color-success); }
+        .kpi-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; }
+        .kpi-value { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+        .kpi-sub { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-1); }
+
+        /* ---- Directory tree ---- */
+        .docs-layout { display: grid; grid-template-columns: 280px 1fr; gap: var(--space-5); align-items: start; }
+        @media (max-width: 1000px) { .docs-layout { grid-template-columns: 1fr; } }
+        .panel { background: var(--bg-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); box-shadow: var(--shadow-sm); }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); gap: var(--space-3); }
+        .panel-header h3 { font-family: var(--font-display); font-size: var(--fs-lg); margin: 0; display: flex; align-items: center; gap: var(--space-2); }
+        .panel-header h3 i { color: var(--role-accent-deep); }
+        .doc-tree { list-style: none; }
+        .doc-tree-item { margin-bottom: 2px; }
+        .doc-tree-link { display: flex; align-items: center; gap: var(--space-2); width: 100%; padding: 8px 10px; border: 0; background: transparent; border-radius: var(--radius-sm); font: inherit; font-size: var(--fs-sm); color: var(--color-text); cursor: pointer; text-align: left; }
+        .doc-tree-link:hover { background: var(--bg-surface-alt); }
+        .doc-tree-link.active { background: var(--role-accent-light); color: var(--role-accent-deep); font-weight: 600; }
+        .doc-tree-link i { width: 16px; color: var(--color-text-muted); }
+        .doc-tree-link.active i { color: var(--role-accent-deep); }
+        .doc-tree-count { margin-left: auto; font-size: var(--fs-xs); color: var(--color-text-muted); }
+        .doc-tree-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .dot-green { background: var(--color-success); } .dot-amber { background: var(--color-warning); } .dot-red { background: var(--color-danger); } .dot-grey { background: var(--color-border-strong); }
+
+
+        /* ---- Document rows ---- */
+        .doc-folder-block { margin-bottom: var(--space-5); }
+        .doc-folder-title { font-family: var(--font-display); font-size: var(--fs-md); display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); }
+        .doc-folder-title i { color: var(--role-accent-deep); }
+        .doc-folder-title .folder-path { font-family: ui-monospace, monospace; font-size: var(--fs-xs); color: var(--color-text-muted); font-weight: 400; }
+        .doc-list { list-style: none; display: grid; gap: var(--space-3); }
+        .doc-row { display: grid; grid-template-columns: 40px 1fr auto; gap: var(--space-3); align-items: center; padding: var(--space-3) var(--space-4); background: var(--bg-surface-alt); border: 1px solid var(--color-border-strong); border-left: 4px solid var(--color-border-strong); border-radius: var(--radius-md); }
+        .doc-row.status-verified { border-left-color: var(--color-success); }
+        .doc-row.status-pending { border-left-color: var(--color-warning); }
+        .doc-row.status-missing { border-left-color: var(--color-danger); border-style: dashed; border-width: 1px 1px 1px 4px; background: transparent; }
+        .doc-row.status-generated { border-left-color: var(--role-accent-deep); }
+        .doc-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--bg-surface); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--role-accent-deep); font-size: var(--fs-md); }
+        .doc-row.status-missing .doc-icon { color: var(--color-text-muted); border-style: dashed; }
+        .doc-name { font-weight: 600; font-size: var(--fs-sm); font-family: ui-monospace, monospace; }
+        .doc-label { font-size: var(--fs-sm); font-weight: 600; font-family: var(--font-sans); }
+        .doc-meta { font-size: var(--fs-xs); color: var(--color-text-muted); display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: 2px; }
+        .doc-meta i { color: var(--role-accent-deep); }
+        .doc-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; justify-content: flex-end; }
+        .doc-missing-label { font-size: var(--fs-sm); color: var(--color-text-muted); font-style: italic; }
+
+        /* ---- Verification queue table ---- */
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .data-table th, .data-table td { padding: var(--space-3); border-bottom: 1px solid var(--color-border); text-align: left; vertical-align: top; }
+        .data-table thead th { background: var(--bg-surface-alt); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); }
+        .data-table tbody tr:hover { background: var(--bg-surface-alt); }
+        .table-wrap { overflow-x: auto; }
+
+        /* ---- Generate modal ---- */
+        .doc-modal-backdrop { position: fixed; inset: 0; background: rgba(15,22,34,0.55); display: none; align-items: flex-start; justify-content: center; padding: var(--space-6); z-index: 50; overflow-y: auto; }
+        .doc-modal-backdrop.open { display: flex; }
+        .doc-modal { background: var(--bg-surface); border-radius: var(--radius-lg); width: min(860px, 100%); box-shadow: var(--shadow); }
+        .doc-modal-head { display: flex; justify-content: space-between; align-items: center; padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--color-border); }
+        .doc-modal-head h3 { font-family: var(--font-display); margin: 0; display: flex; gap: var(--space-2); align-items: center; }
+        .doc-modal-head h3 i { color: var(--role-accent-deep); }
+        .doc-modal-close { background: transparent; border: 0; font-size: var(--fs-lg); cursor: pointer; color: var(--color-text-muted); }
+        .doc-modal-body { padding: var(--space-6); }
+        .doc-modal-foot { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: var(--space-4) var(--space-6); border-top: 1px solid var(--color-border); }
+        .token-field { display: grid; grid-template-columns: 220px 1fr auto; gap: var(--space-3); align-items: center; padding: 8px 0; border-bottom: 1px solid var(--color-border); }
+        .token-field label { font-size: var(--fs-sm); font-weight: 600; }
+        .token-field label code { display: block; font-weight: 400; font-size: var(--fs-xs); color: var(--color-text-muted); }
+        .token-field input, .token-field select, .token-field textarea { font: inherit; font-size: var(--fs-sm); padding: 8px 10px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--bg-surface); color: var(--color-text); width: 100%; }
+        .token-src { font-size: var(--fs-xs); }
+        .cmp-field { display: grid; gap: var(--space-1); margin-bottom: var(--space-3); }
+        .cmp-field > label { font-size: var(--fs-sm); font-weight: 600; }
+        .muted { color: var(--color-text-muted); font-size: var(--fs-sm); }
+        .sr-only { position: absolute; left: -9999px; }
+        @media (max-width: 700px) { .portal-app { grid-template-columns: 1fr; } .portal-sidebar { display: none; } .token-field { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body class="role-admin">
+<div class="portal-app">
+    <aside class="portal-sidebar" aria-label="Portal navigation">
+        <div class="portal-sidebar-header">
+            <a href="#" class="portal-brand">
+                <img src="../../img/archr-logo.svg" alt="">
+                <span>ARCHR Org Admin</span>
+            </a>
+        </div>
+        <nav class="portal-nav">
+            <ul>
+                <li><a href="#" class="portal-nav-link"><i class="fas fa-gauge-high"></i><span>Dashboard</span></a></li>
+                <li><a href="#" class="portal-nav-link"><i class="fas fa-file-lines"></i><span>Applications</span></a></li>
+                <li><a href="#" class="portal-nav-link active"><i class="fas fa-folder-open"></i><span>Case Documents</span></a></li>
+                <li><a href="#" class="portal-nav-link"><i class="fas fa-users"></i><span>Team</span></a></li>
+                <li><a href="#" class="portal-nav-link"><i class="fas fa-envelope"></i><span>Messages</span></a></li>
+                <li><a href="#" class="portal-nav-link"><i class="fas fa-chart-line"></i><span>Metrics</span></a></li>
+                <li><a href="#" class="portal-nav-link"><i class="fas fa-circle-question"></i><span>Help</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="portal-main">
+        <header class="portal-topbar">
+            <form class="topbar-search" onsubmit="return false;" role="search">
+                <i class="fas fa-magnifying-glass"></i>
+                <input type="search" placeholder="Search by case number, address, or name&hellip;" aria-label="Search cases">
+            </form>
+            <div class="portal-topbar-right">
+                <span class="role-badge"><i class="fas fa-user-shield"></i> Org Admin</span>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><i class="fas fa-circle-half-stroke"></i></button>
+                <span class="portal-avatar">AL</span>
+            </div>
+        </header>
+
+        <div class="portal-content">
+            <!-- ============ CASE CONTEXT ============ -->
+            <section class="dash-hero" aria-labelledby="case-title">
+                <div>
+                    <h2 id="case-title">Case Documents &middot; ARCHR-2026-000042</h2>
+                    <p>Structured case directory. Folders and naming follow the document-storage standard; storage provider is abstracted (Dropbox / home server) behind the documents API.</p>
+                    <div class="case-meta">
+                        <span><i class="fas fa-location-dot"></i> 42 Cherry St, Asheville, NC 28801</span>
+                        <span><i class="fas fa-user"></i> Maria Lopez (requestor)</span>
+                        <span><i class="fas fa-building"></i> Habitat for Humanity</span>
+                        <span><i class="fas fa-diagram-project"></i> Phase 3 &middot; Assessment</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <button type="button" class="btn btn-secondary" id="uploadBtn"><i class="fas fa-upload"></i> Upload Document</button>
+                    <button type="button" class="btn btn-primary" id="generateBtn"><i class="fas fa-wand-magic-sparkles"></i> Generate Document</button>
+                </div>
+            </section>
+
+            <!-- ============ KPIs ============ -->
+            <div class="kpi-grid" aria-label="Document status summary">
+                <div class="kpi kpi-ok"><span class="kpi-label">Required present</span><span class="kpi-value">8 / 14</span><span class="kpi-sub">Across 9 case folders</span></div>
+                <div class="kpi kpi-warn"><span class="kpi-label">Pending verification</span><span class="kpi-value">3</span><span class="kpi-sub">Uploaded by requestor / subcontractor</span></div>
+                <div class="kpi"><span class="kpi-label">Missing required</span><span class="kpi-value">5</span><span class="kpi-sub">Deed, tax record, W-2, CDBG-ERR, SHPO</span></div>
+                <div class="kpi"><span class="kpi-label">Generated on the spot</span><span class="kpi-value">4</span><span class="kpi-sub">From token templates</span></div>
+            </div>
+
+            <!-- ============ DIRECTORY + DOCUMENTS ============ -->
+            <div class="docs-layout">
+                <nav class="panel" aria-label="Case folder directory">
+                    <div class="panel-header"><h3><i class="fas fa-folder-tree"></i> Case Directory</h3></div>
+                    <ul class="doc-tree" id="docTree">
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link active" data-folder="all"><i class="fas fa-layer-group"></i> All documents <span class="doc-tree-count">14</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="application"><span class="doc-tree-dot dot-green"></span><i class="fas fa-file-signature"></i> Application <span class="doc-tree-count">2/2</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="property"><span class="doc-tree-dot dot-amber"></span><i class="fas fa-house-chimney"></i> Property <span class="doc-tree-count">1/3</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="income"><span class="doc-tree-dot dot-amber"></span><i class="fas fa-hand-holding-dollar"></i> Income <span class="doc-tree-count">2/3</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="assessments"><span class="doc-tree-dot dot-green"></span><i class="fas fa-clipboard-check"></i> Assessments <span class="doc-tree-count">2/2</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="contracts"><span class="doc-tree-dot dot-red"></span><i class="fas fa-file-contract"></i> Contracts <span class="doc-tree-count">0/1</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="work_orders"><span class="doc-tree-dot dot-grey"></span><i class="fas fa-helmet-safety"></i> Work Orders <span class="doc-tree-count">0</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="financial"><span class="doc-tree-dot dot-amber"></span><i class="fas fa-coins"></i> Financial &amp; Grants <span class="doc-tree-count">1/4</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="completion"><span class="doc-tree-dot dot-grey"></span><i class="fas fa-award"></i> Completion <span class="doc-tree-count">0</span></button></li>
+                        <li class="doc-tree-item"><button type="button" class="doc-tree-link" data-folder="communications"><span class="doc-tree-dot dot-green"></span><i class="fas fa-comments"></i> Communications <span class="doc-tree-count">1</span></button></li>
+                    </ul>
+                </nav>
+
+                <div>
+                    <!-- Application -->
+                    <section class="doc-folder-block" data-folder="application" aria-labelledby="f-application">
+                        <h4 class="doc-folder-title" id="f-application"><i class="fas fa-file-signature"></i> Application <span class="folder-path">/cases/ARCHR-2026-000042/application/</span></h4>
+                        <ul class="doc-list">
+                            <li class="doc-row status-verified">
+                                <span class="doc-icon"><i class="fas fa-file-pdf"></i></span>
+                                <div>
+                                    <span class="doc-name">ARCHR-2026-000042_APP_v1.pdf</span>
+                                    <div class="doc-meta"><span class="pill pill-green"><i class="fas fa-circle-check"></i> Verified</span><span class="pill pill-accent"><i class="fas fa-wand-magic-sparkles"></i> Generated on submission</span><span>v1 &middot; Jul 28, 2026 &middot; 241 KB</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> View</a><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-download"></i> Download</a></div>
+                            </li>
+                            <li class="doc-row status-verified">
+                                <span class="doc-icon"><i class="fas fa-file-pdf"></i></span>
+                                <div>
+                                    <span class="doc-name">ARCHR-2026-000042_CONSENT_v1.pdf</span>
+                                    <div class="doc-meta"><span class="pill pill-green"><i class="fas fa-circle-check"></i> Verified</span><span class="pill pill-blue"><i class="fas fa-upload"></i> Uploaded by requestor</span><span>v1 &middot; Jul 28, 2026 &middot; 96 KB &middot; verified by A. Lee</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> View</a><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-download"></i> Download</a></div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Property -->
+                    <section class="doc-folder-block" data-folder="property" aria-labelledby="f-property">
+                        <h4 class="doc-folder-title" id="f-property"><i class="fas fa-house-chimney"></i> Property <span class="folder-path">/cases/ARCHR-2026-000042/property/</span></h4>
+                        <ul class="doc-list">
+                            <li class="doc-row status-verified">
+                                <span class="doc-icon"><i class="fas fa-file-pdf"></i></span>
+                                <div>
+                                    <span class="doc-name">ARCHR-2026-000042_PROP_20260802.pdf</span>
+                                    <div class="doc-meta"><span class="pill pill-green"><i class="fas fa-circle-check"></i> Verified</span><span class="pill pill-accent"><i class="fas fa-wand-magic-sparkles"></i> Generated from county data</span><span>Aug 2, 2026 &middot; 118 KB</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> View</a><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-rotate"></i> Refresh</a></div>
+                            </li>
+                            <li class="doc-row status-missing">
+                                <span class="doc-icon"><i class="fas fa-file-circle-plus"></i></span>
+                                <div>
+                                    <span class="doc-label">Deed / Title</span>
+                                    <div class="doc-meta"><span class="pill pill-red"><i class="fas fa-circle-exclamation"></i> Missing</span><span>Expected: <code>ARCHR-2026-000042_DEED_v1.pdf</code></span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-paper-plane"></i> Request Upload</a><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-upload"></i> Upload</a></div>
+                            </li>
+                            <li class="doc-row status-missing">
+                                <span class="doc-icon"><i class="fas fa-file-circle-plus"></i></span>
+                                <div>
+                                    <span class="doc-label">Tax Record (2025)</span>
+                                    <div class="doc-meta"><span class="pill pill-red"><i class="fas fa-circle-exclamation"></i> Missing</span><span>Expected: <code>ARCHR-2026-000042_TAX_2025.pdf</code></span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-paper-plane"></i> Request Upload</a><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-upload"></i> Upload</a></div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Income -->
+                    <section class="doc-folder-block" data-folder="income" aria-labelledby="f-income">
+                        <h4 class="doc-folder-title" id="f-income"><i class="fas fa-hand-holding-dollar"></i> Income Verification <span class="folder-path">/cases/ARCHR-2026-000042/income/</span></h4>
+                        <ul class="doc-list">
+                            <li class="doc-row status-pending">
+                                <span class="doc-icon"><i class="fas fa-file-image"></i></span>
+                                <div>
+                                    <span class="doc-name">ARCHR-2026-000042_INC_PAYSTUB_20260801.pdf</span>
+                                    <div class="doc-meta"><span class="pill pill-amber"><i class="fas fa-hourglass-half"></i> Pending verification</span><span class="pill pill-blue"><i class="fas fa-upload"></i> Uploaded by requestor</span><span>Aug 1, 2026 &middot; 410 KB</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> Review</a><button type="button" class="btn btn-accent btn-sm verify-btn"><i class="fas fa-shield-halved"></i> Verify</button><button type="button" class="btn btn-danger btn-sm reject-btn"><i class="fas fa-xmark"></i> Reject</button></div>
+                            </li>
+                            <li class="doc-row status-pending">
+                                <span class="doc-icon"><i class="fas fa-file-pdf"></i></span>
+                                <div>
+                                    <span class="doc-name">ARCHR-2026-000042_INC_SS_20260801.pdf</span>
+                                    <div class="doc-meta"><span class="pill pill-amber"><i class="fas fa-hourglass-half"></i> Pending verification</span><span class="pill pill-blue"><i class="fas fa-upload"></i> Uploaded by requestor</span><span>Aug 1, 2026 &middot; 233 KB</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> Review</a><button type="button" class="btn btn-accent btn-sm verify-btn"><i class="fas fa-shield-halved"></i> Verify</button><button type="button" class="btn btn-danger btn-sm reject-btn"><i class="fas fa-xmark"></i> Reject</button></div>
+                            </li>
+                            <li class="doc-row status-missing">
+                                <span class="doc-icon"><i class="fas fa-file-circle-plus"></i></span>
+                                <div>
+                                    <span class="doc-label">W-2 (most recent)</span>
+                                    <div class="doc-meta"><span class="pill pill-red"><i class="fas fa-circle-exclamation"></i> Missing</span><span>Expected: <code>ARCHR-2026-000042_INC_W2_2025.pdf</code></span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-paper-plane"></i> Request Upload</a></div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Assessments -->
+                    <section class="doc-folder-block" data-folder="assessments" aria-labelledby="f-assessments">
+                        <h4 class="doc-folder-title" id="f-assessments"><i class="fas fa-clipboard-check"></i> Assessments <span class="folder-path">/cases/ARCHR-2026-000042/assessments/</span></h4>
+                        <ul class="doc-list">
+                            <li class="doc-row status-generated">
+                                <span class="doc-icon"><i class="fas fa-file-pdf"></i></span>
+                                <div>
+                                    <span class="doc-name">ARCHR-2026-000042_ASSESS_v1.pdf</span>
+                                    <div class="doc-meta"><span class="pill pill-accent"><i class="fas fa-wand-magic-sparkles"></i> Generated</span><span class="pill pill-amber"><i class="fas fa-pen-to-square"></i> Draft &middot; pending review</span><span>v1 &middot; Aug 5, 2026 &middot; by J. Assessor</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> View</a><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-rotate"></i> Regenerate</a></div>
+                            </li>
+                            <li class="doc-row status-verified">
+                                <span class="doc-icon"><i class="fas fa-camera"></i></span>
+                                <div>
+                                    <span class="doc-name">/initial/photos/ &middot; 12 before photos</span>
+                                    <div class="doc-meta"><span class="pill pill-green"><i class="fas fa-circle-check"></i> Verified</span><span class="pill pill-blue"><i class="fas fa-upload"></i> Uploaded by assessor</span><span>Aug 5, 2026 &middot; 18.2 MB total</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-images"></i> Open gallery</a></div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Contracts -->
+                    <section class="doc-folder-block" data-folder="contracts" aria-labelledby="f-contracts">
+                        <h4 class="doc-folder-title" id="f-contracts"><i class="fas fa-file-contract"></i> Contracts <span class="folder-path">/cases/ARCHR-2026-000042/contracts/</span></h4>
+                        <ul class="doc-list">
+                            <li class="doc-row status-missing">
+                                <span class="doc-icon"><i class="fas fa-file-circle-plus"></i></span>
+                                <div>
+                                    <span class="doc-label">Repair Contract</span>
+                                    <div class="doc-meta"><span class="pill pill-red"><i class="fas fa-circle-exclamation"></i> Missing</span><span>Eligible to generate &mdash; assessment complete Aug 5</span></div>
+                                </div>
+                                <div class="doc-actions"><button type="button" class="btn btn-primary btn-sm generate-for" data-template="Contract"><i class="fas fa-wand-magic-sparkles"></i> Generate Contract</button></div>
+                            </li>
+                            <li class="doc-row status-missing">
+                                <span class="doc-icon"><i class="fas fa-file-circle-plus"></i></span>
+                                <div>
+                                    <span class="doc-label">Change Orders</span>
+                                    <div class="doc-meta"><span class="pill">None yet</span><span>Created when scope changes during work</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-plus"></i> New Change Order</a></div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Work orders -->
+                    <section class="doc-folder-block" data-folder="work_orders" aria-labelledby="f-workorders">
+                        <h4 class="doc-folder-title" id="f-workorders"><i class="fas fa-helmet-safety"></i> Work Orders <span class="folder-path">/cases/ARCHR-2026-000042/work_orders/</span></h4>
+                        <p class="muted">No work orders yet &mdash; created after the contract is signed.</p>
+                    </section>
+
+                    <!-- Financial -->
+                    <section class="doc-folder-block" data-folder="financial" aria-labelledby="f-financial">
+                        <h4 class="doc-folder-title" id="f-financial"><i class="fas fa-coins"></i> Financial &amp; Grants <span class="folder-path">/cases/ARCHR-2026-000042/financial/</span></h4>
+                        <ul class="doc-list">
+                            <li class="doc-row status-pending">
+                                <span class="doc-icon"><i class="fas fa-file-pdf"></i></span>
+                                <div>
+                                    <span class="doc-name">ABC-Roofing_QUOTE_001.pdf</span>
+                                    <div class="doc-meta"><span class="pill pill-amber"><i class="fas fa-hourglass-half"></i> Pending verification</span><span class="pill pill-blue"><i class="fas fa-upload"></i> Uploaded by subcontractor</span><span>Aug 8, 2026 &middot; 122 KB &middot; in /financial/quotes/</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> Review</a><button type="button" class="btn btn-accent btn-sm verify-btn"><i class="fas fa-shield-halved"></i> Verify</button><button type="button" class="btn btn-danger btn-sm reject-btn"><i class="fas fa-xmark"></i> Reject</button></div>
+                            </li>
+                            <li class="doc-row status-missing">
+                                <span class="doc-icon"><i class="fas fa-file-circle-plus"></i></span>
+                                <div>
+                                    <span class="doc-label">CDBG-CENST Form</span>
+                                    <div class="doc-meta"><span class="pill pill-red"><i class="fas fa-circle-exclamation"></i> Missing</span><span>Generatable &mdash; 6 tokens &middot; eligibility data present</span></div>
+                                </div>
+                                <div class="doc-actions"><button type="button" class="btn btn-primary btn-sm generate-for" data-template="CDBG-CENST"><i class="fas fa-wand-magic-sparkles"></i> Generate CENST</button></div>
+                            </li>
+                            <li class="doc-row status-missing">
+                                <span class="doc-icon"><i class="fas fa-file-circle-plus"></i></span>
+                                <div>
+                                    <span class="doc-label">CDBG-ERR Form (Environmental Review)</span>
+                                    <div class="doc-meta"><span class="pill pill-red"><i class="fas fa-circle-exclamation"></i> Missing</span><span>Generatable &mdash; 2 fields still blank in case data</span></div>
+                                </div>
+                                <div class="doc-actions"><button type="button" class="btn btn-primary btn-sm generate-for" data-template="CDBG-ERR"><i class="fas fa-wand-magic-sparkles"></i> Generate ERR</button></div>
+                            </li>
+                            <li class="doc-row status-missing">
+                                <span class="doc-icon"><i class="fas fa-file-circle-plus"></i></span>
+                                <div>
+                                    <span class="doc-label">CDBG-SHPO (Historic Preservation)</span>
+                                    <div class="doc-meta"><span class="pill pill-red"><i class="fas fa-circle-exclamation"></i> Missing</span><span>Generatable &mdash; requires scope categories + photos</span></div>
+                                </div>
+                                <div class="doc-actions"><button type="button" class="btn btn-primary btn-sm generate-for" data-template="CDBG-SHPO"><i class="fas fa-wand-magic-sparkles"></i> Generate SHPO</button></div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Completion -->
+                    <section class="doc-folder-block" data-folder="completion" aria-labelledby="f-completion">
+                        <h4 class="doc-folder-title" id="f-completion"><i class="fas fa-award"></i> Completion <span class="folder-path">/cases/ARCHR-2026-000042/completion/</span></h4>
+                        <p class="muted">Certificate of Completion unlocks after final inspection (Phase 6).</p>
+                    </section>
+
+                    <!-- Communications -->
+                    <section class="doc-folder-block" data-folder="communications" aria-labelledby="f-communications">
+                        <h4 class="doc-folder-title" id="f-communications"><i class="fas fa-comments"></i> Communications <span class="folder-path">/cases/ARCHR-2026-000042/communications/</span></h4>
+                        <ul class="doc-list">
+                            <li class="doc-row status-generated">
+                                <span class="doc-icon"><i class="fas fa-file-lines"></i></span>
+                                <div>
+                                    <span class="doc-name">ARCHR-2026-000042_COMM_20260814.pdf</span>
+                                    <div class="doc-meta"><span class="pill pill-accent"><i class="fas fa-wand-magic-sparkles"></i> Generated</span><span>Communication log export &middot; auto-updated daily</span></div>
+                                </div>
+                                <div class="doc-actions"><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i> View</a><a href="#" class="btn btn-secondary btn-sm"><i class="fas fa-rotate"></i> Regenerate</a></div>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+
+            <!-- ============ VERIFICATION QUEUE ============ -->
+            <section class="panel" style="margin-top: var(--space-6);" aria-labelledby="verify-h">
+                <div class="panel-header">
+                    <h3 id="verify-h"><i class="fas fa-shield-halved"></i> Verification queue</h3>
+                    <span class="pill pill-amber">3 awaiting review</span>
+                </div>
+                <p class="muted" style="margin-bottom: var(--space-4);">Uploaded by requestors, assessors, or subcontractors. Verify to mark the document as accepted evidence; reject with a reason to notify the uploader.</p>
+                <div class="table-wrap">
+                    <table class="data-table" id="verifyTable">
+                        <thead><tr>
+                            <th>Document</th><th>Folder</th><th>Uploaded by</th><th>When</th><th>Actions</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><code>ARCHR-2026-000042_INC_PAYSTUB_20260801.pdf</code></td>
+                                <td>Income</td><td>Maria Lopez (requestor)</td><td>Aug 1, 2026</td>
+                                <td><button type="button" class="btn btn-accent btn-sm verify-btn"><i class="fas fa-shield-halved"></i> Verify</button>
+                                    <button type="button" class="btn btn-danger btn-sm reject-btn"><i class="fas fa-xmark"></i> Reject</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>ARCHR-2026-000042_INC_SS_20260801.pdf</code></td>
+                                <td>Income</td><td>Maria Lopez (requestor)</td><td>Aug 1, 2026</td>
+                                <td><button type="button" class="btn btn-accent btn-sm verify-btn"><i class="fas fa-shield-halved"></i> Verify</button>
+                                    <button type="button" class="btn btn-danger btn-sm reject-btn"><i class="fas fa-xmark"></i> Reject</button></td>
+                            </tr>
+                            <tr>
+                                <td><code>ABC-Roofing_QUOTE_001.pdf</code></td>
+                                <td>Financial / quotes</td><td>ABC Roofing (subcontractor)</td><td>Aug 8, 2026</td>
+                                <td><button type="button" class="btn btn-accent btn-sm verify-btn"><i class="fas fa-shield-halved"></i> Verify</button>
+                                    <button type="button" class="btn btn-danger btn-sm reject-btn"><i class="fas fa-xmark"></i> Reject</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div><!-- /.portal-content -->
+    </div><!-- /.portal-main -->
+</div><!-- /.portal-app -->
+
+<!-- ============ GENERATE DOCUMENT MODAL ============ -->
+<div class="doc-modal-backdrop" id="generateModal" role="dialog" aria-modal="true" aria-labelledby="gen-h">
+    <div class="doc-modal">
+        <div class="doc-modal-head">
+            <h3 id="gen-h"><i class="fas fa-wand-magic-sparkles"></i> Generate document</h3>
+            <button type="button" class="doc-modal-close" data-close aria-label="Close"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="doc-modal-body">
+            <div class="cmp-field">
+                <label for="templateSelect">Template (DocCode)</label>
+                <select id="templateSelect"></select>
+                <span class="muted" id="templateMeta"></span>
+            </div>
+            <p class="muted" style="margin-bottom: var(--space-3);">
+                Token fields come straight from <code>elemental-integration/document-generation/document-tokens.json</code>.
+                Values marked <span class="pill pill-green">auto</span> are pulled from case/org data; <span class="pill pill-amber">input</span> fields are filled in by you on the spot.
+            </p>
+            <div id="tokenFields"></div>
+        </div>
+        <div class="doc-modal-foot">
+            <span class="muted" id="genStatus">No missing values</span>
+            <div style="display:flex; gap: var(--space-2);">
+                <button type="button" class="btn btn-secondary" id="previewBtn"><i class="fas fa-eye"></i> Preview HTML</button>
+                <button type="button" class="btn btn-primary" id="generateNowBtn"><i class="fas fa-bolt"></i> Generate &amp; store in case folder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* Token map: trimmed copy of elemental-integration/document-generation/document-tokens.json
+   (the live PHP page loads that JSON directly so UI and token registry stay in sync). */
+const DOC_TOKENS = {
+  templates: {
+    "Contract":            ["docAuthorSignature", "docHomeFullName", "docHomeFullAddress", "docOrgLong", "docOrgShort", "repairTask"],
+    "CDBG-CENST":          ["docHomeGIS_PIN", "docAuthor", "docAuthorSignature", "docDate", "docHomeFullName", "docHomeFullAddress", "docScopeSummary", "docOrgLong"],
+    "CDBG-SHPO":           ["docAuthor", "docAuthorEmail", "docAuthorTitle", "docDate", "docHomeFullName", "docHomeStreetAddress", "docHomeCity", "docHomeState", "docHomeZip", "docHomeCounty", "docOrgLong", "docOrgStreetAddress", "docOrgCity", "docOrgState", "docOrgZip", "docOrgPhone", "grantNumber", "docGrantCategoryYear"],
+    "CDBG-ERR":            ["docGrantFY", "docOrgFax", "docHomeAcrePlus", "docGrantRequestAmount", "docScopeSummary"],
+    "CDBG-IDIS":           ["docOrgTaxId", "docProjCost", "docGroupAMI", "w", "baa", "a", "el", "l", "m"],
+    "Final Notice Letter": ["docDate", "docOrgLong", "docHomeFullName", "docAuthorTitle", "docMailAddress1", "docHomeFirstName", "docOrgProgram", "docFinalNoticeContactPerson", "docFinalNoticePhone", "docFinalNoticeDueDate"],
+    "NC Habitat Form":     ["docHomeFullName", "docHomeStreetAddress", "docHomeCity", "docHomeState", "docHomeZip", "docHomePhone", "docHomeEmail", "docOrgEmail"],
+    "Draw Request Reporting Workbook": ["drawNumber", "drawTotal", "drawAllTotals", "drawFQFY", "drawProjTotal", "drawConstCost", "drawAdminCost"]
+  },
+  meta: {
+    docHomeFullName:    { type: "string", label: "Full Name" },
+    docHomeFirstName:   { type: "string", label: "First Name" },
+    docHomeFullAddress: { type: "string", label: "Full Address" },
+    docHomeStreetAddress:{ type: "string", label: "Street Address" },
+    docHomeCity:        { type: "string", label: "City" },
+    docHomeState:       { type: "string", label: "State" },
+    docHomeZip:         { type: "num",    label: "Zip" },
+    docHomeCounty:      { type: "string", label: "County" },
+    docHomeGIS_PIN:     { type: "string", label: "GIS Pinnum" },
+    docHomePhone:       { type: "string", label: "Home Phone" },
+    docHomeEmail:       { type: "string", label: "Email" },
+    docHomeAcrePlus:    { type: "string", label: "Plot >1 Acre?" },
+    docOrgShort:        { type: "string", label: "Org Abbreviation" },
+    docOrgLong:         { type: "string", label: "Org Full Name" },
+    docOrgStreetAddress:{ type: "string", label: "Org Street Address" },
+    docOrgCity:         { type: "string", label: "Org City" },
+    docOrgState:        { type: "string", label: "Org State" },
+    docOrgZip:          { type: "string", label: "Org Zip" },
+    docOrgPhone:        { type: "string", label: "Org Phone" },
+    docOrgEmail:        { type: "string", label: "Office Email" },
+    docOrgFax:          { type: "string", label: "Fax Number" },
+    docOrgTaxId:        { type: "string", label: "Org EIN" },
+    docOrgProgram:      { type: "string", label: "Partner Program" },
+    docAuthor:          { type: "string", label: "Author Name" },
+    docAuthorEmail:     { type: "string", label: "Author Email" },
+    docAuthorTitle:     { type: "string", label: "Author Job Title" },
+    docAuthorSignature: { type: "obj",    label: "Author Signature" },
+    docDate:            { type: "date",   label: "Document Date" },
+    docScopeSummary:    { type: "string", label: "Summary of Repairs" },
+    grantNumber:        { type: "string", label: "Grant ID number" },
+    docGrantFY:         { type: "string", label: "Funding Source Fiscal Year" },
+    docGrantCategoryYear:{ type: "string", label: "Grant Category Year" },
+    docGrantRequestAmount:{ type: "num",  label: "Amount Requested" },
+    docProjCost:        { type: "num",    label: "Total Project Cost" },
+    docGroupAMI:        { type: "num",    label: "AMI Benefit Group (V/L/M)" },
+    repairTask:         { type: "array",  label: "Repair Task Line Items (taskName, taskArea, taskDetails, taskSub, taskBudget)" },
+    w: { type: "num", label: "White" }, baa: { type: "num", label: "Black/African American" },
+    a: { type: "num", label: "Above 80% AMI" }, el: { type: "num", label: "Extremely Low AMI (\u226430%)" },
+    l: { type: "num", label: "Low AMI (31-50%)" }, m: { type: "num", label: "Medium AMI (51-80%)" },
+    drawNumber: { type: "num", label: "Draw Number" }, drawTotal: { type: "num", label: "Draw Amount" },
+    drawAllTotals: { type: "num", label: "All Draw Totals" }, drawFQFY: { type: "string", label: "Fiscal Quarter/Year" },
+    drawProjTotal: { type: "num", label: "Construction + Admin Cost" },
+    drawConstCost: { type: "num", label: "Total Construction Cost" },
+    drawAdminCost: { type: "num", label: "Total Admin Cost (5%)" },
+    docMailAddress1: { type: "string", label: "Mailing Address Line 1" },
+    docFinalNoticeContactPerson: { type: "string", label: "Contact Person" },
+    docFinalNoticePhone: { type: "string", label: "Contact Phone" },
+    docFinalNoticeDueDate: { type: "date", label: "Due Date" }
+  },
+  /* Values the case record already knows (auto-fill). Everything else = live input. */
+  auto: {
+    docHomeFullName: "Maria Lopez", docHomeFirstName: "Maria",
+    docHomeFullAddress: "42 Cherry St, Asheville, NC 28801", docHomeStreetAddress: "42 Cherry St",
+    docHomeCity: "Asheville", docHomeState: "NC", docHomeZip: "28801", docHomeCounty: "Buncombe",
+    docHomeGIS_PIN: "0609867552345562", docHomePhone: "(828) 555-0142", docHomeEmail: "maria.lopez@example.org",
+    docOrgShort: "AAHH", docOrgLong: "Asheville Area Habitat for Humanity",
+    docOrgStreetAddress: "33 Meadow Rd", docOrgCity: "Asheville", docOrgState: "NC", docOrgZip: "28803",
+    docOrgPhone: "(828) 555-0100", docOrgEmail: "office@aahh.example.org",
+    docAuthor: "Alex Lee", docAuthorEmail: "alee@aahh.example.org", docAuthorTitle: "Program Coordinator",
+    docDate: "2026-08-14", docScopeSummary: "Replace failed window in bathroom; re-flash and leak-test; repair surrounding drywall.",
+    grantNumber: "CDBG-B-26-0017", docGrantFY: "FY27", docGrantCategoryYear: "2026",
+    docProjCost: "12500", docGroupAMI: "2"
+  }
+};
+</script>
+
+<script>
+// Theme toggle (persists to localStorage)
+(function(){
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.addEventListener('click', function(){
+        var html = document.documentElement;
+        var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        try { localStorage.setItem('archr-theme', next); } catch (e) {}
+    });
+})();
+
+// Folder tree filter
+(function(){
+    var links = document.querySelectorAll('.doc-tree-link');
+    links.forEach(function(link){
+        link.addEventListener('click', function(){
+            links.forEach(function(l){ l.classList.remove('active'); });
+            link.classList.add('active');
+            var folder = link.getAttribute('data-folder');
+            document.querySelectorAll('.doc-folder-block').forEach(function(block){
+                block.style.display = (folder === 'all' || block.getAttribute('data-folder') === folder) ? '' : 'none';
+            });
+        });
+    });
+})();
+
+// Generate modal
+(function(){
+    var modal = document.getElementById('generateModal');
+    var select = document.getElementById('templateSelect');
+    var meta = document.getElementById('templateMeta');
+    var fieldsWrap = document.getElementById('tokenFields');
+    var status = document.getElementById('genStatus');
+
+    Object.keys(DOC_TOKENS.templates).forEach(function(name){
+        var opt = document.createElement('option');
+        opt.value = name; opt.textContent = name;
+        select.appendChild(opt);
+    });
+
+    function inputFor(type, token, value){
+        if (type === 'num') return '<input type="number" step="0.01" data-token="' + token + '" value="' + (value || '') + '">';
+        if (type === 'date') return '<input type="date" data-token="' + token + '" value="' + (value || '') + '">';
+        if (type === 'obj') return '<input type="file" data-token="' + token + '">';
+        if (type === 'array') return '<textarea rows="3" data-token="' + token + '" placeholder="One line item per row">' + (value || '') + '</textarea>';
+        return '<input type="text" data-token="' + token + '" value="' + (value || '') + '">';
+    }
+
+    function renderTokens(){
+        var name = select.value;
+        var tokens = DOC_TOKENS.templates[name] || [];
+        meta.textContent = tokens.length + ' tokens';
+        var missing = 0;
+        var html = tokens.map(function(token){
+            var m = DOC_TOKENS.meta[token] || { type: 'string', label: token };
+            var auto = Object.prototype.hasOwnProperty.call(DOC_TOKENS.auto, token);
+            if (!auto) missing++;
+            var badge = auto
+                ? '<span class="pill pill-green token-src">auto</span>'
+                : '<span class="pill pill-amber token-src">input</span>';
+            return '<div class="token-field">'
+                + '<label for="t_' + token + '">' + m.label + '<code>{{' + token + '}} &middot; ' + m.type + '</code></label>'
+                + inputFor(m.type, token, auto ? DOC_TOKENS.auto[token] : '')
+                + badge
+                + '</div>';
+        }).join('');
+        fieldsWrap.innerHTML = html;
+        status.textContent = missing ? (missing + ' field(s) need live input') : 'All values resolved from case data';
+    }
+
+    select.addEventListener('change', renderTokens);
+
+    function openModal(template){
+        if (template) select.value = template;
+        renderTokens();
+        modal.classList.add('open');
+    }
+    document.getElementById('generateBtn').addEventListener('click', function(){ openModal(null); });
+    document.querySelectorAll('.generate-for').forEach(function(btn){
+        btn.addEventListener('click', function(){ openModal(btn.getAttribute('data-template')); });
+    });
+    modal.querySelector('[data-close]').addEventListener('click', function(){ modal.classList.remove('open'); });
+    modal.addEventListener('click', function(e){ if (e.target === modal) modal.classList.remove('open'); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') modal.classList.remove('open'); });
+
+    document.getElementById('previewBtn').addEventListener('click', function(){
+        var data = {};
+        fieldsWrap.querySelectorAll('[data-token]').forEach(function(el){ data[el.getAttribute('data-token')] = el.value; });
+        var w = window.open('', '_blank');
+        w.document.write('<pre style="font:14px monospace;white-space:pre-wrap;">' + JSON.stringify(data, null, 2).replace(/</g,'&lt;') + '</pre>');
+    });
+    document.getElementById('generateNowBtn').addEventListener('click', function(){
+        alert('POC: this posts the token payload to the generation endpoint,\nwhich renders the template and stores the file in the case folder.');
+    });
+})();
+
+// Upload button (POC affordance)
+document.getElementById('uploadBtn').addEventListener('click', function(){
+    alert('POC: opens the upload dialog \u2014 file goes to the Bucket intake,\nthen search-token matching proposes the case folder + DocCode.');
+});
+
+// Verify / reject interactions (DocAct workflow states)
+document.querySelectorAll('.verify-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+        var row = btn.closest('.doc-row, tr');
+        btn.closest('td, .doc-actions').innerHTML = '<span class="pill pill-green"><i class="fas fa-circle-check"></i> Verified</span>';
+        if (row && row.classList.contains('doc-row')) { row.classList.remove('status-pending'); row.classList.add('status-verified'); }
+    });
+});
+document.querySelectorAll('.reject-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+        var reason = prompt('Reason for rejection (sent to uploader):');
+        if (reason === null) return;
+        var row = btn.closest('.doc-row, tr');
+        btn.closest('td, .doc-actions').innerHTML = '<span class="pill pill-red"><i class="fas fa-xmark"></i> Rejected</span>';
+        if (row && row.classList.contains('doc-row')) { row.classList.remove('status-pending'); }
+    });
+});
+</script>
+</body>
+</html>
