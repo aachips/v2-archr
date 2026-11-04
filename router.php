@@ -1,6 +1,15 @@
 <?php
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+// Serve PHP files in app/ directory directly
+if (strpos($uri, '/app/') === 0) {
+    $file = __DIR__ . $uri;
+    if (file_exists($file) && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
+        include $file;
+        exit;
+    }
+}
+
 // MIME types for static files
 $mimeTypes = [
     '.css' => 'text/css',
@@ -34,7 +43,6 @@ if (is_dir(__DIR__ . $uri)) {
         readfile($indexFile);
         exit;
     }
-    // Try portal.html as fallback
     $portalFile = __DIR__ . $uri . 'portal.html';
     if (file_exists($portalFile)) {
         header('Content-Type: text/html');
@@ -43,6 +51,6 @@ if (is_dir(__DIR__ . $uri)) {
     }
 }
 
-// Fall through to index.php
+// Fall through to index.php for the public site
 $_GET['_url'] = $uri;
 include __DIR__ . '/index.php';
