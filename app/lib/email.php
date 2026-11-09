@@ -202,6 +202,175 @@ EMAIL;
     }
     
     /**
+     * Send confirmation email to volunteer applicant
+     */
+    public function sendVolunteerConfirmation(array $applicationData): bool {
+        $to = $applicationData['email'] ?? '';
+        if (!$to || !filter_var($to, FILTER_VALIDATE_EMAIL)) {
+            error_log('[ARCHREmailer] Invalid email for volunteer confirmation: ' . $to);
+            return false;
+        }
+
+        $name = $applicationData['full_name'] ?? 'Volunteer';
+        $subject = 'ARCHR Volunteer Application Received';
+        $body = $this->buildVolunteerConfirmationEmail($name, $applicationData);
+
+        return $this->send($to, $name, $subject, $body);
+    }
+
+    /**
+     * Send alert to admin about new volunteer application
+     */
+    public function sendVolunteerAdminAlert(array $applicationData): bool {
+        $adminEmails = $this->getAdminEmails();
+        if (empty($adminEmails)) {
+            error_log('[ARCHREmailer] No admin emails configured for volunteer alert');
+            return false;
+        }
+
+        $name = $applicationData['full_name'] ?? 'Unknown';
+        $subject = '[ARCHR] New Volunteer Application — ' . $name;
+        $body = $this->buildVolunteerAdminAlertEmail($name, $applicationData);
+
+        $success = true;
+        foreach ($adminEmails as $email => $adminName) {
+            if (!$this->send($email, $adminName, $subject, $body)) {
+                $success = false;
+            }
+        }
+
+        return $success;
+    }
+
+    /**
+     * Send notification to requestor when their case is claimed by an org.
+     */
+    public function sendCaseClaimNotification(string $requestorEmail, string $requestorName, string $caseNumber, string $orgName): bool {
+        if (!$requestorEmail || !filter_var($requestorEmail, FILTER_VALIDATE_EMAIL)) {
+            error_log('[ARCHREmailer] Invalid email for case claim notification: ' . $requestorEmail);
+            return false;
+        }
+
+        $subject = '[ARCHR] Your Case Has Been Claimed — ' . $caseNumber;
+        $body = $this->buildCaseClaimEmail($requestorName, $caseNumber, $orgName);
+
+        return $this->send($requestorEmail, $requestorName, $subject, $body);
+    }
+
+    /**
+     * Build volunteer confirmation email body
+     */
+    private function buildVolunteerConfirmationEmail(string $name, array $data): string {
+        $appUrl = getenv('APP_URL') ?: 'http://v2-archr.test';
+        $dashboardUrl = $appUrl . '/app/volunteer.php';
+
+        return <<<EMAIL
+Dear $name,
+
+Thank you for applying to volunteer with the Asheville Regional Coalition for Home Repair (ARCHR).
+
+Your application has been received and is being reviewed by our volunteer coordination team.
+
+NEXT STEPS:
+1. An ARCHR administrator will review your application within 5 business days.
+2. You will receive a follow-up email with next steps, including any required background check information.
+3. Once approved, you will receive login credentials for the Volunteer Dashboard.
+
+VOLUNTEER DASHBOARD:
+Once your application is approved, you will be able to:
+- Browse and claim volunteer opportunities
+- Log your volunteer hours
+- Track your XP, reputation, and level progression
+- Complete safety orientations
+- Share field stories with the community
+
+Dashboard URL: $dashboardUrl
+
+If you have any questions before your application is reviewed, please contact our volunteer coordination team.
+
+Thank you for your interest in serving your community.
+
+ARCHR Volunteer Coordination Team
+Asheville Regional Coalition for Home Repair
+EMAIL;
+    }
+
+    /**
+     * Build volunteer admin alert email body
+     */
+    private function buildVolunteerAdminAlertEmail(string $name, array $data): string {
+        $appUrl = getenv('APP_URL') ?: 'http://v2-archr.test';
+        $skills = isset($data['skills']) && is_array($data['skills']) ? implode(', ', $data['skills']) : 'None specified';
+        $availability = isset($data['availability']) && is_array($data['availability']) ? implode(', ', $data['availability']) : 'Not specified';
+        $interest = $data['interest_type'] ?? 'Not specified';
+        $location = $data['location'] ?? 'Not specified';
+        $motivation = $data['motivation'] ?? 'Not provided';
+        $toolsNotes = $data['tools_notes'] ?? 'Not specified';
+        $referral = $data['referral_name'] ?? 'None';
+
+        return <<<EMAIL
+New Volunteer Application Received
+
+Applicant: $name
+Email: {$data['email']}
+Phone: {$data['phone']}
+Location: $location
+
+MOTIVATION:
+$motivation
+
+SKILLS: $skills
+AVAILABILITY: $availability
+INTEREST: $interest
+
+TOOLS/TRANSPORT: $toolsNotes
+REFERRED BY: $referral
+
+--
+Review and approve applications in the admin dashboard:
+$appUrl/app/volunteer.php
+
+VETTING REMINDER: Before approving, complete background checks.
+Do not approve applicants with sex offenses, violent felonies,
+breaking & entering, or theft/larceny convictions.
+
+This is an automated notification.
+EMAIL;
+    }
+
+    /**
+     * Build case claim notification email for requestor.
+     */
+    private function buildCaseClaimEmail(string $name, string $caseNumber, string $orgName): string {
+        $appUrl = getenv('APP_URL') ?: 'http://v2-archr.test';
+        $dashboardUrl = $appUrl . '/app/requestor-portal.php';
+
+        return <<<EMAIL
+Dear $name,
+
+Good news! Your home repair application (Case #{$caseNumber}) has been claimed by {$orgName}.
+
+WHAT THIS MEANS:
+{$orgName} is now the partner organization responsible for coordinating your home repair project. They will be reaching out to you soon to discuss next steps, schedule an assessment, and begin planning the scope of work.
+
+NEXT STEPS:
+1. A representative from {$orgName} will contact you using your preferred contact method.
+2. An assessor may be scheduled to visit your property and document the needed repairs.
+3. You will receive updates through the requestor portal as work progresses.
+
+TRACK YOUR CASE:
+You can view your case status and messages at any time:
+Dashboard URL: $dashboardUrl
+
+If you have not heard from {$orgName} within 5 business days, please contact ARCHR support.
+
+Thank you,
+ARCHR Case Management Team
+Asheville Regional Coalition for Home Repair
+EMAIL;
+    }
+
+    /**
      * Get admin emails from database or config
      */
     private function getAdminEmails(): array {
@@ -254,7 +423,8 @@ EMAIL;
 
     /**
      * Send email using PHP mail() function or SMTP
-     * Compatible with PHPMailer configuration
+     * Routes through local Haraka relay (127.0.0.1:2525) which forwards
+     * to upstream provider (Resend). Falls back to logging in development.
      */
     private function send(string $to, string $toName, string $subject, string $body): bool {
         $headers = [
@@ -267,12 +437,17 @@ EMAIL;
 
         try {
             // Log email instead of sending in development (fallback)
-            if (getenv('APP_ENV') === 'development' || (!$this->config['smtp_host'] && !$this->usesMailpit())) {
+            if (getenv('APP_ENV') === 'development' || (!$this->config['smtp_host'] && !$this->usesMailpit() && !$this->usesHaraka())) {
                 $this->logEmail($to, $toName, $subject, $body);
                 return true;
             }
 
-            // If Mailpit is available, send via raw SMTP
+            // Prefer Haraka relay (127.0.0.1:2525) → Resend
+            if ($this->usesHaraka()) {
+                return $this->sendViaSMTP('127.0.0.1', 2525, $to, $toName, $subject, $body, $headers);
+            }
+
+            // Fallback: Mailpit for local dev (127.0.0.1:1025)
             if ($this->usesMailpit()) {
                 return $this->sendViaSMTP('127.0.0.1', 1025, $to, $toName, $subject, $body, $headers);
             }
@@ -296,6 +471,20 @@ EMAIL;
             error_log('[ARCHREmailer] Email error: ' . $e->getMessage());
             return false;
         }
+    }
+
+    /**
+     * Check if Haraka SMTP relay is available on 127.0.0.1:2525.
+     */
+    private function usesHaraka(): bool {
+        try {
+            $fp = @fsockopen('127.0.0.1', 2525, $errno, $errstr, 2);
+            if ($fp) {
+                fclose($fp);
+                return true;
+            }
+        } catch (Throwable $_) {}
+        return false;
     }
 
     /**

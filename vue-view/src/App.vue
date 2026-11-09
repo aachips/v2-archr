@@ -58,6 +58,10 @@
         <RequestorView v-else-if="view === 'requestor'" />
         <AssessorView v-else-if="view === 'assessor'" />
         <WhoAmI v-else-if="view === 'whoami'" />
+        <VolunteerWelcome v-else-if="view === 'volunteer-welcome'" />
+        <VolunteerIntakeForm v-else-if="view === 'volunteer-intake'" />
+        <VolunteerApplications v-else-if="view === 'volunteer-apps'" />
+        <AMICalculator v-else-if="view === 'helpful-tools'" />
         <WelcomeView v-else-if="view === 'welcome'" />
         <ProfileSettings v-else-if="view === 'profile'" />
         <ActivityLog v-else-if="view === 'activity'" />
@@ -75,7 +79,7 @@
             @open-case="openCase"
           />
           <FilterableCaseList
-            v-else-if="view === 'search'"
+            v-else-if="view === 'search' && effectiveRole !== 'volunteer'"
             :cases="cases"
             :loading="loading"
             @select="openCase"
@@ -125,6 +129,10 @@ import WelcomeView from "./components/WelcomeView.vue";
 import SuperAdminView from "./components/SuperAdminView.vue";
 import RequestorView from "./components/RequestorView.vue";
 import AssessorView from "./components/AssessorView.vue";
+import VolunteerWelcome from "./components/VolunteerWelcome.vue";
+import VolunteerIntakeForm from "./components/VolunteerIntakeForm.vue";
+import VolunteerApplications from "./components/VolunteerApplications.vue";
+import AMICalculator from "./components/AMICalculator.vue";
 import { fetchCases, isConfigured, saveCaseContact } from "./services/caseService";
 import { translate } from "./config/i18n";
 import { logActivity } from "./services/authService";
@@ -149,7 +157,11 @@ export default {
     WelcomeView,
     SuperAdminView,
     RequestorView,
-    AssessorView
+    AssessorView,
+    VolunteerWelcome,
+    VolunteerIntakeForm,
+    VolunteerApplications,
+    AMICalculator
   },
   data() {
     return {
@@ -197,6 +209,7 @@ export default {
         return [
           { view: 'superadmin-orgs', label: 'My Organizations',       minLevel: 3 },
           { view: 'superadmin-users', label: 'User Account Directory', minLevel: 3 },
+          { view: 'volunteer-apps',  label: 'Volunteer Applications', minLevel: 3 },
           { view: 'whoami',           label: 'Who Am I?',              minLevel: 0 },
           { view: 'profile',          label: 'Profile',                minLevel: 0 },
         ];
@@ -214,9 +227,9 @@ export default {
 
       if (effectiveRole === 'volunteer') {
         return [
-          { view: 'welcome', label: 'Welcome',     minLevel: 0 },
-          { view: 'whoami',  label: 'Who Am I?',   minLevel: 0 },
-          { view: 'profile', label: 'Profile',     minLevel: 0 },
+          { view: 'volunteer-welcome', label: 'Welcome',      minLevel: 0 },
+          { view: 'volunteer-intake',  label: 'Apply',        minLevel: 0 },
+          { view: 'profile',           label: 'Profile',      minLevel: 0 },
         ];
       }
 
@@ -225,6 +238,18 @@ export default {
           { view: 'requestor', label: 'My Application',  minLevel: 0 },
           { view: 'whoami',    label: 'Who Am I?',        minLevel: 0 },
           { view: 'profile',   label: 'Profile',          minLevel: 0 },
+        ];
+      }
+
+      // Level 2 admins (org-admin, admin, project-manager, bursar, caseworker, envoy)
+      const level2Roles = ['org-admin', 'admin', 'project-manager', 'bursar', 'caseworker', 'envoy'];
+      if (level2Roles.includes(effectiveRole)) {
+        return [
+          { view: 'search',          label: 'Case Search',           minLevel: 2 },
+          { view: 'volunteer-apps',  label: 'Volunteers',            minLevel: 2 },
+          { view: 'helpful-tools',   label: 'Helpful Tools',         minLevel: 2 },
+          { view: 'whoami',          label: 'Who Am I?',             minLevel: 0 },
+          { view: 'profile',         label: 'Profile',               minLevel: 0 },
         ];
       }
 
@@ -314,11 +339,16 @@ export default {
           this.view = 'requestor';
         } else if (role === 'assessor') {
           this.view = savedDefault || 'whoami';
+        } else if (role === 'volunteer') {
+          this.view = 'volunteer-welcome';
         }
       }
       // Try to load cases after auth restores
       if (this.$auth.isLoggedIn) {
-        this.loadCases();
+        const role = this.$auth?.role || '';
+        if (role !== 'volunteer') {
+          this.loadCases();
+        }
       }
     });
   },
@@ -333,7 +363,7 @@ export default {
         'staff': 'search',
         'assessor': 'assessor',
         'requestor': 'requestor',
-        'volunteer': 'welcome',
+        'volunteer': 'volunteer-welcome',
         'subcontractor': 'marketplace',
       };
       const defaultView = roleMap[newRole] || 'search';

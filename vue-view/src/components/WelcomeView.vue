@@ -54,22 +54,6 @@
  * Each role gets a personalized greeting and a list of what's coming.
  */
 const ROLE_WELCOME = {
-  volunteer: {
-    message: "Thank you for showing up for your neighbors! Your volunteer contributions make this coalition possible.",
-    underConstruction: true,
-    future: [
-      "📋 Available Quests — Browse and claim volunteer tasks in your area",
-      "🏆 Reputation & XP — Track your volunteer impact and earn badges",
-      "📅 Availability — Set your schedule and skills so coordinators can match you",
-      "⏱️ Hour Logging — Log your volunteer hours directly from here",
-      "📊 Impact Dashboard — See your total contributions to the coalition",
-    ],
-    actions: [
-      "Check your Profile to review your account details",
-      "Click Who Am I? to see your role, permissions, and capabilities",
-      "Check back soon for the full volunteer experience!",
-    ],
-  },
   requestor: {
     message: "Thank you for reaching out. You can use this portal to track your home repair application, upload supporting documents, and stay informed about your case status.",
     underConstruction: true,

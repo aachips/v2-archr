@@ -135,7 +135,40 @@ function archr_deduplicate_application(PDO $pdo, int $submissionId): int {
 function archr_claim_application(PDO $pdo, int $applicationId, int $organizationId, int $claimedBy): int {
     $stmt = $pdo->prepare('SELECT claim_application(:app, :org, :by)');
     $stmt->execute([':app' => $applicationId, ':org' => $organizationId, ':by' => $claimedBy]);
-    return (int)$stmt->fetchColumn();
+    $caseId = (int)$stmt->fetchColumn();
+
+    // Send notification to the requestor that their case has been claimed.
+    try {
+        // Fetch requestor email and case number
+        $infoStmt = $pdo->prepare("
+            SELECT s.contact_email, s.applicant_first_name, s.applicant_last_name,
+                   c.case_number, o.org_name
+              FROM cases c
+              JOIN intake_submissions s ON s.id = c.submission_id
+              JOIN organizations o ON o.id = c.organization_id
+             WHERE c.id = :caseId
+        ");
+        $infoStmt->execute([':caseId' => $caseId]);
+        $info = $infoStmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($info && !empty($info['contact_email'])) {
+            require_once __DIR__ . '/email.php';
+            $emailer = new ARCHREmailer();
+            $requestorName = trim(($info['applicant_first_name'] ?? '') . ' ' . ($info['applicant_last_name'] ?? ''));
+            $emailer->sendCaseClaimNotification(
+                $info['contact_email'],
+                $requestorName ?: 'Applicant',
+                $info['case_number'] ?? ('#' . $caseId),
+                $info['org_name'] ?? 'Partner Organization'
+            );
+            error_log("[claim] Case claim notification sent to {$info['contact_email']} for case {$info['case_number']}");
+        }
+    } catch (Throwable $e) {
+        // Email failure is non-fatal for claim operation
+        error_log('[claim] Case claim notification failed (non-fatal): ' . $e->getMessage());
+    }
+
+    return $caseId;
 }
 
 /**

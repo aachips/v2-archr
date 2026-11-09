@@ -103,6 +103,7 @@ const ARCHR_LEVEL_CAPABILITIES = [
         'approve_expenses'    => true,   // bursar/PM financial actions
         'change_case_status'  => true,
         'assign_staff'        => true,
+        'manage_volunteers'   => true,  // review/approve volunteer applications
     ],
     3 => [
         'view_own_cases'      => true,
@@ -245,6 +246,7 @@ function archr_menu_registry(): array {
 
         // Admin group
         ['key' => 'team',         'icon' => 'fa-users',             'label' => 'Team',             'group' => 'Admin',       'minLevel' => 2],
+        ['key' => 'volunteer-apps','icon' => 'fa-hand-holding-heart','label' => 'Volunteers',       'group' => 'Admin',       'minLevel' => 2],
         ['key' => 'review-queue', 'icon' => 'fa-clipboard-list',   'label' => 'Review Queue',     'group' => 'Admin',       'minLevel' => 2],
         ['key' => 'messages',     'icon' => 'fa-envelope',          'label' => 'Messages',         'group' => 'Admin',       'minLevel' => 2],
         ['key' => 'metrics',      'icon' => 'fa-chart-line',        'label' => 'Metrics',          'group' => 'Admin',       'minLevel' => 2],

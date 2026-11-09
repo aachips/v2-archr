@@ -13,6 +13,12 @@ module.exports = {
       filename: 'portal.html',
       title: 'ARCHR — Case Portal',
     },
+    'volunteer-intake': {
+      entry: 'src/volunteer-intake-app.js',
+      template: 'public/volunteer-intake.html',
+      filename: 'volunteer-intake.html',
+      title: 'ARCHR — Apply to Volunteer',
+    },
   },
   outputDir: 'dist',
   assetsDir: 'assets',

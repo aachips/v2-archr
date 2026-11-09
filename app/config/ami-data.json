@@ -1,0 +1,37 @@
+{
+  "_comment": "AMI values from HUD Income Limits. Update annually when new limits publish.",
+  "_source": "https://www.huduser.gov/portal/datasets/il.html",
+  "_updated": "2024-11-06",
+  "_note": "Values are annual AMI limits by household size for 30%, 50%, and 80% thresholds.",
+
+  "counties": {
+    "buncombe_nc": {
+      "name": "Buncombe County, NC",
+      "metro": "Asheville MSA",
+      "fips": "37021",
+      "year": 2024,
+      "limits": {
+        "30": { "1": 20650, "2": 23600, "3": 26550, "4": 29500, "5": 31900, "6": 34250, "7": 36600, "8": 38950 },
+        "50": { "1": 34450, "2": 39350, "3": 44250, "4": 49150, "5": 53100, "6": 57050, "7": 61000, "8": 64950 },
+        "80": { "1": 55100, "2": 63000, "3": 70850, "4": 78700, "5": 85000, "6": 91300, "7": 97600, "8": 103900 }
+      }
+    },
+    "madison_nc": {
+      "name": "Madison County, NC",
+      "metro": "Asheville MSA",
+      "fips": "37115",
+      "year": 2024,
+      "limits": {
+        "30": { "1": 20650, "2": 23600, "3": 26550, "4": 29500, "5": 31900, "6": 34250, "7": 36600, "8": 38950 },
+        "50": { "1": 34450, "2": 39350, "3": 44250, "4": 49150, "5": 53100, "6": 57050, "7": 61000, "8": 64950 },
+        "80": { "1": 55100, "2": 63000, "3": 70850, "4": 78700, "5": 85000, "6": 91300, "7": 97600, "8": 103900 }
+      }
+    }
+  },
+
+  "_census_api": {
+    "_note": "When a Census API key is obtained, plug it in here to enable live AMI lookups.",
+    "_key": "",
+    "_endpoint": "https://api.census.gov/data/2024/acs/acs5"
+  }
+}

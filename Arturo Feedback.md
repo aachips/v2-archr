@@ -35,3 +35,20 @@ Main challenge is keeping track of where in the pipeline and what needs to happe
 Head up display - You are viewing the application of ______  as role. Here are some action items you can complete to advance this application.  
 
 I can log in as test_admin, a level 2 account, and then use the switcher to switch to Super Admin. I am able to do that. Now, when I go to super admin features, it lists as that I have 0 organizations and 0 system users. Also as a Super Admin, I can no longer switch to Assessor, after it's been changed so Assessors can't role switch. There is missing logic on this switcher and role-switching ability.
+
+ssh into archrmac@(tailscaleip)
+
+Set up auto allerts and messages "New eligible ARCHR application" "application Received!"
+Pop em into /users/archrmac/archr/services/archrAlerts
+
+/archrSMTP  connect with Resend
+
+SMTP through Haraka, and use Resend for messages
+
+Submission Received - on application submit to requestor
+Referral Received! - when referral sent to referrer
+Upload Missing Documents - to Requestor after eligibility check/required doc evaluation
+{Org} opened a case to requestor - after claim is made
+Your claim on {case} is about to expire! 2 days before Claim expiration
+
+These are where the "view/edit my Application" links and "Upload Documents" could go, along with a repeat of the "if you are able to upload your proof of income & ownership documents, that can SIGNIFICANTLY speed up the application process and get your needs met quicker" message goes

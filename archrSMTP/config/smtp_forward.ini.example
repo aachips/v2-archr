@@ -1,0 +1,15 @@
+host=smtp.resend.com
+port=587
+
+enable_outbound=true
+enable_tls=true
+
+auth_type=plain
+auth_user=resend
+auth_pass=YOUR_RESEND_API_KEY
+
+connect_timeout=30
+
+[tls]
+rejectUnauthorized=true
+minVersion=TLSv1.2
