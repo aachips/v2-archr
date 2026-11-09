@@ -43,7 +43,7 @@ return [
     'PGHOST'     => 'localhost',        // shared hosting: usually 'localhost'
     'PGPORT'     => '5432',
     'PGDATABASE' => 'archr',            // some hosts prefix: cpaneluser_archr
-    'PGUSER'     => 'postgres',
+    'PGUSER'     => 'archrmac',
     'PGPASSWORD' => 'dumps-cassie-looks-trusts-nils-rubies',
 
     // ----------------------------------------------------------------
